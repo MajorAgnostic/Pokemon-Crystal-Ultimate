@@ -456,11 +456,11 @@ String_4a34b:
 	next "もどる@"
 
 DeleteSavedLoginPasswordText:
-	text_far _DeleteSavedLoginPasswordText
+	text_far _PlayedFluteText
 	text_end
 
 DeletedTheLoginPasswordText:
-	text_far _DeletedTheLoginPasswordText
+	text_far _PlayedFluteText
 	text_end
 
 DeletePassword_YesNo_MenuHeader:

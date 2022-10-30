@@ -245,17 +245,6 @@ StubbedTrainerRankings_StepCount:
 	ld hl, sTrainerRankingStepCount
 	jp StubbedTrainerRankings_Increment4Byte
 
-StubbedTrainerRankings_BattleTowerWins: ; unreferenced
-	ret
-	ld a, BANK(s5_aa8d)
-	call OpenSRAM
-	ld a, [s5_aa8d]
-	and a
-	call CloseSRAM
-	ret nz
-	ld hl, sTrainerRankingBattleTowerWins
-	jp StubbedTrainerRankings_Increment2Byte
-
 StubbedTrainerRankings_TMsHMsTaught:
 	ret
 	ld hl, sTrainerRankingTMsHMsTaught
@@ -280,11 +269,6 @@ StubbedTrainerRankings_WildBattles:
 StubbedTrainerRankings_TrainerBattles:
 	ret
 	ld hl, sTrainerRankingTrainerBattles
-	jp StubbedTrainerRankings_Increment3Byte
-
-StubbedTrainerRankings_Unused1:
-	ret
-	ld hl, sTrainerRankingUnused1
 	jp StubbedTrainerRankings_Increment3Byte
 
 StubbedTrainerRankings_HallOfFame::
@@ -362,11 +346,6 @@ StubbedTrainerRankings_PhoneCalls:
 	ld hl, sTrainerRankingPhoneCalls
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Unused2:
-	ret
-	ld hl, sTrainerRankingUnused2
-	jr StubbedTrainerRankings_Increment3Byte
-
 StubbedTrainerRankings_LinkBattles:
 	ret
 	ld hl, sTrainerRankingLinkBattles
@@ -384,11 +363,6 @@ StubbedTrainerRankings_Splash:
 StubbedTrainerRankings_TreeEncounters:
 	ret
 	ld hl, sTrainerRankingTreeEncounters
-	jr StubbedTrainerRankings_Increment3Byte
-
-StubbedTrainerRankings_Unused3:
-	ret
-	ld hl, sTrainerRankingUnused3
 	jr StubbedTrainerRankings_Increment3Byte
 
 StubbedTrainerRankings_ColosseumWins: ; win
@@ -430,11 +404,6 @@ StubbedTrainerRankings_Increment2Byte:
 	push bc
 	ld bc, 1
 	jr StubbedTrainerRankings_Increment
-
-; unused
-StubbedTrainerRankings_Increment1Byte:
-	push bc
-	ld bc, 0
 
 ; Increments a big-endian value of bc + 1 bytes at hl
 StubbedTrainerRankings_Increment:
@@ -535,17 +504,6 @@ RestoreMobileEventIndex:
 	pop af
 	ld [sMobileEventIndex], a
 	call CloseSRAM
-	ret
-
-VerifyTrainerRankingsChecksum: ; unreferenced
-	call CalculateTrainerRankingsChecksum
-	ld hl, sTrainerRankingsChecksum
-	ld a, d
-	cp [hl]
-	ret nz
-	inc hl
-	ld a, e
-	cp [hl]
 	ret
 
 DeleteMobileEventIndex:

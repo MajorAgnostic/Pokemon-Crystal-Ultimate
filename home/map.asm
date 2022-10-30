@@ -1,12 +1,5 @@
 ; Functions dealing with rendering and interacting with maps.
 
-ClearUnusedMapBuffer::
-	ld hl, wUnusedMapBuffer
-	ld bc, wUnusedMapBufferEnd - wUnusedMapBuffer
-	ld a, 0
-	call ByteFill
-	ret
-
 CheckScenes::
 ; Checks wCurMapSceneScriptPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active scene ID in a.
 	push hl
@@ -1103,20 +1096,6 @@ ObjectEventText::
 	text_far _ObjectEventText
 	text_end
 
-BGEvent:: ; unreferenced
-	jumptext BGEventText
-
-BGEventText::
-	text_far _BGEventText
-	text_end
-
-CoordinatesEvent:: ; unreferenced
-	jumptext CoordinatesEventText
-
-CoordinatesEventText::
-	text_far _CoordinatesEventText
-	text_end
-
 CheckObjectMask::
 	ldh a, [hMapObjectIndexBuffer]
 	ld e, a
@@ -2147,8 +2126,6 @@ GetMapEnvironment::
 	pop hl
 	ret
 
-	ret ; unused
-
 GetAnyMapEnvironment::
 	push hl
 	push de
@@ -2192,7 +2169,6 @@ GetMapMusic::
     jr z, .mahoganymart
     cp MUSIC_RADIO_TOWER
     jr z, .radiotower
-    farcall Function8b342
 .done
 	call ChangeMusicIfNight
     ld e, c
@@ -2292,13 +2268,4 @@ LoadMapTileset::
 
 	pop bc
 	pop hl
-	ret
-
-InexplicablyEmptyFunction::
-; unused
-; Inexplicably empty.
-; Seen in PredefPointers.
-rept 16
-	nop
-endr
 	ret

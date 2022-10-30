@@ -873,11 +873,3 @@ ENDM
 	dec b
 	jr nz, .row
 	ret
-
-Function8c7c9: ; unreferenced
-	ld a, 1
-	ldh [hBGMapMode], a
-	call WaitBGMap
-	xor a
-	ldh [hBGMapMode], a
-	ret

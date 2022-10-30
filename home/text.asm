@@ -169,8 +169,6 @@ PlaceNextChar::
 	pop hl
 	ret
 
-	pop de ; unused
-
 NextChar::
 	inc de
 	jp PlaceNextChar

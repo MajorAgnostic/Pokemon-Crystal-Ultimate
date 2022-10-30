@@ -341,9 +341,6 @@ CeladonMansion3F_Blocks:
 CeladonMansionRoof_Blocks:
 	INCBIN "maps/CeladonMansionRoof.blk"
 
-BetaHouse_Blocks:
-	INCBIN "maps/unused/BetaHouse.blk"
-
 CeladonGameCorner_Blocks:
 	INCBIN "maps/CeladonGameCorner.blk"
 
@@ -624,9 +621,6 @@ MahoganyGym_Blocks:
 OlivineGym_Blocks:
 	INCBIN "maps/OlivineGym.blk"
 
-BetaUnknownGym_Blocks:
-	INCBIN "maps/unused/BetaUnknownGym.blk"
-
 CianwoodGym_Blocks:
 	INCBIN "maps/CianwoodGym.blk"
 
@@ -656,9 +650,6 @@ OlivineLighthouse6F_Blocks:
 
 
 SECTION "Map Blocks 3", ROMX
-
-BetaSlowpokeWell1F_Blocks:
-	INCBIN "maps/unused/BetaSlowpokeWell1F.blk"
 
 SlowpokeWellB1F_Blocks:
 	INCBIN "maps/SlowpokeWellB1F.blk"
@@ -701,9 +692,6 @@ FastShip1F_Blocks:
 
 FastShipB1F_Blocks:
 	INCBIN "maps/FastShipB1F.blk"
-
-BetaFastShipInsideCutOut_Blocks:
-	INCBIN "maps/unused/BetaFastShipInsideCutOut.blk"
 
 FastShipCabins_NNW_NNE_NE_Blocks:
 	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
@@ -821,7 +809,7 @@ VermilionPortPassage_Blocks:
 
 FuchsiaGym_Blocks:
 	INCBIN "maps/FuchsiaGym.blk"
-
+	
 SafariZoneBeta_Blocks:
 	INCBIN "maps/SafariZoneBeta.blk"
 
@@ -911,9 +899,6 @@ BattleTowerElevator_Blocks:
 
 BattleTowerOutside_Blocks:
 	INCBIN "maps/BattleTowerOutside.blk"
-
-BetaBlank_Blocks:
-	INCBIN "maps/unused/BetaBlank.blk"
 
 GoldenrodDeptStoreRoof_Blocks:
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"

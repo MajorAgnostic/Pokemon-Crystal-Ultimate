@@ -249,9 +249,8 @@ GetBaseData::
 	jr z, .egg
 
 ; Get BaseData
-	dec a
+	ld hl, BaseData - BASE_DATA_SIZE
 	ld bc, BASE_DATA_SIZE
-	ld hl, BaseData
 	call AddNTimes
 	ld de, wCurBaseData
 	ld bc, BASE_DATA_SIZE
@@ -259,24 +258,10 @@ GetBaseData::
 	jr .end
 
 .egg
-	ld de, UnusedEggPic
-
 ; Sprite dimensions
 	ld b, $55 ; 5x5
 	ld hl, wBasePicSize
 	ld [hl], b
-
-; Beta front and back sprites
-; (see pokegold-spaceworld's data/pokemon/base_stats/*)
-	ld hl, wBaseUnusedFrontpic
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	jr .end ; useless
 
 .end
 ; Replace Pokedex # with species

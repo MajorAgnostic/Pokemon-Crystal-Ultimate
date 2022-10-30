@@ -222,19 +222,10 @@ _MoveMonWOMailSaveText::
 	cont "will be saved. OK?"
 	done
 
-_WindowAreaExceededErrorText:: ; unreferenced
-	text "The window save"
-	line "area was exceeded."
-	done
-
 _WindowPoppingErrorText::
 	text "No windows avail-"
 	line "able for popping."
 	done
-
-_CorruptedEventText:: ; unreferenced
-	text "Corrupted event!"
-	prompt
 
 _ObjectEventText::
 	text "Object event"
@@ -444,8 +435,6 @@ _CongratulationsYourPokemonText::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unreferenced
-
 _EvolvedIntoText::
 	text_start
 
@@ -618,12 +607,6 @@ _PharmacyComeAgainText::
 	line "See you around."
 	done
 
-; unreferenced
-_NothingToSellText::
-	text "You don't have"
-	line "anything to sell."
-	prompt
-
 _MartSellHowManyText::
 	text "How many?"
 	done
@@ -742,156 +725,6 @@ _MainMenuTimeUnknownText::
 	text "Clock time unknown"
 	done
 
-; unreferenced mobile
-_DeleteSavedLoginPasswordText::
-	text "Delete the saved"
-	line "LOG-IN PASSWORD?"
-	done
-
-; unreferenced mobile
-_DeletedTheLoginPasswordText::
-	text "Deleted the LOG-IN"
-	line "PASSWORD."
-	done
-
-; unreferenced mobile
-_MobilePickThreeMonForBattle::
-	text "Pick three #MON"
-	line "for battle."
-	prompt
-
-; unreferenced mobile
-_MobileUseTheseThreeMonText::
-	text_ram wMobileParticipant1Nickname
-	text ","
-	line "@"
-	text_ram wMobileParticipant2Nickname
-	text " and"
-	cont "@"
-	text_ram wMobileParticipant3Nickname
-	text "."
-
-	para "Use these three?"
-	done
-
-; unreferenced mobile
-_MobileOnlyThreeMonMayEnterText::
-	text "Only three #MON"
-	line "may enter."
-	prompt
-
-; unreferenced mobile
-_MobileCardFolderIntro1Text::
-	text "The CARD FOLDER"
-	line "stores your and"
-
-	para "your friends'"
-	line "CARDS."
-
-	para "A CARD contains"
-	line "information like"
-
-	para "the person's name,"
-	line "phone number and"
-	cont "profile."
-
-	para ""
-	done
-
-; unreferenced mobile
-_MobileCardFolderIntro2Text::
-	text "This is your CARD."
-
-	para "Once you've"
-	line "entered your phone"
-
-	para "number, you can"
-	line "trade CARDS with"
-	cont "your friends."
-
-	para ""
-	done
-
-; unreferenced mobile
-_MobileCardFolderIntro3Text::
-	text "If you have your"
-	line "friend's CARD, you"
-
-	para "can use it to make"
-	line "a call from a"
-
-	para "mobile phone on"
-	line "the 2nd floor of a"
-	cont "#MON CENTER."
-
-	para ""
-	done
-
-; unreferenced mobile
-_MobileCardFolderIntro4Text::
-	text "To safely store"
-	line "your collection of"
-
-	para "CARDS, you must"
-	line "set a PASSCODE for"
-	cont "your CARD FOLDER."
-
-	para ""
-	done
-
-; unreferenced mobile
-_MobileCardFolderAskDeleteText::
-	text "If the CARD FOLDER"
-	line "is deleted, all"
-
-	para "its CARDS and the"
-	line "PASSCODE will also"
-	cont "be deleted."
-
-	para "Beware--a deleted"
-	line "CARD FOLDER can't"
-	cont "be restored."
-
-	para "Want to delete"
-	line "your CARD FOLDER?"
-	done
-
-; unreferenced mobile
-_MobileCardFolderDeleteAreYouSureText::
-	text "Are you sure you"
-	line "want to delete it?"
-	done
-
-; unreferenced mobile
-_MobileCardFolderDeletedText::
-	text "The CARD FOLDER"
-	line "has been deleted."
-
-	para ""
-	done
-
-; unreferenced mobile
-_MobileCardFolderAskOpenOldText::
-	text "There is an older"
-	line "CARD FOLDER from a"
-	cont "previous journey."
-
-	para "Do you want to"
-	line "open it?"
-	done
-
-; unreferenced mobile
-_MobileCardFolderAskDeleteOldText::
-	text "Delete the old"
-	line "CARD FOLDER?"
-	done
-
-; unreferenced mobile
-_MobileCardFolderFinishRegisteringCardsText::
-	text "Finish registering"
-	line "CARDS?"
-	done
-
 _PhoneWrongNumberText::
 	text "Huh? Sorry, wrong"
 	line "number!"
@@ -917,10 +750,6 @@ _PhoneJustTalkToThemText::
 
 _PhoneThankYouText::
 	text "Thank you!"
-	done
-
-_SpaceSpaceColonText:: ; unreferenced
-	text "  :"
 	done
 
 _PasswordAskResetText::
@@ -956,8 +785,6 @@ _LearnedMoveText::
 	sound_dex_fanfare_50_79
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _MoveAskForgetText::
 	text "Which move should"
@@ -1005,8 +832,6 @@ Text_MoveForgetCount::
 	text "1, 2 and…@"
 	text_pause
 	text_end
-
-	text_end ; unreferenced
 
 _MoveForgotText::
 	text " Poof!@"
@@ -1066,8 +891,6 @@ _CardFlipDarnText::
 _GearTodayText::
 	text_today
 	text_end
-
-	text_end ; unreferenced
 
 _GearEllipseText::
 	text "<……>"
@@ -1236,13 +1059,9 @@ Text_BallCaught::
 	sound_caught_mon
 	text_end
 
-	text_end ; unreferenced
-
 _WaitButtonText::
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _BallSentToPCText::
 	text_ram wMonOrItemNameBuffer
@@ -1258,8 +1077,6 @@ _NewDexDataText::
 	sound_slot_machine_start
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _AskGiveNicknameText::
 	text "Give a nickname to"
@@ -1306,8 +1123,6 @@ Text_PlayedPokeFlute::
 	text_promptbutton
 	text_end
 
-	text_end ; unreferenced
-
 _BlueCardBalanceText::
 	text "You now have"
 	line "@"
@@ -1320,8 +1135,6 @@ _CoinCaseCountText::
 	line "@"
 	text_decimal wCoins, 2, 4
 	text_end
-
-	text_end ; unreferenced
 
 _RaiseThePPOfWhichMoveText::
 	text "Raise the PP of"

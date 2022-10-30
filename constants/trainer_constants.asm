@@ -545,7 +545,6 @@ KRIS EQU __trainer_class__
 	const BOBBY
 
 	trainerclass EXECUTIVEM ; 33
-	const EXECUTIVEM_1
 	const EXECUTIVEM_2
 	const EXECUTIVEM_3
 	const EXECUTIVEM_4
@@ -681,12 +680,8 @@ KRIS EQU __trainer_class__
 	trainerclass TWINS ; 3d
 	const AMYANDMAY1
 	const ANNANDANNE1
-	const ANNANDANNE2
-	const AMYANDMAY2
 	const JOANDZOE1
-	const JOANDZOE2
 	const MEGANDPEG1
-	const MEGANDPEG2
 	const LEAANDPIA1
 
 	trainerclass POKEFANF ; 3e

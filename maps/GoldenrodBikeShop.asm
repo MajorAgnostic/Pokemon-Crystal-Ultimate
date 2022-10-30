@@ -6,9 +6,6 @@ GoldenrodBikeShop_MapScripts:
 
 	def_callbacks
 
-.DummyScene: ; unreferenced
-	end
-
 GoldenrodBikeShopClerkScript:
 	faceplayer
 	opentext

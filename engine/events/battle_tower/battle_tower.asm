@@ -572,25 +572,6 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 SkipBattleTowerTrainer:
 	ret
 
-Function1704ca: ; unreferenced
-	ld a, [s5_be46]
-	cp BATTLETOWER_STREAK_LENGTH
-	jr c, .not_max
-	ld a, BATTLETOWER_STREAK_LENGTH - 1
-
-.not_max
-	ld hl, s5_aa8e + BATTLE_TOWER_STRUCT_LENGTH * (BATTLETOWER_STREAK_LENGTH - 1)
-	ld de, -BATTLE_TOWER_STRUCT_LENGTH
-.loop
-	and a
-	jr z, .done
-	add hl, de
-	dec a
-	jr .loop
-
-.done
-	ret
-
 Function1704e1:
 	call SpeechTextbox
 	call FadeToMenu

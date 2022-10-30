@@ -226,7 +226,6 @@ MovementData_BattleTowerHallwayWalkTo3040Room:
 MovementData_BattleTowerHallwayWalkTo90100Room:
 	step LEFT
 	step LEFT
-MovementData_BattleTowerHallwayWalkTo7080Room:
 	step LEFT
 	step LEFT
 MovementData_BattleTowerHallwayWalkTo5060Room:

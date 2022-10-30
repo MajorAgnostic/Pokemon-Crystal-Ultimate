@@ -1156,13 +1156,13 @@ BattleTowerRoomMenu_PlacePickLevelMenu:
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr nz, .asm_11896b
-	ld hl, Strings_Ll0ToL40 ; Address to list of strings with the choosable levels
-	ld a, 8                 ; 4 levels to choose from, including 'Cancel'-option
+	ld hl, Strings_Ll0ToL50 ; Address to list of strings with the choosable levels
+	ld a, 3                 ; 3 levels to choose from, including 'Cancel'-option
 	jr .asm_118970
-
+	
 .asm_11896b
 	ld hl, Strings_L10ToL100 ; Address to list of strings with the choosable levels
-	ld a, 11                 ; 10 levels to choose from, including 'Cancel'-option
+	ld a, 4                 ; 4 levels to choose from, including 'Cancel'-option
 
 .asm_118970
 	ld [wcd4a], a
@@ -1501,48 +1501,6 @@ IndexDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
 popc
-
-Function118d35: ; unreferenced
-	ld hl, $d200
-	ld a, [wcd38]
-	and a
-	jr nz, .asm_118d6e
-	ld a, [hli]
-	cp $94
-	jr nz, .asm_118d7b
-	ld a, [hl]
-	cp $5
-	jr nz, .asm_118d7b
-	ld a, [wcd4f]
-	sla a
-	ld b, a
-	sla a
-	sla a
-	add b
-	ld b, a
-	ld a, BANK(s5_b2fb)
-	call OpenSRAM
-	ld a, b
-	ld [s5_b2fb], a
-	call CloseSRAM
-	farcall Function170be4
-	farcall Function1700c4
-	jr .asm_118d78
-
-.asm_118d6e
-	ld a, [hli]
-	cp $96
-	jr nz, .asm_118d7b
-	ld a, [hl]
-	cp $0
-	jr nz, .asm_118d7b
-
-.asm_118d78
-	jp BattleTowerRoomMenu_IncrementJumptable
-
-.asm_118d7b
-	ld a, $d3
-	jp SetMobileErrorCode
 
 Function118d80:
 	call Function118e06
@@ -3869,32 +3827,17 @@ MenuData_119cff:
 
 String_119d07:
 	db "   ▼@"
+	
+Strings_Ll0ToL50:
+	db " L:10 @@"
+	db " L:50 @@"
+	db "CANCEL@@"
 
 Strings_L10ToL100:
 	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
 	db " L:50 @@"
-	db " L:60 @@"
-	db " L:70 @@"
-	db " L:80 @@"
-	db " L:90 @@"
 	db " L:100@@"
 	db "CANCEL@@"
-
-Strings_Ll0ToL40:
-	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
-	db " L:50 @@"
-	db " L:60 @@"
-	db " L:70 @@"
-	db "CANCEL@@"
-
-BattleTowerCancelString: ; unreferenced
-	db "CANCEL@"
 
 BattleTower_LevelCheck:
 	ldh a, [rSVBK]
@@ -3902,10 +3845,16 @@ BattleTower_LevelCheck:
 	ld a, BANK(wPartyMons)
 	ldh [rSVBK], a
 	ld a, [wcd4f]
-	ld c, 10
-	call SimpleMultiply
+	ld b, 10
+	dec a
+	jr z, .got_level
+	ld b, 50
+	dec a
+	jr z, .got_level
+	ld b, 100
+.got_level:
 	ld hl, wcd50
-	ld [hl], a
+	ld [hl], b
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wPartyMon1Level
 	ld a, [wPartyCount]
@@ -3944,8 +3893,8 @@ BattleTower_UbersCheck:
 	ldh a, [rSVBK]
 	push af
 	ld a, [wcd4f]
-	cp 70 / 10
-	jr nc, .level_70_or_more
+	cp 3
+	jr z, .level_100_tier
 	ld a, BANK(wPartyMons)
 	ldh [rSVBK], a
 	ld hl, wPartyMon1Level
@@ -3965,7 +3914,7 @@ BattleTower_UbersCheck:
 	jr nc, .next
 .uber
 	ld a, [hl]
-	cp 70
+	cp 90
 	jr c, .uber_under_70
 .next
 	add hl, bc
@@ -3973,7 +3922,7 @@ BattleTower_UbersCheck:
 	pop af
 	dec a
 	jr nz, .loop
-.level_70_or_more
+.level_100_tier
 	pop af
 	ldh [rSVBK], a
 	and a
@@ -5446,24 +5395,9 @@ Text_QuitReadingNews:
 	text "Quit reading NEWS?"
 	done
 
-Text_CanceledSendingSaveFile:
-	text "Canceled sending"
-	line "SAVE FILE."
-	done
-
-Text_ReceivedOddEgg:
-	text "ODD EGG"
-	line "was received!"
-	done
-
 Text_RegisteringRecord:
 	text "Registering your"
 	line "record…"
-	done
-
-Text_BattleRoomVisitLimit:
-	text "One visit per day"
-	line "per BATTLE ROOM!"
 	done
 
 Text_PartyMonTopsThisLevel:
@@ -5474,10 +5408,8 @@ Text_PartyMonTopsThisLevel:
 Text_UberRestriction:
 	text_ram wcd49
 	text " may go"
-	line "only to BATTLE"
-
-	para "ROOMS that are"
-	line "Lv.70 or higher."
+	line "only into BATTLE"
+	cont "ROOM Lv.100."
 	done
 
 Text_CancelBattleRoomChallenge:
@@ -6695,35 +6627,6 @@ Function11b397:
 	inc de
 	ld a, $5
 	ld [de], a ; attributes
-	inc de
-	jr .loop
-
-Function11b3b6: ; unreferenced
-.loop
-	ld a, [hl]
-	cp -1
-	ret z
-	ld a, [wcd4d]
-	and $7
-	swap a
-	add [hl]
-	inc hl
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	push hl
-	ld l, c
-	ld h, b
-	ld a, [wcd4e]
-	add [hl]
-	inc bc
-	ld [de], a
-	inc de
-	pop hl
-	ld a, $5
-	ld [de], a
 	inc de
 	jr .loop
 

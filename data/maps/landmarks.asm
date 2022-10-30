@@ -36,7 +36,7 @@ Landmarks:
 	landmark  36,  60, OlivineCityName
 	landmark  38,  62, LighthouseName
 	landmark  28,  56, BattleTowerName
-	landmark  28,  64, Route40Name
+	landmark  28,  70, Route40Name
 	landmark  28,  92, WhirlIslandsName
 	landmark  28, 100, Route41Name
 	landmark  20, 100, CianwoodCityName
@@ -51,7 +51,7 @@ Landmarks:
 	landmark 132,  36, DragonsDenName
 	landmark 132,  64, Route45Name
 	landmark 112,  72, DarkCaveName
-	landmark 124,  88, Route46Name
+	landmark 124,  86, Route46Name
 	landmark 148,  68, SilverCaveName
 	landmark  52, 108, PalletTownName
 	landmark  52,  92, Route1Name

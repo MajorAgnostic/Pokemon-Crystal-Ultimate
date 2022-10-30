@@ -240,7 +240,7 @@ Function4a94e:
 	jr .asm_4a974
 
 MobilePickThreeMonForBattle:
-	text_far _MobilePickThreeMonForBattle
+	text_far _PlayedFluteText
 	text_end
 
 Function4a9c3:
@@ -292,7 +292,7 @@ Function4a9d7:
 	ret
 
 MobileUseTheseThreeMonText:
-	text_far _MobileUseTheseThreeMonText
+	text_far _PlayedFluteText
 	text_end
 
 Function4aa22:
@@ -791,7 +791,7 @@ Function4ad17:
 	ret
 
 MobileOnlyThreeMonMayEnterText:
-	text_far _MobileOnlyThreeMonMayEnterText
+	text_far _PlayedFluteText
 	text_end
 
 Function4ad56:

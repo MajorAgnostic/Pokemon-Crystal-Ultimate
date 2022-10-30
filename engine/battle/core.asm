@@ -4781,7 +4781,7 @@ PrintPlayerHUD:
 .got_gender_char
 	hlcoord 17, 8
 	ld [hl], a
-	hlcoord 14, 8
+	hlcoord 13, 8
 	push af ; back up gender
 	push hl
 	ld de, wBattleMonStatus
@@ -4858,7 +4858,7 @@ DrawEnemyHUD:
 	hlcoord 9, 1
 	ld [hl], a
 
-	hlcoord 6, 1
+	hlcoord 5, 1
 	push af
 	push hl
 	ld de, wEnemyMonStatus

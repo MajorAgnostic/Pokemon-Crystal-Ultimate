@@ -31,7 +31,7 @@ hVBlank:: db
 hMapEntryMethod:: db
 
 hMenuReturn:: db
-hUnusedFFA1:: db
+	ds 1
 
 hJoypadReleased:: db
 hJoypadPressed::  db
@@ -150,7 +150,7 @@ hLastTalked:: db
 hRandomAdd:: db
 hRandomSub:: db
 
-hUnusedBackup:: db
+	ds 1
 
 hBattleTurn::
 ; Which trainer's turn is it? 0: player, 1: opponent trainer

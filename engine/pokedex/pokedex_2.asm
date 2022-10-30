@@ -214,9 +214,6 @@ DisplayDexEntry:
 	call FarString
 	ret
 
-POKeString: ; unreferenced
-	db "#@"
-
 GetDexEntryPointer:
 ; return dex entry pointer b:de
 	push hl

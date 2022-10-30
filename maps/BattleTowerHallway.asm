@@ -36,14 +36,9 @@ BattleTowerHallway_MapScripts:
 ; at least it should look like that
 ; because all warps lead to the same room
 .WalkToChosenBattleRoom:
-	ifequal 3, .L30L40
-	ifequal 4, .L30L40
-	ifequal 5, .L50L60
-	ifequal 6, .L50L60
-	ifequal 7, .L70L80
-	ifequal 8, .L70L80
-	ifequal 9, .L90L100
-	ifequal 10, .L90L100
+	ifequal 2, .L30L40
+	ifequal 1, .L50L60
+	ifequal 3, .L90L100
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo1020Room
 	sjump .EnterBattleRoom
 
@@ -53,10 +48,6 @@ BattleTowerHallway_MapScripts:
 
 .L50L60:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo5060Room
-	sjump .EnterBattleRoom
-
-.L70L80:
-	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo7080Room
 	sjump .EnterBattleRoom
 
 .L90L100:

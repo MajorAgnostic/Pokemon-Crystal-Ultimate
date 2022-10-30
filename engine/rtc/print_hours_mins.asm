@@ -1,18 +1,3 @@
-Function1dd6a9: ; unreferenced
-	ld a, b
-	ld b, c
-	ld c, a
-	push bc
-	push de
-	ld hl, sp+2
-	ld d, h
-	ld e, l
-	pop hl
-	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
-	call PrintNum
-	pop bc
-	ret
-
 PrintHoursMins:
 ; Hours in b, minutes in c
 	ld a, b

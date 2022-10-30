@@ -93,7 +93,7 @@ FightingDojoElekid:
 	end
 	
 .NoRoom
-	writetext ReceivedMagbyText
+	writetext ReceivedElekidText
 	waitsfx
 	promptbutton
 	writetext PartyFullText

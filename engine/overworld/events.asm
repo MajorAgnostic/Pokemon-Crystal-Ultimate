@@ -38,41 +38,6 @@ CheckBit5_ScriptFlags3:
 	bit 5, [hl]
 	ret
 
-DisableWarpsConnxns:
-	ld hl, wScriptFlags3
-	res 2, [hl]
-	ret
-
-DisableCoordEvents:
-	ld hl, wScriptFlags3
-	res 1, [hl]
-	ret
-
-DisableStepCount:
-	ld hl, wScriptFlags3
-	res 0, [hl]
-	ret
-
-DisableWildEncounters:
-	ld hl, wScriptFlags3
-	res 4, [hl]
-	ret
-
-EnableWarpsConnxns:
-	ld hl, wScriptFlags3
-	set 2, [hl]
-	ret
-
-EnableCoordEvents:
-	ld hl, wScriptFlags3
-	set 1, [hl]
-	ret
-
-EnableStepCount:
-	ld hl, wScriptFlags3
-	set 0, [hl]
-	ret
-
 EnableWildEncounters:
 	ld hl, wScriptFlags3
 	set 4, [hl]
@@ -248,8 +213,6 @@ PlayerEvents:
 	and a
 	ret nz
 
-	call Dummy_CheckScriptFlags3Bit5 ; This is a waste of time
-
 	call CheckTrainerBattle_GetPlayerEvent
 	jr c, .ok
 
@@ -394,12 +357,6 @@ SetMinTwoStepWildEncounterCooldown:
 	ret nc
 	ld a, 2
 	ld [wWildEncounterCooldown], a
-	ret
-
-Dummy_CheckScriptFlags3Bit5:
-	call CheckBit5_ScriptFlags3
-	ret z
-	call Function2f3e
 	ret
 
 RunSceneScript:
@@ -578,11 +535,6 @@ TryObjectEvent:
 	dbw OBJECTTYPE_SCRIPT, .script
 	dbw OBJECTTYPE_ITEMBALL, .itemball
 	dbw OBJECTTYPE_TRAINER, .trainer
-	; the remaining four are dummy events
-	dbw OBJECTTYPE_3, .three
-	dbw OBJECTTYPE_4, .four
-	dbw OBJECTTYPE_5, .five
-	dbw OBJECTTYPE_6, .six
 	db -1
 
 .script
@@ -613,22 +565,6 @@ TryObjectEvent:
 	call TalkToTrainer
 	ld a, PLAYEREVENT_TALKTOTRAINER
 	scf
-	ret
-
-.three
-	xor a
-	ret
-
-.four
-	xor a
-	ret
-
-.five
-	xor a
-	ret
-
-.six
-	xor a
 	ret
 
 TryBGEvent:
@@ -813,7 +749,6 @@ PlayerMovement:
 CheckMenuOW:
 	xor a
 	ldh [hMenuReturn], a
-	ldh [hUnusedFFA1], a
 	ldh a, [hJoyPressed]
 
 	bit SELECT_F, a
@@ -925,11 +860,6 @@ CountStep:
 
 .hatch
 	ld a, PLAYEREVENT_HATCH
-	scf
-	ret
-
-.whiteout ; unreferenced
-	ld a, PLAYEREVENT_WHITEOUT
 	scf
 	ret
 
