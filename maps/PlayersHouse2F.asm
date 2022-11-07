@@ -44,7 +44,7 @@ PlayersHouse2F_MapScripts:
 	special CoverTilesWithCarpet
 	endcallback
 	
-.NoItem
+.NoItem:
 	checkevent EVENT_HOMEUSELESS7
 	iffalse .NoAppear8
 	endcallback
