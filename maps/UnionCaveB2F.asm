@@ -75,7 +75,7 @@ UnionCaveB2FMaxRevive:
 	itemball MAX_REVIVE
 
 CooltrainermNickSeenText:
-	text "Bro, I got a super"
+	text "Hey, I got a super"
 	line "strong #MON"
 
 	para "when I won the"

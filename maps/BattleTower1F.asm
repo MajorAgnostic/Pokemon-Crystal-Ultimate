@@ -259,17 +259,17 @@ MovementData_BattleTowerBattleRoomOpponentWalksOut:
 	step_end
 
 MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer:
-	slow_step RIGHT
-	slow_step RIGHT
-	slow_step UP
-	slow_step UP
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
 	step_end
 
 MovementData_BattleTowerBattleRoomReceptionistWalksAway:
-	slow_step DOWN
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
 	turn_head RIGHT
 	step_end
 

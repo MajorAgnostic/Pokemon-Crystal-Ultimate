@@ -147,6 +147,9 @@ INCLUDE "audio/music/viridianforest.asm"
 INCLUDE "audio/music/unovae4.asm"
 INCLUDE "audio/music/alolae4.asm"
 INCLUDE "audio/music/wallybattle.asm"
+INCLUDE "audio/music/cipherpeonbattle.asm"
+INCLUDE "audio/music/hoennrivalbattle.asm"
+INCLUDE "audio/music/giovannibattle.asm"
 
 
 SECTION "Sound Effects", ROMX

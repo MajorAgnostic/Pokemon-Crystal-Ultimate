@@ -58,6 +58,15 @@ PlayBattleMusic:
 	call DelayFrame
 	call MaxVolume
 
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapNumber]
+	ld c, a
+	call GetWorldMapLocation
+	cp LANDMARK_BATTLE_TOWER
+	ld de, MUSIC_PEON_BATTLE
+	jp z, .done
+	
 	ld a, [wBattleType]
 	cp BATTLETYPE_SUICUNE
 	ld de, MUSIC_SUICUNE_BATTLE
@@ -130,7 +139,7 @@ PlayBattleMusic:
 	
 	ld de, MUSIC_SUICUNE_BATTLE
 	cp MORTY2
-	jr z, .done
+	jp z, .done
 	
 	ld de, MUSIC_RBY_KANTO_GYM_LEADER_BATTLE
 	cp BLUE
@@ -143,20 +152,21 @@ PlayBattleMusic:
 	jr z, .done
 	
 	ld de, MUSIC_UNOVA_E4
-	cp CAL
-	jr z, .done
-	cp CRYSTAL
-	jr z, .done
 	cp EXECUTIVEM
 	jr z, .done
 	cp EXECUTIVEF
 	jr z, .done
 	
-	
 	ld de, MUSIC_ALOLA_E4
 	cp ARCHER
 	jr z, .done
 	cp KING
+	jr z, .done
+	
+	ld de, MUSIC_RSE_RIVAL_BATTLE
+	cp CAL
+	jr z, .done
+	cp CRYSTAL
 	jr z, .done
 
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE

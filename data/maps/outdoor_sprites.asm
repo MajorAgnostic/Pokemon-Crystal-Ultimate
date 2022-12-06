@@ -82,8 +82,9 @@ VermilionGroupSprites:
 	db SPRITE_TEACHER
 	db SPRITE_SUPER_NERD
 	db SPRITE_LASS
+	db SPRITE_FISHER
 	db SPRITE_BUG_CATCHER
-	; 7 of max 9 walking sprites
+	; 8 of max 9 walking sprites
 	db SPRITE_BIG_SNORLAX
 	db SPRITE_MACHOKE
 	db SPRITE_POKE_BALL
@@ -191,7 +192,14 @@ GoldenrodGroupSprites:
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_ROCKET
 	db SPRITE_LASS
-	; 7 of max 9 walking sprites
+	db SPRITE_TEACHER
+	db SPRITE_TWIN
+	; 9 of max 9 walking sprites
+	db SPRITE_POKEFAN_F
+	db SPRITE_CLERK
+	db SPRITE_FISHER
+	db SPRITE_SUPER_NERD
+	db SPRITE_BUG_CATCHER
 	db SPRITE_DAY_CARE_MON_1
 	db SPRITE_DAY_CARE_MON_2
 	db SPRITE_POKE_BALL
@@ -270,6 +278,10 @@ BlackthornGroupSprites:
 
 SilverGroupSprites:
 ; Route28, SilverCaveOutside
+	db SPRITE_YOUNGSTER
+	db SPRITE_COOLTRAINER_M
+	db SPRITE_FISHER
+	db SPRITE_BUG_CATCHER
 	; 0 of max 9 walking sprites
 	db 0 ; end
 

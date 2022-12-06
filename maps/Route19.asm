@@ -11,19 +11,6 @@ Route19_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .ClearRocks
-
-.ClearRocks:
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iftrue .Done
-	changeblock  6,  6, $7a ; rock
-	changeblock  8,  6, $7a ; rock
-	changeblock 10,  6, $7a ; rock
-	changeblock 12,  8, $7a ; rock
-	changeblock  4,  8, $7a ; rock
-	changeblock 10, 10, $7a ; rock
-.Done:
-	endcallback
 
 TrainerSwimmerfDawn:
 	trainer SWIMMERF, DAWN, EVENT_BEAT_SWIMMERF_DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, .Script
@@ -72,14 +59,6 @@ TrainerSwimmermTucker:
 Route19Fisher1Script:
 	faceplayer
 	opentext
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iftrue .RocksCleared
-	writetext Route19Fisher1Text
-	waitbutton
-	closetext
-	end
-
-.RocksCleared:
 	writetext Route19Fisher1Text_RocksCleared
 	waitbutton
 	closetext
@@ -88,14 +67,6 @@ Route19Fisher1Script:
 Route19Fisher2Script:
 	faceplayer
 	opentext
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iftrue .RocksCleared
-	writetext Route19Fisher2Text
-	waitbutton
-	closetext
-	end
-
-.RocksCleared:
 	writetext Route19Fisher2Text_RocksCleared
 	waitbutton
 	closetext
@@ -194,27 +165,9 @@ SwimmermJeromeAfterBattleText:
 	cont "love the sea."
 	done
 
-Route19Fisher1Text:
-	text "Sorry. This road"
-	line "is closed for"
-	cont "construction."
-
-	para "If you want to get"
-	line "to CINNABAR, you'd"
-
-	para "better go south"
-	line "from PALLET TOWN."
-	done
-
 Route19Fisher1Text_RocksCleared:
 	text "I'm all sweaty."
 	line "Time for a swim!"
-	done
-
-Route19Fisher2Text:
-	text "Who knows how long"
-	line "it would take to"
-	cont "move this boulder…"
 	done
 
 Route19Fisher2Text_RocksCleared:

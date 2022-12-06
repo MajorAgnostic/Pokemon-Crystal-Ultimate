@@ -642,7 +642,7 @@ VileplumeEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, MOONLIGHT
 	db 1, ABSORB
-	db 1, SWEET_SCENT
+	db 1, LEECH_SEED
 	db 1, STUN_SPORE
 	db 44, PETAL_DANCE
 	db 55, SOLARBEAM
@@ -2650,7 +2650,7 @@ BellossomEvosAttacks:
 	db 1, ANCIENTPOWER
 	db 1, MORNING_SUN
 	db 1, ABSORB
-	db 1, SWEET_SCENT
+	db 1, LEECH_SEED
 	db 1, STUN_SPORE
 	db 44, PETAL_DANCE
 	db 55, FIRE_SPIN

@@ -8,25 +8,25 @@ Landmarks:
 ; entries correspond to constants/landmark_constants.asm
 	dbbw       0,   0, SpecialMapName
 	landmark 140, 100, NewBarkTownName
-	landmark 128, 100, Route29Name
+	landmark 120, 100, Route29Name
 	landmark 100, 100, CherrygroveCityName
 	landmark 100,  80, Route30Name
-	landmark  96,  60, Route31Name
+	landmark  98,  60, Route31Name
 	landmark  84,  60, VioletCityName
 	landmark  85,  58, SproutTowerName
 	landmark  84,  92, Route32Name
 	landmark  76,  76, RuinsOfAlphName
 	landmark  84, 124, UnionCaveName
-	landmark  82, 124, Route33Name
+	landmark  80, 124, Route33Name
 	landmark  68, 124, AzaleaTownName
 	landmark  70, 122, SlowpokeWellName
 	landmark  52, 120, IlexForestName
-	landmark  52, 112, Route34Name
+	landmark  52, 110, Route34Name
 	landmark  52,  92, GoldenrodCityName
 	landmark  50,  92, RadioTowerName
 	landmark  52,  76, Route35Name
 	landmark  52,  60, NationalParkName
-	landmark  64,  60, Route36Name
+	landmark  68,  60, Route36Name
 	landmark  68,  52, Route37Name
 	landmark  68,  44, EcruteakCityName
 	landmark  70,  42, TinTowerName
@@ -35,12 +35,12 @@ Landmarks:
 	landmark  36,  48, Route39Name
 	landmark  36,  60, OlivineCityName
 	landmark  38,  62, LighthouseName
-	landmark  28,  56, BattleTowerName
-	landmark  28,  70, Route40Name
+	landmark  28,  52, BattleTowerName
+	landmark  28,  72, Route40Name
 	landmark  28,  92, WhirlIslandsName
 	landmark  28, 100, Route41Name
 	landmark  20, 100, CianwoodCityName
-	landmark  92,  44, Route42Name
+	landmark  88,  44, Route42Name
 	landmark  84,  44, MtMortarName
 	landmark 108,  44, MahoganyTownName
 	landmark 108,  36, Route43Name
@@ -59,20 +59,20 @@ Landmarks:
 	landmark  52,  64, Route2Name
 	landmark  52,  60, ViridianForestName
 	landmark  52,  52, PewterCityName
-	landmark  64,  52, Route3Name
+	landmark  66,  52, Route3Name
 	landmark  76,  52, MtMoonName
-	landmark  88,  52, Route4Name
+	landmark  86,  52, Route4Name
 	landmark 100,  52, CeruleanCityName
-	landmark 100,  44, Route24Name
-	landmark 108,  36, Route25Name
+	landmark 100,  42, Route24Name
+	landmark 110,  36, Route25Name
 	landmark 100,  60, Route5Name
 	landmark 108,  76, UndergroundName
 	landmark 100,  76, Route6Name
 	landmark 100,  84, VermilionCityName
-	landmark  88,  60, DiglettsCaveName
+	landmark  92,  76, DiglettsCaveName
 	landmark  88,  68, Route7Name
 	landmark 116,  68, Route8Name
-	landmark 116,  52, Route9Name
+	landmark 118,  52, Route9Name
 	landmark 132,  52, RockTunnelName
 	landmark 132,  56, Route10Name
 	landmark 132,  60, PowerPlantName
@@ -81,10 +81,10 @@ Landmarks:
 	landmark  76,  68, CeladonCityName
 	landmark 100,  68, SaffronCityName
 	landmark 116,  84, Route11Name
-	landmark 132,  80, Route12Name
+	landmark 132,  86, Route12Name
 	landmark 124, 100, Route13Name
-	landmark 116, 112, Route14Name
-	landmark 104, 116, Route15Name
+	landmark 116, 110, Route14Name
+	landmark 106, 116, Route15Name
 	landmark  68,  68, Route16Name
 	landmark  68,  92, Route17Name
 	landmark  80, 116, Route18Name
@@ -94,14 +94,14 @@ Landmarks:
 	landmark  64, 132, Route20Name
 	landmark  52, 132, CinnabarIslandName
 	landmark  52, 120, Route21Name
-	landmark  36,  68, Route22Name
+	landmark  40,  68, Route22Name
 	landmark  28,  52, VictoryRoadName
 	landmark  28,  44, Route23Name
 	landmark  28,  36, IndigoPlateauName
-	landmark  28,  92, Route26Name
-	landmark  20, 100, Route27Name
+	landmark  28,  88, Route26Name
+	landmark  22, 100, Route27Name
 	landmark  12, 100, TohjoFallsName
-	landmark  20,  68, Route28Name
+	landmark  18,  68, Route28Name
 	landmark 140, 116, FastShipName
 
 NewBarkTownName:     db "NEW BARK¯TOWN@"

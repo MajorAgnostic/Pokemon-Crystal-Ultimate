@@ -2620,7 +2620,7 @@ AI_Smart_Stomp:
 AI_Smart_Solarbeam:
 ; 80% chance to encourage this move when it's sunny.
 ; 90% chance to discourage this move when it's raining.
-; else, 80% chance to greatly discourage this move
+; else, 90% chance to greatly discourage this move
 
 	ld a, [wBattleWeather]
 	cp WEATHER_SUN
@@ -2638,8 +2638,10 @@ AI_Smart_Solarbeam:
 	ret
 
 .eightydiscourage
-	call AI_80_20
+	call Random
+	cp 10 percent
 	ret c
+	inc [hl]
 	inc [hl]
 	inc [hl]
 	inc [hl]

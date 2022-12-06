@@ -5,7 +5,7 @@ spawn: MACRO
 ENDM
 
 SpawnPoints:
-; entries correspond to SPAWN_* constants
+; entries correspond to SPAWN_* constants, found in map_data_constants.asm
 
 	spawn PLAYERS_HOUSE_2F,            3,  3
 	spawn VIRIDIAN_POKECENTER_1F,      5,  3
@@ -32,6 +32,7 @@ SpawnPoints:
 	spawn CIANWOOD_CITY,              23, 44
 	spawn GOLDENROD_CITY,             15, 28
 	spawn OLIVINE_CITY,               13, 22
+	spawn BATTLE_TOWER_OUTSIDE,        8, 10
 	spawn ECRUTEAK_CITY,              23, 28
 	spawn MAHOGANY_TOWN,              15, 14
 	spawn LAKE_OF_RAGE,               21, 29

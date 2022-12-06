@@ -150,6 +150,9 @@
 	const MUSIC_UNOVA_E4
 	const MUSIC_ALOLA_E4
 	const MUSIC_WALLY
+	const MUSIC_PEON_BATTLE
+	const MUSIC_RSE_RIVAL_BATTLE
+	const MUSIC_GIOVANNI
 
 ; GetMapMusic picks music for these value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $fc

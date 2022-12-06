@@ -149,4 +149,7 @@ Music:
 	dba Music_UnovaEliteFourBattle
 	dba Music_AlolaEliteFourBattle
 	dba Music_WallyBattle
+	dba Music_CipherPeonBattle
+	dba Music_HoennRivalBattle
+	dba Music_GiovanniBattle
 	
