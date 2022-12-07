@@ -129,7 +129,7 @@ MonMenuIconPals:
 	iconpal PINK, GREEN ; MR__MIME
 	iconpal GREEN, GREEN ; SCYTHER
 	iconpal PURPLE, PURPLE ; JYNX
-	iconpal BROWN, GRAY ; ELECTABUZZ
+	iconpal BROWN, RED ; ELECTABUZZ
 	iconpal RED, PURPLE ; MAGMAR
 	iconpal BROWN, GRAY ; PINSIR
 	iconpal BROWN, BROWN ; TAUROS

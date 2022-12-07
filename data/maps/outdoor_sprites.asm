@@ -282,7 +282,7 @@ SilverGroupSprites:
 	db SPRITE_COOLTRAINER_M
 	db SPRITE_FISHER
 	db SPRITE_BUG_CATCHER
-	; 0 of max 9 walking sprites
+	; 4 of max 9 walking sprites
 	db 0 ; end
 
 DungeonsGroupSprites:
