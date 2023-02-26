@@ -88,8 +88,8 @@ INCLUDE "audio/music/mom.asm"
 INCLUDE "audio/music/victoryroad.asm"
 INCLUDE "audio/music/pokemonlullaby.asm"
 INCLUDE "audio/music/pokemonmarch.asm"
-INCLUDE "audio/music/goldsilveropening.asm"
-INCLUDE "audio/music/goldsilveropening2.asm"
+INCLUDE "audio/music/lookmysticalman.asm"
+INCLUDE "audio/music/crystalopening.asm"
 INCLUDE "audio/music/lookhiker.asm"
 INCLUDE "audio/music/lookrocket.asm"
 INCLUDE "audio/music/rockettheme.asm"
@@ -101,21 +101,20 @@ INCLUDE "audio/music/bugcatchingcontest.asm"
 
 SECTION "Songs 5", ROMX
 
-INCLUDE "audio/music/mobileadaptermenu.asm"
 INCLUDE "audio/music/buenaspassword.asm"
-INCLUDE "audio/music/lookmysticalman.asm"
-INCLUDE "audio/music/crystalopening.asm"
 INCLUDE "audio/music/battletowertheme.asm"
 INCLUDE "audio/music/suicunebattle.asm"
 INCLUDE "audio/music/battletowerlobby.asm"
-INCLUDE "audio/music/mobilecenter.asm"
+INCLUDE "audio/music/route47.asm"
+INCLUDE "audio/music/pokeleaguerby.asm"
+INCLUDE "audio/music/lugiassong.asm"
 
 
 SECTION "Extra Songs 1", ROMX
 
 INCLUDE "audio/music/credits.asm"
 INCLUDE "audio/music/clair.asm"
-INCLUDE "audio/music/mobileadapter.asm"
+INCLUDE "audio/music/zinniaencounter.asm"
 
 
 SECTION "Extra Songs 2", ROMX
@@ -124,31 +123,22 @@ INCLUDE "audio/music/postcredits.asm"
 
 SECTION "New Songs", ROMX
 
-INCLUDE "audio/music/route47.asm"
-INCLUDE "audio/music/pokeleaguerby.asm"
-INCLUDE "audio/music/lugiassong.asm"
 INCLUDE "audio/music/kantochampion.asm"
 INCLUDE "audio/music/steven.asm"
-INCLUDE "audio/music/lugiabattle.asm"
-INCLUDE "audio/music/hoohbattle.asm"
 INCLUDE "audio/music/kantolegendbattle.asm"
 INCLUDE "audio/music/ceruleancity.asm"
 INCLUDE "audio/music/cinnabarcity.asm"
 INCLUDE "audio/music/route25.asm"
-INCLUDE "audio/music/rbykantogymbattle.asm"
+INCLUDE "audio/music/viridianforest.asm"
+INCLUDE "audio/music/zinniabattle.asm"
+INCLUDE "audio/music/brendanencounter.asm"
 
 
 SECTION "New Songs 2", ROMX
 
-INCLUDE "audio/music/zinniaencounter.asm"
-INCLUDE "audio/music/zinniabattle.asm"
-INCLUDE "audio/music/brendanencounter.asm"
-INCLUDE "audio/music/viridianforest.asm"
 INCLUDE "audio/music/unovae4.asm"
 INCLUDE "audio/music/alolae4.asm"
-INCLUDE "audio/music/wallybattle.asm"
 INCLUDE "audio/music/cipherpeonbattle.asm"
-INCLUDE "audio/music/hoennrivalbattle.asm"
 INCLUDE "audio/music/giovannibattle.asm"
 
 

@@ -30,7 +30,7 @@ Moves:
 	move GUST,         EFFECT_GUST,               40, FLYING,       100, 35,   0
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,       100, 35,   0
 	move WHIRLWIND,    EFFECT_FORCE_SWITCH,        0, FLYING,       100, 20,   0
-	move FLY,          EFFECT_FLY,                70, FLYING,        95, 15,   0
+	move FLY,          EFFECT_FLY,                80, FLYING,        95, 15,   0
 	move BIND,         EFFECT_EVASION_DOWN_HIT,   60, ROCK,          95, 15,  75
 	move SLAM,         EFFECT_PARALYZE_HIT,      100, NORMAL,        75, 10,  30
 	move VINE_WHIP,    EFFECT_NORMAL_HIT,         45, GRASS,        100, 25,   0

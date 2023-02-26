@@ -323,7 +323,7 @@ LanceGetPasswordText:
 	line "two passwords to"
 
 	para "get into the"
-	line "boss's quarters."
+	line "boss' quarters."
 
 	para "Those passwords"
 	line "are known only to"
@@ -452,7 +452,7 @@ GruntF5BeatenText:
 
 GruntF5AfterBattleText:
 	text "The password to"
-	line "the boss's room is"
+	line "the boss' room is"
 
 	para "SLOWPOKETAIL."
 
@@ -476,7 +476,7 @@ GruntM28SeenText:
 	line "me, I'll tell you"
 
 	para "a password to the"
-	line "boss's room!"
+	line "boss' room!"
 	done
 
 GruntM28BeatenText:
@@ -488,7 +488,7 @@ GruntM28AfterBattleText:
 	text "Hyuck-hyuck-hyuck!"
 
 	para "The password to"
-	line "the boss's room…"
+	line "the boss' room…"
 
 	para "Uh…, I think it is"
 	line "RATICATE TAIL."

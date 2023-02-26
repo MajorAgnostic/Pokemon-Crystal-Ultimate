@@ -2145,8 +2145,6 @@ BattleCommand_FailureText:
 	jr z, .multihit
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multihit
-	cp EFFECT_BEAT_UP
-	jr z, .multihit
 	jp EndMoveEffect
 
 .multihit
@@ -2477,8 +2475,6 @@ BattleCommand_CheckFaint:
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_TRIPLE_KICK
-	jr z, .multiple_hit_raise_sub
-	cp EFFECT_BEAT_UP
 	jr nz, .finish
 
 .multiple_hit_raise_sub
@@ -2954,8 +2950,6 @@ EnemyAttackDamage:
 	ld a, 1
 	and a
 	ret
-
-INCLUDE "engine/battle/move_effects/beat_up.asm"
 
 BattleCommand_ClearMissDamage:
 ; clearmissdamage
@@ -3649,8 +3643,6 @@ DoSubstituteDamage:
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .ok
 	cp EFFECT_TRIPLE_KICK
-	jr z, .ok
-	cp EFFECT_BEAT_UP
 	jr z, .ok
 	xor a
 	ld [hl], a
@@ -5439,8 +5431,6 @@ BattleCommand_EndLoop:
 	ld a, 1
 	jr z, .double_hit
 	ld a, [hl]
-	cp EFFECT_BEAT_UP
-	jr z, .beat_up
 	cp EFFECT_TRIPLE_KICK
 	jr nz, .not_triple_kick
 .reject_triple_kick_sample
@@ -5452,32 +5442,6 @@ BattleCommand_EndLoop:
 	ld a, 1
 	ld [bc], a
 	jr .done_loop
-
-.beat_up
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .check_ot_beat_up
-	ld a, [wPartyCount]
-	cp 1
-	jp z, .only_one_beatup
-	dec a
-	jr .double_hit
-
-.check_ot_beat_up
-	ld a, [wBattleMode]
-	cp WILD_BATTLE
-	jp z, .only_one_beatup
-	ld a, [wOTPartyCount]
-	cp 1
-	jp z, .only_one_beatup
-	dec a
-	jr .double_hit
-
-.only_one_beatup
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	res SUBSTATUS_IN_LOOP, [hl]
-	ret
 
 .not_triple_kick
 	call BattleRandom
@@ -5516,10 +5480,6 @@ BattleCommand_EndLoop:
 .got_hit_n_times_text
 
 	push bc
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_BEAT_UP
-	jr z, .beat_up_2
 	call StdBattleTextbox
 .beat_up_2
 

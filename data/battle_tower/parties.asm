@@ -1259,7 +1259,7 @@ BattleTowerMons:
 
 	db HO_OH
 	db LEFTOVERS
-	db SHADOW_BALL, RECOVER, CURSE, RETURN
+	db SHADOW_BALL, RECOVER, CURSE, DRILL_PECK
 	dw 0 ; OT ID
 	dt 1000000 ; Exp
 	; Stat exp

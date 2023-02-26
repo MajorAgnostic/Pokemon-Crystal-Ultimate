@@ -227,7 +227,9 @@ LeaderBlueBeforeText:
 
 	para "You're telling me"
 	line "you conquered all"
-	cont "the GYMS in JOHTO?"
+	cont "the GYMS in JOHTO"
+	cont "as well, is that"
+	cont "right?"
 
 	para "Heh! JOHTO's GYMs"
 	line "must be pretty"
@@ -340,7 +342,7 @@ ViridianGymGuideText:
 	para "Why didn't you say"
 	line "something?"
 	
-	para "I'm embarrassed to"
+	para "I'm embarrassed, to"
 	line "say the least."
 
 	para "Anyway, the LEADER"

@@ -139,7 +139,7 @@ CinnabarIslandBlueTeleportText:
 
 	para "If you want to"
 	line "battle me, come to"
-	cont "the VIRIDIAN GYM."
+	cont "VIRIDIAN GYM."
 
 	para "I'll take you on"
 	line "there."

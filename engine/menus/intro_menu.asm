@@ -411,9 +411,9 @@ Continue_MobileAdapterMenu:
 	ret nz
 	ld a, 5
 	ld [wMusicFade], a
-	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
+	ld a, LOW(MUSIC_CLAIR)
 	ld [wMusicFadeID], a
-	ld a, HIGH(MUSIC_MOBILE_ADAPTER_MENU)
+	ld a, HIGH(MUSIC_CLAIR)
 	ld [wMusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames

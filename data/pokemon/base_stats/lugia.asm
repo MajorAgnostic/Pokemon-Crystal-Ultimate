@@ -6,7 +6,7 @@
 	db PSYCHIC_TYPE, FLYING ; type
 	db 3 ; catch rate
 	db 220 ; base exp
-	db TWISTEDSPOON, NO_ITEM ; items
+	db TWISTEDSPOON, SACRED_ASH ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 120 ; step cycles to hatch
 	INCBIN "gfx/pokemon/lugia/front.dimensions"

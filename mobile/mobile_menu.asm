@@ -1,8 +1,8 @@
 MainMenu_Mobile:
 	call ClearBGPalettes
-	ld a, MUSIC_MOBILE_ADAPTER_MENU
+	ld a, MUSIC_CLAIR
 	ld [wMapMusic], a
-	ld de, MUSIC_MOBILE_ADAPTER_MENU
+	ld de, MUSIC_CLAIR
 	call Function4a6c5
 Function49f0a:
 	call ClearBGPalettes

@@ -73,15 +73,11 @@ PlayBattleMusic:
 	jp z, .done
 	cp BATTLETYPE_ROAMING
 	jp z, .done
-	
-	ld a, [wBattleType]
-	cp BATTLETYPE_LUGIA
-	ld de, MUSIC_LUGIABATTLE
-	jp z, .done
-	
-	ld a, [wBattleType]
 	cp BATTLETYPE_HOOH
-	ld de, MUSIC_HOOHBATTLE
+	jp z, .done
+	cp BATTLETYPE_LUGIA
+	jp z, .done
+	cp BATTLETYPE_CELEBI
 	jp z, .done
 	
 	ld a, [wBattleType]
@@ -137,13 +133,9 @@ PlayBattleMusic:
 	cp ANDREA
 	jp z, .done
 	
-	ld de, MUSIC_SUICUNE_BATTLE
+	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
 	cp MORTY2
 	jp z, .done
-	
-	ld de, MUSIC_RBY_KANTO_GYM_LEADER_BATTLE
-	cp BLUE
-	jr z, .done
 
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
@@ -163,7 +155,7 @@ PlayBattleMusic:
 	cp KING
 	jr z, .done
 	
-	ld de, MUSIC_RSE_RIVAL_BATTLE
+	ld de, MUSIC_PEON_BATTLE
 	cp CAL
 	jr z, .done
 	cp CRYSTAL
@@ -191,7 +183,7 @@ PlayBattleMusic:
 	ld a, [wOtherTrainerID]
 	cp RIVAL2_1_CHIKORITA ; Rival in Indigo Plateau
 	jr c, .done
-	ld de, MUSIC_WALLY
+	ld de, MUSIC_RIVAL_BATTLE
 	jr .done
 
 .othertrainer

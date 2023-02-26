@@ -105,8 +105,6 @@ Music:
 	dba Music_VictoryRoad
 	dba Music_PokemonLullaby
 	dba Music_PokemonMarch
-	dba Music_GoldSilverOpening
-	dba Music_GoldSilverOpening2
 	dba Music_MainMenu
 	dba Music_RuinsOfAlphInterior
 	dba Music_RocketTheme
@@ -118,38 +116,30 @@ Music:
 	dba Music_PostCredits
 ; new to Crystal
 	dba Music_Clair
-	dba Music_MobileAdapterMenu
-	dba Music_MobileAdapter
 	dba Music_BuenasPassword
 	dba Music_LookMysticalMan
 	dba Music_CrystalOpening
 	dba Music_BattleTowerTheme
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
-	dba Music_MobileCenter
 	dba Music_Route47GBS
 	dba Music_Route47GBSNight
 	dba Music_RBYIndigoPlateau
 	dba Music_LugiasSong2000
 	dba Music_FinalBattle
 	dba Music_HoennChampionBattle
-	dba Music_LugiaBattle
-	dba Music_HoOhBattle
 	dba Music_KantoLegend
 	dba Music_CeruleanCityGBS
 	dba Music_CeruleanCityGBSNight
 	dba Music_CinnabarIslandGBS
 	dba Music_Route25GBS
 	dba Music_Route25GBSNight
-	dba Music_RBYGymLeaderBattle
 	dba Music_LookZinnia
 	dba Music_ZinniaBattle
 	dba Music_BrendanEncounter
 	dba Music_Dungeon2 ; ViridianForest
 	dba Music_UnovaEliteFourBattle
 	dba Music_AlolaEliteFourBattle
-	dba Music_WallyBattle
 	dba Music_CipherPeonBattle
-	dba Music_HoennRivalBattle
 	dba Music_GiovanniBattle
 	

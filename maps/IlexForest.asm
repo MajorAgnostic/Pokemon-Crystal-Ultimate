@@ -517,7 +517,7 @@ IlexForestShrineScript:
 	writetext CelebiCryText
 	cry CELEBI
 	loadwildmon CELEBI, 50
-	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CELEBI
 	startbattle
 	reloadmapafterbattle
 	pause 20
@@ -816,7 +816,7 @@ IlexForestApprenticeAfterText:
 	text "Wow! Thanks a"
 	line "whole bunch!"
 
-	para "My boss's #MON"
+	para "My boss' #MON"
 	line "won't obey me be-"
 	cont "cause I don't have"
 	cont "a BADGE."

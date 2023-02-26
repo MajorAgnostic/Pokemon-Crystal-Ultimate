@@ -74,21 +74,21 @@ BugsyGroup:
 			dw $0008, $0008, $0008, $0008, $0008
 			db QUICK_CLAW
 			db SPIKES, SELFDESTRUCT, PIN_MISSILE, TAKE_DOWN
-	db 21, ARIADOS
-			db $bb, $bb ; atk|def, spd|spc
-			dw $0008, $0008, $0008, $0008, $0008
-			db NO_ITEM
-			db PIN_MISSILE, ACID, NO_MOVE, SCARY_FACE
 	db 23, SHUCKLE
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0008, $0008, $0008, $0008, $0008
 			db BERRY_JUICE
-			db WITHDRAW, BATON_PASS, ENCORE, SAFEGUARD
+			db DEFENSE_CURL, ROLLOUT, SWEET_SCENT, SAFEGUARD
+	db 22, ARIADOS
+			db $bb, $bb ; atk|def, spd|spc
+			dw $0008, $0008, $0008, $0008, $0008
+			db NO_ITEM
+			db PIN_MISSILE, ACID, CONSTRICT, SCARY_FACE
 	db 22, PINSIR
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0008, $0008, $0008, $0008, $0008
 			db NO_ITEM
-			db HARDEN, VICEGRIP, FOCUS_ENERGY, FURY_CUTTER
+			db HARDEN, VICEGRIP, SEISMIC_TOSS, FURY_CUTTER
 	db 24, SCIZOR
 			db $cc, $cc ; atk|def, spd|spc
 			dw $0008, $0008, $0008, $0008, $0008
@@ -103,21 +103,21 @@ BugsyGroup:
 			dw $0008, $0008, $0008, $0008, $0008
 			db QUICK_CLAW
 			db SPIKES, SELFDESTRUCT, PIN_MISSILE, TAKE_DOWN
-	db 21, ARIADOS
-			db $bb, $bb ; atk|def, spd|spc
-			dw $0008, $0008, $0008, $0008, $0008
-			db NO_ITEM
-			db PIN_MISSILE, ACID, NO_MOVE, SCARY_FACE
 	db 23, SHUCKLE
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0008, $0008, $0008, $0008, $0008
 			db BERRY_JUICE
-			db WITHDRAW, BATON_PASS, ENCORE, SAFEGUARD
+			db DEFENSE_CURL, ROLLOUT, SWEET_SCENT, SAFEGUARD
+	db 22, ARIADOS
+			db $bb, $bb ; atk|def, spd|spc
+			dw $0008, $0008, $0008, $0008, $0008
+			db NO_ITEM
+			db PIN_MISSILE, ACID, CONSTRICT, SCARY_FACE
 	db 22, PINSIR
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0008, $0008, $0008, $0008, $0008
 			db NO_ITEM
-			db HARDEN, VICEGRIP, FOCUS_ENERGY, FURY_CUTTER
+			db HARDEN, VICEGRIP, SEISMIC_TOSS, FURY_CUTTER
 	db 24, SCYTHER
 			db $cc, $cc ; atk|def, spd|spc
 			dw $0008, $0008, $0008, $0008, $0008
@@ -248,6 +248,11 @@ ChuckGroup:
 			dw $006B, $006B, $006B, $006B, $006B
 			db FOCUS_BAND
 			db MEGAHORN, STRENGTH, EARTHQUAKE, REVERSAL
+	db 43, KANGASKHAN
+			db $bf, $bf ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db SPELL_TAG
+			db SHADOW_BALL, MEGA_PUNCH, STRENGTH, NO_MOVE
 	db 45, POLIWRATH
 			db $ee, $ee ; atk|def, spd|spc
 			dw $006B, $006B, $006B, $006B, $006B
@@ -695,7 +700,7 @@ BrunoGroup:
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0159, $0159, $0159, $0159, $0159
 			db KINGS_ROCK
-			db MEGA_PUNCH, CROSS_CHOP, EARTHQUAKE, ROCK_SLIDE
+			db MEGA_PUNCH, CROSS_CHOP, FORESIGHT, ROCK_SLIDE
 	db 66, DODRIO
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0159, $0159, $0159, $0159, $0159
@@ -808,7 +813,7 @@ KarenGroup:
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db CHARCOAL
-			db SACRED_FIRE, RECOVER, EARTHQUAKE, THUNDERBOLT
+			db SACRED_FIRE, RECOVER, EARTHQUAKE, DRILL_PECK
 	db 91, UMBREON
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
@@ -1007,12 +1012,12 @@ LtSurgeGroup:
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $0169, $0169, $0169, $0169, $0169
 			db MIRACLEBERRY
-			db REST, CONFUSE_RAY, HYDRO_PUMP, THUNDER_WAVE
+			db REST, CONFUSE_RAY, HYDRO_PUMP, THUNDER
 	db 71, JOLTEON
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $0169, $0169, $0169, $0169, $0169
 			db BERRY_JUICE
-			db THUNDER, RAIN_DANCE, GROWTH, BATON_PASS
+			db THUNDER, HIDDEN_POWER, GROWTH, BATON_PASS
 	db 72, ELECTABUZZ
 			db PERFECT_DV, $fb ; atk|def, spd|spc
 			dw $0169, $0169, $0169, $0169, $0169
@@ -1022,7 +1027,7 @@ LtSurgeGroup:
 			db $ed, $bf ; atk|def, spd|spc
 			dw $0169, $0169, $0169, $0169, $0169
 			db MAGNET
-			db THUNDER, RAIN_DANCE, HIDDEN_POWER, REST
+			db THUNDERBOLT, SLEEP_TALK, HIDDEN_POWER, REST
 	db 73, RAICHU
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $0169, $0169, $0169, $0169, $0169
@@ -2113,35 +2118,35 @@ LassGroup:
 JanineGroup:
 	; JANINE (1)
 	db "JANINE@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM | TRAINERTYPE_MOVES
-	db 82, ARIADOS
-			db PERFECT_DV, $fb ; atk|def, spd|spc
-			dw $018D, $018D, $018D, $018D, $018D
-			db SILVERPOWDER
-			db SPIDER_WEB, LEECH_LIFE, SLUDGE_BOMB, GIGA_DRAIN
-	db 83, FORRETRESS
-			db PERFECT_DV, $bf ; atk|def, spd|spc
-			dw $018D, $018D, $018D, $018D, $018D
-			db LEFTOVERS
-			db PROTECT, PIN_MISSILE, SPIKES, TOXIC
-	db 82, GENGAR
-			db $bf, $bf ; atk|def, spd|spc
-			dw $018D, $018D, $018D, $018D, $018D
-			db SPELL_TAG
-			db NIGHT_SHADE, HYPNOSIS, ICE_PUNCH, DESTINY_BOND
 	db 83, WEEZING
 			db PERFECT_DV, $bf ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
 			db SCOPE_LENS
 			db SLUDGE_BOMB, EXPLOSION, FIRE_BLAST, POISON_GAS
+	db 82, QUAGSIRE
+			db PERFECT_DV, $bf ; atk|def, spd|spc
+			dw $018D, $018D, $018D, $018D, $018D
+			db LEFTOVERS
+			db SLUDGE_BOMB, EARTHQUAKE, WHIRLPOOL, AMNESIA
 	db 83, CROBAT
 			db PERFECT_DV, $fb ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
 			db LEFTOVERS
 			db FLY, MEAN_LOOK, SLUDGE_BOMB, TOXIC
+	db 82, GENGAR
+			db $bf, $bf ; atk|def, spd|spc
+			dw $018D, $018D, $018D, $018D, $018D
+			db SPELL_TAG
+			db NIGHT_SHADE, HYPNOSIS, ICE_PUNCH, DESTINY_BOND
+	db 83, NIDOQUEEN
+			db PERFECT_DV, $fb ; atk|def, spd|spc
+			dw $018D, $018D, $018D, $018D, $018D
+			db SOFT_SAND
+			db EARTHQUAKE, SLUDGE_BOMB, THUNDER, MOONLIGHT
 	db 84, VENOMOTH
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
-			db BERRY_JUICE
+			db SILVERPOWDER
 			db CURSE, LEECH_LIFE, SLUDGE_BOMB, SLEEP_POWDER
 	db -1 ; end
 
@@ -4895,17 +4900,21 @@ GuitaristGroup:
 	db -1 ; end
 	
 	; GUITARIST (4) - Added to Silver Cave
-	db "HARVEY@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db "HARVEY@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
 	db 94, RAICHU
+			db PERFECT_DV, $bf ; atk|def, spd|spc
 			dw $00ED, $00ED, $00ED, $00ED, $00ED
 			db SURF, THUNDERBOLT, SEISMIC_TOSS, THUNDER_WAVE
 	db 94, AMPHAROS
+			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $00ED, $00ED, $00ED, $00ED, $00ED
 			db THUNDERBOLT, REFLECT, SLEEP_TALK, REST
 	db 95, JOLTEON
+			db $fd, $bf ; atk|def, spd|spc
 			dw $00ED, $00ED, $00ED, $00ED, $00ED
 			db THUNDERBOLT, HIDDEN_POWER, GROWTH, THUNDER_WAVE
 	db 95, MAGNETON
+			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $00ED, $00ED, $00ED, $00ED, $00ED
 			db THUNDERBOLT, SUBSTITUTE, CONFUSE_RAY, THUNDER_WAVE
 	db -1 ; end
@@ -6728,7 +6737,7 @@ SageGroup:
 	db -1 ; end
 
 	; SAGE (11)
-	db "MASA@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db "MASA@", TRAINERTYPE_DVS |TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
 	db 55, NOCTOWL
 			db $bb, $bb
 			dw $006B, $006B, $006B, $006B, $006B
@@ -7261,7 +7270,7 @@ BlueGroup:
 			db CURSE, STRENGTH, FIRE_BLAST, EXTREMESPEED
 	db 91, BLASTOISE
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
-			dw $00ED, $00ED, $00ED, $00FD, $00ED
+			dw $00ED, $00ED, $00ED, PERFECT_STAT_EXP, $00ED
 			db MIRACLEBERRY
 			db EARTHQUAKE, HYDRO_PUMP, REST, SKULL_BASH
 	db -1 ; end

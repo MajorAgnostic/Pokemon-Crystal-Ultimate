@@ -145,10 +145,6 @@ PokecenterNurseScript:
 	special CheckPokerus
 	iftrue .pokerus
 .no
-
-	farwritetext NurseReturnPokemonText
-	pause 20
-
 .done
 	farwritetext NurseGoodbyeText
 

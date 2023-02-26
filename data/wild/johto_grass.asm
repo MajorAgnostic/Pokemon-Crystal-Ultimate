@@ -491,29 +491,29 @@ JohtoGrassWildMons:
 	map_id SLOWPOKE_WELL_B1F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 14, ZUBAT
-	db 14, ZUBAT
 	db 15, ZUBAT
-	db 14, SLOWPOKE
-	db 16, ZUBAT
-	db 15, SLOWPOKE
+	db 15, GEODUDE
 	db 16, SLOWPOKE
+	db 15, ZUBAT
+	db 16, ZUBAT
+	db 17, SLOWPOKE
+	db 17, SLOWPOKE
 	; day
-	db 14, ZUBAT
-	db 14, ZUBAT
 	db 15, ZUBAT
-	db 14, SLOWPOKE
-	db 16, ZUBAT
-	db 15, SLOWPOKE
+	db 15, GEODUDE
 	db 16, SLOWPOKE
+	db 15, ZUBAT
+	db 16, ZUBAT
+	db 17, SLOWPOKE
+	db 17, SLOWPOKE
 	; nite
-	db 14, ZUBAT
-	db 14, ZUBAT
 	db 15, ZUBAT
-	db 14, SLOWPOKE
-	db 16, ZUBAT
-	db 15, SLOWPOKE
+	db 15, GEODUDE
 	db 16, SLOWPOKE
+	db 15, ZUBAT
+	db 16, ZUBAT
+	db 17, SLOWPOKE
+	db 17, SLOWPOKE
 
 	map_id SLOWPOKE_WELL_B2F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
@@ -545,26 +545,26 @@ JohtoGrassWildMons:
 	map_id ILEX_FOREST
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
-	db 17, PARAS
-	db 17, LEDYBA
+	db 18, PARAS
+	db 18, LEDYBA
 	db 19, MANKEY
 	db 19, METAPOD
 	db 19, PIKACHU
-	db 18, PIKACHU
+	db 19, LEDIAN
 	db 18, PIDGEY
 	; day
-	db 17, PARAS
-	db 17, LEDYBA
+	db 18, PARAS
+	db 18, LEDYBA
 	db 19, MANKEY
 	db 19, KAKUNA
 	db 19, PIKACHU
-	db 18, PIKACHU
+	db 19, LEDIAN
 	db 18, PIDGEY
 	; nite
-	db 17, ODDISH
-	db 17, VENONAT
+	db 18, ODDISH
+	db 18, VENONAT
 	db 19, PARAS
-	db 19, PSYDUCK
+	db 18, PSYDUCK
 	db 19, PSYDUCK
 	db 18, PIKACHU
 	db 18, HOOTHOOT
@@ -1318,7 +1318,7 @@ JohtoGrassWildMons:
 	db 23, DITTO
 	; nite
 	db 22, DROWZEE
-	db 24, CLEFAIRY
+	db 24, JIGGLYPUFF
 	db 23, PSYDUCK
 	db 22, ABRA
 	db 24, DROWZEE
@@ -1347,7 +1347,7 @@ JohtoGrassWildMons:
 	db 7, SPINARAK
 	db 6, HOOTHOOT
 	db 8, BELLSPROUT
-	db 7, HOOTHOOT
+	db 9, VULPIX
 	db 8, HOOTHOOT
 	db 8, GASTLY
 	db 9, GASTLY
@@ -1371,11 +1371,11 @@ JohtoGrassWildMons:
 	db 28, PIDGEOTTO
 	db 28, PIDGEOTTO
 	; nite
-	db 26, SPINARAK
+	db 26, SPEAROW
 	db 27, STANTLER
 	db 26, HOOTHOOT
-	db 28, STANTLER
 	db 28, NOCTOWL
+	db 27, CLEFAIRY
 	db 28, ARIADOS
 	db 28, ARIADOS
 

@@ -430,6 +430,7 @@
 	const SPOKE_TO_GRANNY
 	const BEAT_GHOST
 	const GHOST_ACTIVATED
+	const EVENT_BURNED_TOWER_B1F_HIDDEN_SACRED_ASH
 
 	const_next 600
 ; Kurt Apricorn events

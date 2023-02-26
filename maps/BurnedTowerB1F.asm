@@ -118,6 +118,9 @@ BurnedTowerB1FEusine:
 
 BurnedTowerB1FTMEndure:
 	itemball TM_ENDURE
+	
+BurnedTowerB1FHiddenSacredAsh:
+	hiddenitem SACRED_ASH, EVENT_BURNED_TOWER_B1F_HIDDEN_SACRED_ASH
 
 BurnedTowerB1FBoulder:
 	jumpstd StrengthBoulderScript
@@ -242,6 +245,7 @@ BurnedTowerB1F_MapEvents:
 	coord_event 10,  6, SCENE_DEFAULT, ReleaseTheBeasts
 
 	def_bg_events
+	bg_event 10,  4, BGEVENT_ITEM, BurnedTowerB1FHiddenSacredAsh
 
 	def_object_events
 	object_event 17,  8, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTowerB1FBoulder, -1

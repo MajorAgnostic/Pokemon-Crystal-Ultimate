@@ -5,7 +5,7 @@
 
 	db ICE, ICE ; type
 	db 60 ; catch rate
-	db 113 ; base exp
+	db 153 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F75 ; gender ratio
 	db 20 ; step cycles to hatch

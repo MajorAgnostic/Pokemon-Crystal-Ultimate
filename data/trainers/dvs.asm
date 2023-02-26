@@ -76,4 +76,4 @@ TrainerClassDVs:
 	dn 13, 14, 11, 11 ; MORTY2
 	dn 13, 13, 13, 14 ; CLAIR2
 	dn 15, 15, 15, 15 ; CHAMPION2
-	dn 13, 13, 13, 13 ; KING
+	dn 13, 13, 13, 11 ; KING

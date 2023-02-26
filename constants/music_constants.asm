@@ -105,8 +105,6 @@
 	const MUSIC_VICTORY_ROAD                 ; 4f
 	const MUSIC_POKEMON_LULLABY              ; 50
 	const MUSIC_POKEMON_MARCH                ; 51
-	const MUSIC_GS_OPENING                   ; 52
-	const MUSIC_GS_OPENING_2                 ; 53
 	const MUSIC_MAIN_MENU                    ; 54
 	const MUSIC_RUINS_OF_ALPH_INTERIOR       ; 55
 	const MUSIC_ROCKET_OVERTURE              ; 56
@@ -119,39 +117,31 @@
 
 ; new to Crystal
 	const MUSIC_CLAIR                        ; 5d
-	const MUSIC_MOBILE_ADAPTER_MENU          ; 5e
-	const MUSIC_MOBILE_ADAPTER               ; 5f
 	const MUSIC_BUENAS_PASSWORD              ; 60
 	const MUSIC_MYSTICALMAN_ENCOUNTER        ; 61
 	const MUSIC_CRYSTAL_OPENING              ; 62
 	const MUSIC_BATTLE_TOWER_THEME           ; 63
 	const MUSIC_SUICUNE_BATTLE               ; 64
 	const MUSIC_BATTLE_TOWER_LOBBY           ; 65
-	const MUSIC_MOBILE_CENTER                ; 66
 	const MUSIC_ROUTE_47                     ; Ultimate additions start here, excluding the above night theme additions
 	const MUSIC_ROUTE_47_NIGHT
 	const MUSIC_RBY_INDIGO_PLATEAU
 	const MUSIC_LUGIAS_SONG
 	const MUSIC_KANTO_CHAMPION
 	const MUSIC_STEVEN
-	const MUSIC_LUGIABATTLE
-	const MUSIC_HOOHBATTLE
 	const MUSIC_KANTOLEGENDBATTLE
 	const MUSIC_CERULEANCITY
 	const MUSIC_CERULEANCITY_NIGHT
 	const MUSIC_CINNABARCITY
 	const MUSIC_ROUTE25
 	const MUSIC_ROUTE25_NIGHT
-	const MUSIC_RBY_KANTO_GYM_LEADER_BATTLE
 	const MUSIC_ZINNIA_ENCOUNTER
 	const MUSIC_ZINNIA_BATTLE
 	const MUSIC_BRENDAN_ENCOUNTER
 	const MUSIC_VIRIDIAN_FOREST
 	const MUSIC_UNOVA_E4
 	const MUSIC_ALOLA_E4
-	const MUSIC_WALLY
 	const MUSIC_PEON_BATTLE
-	const MUSIC_RSE_RIVAL_BATTLE
 	const MUSIC_GIOVANNI
 
 ; GetMapMusic picks music for these value (see home/map.asm)

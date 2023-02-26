@@ -155,7 +155,6 @@ MoveEffectsPointers:
 	dw Solarbeam
 	dw Thunder
 	dw Teleport
-	dw BeatUp
 	dw Fly
 	dw DefenseCurl
 	dw GrassPowderSleep ; Ultimate-only
