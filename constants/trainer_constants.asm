@@ -743,5 +743,11 @@ KRIS EQU __trainer_class__
 	
 	trainerclass KING
 	const KIYO2
+	
+	trainerclass GIOVANNI
+	const GIOVANNI1
+	
+	trainerclass PADDING
+	const PADDING1
 
 NUM_TRAINER_CLASSES EQU __trainer_class__ - 1

@@ -122,6 +122,8 @@
 	const SPRITE_MACHOP_DOLL
 	const SPRITE_SLOWBRO
 	const SPRITE_ANDREA
+	const SPRITE_HAT_GIOVANNI
+	const SPRITE_GIOVANNI
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_next $80

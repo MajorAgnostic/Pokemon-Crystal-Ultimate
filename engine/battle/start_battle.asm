@@ -121,6 +121,10 @@ PlayBattleMusic:
 	cp CHAMPION2
 	jp z, .done
 	
+	ld de, MUSIC_GIOVANNI
+	cp GIOVANNI
+	jp z, .done
+	
 	ld de, MUSIC_KANTO_CHAMPION
 	cp RED
 	jp z, .done
@@ -135,7 +139,7 @@ PlayBattleMusic:
 	
 	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
 	cp MORTY2
-	jp z, .done
+	jr z, .done
 
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM

@@ -63,7 +63,7 @@ TrainerClassDVs:
 	dn  6,  8,  8, 10 ; KIMONO_GIRL
 	dn  6,  8, 10,  8 ; TWINS
 	dn  6,  7,  8,  8 ; POKEFANF
-	dn 15, 13, 13, 14 ; RED
+	dn 15, 15, 15, 14 ; RED
 	dn  9, 13, 13, 13 ; BLUE
 	dn  7,  8,  8,  8 ; OFFICER
 	dn  7,  7, 10,  8 ; GRUNTF
@@ -75,5 +75,7 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; ANDREA
 	dn 13, 14, 11, 11 ; MORTY2
 	dn 13, 13, 13, 14 ; CLAIR2
-	dn 15, 15, 15, 15 ; CHAMPION2
+	dn 14, 14, 14, 14 ; CHAMPION2
 	dn 13, 13, 13, 11 ; KING
+	dn 13, 15, 13, 15 ; GIOVANNI
+	dn 13, 15, 13, 15 ; PADDING

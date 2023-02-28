@@ -79,3 +79,5 @@ TrainerEncounterMusic::
 	db MUSIC_OFFICER_ENCOUNTER     ; clair2
 	db MUSIC_OFFICER_ENCOUNTER     ; champion2
 	db MUSIC_HIKER_ENCOUNTER       ; king
+	db MUSIC_HIKER_ENCOUNTER       ; giovanni
+	db MUSIC_HIKER_ENCOUNTER       ; padding

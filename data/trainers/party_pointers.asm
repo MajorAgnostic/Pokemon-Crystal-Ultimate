@@ -78,3 +78,5 @@ TrainerGroups:
 	dba Clair2Group
 	dba Champion2Group
 	dba KingGroup
+	dba GiovanniGroup
+	dba PaddingGroup

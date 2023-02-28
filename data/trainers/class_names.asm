@@ -76,3 +76,5 @@ TrainerClassNames::
 	db "CHAMPION@"
 	db "<PKMN> MASTER@"
 	db "KARATE KING@"
+	db "BOSS@"
+	db "PADDING@"
