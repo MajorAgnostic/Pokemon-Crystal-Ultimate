@@ -1156,13 +1156,13 @@ BattleTowerRoomMenu_PlacePickLevelMenu:
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr nz, .asm_11896b
-	ld hl, Strings_Ll0ToL50 ; Address to list of strings with the choosable levels
-	ld a, 3                 ; 3 levels to choose from, including 'Cancel'-option
+	ld hl, Strings_L50 ; Address to list of strings with the choosable levels
+	ld a, 2              ; 2 levels to choose from, including 'Cancel'-option
 	jr .asm_118970
 	
 .asm_11896b
-	ld hl, Strings_L10ToL100 ; Address to list of strings with the choosable levels
-	ld a, 4                 ; 4 levels to choose from, including 'Cancel'-option
+	ld hl, Strings_L50ToL100 ; Address to list of strings with the choosable levels
+	ld a, 3                ; 3 levels to choose from, including 'Cancel'-option
 
 .asm_118970
 	ld [wcd4a], a
@@ -3828,13 +3828,11 @@ MenuData_119cff:
 String_119d07:
 	db "   ▼@"
 	
-Strings_Ll0ToL50:
-	db " L:10 @@"
+Strings_L50:
 	db " L:50 @@"
 	db "CANCEL@@"
 
-Strings_L10ToL100:
-	db " L:10 @@"
+Strings_L50ToL100:
 	db " L:50 @@"
 	db " L:100@@"
 	db "CANCEL@@"
@@ -3845,9 +3843,6 @@ BattleTower_LevelCheck:
 	ld a, BANK(wPartyMons)
 	ldh [rSVBK], a
 	ld a, [wcd4f]
-	ld b, 10
-	dec a
-	jr z, .got_level
 	ld b, 50
 	dec a
 	jr z, .got_level
@@ -3893,7 +3888,7 @@ BattleTower_UbersCheck:
 	ldh a, [rSVBK]
 	push af
 	ld a, [wcd4f]
-	cp 3
+	cp 2
 	jr z, .level_100_tier
 	ld a, BANK(wPartyMons)
 	ldh [rSVBK], a
@@ -5407,9 +5402,9 @@ Text_PartyMonTopsThisLevel:
 
 Text_UberRestriction:
 	text_ram wcd49
-	text " may go"
-	line "only into BATTLE"
-	cont "ROOM Lv.100."
+	text " may only"
+	line "enter BATTLE ROOM"
+	cont "Lv.100."
 	done
 
 Text_CancelBattleRoomChallenge:
