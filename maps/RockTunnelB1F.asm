@@ -27,6 +27,7 @@ RockTunnelB1FHiddenMaxPotion:
 	
 Andrea:
 	faceplayer
+	setevent EVENT_SPOKE_TO_ANDREA
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iffalse .BattleLater
 	waitsfx
@@ -186,13 +187,14 @@ AndreaBattleLaterText:
 	cont "and gloomy."
 
 	para "He has had it hard"
-	line "recently, though."
+	line "recently, though…"
 	
 	para "He may have hurt a"
 	line "lot of people and"
 	
-	para "#MON, but he is"
-	line "my brother."
+	para "#MON, but he's"
+	line "my brother, after"
+	cont "all."
 	
 	para "I owe it to him to"
 	line "lend a hand."

@@ -317,7 +317,6 @@ INCLUDE "maps/DarkCaveBlackthornEntrance.asm"
 INCLUDE "maps/DragonsDen1F.asm"
 INCLUDE "maps/DragonsDenB1F.asm"
 INCLUDE "maps/DragonShrine.asm"
-INCLUDE "maps/TohjoFalls.asm"
 INCLUDE "maps/AzaleaPokecenter1F.asm"
 INCLUDE "maps/CharcoalKiln.asm"
 INCLUDE "maps/AzaleaMart.asm"
@@ -494,3 +493,7 @@ INCLUDE "maps/LancesRoom.asm"
 INCLUDE "maps/Route5CleanseTagHouse.asm"
 INCLUDE "maps/RockTunnelB1F.asm"
 INCLUDE "maps/SaffronMoveDeletersHouse.asm"
+
+SECTION "Map Scripts 26", ROMX
+
+INCLUDE "maps/TohjoFalls.asm"
