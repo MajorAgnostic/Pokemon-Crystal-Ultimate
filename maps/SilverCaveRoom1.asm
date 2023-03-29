@@ -84,7 +84,7 @@ LeroyAfterBattleText:
 	text "I'm aiming to be"
 	line "the first HIKER to"
 	
-	para "climb the summit"
+	para "reach the summit"
 	line "of MT. SILVER."
 	done
 

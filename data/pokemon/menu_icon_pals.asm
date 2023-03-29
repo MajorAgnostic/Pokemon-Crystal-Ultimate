@@ -127,7 +127,7 @@ MonMenuIconPals:
 	iconpal BROWN, BLUE ; STARYU
 	iconpal PURPLE, BLUE ; STARMIE
 	iconpal PINK, GREEN ; MR__MIME
-	iconpal GREEN, GREEN ; SCYTHER
+	iconpal GREEN, BROWN ; SCYTHER
 	iconpal PURPLE, PURPLE ; JYNX
 	iconpal BROWN, RED ; ELECTABUZZ
 	iconpal RED, PURPLE ; MAGMAR
