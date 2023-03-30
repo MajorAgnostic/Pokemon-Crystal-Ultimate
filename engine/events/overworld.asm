@@ -587,6 +587,22 @@ FlyFunction:
 	ldh [hMapAnims], a
 	call LoadStandardMenuHeader
 	call ClearSprites
+	ld de, ENGINE_ENTIREFLYMAP
+	call CheckEngineFlag
+	jr c, .noentireflymap
+	farcall EntireFlyMap
+	ld a, e
+	cp -1
+	jr z, .illegal
+	cp NUM_SPAWNS
+	jr nc, .illegal
+
+	ld [wDefaultSpawnpoint], a
+	call CloseWindow
+	ld a, $1
+	ret
+	
+.noentireflymap
 	farcall _FlyMap
 	ld a, e
 	cp -1

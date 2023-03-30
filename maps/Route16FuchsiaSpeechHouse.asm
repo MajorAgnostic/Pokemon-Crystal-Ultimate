@@ -7,17 +7,112 @@ Route16FuchsiaSpeechHouse_MapScripts:
 	def_callbacks
 
 Route16FuchsiaSpeechHouseSuperNerdScript:
-	jumptextfaceplayer Route16FuchsiaSpeechHouseSuperNerdText
+	faceplayer
+	opentext
+	checkflag ENGINE_ENTIREFLYMAP
+	iftrue .Finished
+	checkflag ENGINE_FLYPOINT_CELADON
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_FUCHSIA
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_CINNABAR
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_PALLET
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_VIRIDIAN
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_PEWTER
+	iffalse .Intro
+	writetext UnlockEntireFlyMapText
+	setflag ENGINE_ENTIREFLYMAP
+	waitbutton
+	closetext
+	playsound SFX_GET_BADGE
+	pause 100
+	reloadmapafterbattle
+	opentext
+	writetext FinishedText
+	waitbutton
+	closetext
+	end
+	
+.Finished:
+	writetext FinishedText
+	waitbutton
+	closetext
+	end
+	
+.Intro:
+	writetext IntroText
+	waitbutton
+	closetext
+	end
 
 Route16FuchsiaSpeechHouseBookshelf:
 	jumpstd PictureBookshelfScript
 
-Route16FuchsiaSpeechHouseSuperNerdText:
+IntroText:
 	text "If you cruise down"
 	line "CYCLING ROAD, you"
 
 	para "will end up in"
 	line "FUCHSIA CITY."
+	
+	para "But it's much more"
+	line "convenient to get"
+	cont "around using FLY."
+	
+	para "Tell you what, if"
+	line "you visit every"
+	
+	para "city and town in"
+	line "KANTO, I'll teach"
+	
+	para "your #MON how"
+	line "to FLY across re-"
+	cont "gions."
+	done
+	
+UnlockEntireFlyMapText:
+	text "If you cruise down"
+	line "CYCLING ROAD, you"
+
+	para "will end up in"
+	line "FUCHSIA CITY."
+	
+	para "But it's much more"
+	line "convenient to get"
+	cont "around using FLY."
+	
+	para "Tell you what, if"
+	line "you visit every"
+	
+	para "city and town in"
+	line "KANTO, I'll teach"
+	
+	para "your #MON how"
+	line "to FLY across re-"
+	cont "gions."
+	
+	para "What's that? You"
+	line "already traveled"
+	
+	para "around the whole"
+	line "region?"
+	
+	para "I'm impressed!"
+	line "As promised, I'll"
+	
+	para "share my wisdom"
+	line "with you."
+	
+	para "Just a moment…"
+	done
+	
+FinishedText:
+	text "I hope you enjoy"
+	line "your travels to"
+	cont "the fullest!"
 	done
 
 Route16FuchsiaSpeechHouse_MapEvents:

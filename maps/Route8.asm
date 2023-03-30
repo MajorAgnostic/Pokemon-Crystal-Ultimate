@@ -247,7 +247,7 @@ BlockedYoungsterText:
 	line "LAVENDER TOWN from"
 	cont "this side…"
 
-	para "Maybe it had some-"
+	para "Maybe it has some-"
 	line "thing to do with"
 
 	para "the rowdy battles"

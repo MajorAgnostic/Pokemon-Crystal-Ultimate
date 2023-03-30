@@ -121,7 +121,6 @@ INCLUDE "maps/CeladonGameCorner.asm"
 INCLUDE "maps/CeladonGameCornerPrizeRoom.asm"
 INCLUDE "maps/CeladonGym.asm"
 INCLUDE "maps/CeladonCafe.asm"
-INCLUDE "maps/Route16FuchsiaSpeechHouse.asm"
 INCLUDE "maps/Route16Gate.asm"
 INCLUDE "maps/Route7SaffronGate.asm"
 INCLUDE "maps/Route17Route18Gate.asm"
@@ -497,3 +496,4 @@ INCLUDE "maps/SaffronMoveDeletersHouse.asm"
 SECTION "Map Scripts 26", ROMX
 
 INCLUDE "maps/TohjoFalls.asm"
+INCLUDE "maps/Route16FuchsiaSpeechHouse.asm"
