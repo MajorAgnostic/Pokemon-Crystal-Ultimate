@@ -9,22 +9,12 @@ Route16FuchsiaSpeechHouse_MapScripts:
 Route16FuchsiaSpeechHouseSuperNerdScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_ENTIREFLYMAP
+	checkevent EVENT_ENTIREFLYMAP
 	iftrue .Finished
-	checkflag ENGINE_FLYPOINT_CELADON
-	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_FUCHSIA
-	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_CINNABAR
-	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_PALLET
-	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_VIRIDIAN
-	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_PEWTER
+	checkevent EVENT_GOT_SILVER_WING
 	iffalse .Intro
 	writetext UnlockEntireFlyMapText
-	setflag ENGINE_ENTIREFLYMAP
+	setevent EVENT_ENTIREFLYMAP
 	waitbutton
 	closetext
 	playsound SFX_GET_BADGE

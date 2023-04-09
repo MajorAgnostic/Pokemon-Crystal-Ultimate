@@ -672,7 +672,7 @@ TrainerCard_JohtoBadgesOAM:
 	db $18, $20, $24, $20 | (1 << 7)
 
 	; Risingbadge
-	db $80, $78, 7, 7, 7, 7
+	db $80, $78, 1, 1, 1, 1
 	db $1c, $20, $24, $20 | (1 << 7)
 	db $1c, $20, $24, $20 | (1 << 7)
 	
@@ -706,7 +706,7 @@ TrainerCard_KantoBadgesOAM:
 	db $0c, $20, $24, $20 | (1 << 7)
 
 	; Marsh Badge (now Janine's badge)
-	db $80, $18, 2, 2, 2, 2
+	db $80, $18, 7, 7, 7, 7
 	db $14, $20, $24, $20 | (1 << 7)
 	db $14, $20, $24, $20 | (1 << 7)
 

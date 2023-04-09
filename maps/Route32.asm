@@ -54,6 +54,7 @@ Route32CooltrainerMContinueScene:
 	verbosegiveitem MIRACLE_SEED
 	iffalse .BagFull
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
+	setmapscene ROUTE_32, SCENE_ROUTE32_OFFER_SLOWPOKETAIL
 	sjump .GotMiracleSeed
 
 .DontHaveZephyrBadge:
@@ -76,13 +77,19 @@ Route32CooltrainerMStopsYouScene:
 	writetext Route32CooltrainerMText_WhatsTheHurry
 	waitbutton
 	closetext
+	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
+	iftrue .ContinueScene
 	follow PLAYER, ROUTE32_COOLTRAINER_M
 	applymovement PLAYER, Movement_Route32CooltrainerMPushesYouBackToViolet
 	stopfollow
 	turnobject PLAYER, DOWN
+.ContinueScene:
 	scall Route32CooltrainerMContinueScene
+	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
+	iftrue .End
 	applymovement ROUTE32_COOLTRAINER_M, Movement_Route32CooltrainerMReset1
 	applymovement ROUTE32_COOLTRAINER_M, Movement_Route32CooltrainerMReset2
+.End:
 	end
 
 Route32RoarTMGuyScript:

@@ -587,9 +587,11 @@ FlyFunction:
 	ldh [hMapAnims], a
 	call LoadStandardMenuHeader
 	call ClearSprites
-	ld de, ENGINE_ENTIREFLYMAP
-	call CheckEngineFlag
-	jr c, .noentireflymap
+	ld a, SILVER_WING
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .noentireflymap
 	farcall EntireFlyMap
 	ld a, e
 	cp -1

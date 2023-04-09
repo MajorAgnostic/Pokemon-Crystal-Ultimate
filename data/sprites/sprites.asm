@@ -87,7 +87,7 @@ OverworldSprites:
 	overworld_sprite FarfetchdSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite DragonSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite BigOnixSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GRAY
-	overworld_sprite N64SpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
+	overworld_sprite N64SpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
 	overworld_sprite SudowoodoSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
 	overworld_sprite SurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite PokeBallSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
@@ -97,7 +97,7 @@ OverworldSprites:
 	overworld_sprite OldLinkReceptionistSpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED
 	overworld_sprite RockSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite BoulderSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
-	overworld_sprite SnesSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
+	overworld_sprite SnesSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
 	overworld_sprite FamicomSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite FruitTreeSpriteGFX, 4, STILL_SPRITE, PAL_OW_TREE
 	overworld_sprite GoldTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN

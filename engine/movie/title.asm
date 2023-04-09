@@ -22,7 +22,17 @@ _TitleScreen:
 	ldh [rVBK], a
 
 ; Decompress running Suicune gfx
+	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
+	call OpenSRAM
+	ld a, [sNumDailyMysteryGiftPartnerIDs]
+	cp -1
+	call CloseSRAM
+	jr nz, .ogtitle
 	ld hl, TitleSuicuneGFX
+	jr .celebicontinue
+.ogtitle
+	ld hl, TitleCelebiGFX
+.celebicontinue
 	ld de, vTiles1
 	call Decompress
 
@@ -247,7 +257,7 @@ SuicuneFrameIterator:
 
 .Frames:
 	db $80 ; vTiles3 tile $80
-	db $88 ; vTiles3 tile $88
+	db $80 ; vTiles3 tile $88
 	db $00 ; vTiles5 tile $00
 	db $08 ; vTiles5 tile $08
 
@@ -366,6 +376,9 @@ endr
 
 TitleSuicuneGFX:
 INCBIN "gfx/title/suicune.2bpp.lz"
+
+TitleCelebiGFX:
+INCBIN "gfx/title/celebi1.2bpp.lz"
 
 TitleLogoGFX:
 INCBIN "gfx/title/logo.2bpp.lz"

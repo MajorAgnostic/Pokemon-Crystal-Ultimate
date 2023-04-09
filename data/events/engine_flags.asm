@@ -38,7 +38,6 @@ EngineFlags:
 	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_5_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_REACHED_GOLDENROD_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F
-	engine_flag wStatusFlags2, STATUSFLAGS2_ENTIREFLYMAP
 
 	engine_flag wBikeFlags, BIKEFLAGS_STRENGTH_ACTIVE_F
 	engine_flag wBikeFlags, BIKEFLAGS_ALWAYS_ON_BIKE_F
