@@ -809,11 +809,11 @@ KarenGroup:
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db NEVERMELTICE
 			db BEAT_UP, ICE_BEAM, SURF, MOONLIGHT
-	db 92, HO_OH
+	db 92, GYARADOS
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
-			db CHARCOAL
-			db SACRED_FIRE, RECOVER, EARTHQUAKE, DRILL_PECK
+			db DRAGON_FANG
+			db DRAGON_RAGE, CRUNCH, FLY, HYPER_BEAM
 	db 91, UMBREON
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED

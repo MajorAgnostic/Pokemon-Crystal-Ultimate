@@ -18,7 +18,7 @@ WhirlIslandB1FCarbos:
 	itemball BIG_PEARL
 
 WhirlIslandB1FCalcium:
-	itemball SILVER_LEAF
+	itemball FULL_HEAL
 
 WhirlIslandB1FNugget:
 	itemball NUGGET

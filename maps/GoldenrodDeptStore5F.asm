@@ -3,7 +3,6 @@
 	const GOLDENRODDEPTSTORE5F_LASS
 	const GOLDENRODDEPTSTORE5F_MIKE
 	const GOLDENRODDEPTSTORE5F_POKEFAN_M
-	const GOLDENRODDEPTSTORE5F_CARRIE
 	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
 
 GoldenrodDeptStore5F_MapScripts:
@@ -109,23 +108,6 @@ GoldenrodDeptStore5FReceptionistScript:
 	closetext
 	end
 
-Carrie:
-	faceplayer
-	opentext
-	special GameboyCheck
-	ifnotequal GBCHECK_CGB, .NotGBC ; This is a dummy check from Gold/Silver
-	writetext GoldenrodDeptStore5FCarrieMysteryGiftExplanationText
-	waitbutton
-	closetext
-	special UnlockMysteryGift
-	end
-
-.NotGBC:
-	writetext GoldenrodDeptStore5FCarrieMysteryGiftRequiresGBCText
-	waitbutton
-	closetext
-	end
-
 GoldenrodDeptStore5FLassScript:
 	jumptextfaceplayer GoldenrodDeptStore5FLassText
 
@@ -186,20 +168,6 @@ GoldenrodDeptStore5FAlreadyGotTMText:
 	line "have this TM…"
 	done
 
-GoldenrodDeptStore5FCarrieMysteryGiftExplanationText:
-	text "MYSTERY GIFT."
-
-	para "With just a"
-	line "little beep, you"
-	cont "get a gift."
-	done
-
-GoldenrodDeptStore5FCarrieMysteryGiftRequiresGBCText:
-	text "The MYSTERY GIFT"
-	line "option requires a"
-	cont "Game Boy Color."
-	done
-
 GoldenrodDeptStore5FLassText:
 	text "On Sundays, a lady"
 	line "comes to check out"
@@ -247,5 +215,4 @@ GoldenrodDeptStore5F_MapEvents:
 	object_event  3,  6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FLassScript, -1
 	object_event  6,  3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Mike, -1
 	object_event 13,  5, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FPokefanMScript, -1
-	object_event  9,  1, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Carrie, -1
 	object_event  7,  5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FReceptionistScript, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY

@@ -11,18 +11,26 @@ Route16FuchsiaSpeechHouseSuperNerdScript:
 	opentext
 	checkevent EVENT_ENTIREFLYMAP
 	iftrue .Finished
-	checkevent EVENT_GOT_SILVER_WING
+	checkflag ENGINE_FLYPOINT_CELADON
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_FUCHSIA
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_CINNABAR
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_PALLET
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_VIRIDIAN
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_PEWTER
 	iffalse .Intro
 	writetext UnlockEntireFlyMapText
+	promptbutton
+	verbosegiveitem SILVER_LEAF
+	iffalse .BagFull
 	setevent EVENT_ENTIREFLYMAP
+	writetext ReceivedLeafText
 	waitbutton
-	closetext
-	playsound SFX_GET_BADGE
-	pause 100
-	reloadmapafterbattle
-	opentext
-	writetext FinishedText
-	waitbutton
+.BagFull:
 	closetext
 	end
 	
@@ -56,11 +64,10 @@ IntroText:
 	line "you visit every"
 	
 	para "city and town in"
-	line "KANTO, I'll teach"
+	line "KANTO, I'll show"
 	
-	para "your #MON how"
-	line "to FLY across re-"
-	cont "gions."
+	para "you how to FLY"
+	line "across regions."
 	done
 	
 UnlockEntireFlyMapText:
@@ -78,11 +85,10 @@ UnlockEntireFlyMapText:
 	line "you visit every"
 	
 	para "city and town in"
-	line "KANTO, I'll teach"
+	line "KANTO, I'll show"
 	
-	para "your #MON how"
-	line "to FLY across re-"
-	cont "gions."
+	para "you how to FLY"
+	line "across regions."
 	
 	para "What's that? You"
 	line "already traveled"
@@ -91,18 +97,45 @@ UnlockEntireFlyMapText:
 	line "region?"
 	
 	para "I'm impressed!"
-	line "As promised, I'll"
 	
-	para "share my wisdom"
-	line "with you."
+	para "As promised, I'll"
+	line "share my secret"
+	cont "with you."
+	done
 	
-	para "Just a moment…"
+ReceivedLeafText:
+	text "This SILVER LEAF"
+	line "seems to possess"
+	
+	para "the ability to"
+	line "propel a #MON"
+	
+	para "through strong"
+	line "air currents."
+	
+	para "I wonder if that"
+	line "power comes from"
+	
+	para "the silver #-"
+	line "MON of storms…"
+	
+	para "Anyway, this can"
+	line "get your flying"
+	cont "#MON across"
+	cont "regions!"
+	
+	para "How amazing is"
+	line "that?"
 	done
 	
 FinishedText:
 	text "I hope you enjoy"
 	line "your travels to"
-	cont "the fullest!"
+	cont "the fullest."
+	
+	para "And make sure to"
+	line "hold on to that"
+	cont "SILVER LEAF!"
 	done
 
 Route16FuchsiaSpeechHouse_MapEvents:

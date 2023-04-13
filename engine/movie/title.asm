@@ -22,16 +22,17 @@ _TitleScreen:
 	ldh [rVBK], a
 
 ; Decompress running Suicune gfx
+; Ultimate checks for 2nd title screen added	
 	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
 	call OpenSRAM
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp -1
 	call CloseSRAM
-	jr nz, .ogtitle
-	ld hl, TitleSuicuneGFX
+	jr z, .ogtitle
+	ld hl, TitleCelebiGFX
 	jr .celebicontinue
 .ogtitle
-	ld hl, TitleCelebiGFX
+	ld hl, TitleSuicuneGFX
 .celebicontinue
 	ld de, vTiles1
 	call Decompress
@@ -141,14 +142,29 @@ _TitleScreen:
 ; WRAM bank 5
 	ld a, BANK(wBGPals1)
 	ldh [rSVBK], a
+	
+	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
+	call OpenSRAM
+	ld a, [sNumDailyMysteryGiftPartnerIDs]
+	cp -1
+	call CloseSRAM
+	jr z, .ogpals
+	ld hl, TitleScreenPalettes2
+	ld de, wBGPals1
+	ld bc, 16 palettes
+	call CopyBytes
 
+	ld hl, TitleScreenPalettes2
+	jr .pals2continue
 ; Update palette colors
+.ogpals:
 	ld hl, TitleScreenPalettes
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 
 	ld hl, TitleScreenPalettes
+.pals2continue:
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -243,6 +259,25 @@ SuicuneFrameIterator:
 	swap a
 	ld e, a
 	ld d, $0
+	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
+	call OpenSRAM
+	ld a, [sNumDailyMysteryGiftPartnerIDs]
+	cp -1
+	call CloseSRAM
+	jr z, .ogframes
+	ld hl, .Frames2
+	add hl, de
+	ld d, [hl]
+	xor a
+	ldh [hBGMapMode], a
+	call LoadSuicuneFrame
+	ld a, $1
+	ldh [hBGMapMode], a
+	ld a, $3
+	ldh [hBGMapThird], a
+	ret
+	
+.ogframes:
 	ld hl, .Frames
 	add hl, de
 	ld d, [hl]
@@ -256,6 +291,12 @@ SuicuneFrameIterator:
 	ret
 
 .Frames:
+	db $80 ; vTiles3 tile $80
+	db $88 ; vTiles3 tile $88
+	db $00 ; vTiles5 tile $00
+	db $08 ; vTiles5 tile $08
+
+.Frames2:
 	db $80 ; vTiles3 tile $80
 	db $80 ; vTiles3 tile $88
 	db $00 ; vTiles5 tile $00
@@ -378,7 +419,7 @@ TitleSuicuneGFX:
 INCBIN "gfx/title/suicune.2bpp.lz"
 
 TitleCelebiGFX:
-INCBIN "gfx/title/celebi1.2bpp.lz"
+INCBIN "gfx/title/celebi.2bpp.lz"
 
 TitleLogoGFX:
 INCBIN "gfx/title/logo.2bpp.lz"
@@ -388,3 +429,6 @@ INCBIN "gfx/title/crystal.2bpp.lz"
 
 TitleScreenPalettes:
 INCLUDE "gfx/title/title.pal"
+
+TitleScreenPalettes2:
+INCLUDE "gfx/title/celebi_title.pal"

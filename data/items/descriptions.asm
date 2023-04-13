@@ -492,8 +492,8 @@ GoodRodDesc:
 	next "catching #MON.@"
 
 SilverLeafDesc:
-	db   "A strange leaf."
-	next "Sells very high.@"
+	db   "A strange, wispy"
+	next "leaf of silver.@"
 
 SuperRodDesc:
 	db   "The best ROD for"
@@ -536,7 +536,7 @@ ClearBellDesc:
 	next "ringing.@"
 
 SilverWingDesc:
-	db   "A strange, silver-"
+	db   "A mystical silver-"
 	next "colored feather.@"
 
 MoomooMilkDesc:
@@ -552,8 +552,8 @@ PsnCureBerryDesc:
 	next "poison. (HOLD)@"
 
 GoldLeafDesc:
-	db   "A strange leaf."
-	next "Sells very high.@"
+	db   "A strange, ashen"
+	next "leaf of gold.@"
 
 SoftSandDesc:
 	db   "Powers up ground-"

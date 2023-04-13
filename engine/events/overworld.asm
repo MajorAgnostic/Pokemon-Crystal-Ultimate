@@ -587,7 +587,7 @@ FlyFunction:
 	ldh [hMapAnims], a
 	call LoadStandardMenuHeader
 	call ClearSprites
-	ld a, SILVER_WING
+	ld a, SILVER_LEAF
 	ld [wCurItem], a
 	ld hl, wNumItems
 	call CheckItem

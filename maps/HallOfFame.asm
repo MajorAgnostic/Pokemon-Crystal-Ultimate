@@ -42,10 +42,7 @@ HallOfFame_MapScripts:
 	setevent EVENT_E4_MART
 	setmapscene SPROUT_TOWER_3F, SCENE_FINISHED
 	special HealParty
-	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue .SkipPhoneCall
-	specialphonecall SPECIALCALL_SSTICKET
-.SkipPhoneCall:
+	special UnlockMysteryGift
 	halloffame
 	end
 	
