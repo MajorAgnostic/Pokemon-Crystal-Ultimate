@@ -13,13 +13,11 @@ FishGroups:
 	fishgroup 50 percent + 1, .Pond_Old,             .Pond_Good,             .Pond_Super
 	fishgroup 50 percent + 1, .Dratini_Old,          .Dratini_Good,          .Dratini_Super
 	fishgroup 50 percent + 1, .Qwilfish_Swarm_Old,   .Qwilfish_Swarm_Good,   .Qwilfish_Swarm_Super
-	fishgroup 50 percent + 1, .Remoraid_Swarm_Old,   .Remoraid_Swarm_Good,   .Remoraid_Swarm_Super
 	fishgroup 50 percent + 1, .Gyarados_Old,         .Gyarados_Good,         .Gyarados_Super
 	fishgroup 50 percent + 1, .WhirlIslands_Old,     .WhirlIslands_Good,     .WhirlIslands_Super
 	fishgroup 50 percent + 1, .Qwilfish_Old,         .Qwilfish_Good,         .Qwilfish_Super
 	fishgroup 50 percent + 1, .Remoraid_Old,         .Remoraid_Good,         .Remoraid_Super
 	fishgroup 50 percent + 1, .Qwilfish_NoSwarm_Old, .Qwilfish_NoSwarm_Good, .Qwilfish_NoSwarm_Super
-	fishgroup 50 percent + 1, .Remoraid_NoSwarm_Old, .Remoraid_NoSwarm_Good, .Remoraid_NoSwarm_Super
 	fishgroup 50 percent + 1, .CloysterHoister_Old,  .CloysterHoister_Good,  .CloysterHoister_Super
 
 .Shore_Old:
@@ -112,21 +110,6 @@ FishGroups:
 	db  90 percent + 1, QWILFISH,   80
 	db 100 percent,     QWILFISH,   80
 
-.Remoraid_Swarm_Old:
-	db  70 percent + 1, MAGIKARP,   10
-	db  85 percent + 1, MAGIKARP,   10
-	db 100 percent,     REMORAID,   15
-.Remoraid_Swarm_Good:
-	db  35 percent,     MAGIKARP,   15
-	db  70 percent,     REMORAID,   35
-	db  90 percent + 1, REMORAID,   40
-	db 100 percent,     REMORAID,   40
-.Remoraid_Swarm_Super:
-	db  40 percent,     REMORAID,   70
-	db  70 percent,     REMORAID,   70
-	db  90 percent + 1, REMORAID,   75
-	db 100 percent,     REMORAID,   75
-
 .Gyarados_Old:
 	db  70 percent + 1, MAGIKARP,   10
 	db  85 percent + 1, MAGIKARP,   10
@@ -175,18 +158,15 @@ FishGroups:
 	db  90 percent + 1, GYARADOS,   75
 	db 100 percent,     QWILFISH,   75
 	
-.Remoraid_NoSwarm_Old:
 .Remoraid_Old:
 	db  70 percent + 1, MAGIKARP,   10
 	db  85 percent + 1, MAGIKARP,   10
 	db 100 percent,     POLIWAG,    15
-.Remoraid_NoSwarm_Good:
 .Remoraid_Good:
 	db  35 percent,     MAGIKARP,   15
 	db  70 percent,     POLIWHIRL,  35
 	db  90 percent + 1, POLIWHIRL,  35
-	db 100 percent,     POLIWHIRL,  35
-.Remoraid_NoSwarm_Super:
+	db 100 percent,     REMORAID,   30
 .Remoraid_Super:
 	db  40 percent,     POLIWHIRL,  70
 	db  70 percent,     GYARADOS,   75

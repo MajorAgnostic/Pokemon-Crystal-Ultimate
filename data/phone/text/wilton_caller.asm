@@ -101,28 +101,3 @@ WiltonWantThisText:
 	para "MAHOGANY toward"
 	line "BLACKTHORN!"
 	done
-	
-WiltonHurryText:
-	text "Hey, what's the"
-	line "matter with you?"
-
-	para "Aren't you coming"
-	line "over to fish for"
-	cont "REMORAID?"
-
-	para "I'm on ROUTE 44,"
-	line "so hurry up!"
-	done
-	
-WiltonItemText:
-	text "It's amazing!"
-	
-	para "On ROUTE 44, RE-"
-	line "MORAID are biting"
-
-	para "like there's no"
-	line "tomorrow!"
-
-	para "<PLAYER>, bring"
-	line "your ROD, buddy."
-	done

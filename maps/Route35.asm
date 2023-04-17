@@ -447,8 +447,8 @@ Route35SignText:
 	done
 
 Route32ShortcutSignText:
-	text "SHORTCUT EAST TO"
-	line "ROUTE 32"
+	text "FOREST SHORTCUT"
+	line "TO ROUTE 32"
 	done
 
 Route35_MapEvents:

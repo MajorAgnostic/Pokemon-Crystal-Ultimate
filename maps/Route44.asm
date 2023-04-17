@@ -157,8 +157,6 @@ TrainerFisherWilton1:
 	opentext
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue .HasItem
-	checkflag ENGINE_REMORAID_SWARM
-	iftrue .Swarm
 	checkflag ENGINE_WILTON_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_FISHER_WILTON
@@ -206,12 +204,6 @@ TrainerFisherWilton1:
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_WILTON_READY_FOR_REMATCH
-	end
-	
-.Swarm:
-	writetext FisherWiltonSwarmText
-	waitbutton
-	closetext
 	end
 
 .HasItem:
@@ -327,17 +319,6 @@ FisherWiltonHugePoliwagText:
 
 	para "I swear it must've"
 	line "been 16 feet long!"
-	done
-	
-FisherWiltonSwarmText:
-	text "One, two, three…"
-	line "Muahahaha, what a"
-
-	para "great haul!"
-	line "I'm done! Go ahead"
-
-	para "and catch as many"
-	line "as you can, kid!"
 	done
 
 FisherEdgarSeenText:

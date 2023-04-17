@@ -42,6 +42,7 @@ HallOfFame_MapScripts:
 	setevent EVENT_E4_MART
 	setmapscene SPROUT_TOWER_3F, SCENE_FINISHED
 	special HealParty
+	specialphonecall SPECIALCALL_SSTICKET
 	special UnlockMysteryGift
 	halloffame
 	end

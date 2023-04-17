@@ -163,7 +163,7 @@ TrainerFisherRalph1:
 	opentext
 	checkflag ENGINE_RALPH_READY_FOR_REMATCH
 	iftrue .Rematch
-	checkflag ENGINE_QWILFISH_SWARM
+	checkflag ENGINE_FISH_SWARM
 	iftrue .Swarm
 	checkcellnum PHONE_FISHER_RALPH
 	iftrue .NumberAccepted
@@ -873,8 +873,8 @@ Route32UnionCaveSignText:
 	done
 	
 Route35ShortcutSignText:
-	text "SHORTCUT WEST TO"
-	line "ROUTE 35"
+	text "FOREST SHORTCUT"
+	line "TO ROUTE 35"
 	done
 
 Route32_MapEvents:

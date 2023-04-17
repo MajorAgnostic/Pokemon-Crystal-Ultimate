@@ -2779,6 +2779,7 @@ SlowkingEvosAttacks:
 
 MisdreavusEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, ENCORE
 	db 1, GROWL
 	db 1, PSYWAVE
 	db 6, SPITE
@@ -2788,7 +2789,8 @@ MisdreavusEvosAttacks:
 	db 36, PAIN_SPLIT
 	db 36, HYPNOSIS
 	db 46, NIGHT_SHADE
-	db 57, PERISH_SONG
+	db 57, FIRE_SPIN
+	db 68, PERISH_SONG
 	db 0 ; no more level-up moves
 
 UnownEvosAttacks:
@@ -2922,9 +2924,9 @@ QwilfishEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, POISON_STING
-	db 10, HARDEN
-	db 10, MINIMIZE
-	db 17, WATER_GUN
+	db 7, HARDEN
+	db 10, WATER_GUN
+	db 18, MINIMIZE
 	db 24, RAPID_SPIN
 	db 24, SPIKES
 	db 32, PIN_MISSILE
