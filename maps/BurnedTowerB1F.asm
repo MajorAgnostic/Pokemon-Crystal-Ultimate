@@ -117,7 +117,7 @@ BurnedTowerB1FEusine:
 	end
 
 BurnedTowerB1FTMEndure:
-	itemball TM_ENDURE
+	itemball TM_SLUDGE_BOMB
 	
 BurnedTowerB1FHiddenSacredAsh:
 	hiddenitem SACRED_ASH, EVENT_BURNED_TOWER_B1F_HIDDEN_SACRED_ASH

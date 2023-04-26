@@ -1018,12 +1018,12 @@ GeodudeEvosAttacks:
 	db 6, DEFENSE_CURL
 	db 11, ROCK_THROW
 	db 16, MAGNITUDE
-	db 21, SELFDESTRUCT
-	db 26, RAPID_SPIN
-	db 31, ROLLOUT
-	db 36, EARTHQUAKE
-	db 41, ROCK_SLIDE
-	db 46, EXPLOSION
+	db 22, SELFDESTRUCT
+	db 28, RAPID_SPIN
+	db 34, ROLLOUT
+	db 41, EARTHQUAKE
+	db 48, ROCK_SLIDE
+	db 55, EXPLOSION
 	db 0 ; no more level-up moves
 
 GravelerEvosAttacks:
@@ -1033,12 +1033,12 @@ GravelerEvosAttacks:
 	db 6, DEFENSE_CURL
 	db 11, ROCK_THROW
 	db 16, MAGNITUDE
-	db 21, SELFDESTRUCT
-	db 27, RAPID_SPIN
-	db 34, ROLLOUT
-	db 41, EARTHQUAKE
-	db 48, ROCK_SLIDE
-	db 55, EXPLOSION
+	db 22, SELFDESTRUCT
+	db 29, RAPID_SPIN
+	db 36, ROLLOUT
+	db 44, EARTHQUAKE
+	db 52, ROCK_SLIDE
+	db 60, EXPLOSION
 	db 0 ; no more level-up moves
 
 GolemEvosAttacks:
@@ -1047,12 +1047,12 @@ GolemEvosAttacks:
 	db 6, DEFENSE_CURL
 	db 11, ROCK_THROW
 	db 16, MAGNITUDE
-	db 21, SELFDESTRUCT
-	db 27, RAPID_SPIN
-	db 34, ROLLOUT
-	db 41, EARTHQUAKE
-	db 48, ROCK_SLIDE
-	db 55, EXPLOSION
+	db 22, SELFDESTRUCT
+	db 29, RAPID_SPIN
+	db 36, ROLLOUT
+	db 44, EARTHQUAKE
+	db 52, ROCK_SLIDE
+	db 60, EXPLOSION
 	db 0 ; no more level-up moves
 
 PonytaEvosAttacks:
@@ -2870,7 +2870,7 @@ GligarEvosAttacks:
 	db 1, POISON_STING
 	db 6, MUD_SLAP
 	db 13, HARDEN
-	db 20, QUICK_ATTACK
+	db 20, MAGNITUDE
 	db 27, WING_ATTACK
 	db 34, SLASH
 	db 41, RAZOR_WIND

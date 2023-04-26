@@ -113,7 +113,7 @@ OfficerScript_GuardWithSludgeBomb:
 	iftrue .GotSludgeBomb
 	writetext OfficerText_FoundTM
 	promptbutton
-	verbosegiveitem TM_SLUDGE_BOMB
+	verbosegiveitem TM_GIGA_DRAIN
 	iffalse .NoRoomForSludgeBomb
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB
 	closetext
@@ -232,11 +232,6 @@ OfficerText_FoundTM:
 	para "It makes me uncom-"
 	line "fortable. Could"
 	cont "you take it away?"
-	done
-
-Text_ReceivedTM30:
-	text "<PLAYER> received"
-	line "TM30."
 	done
 
 OfficerText_AvoidGrass:

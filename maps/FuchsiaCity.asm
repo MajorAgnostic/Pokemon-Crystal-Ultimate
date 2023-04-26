@@ -242,7 +242,7 @@ FuchsiaCity_MapEvents:
 
 	def_warp_events
 	warp_event  5, 13, FUCHSIA_MART, 2
-	warp_event 22, 13, SAFARI_ZONE_MAIN_OFFICE, 1
+	warp_event 22, 15, SAFARI_ZONE_MAIN_OFFICE, 1
 	warp_event  8, 27, FUCHSIA_GYM, 1
 	warp_event 11, 27, BILLS_BROTHERS_HOUSE, 1
 	warp_event 19, 27, FUCHSIA_POKECENTER_1F, 1
@@ -256,20 +256,20 @@ FuchsiaCity_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event 21, 15, BGEVENT_READ, FuchsiaCitySign
+	bg_event 13, 15, BGEVENT_READ, FuchsiaCitySign
 	bg_event  5, 29, BGEVENT_READ, FuchsiaGymSign
-	bg_event 25, 15, BGEVENT_READ, SafariZoneOfficeSign
+	bg_event 21, 17, BGEVENT_READ, SafariZoneOfficeSign
 	bg_event 27, 29, BGEVENT_READ, WardensHomeSign
 	bg_event 17,  5, BGEVENT_READ, SafariZoneClosedSign
-	bg_event 13, 15, BGEVENT_READ, NoLitteringSign
+	bg_event 12, 14, BGEVENT_READ, NoLitteringSign
 	bg_event 20, 27, BGEVENT_READ, FuchsiaCityPokecenterSign
 	bg_event  6, 13, BGEVENT_READ, FuchsiaCityMartSign
 	bg_event 33, 25, BGEVENT_READ, GameSign
 
 	def_object_events
-	object_event 23, 18, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
-	object_event 13,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
-	object_event 16, 14, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
+	object_event 23, 19, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
+	object_event 16, 14, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
+	object_event 13,  8, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
 	object_event  8,  1, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree, -1
 	object_event 33, 24, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityCloysterScript, -1
 	object_event 31,  4, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree2, -1

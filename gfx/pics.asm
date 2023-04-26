@@ -300,7 +300,7 @@ MarillFrontpic:      INCBIN "gfx/pokemon/marill/front.animated.2bpp.lz"
 GuitaristPic:        INCBIN "gfx/trainers/guitarist.2bpp.lz"
 PokefanfPic:         INCBIN "gfx/trainers/pokefan_f.2bpp.lz"
 VenomothBackpic:     INCBIN "gfx/pokemon/venomoth/back.2bpp.lz"
-ClairPic:            INCBIN "gfx/trainers/clair.2bpp.lz"
+OmastarBackpic:      INCBIN "gfx/pokemon/omastar/back.2bpp.lz"
 PokemaniacPic:       INCBIN "gfx/trainers/pokemaniac.2bpp.lz"
 OmanyteFrontpic:     INCBIN "gfx/pokemon/omanyte/front.animated.2bpp.lz"
 SkierPic:            INCBIN "gfx/trainers/skier.2bpp.lz"
@@ -703,7 +703,7 @@ UnownRBackpic:       INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
 
 SECTION "Pics 19", ROMX
 
-OmastarBackpic:      INCBIN "gfx/pokemon/omastar/back.2bpp.lz"
+ClairPic:            INCBIN "gfx/trainers/clair.2bpp.lz"
 CrystalPic:          INCBIN "gfx/trainers/crystal.2bpp.lz"
 NicholasPic:         INCBIN "gfx/trainers/nicholas.2bpp.lz"
 ArcherPic:			 INCBIN "gfx/trainers/archer.2bpp.lz"

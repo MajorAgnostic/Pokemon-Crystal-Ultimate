@@ -110,7 +110,6 @@ EngineFlags:
 	engine_flag wDailyFlags1, DAILYFLAGS1_FISH_SWARM_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_TIME_CAPSULE_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_ALL_FRUIT_TREES_F
-	engine_flag wDailyFlags1, DAILYFLAGS1_GOT_SHUCKIE_TODAY_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_TRAINER_HOUSE_F
 
