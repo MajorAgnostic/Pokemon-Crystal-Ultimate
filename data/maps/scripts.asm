@@ -132,8 +132,7 @@ INCLUDE "maps/DiglettsCave.asm"
 INCLUDE "maps/MountMoon.asm"
 INCLUDE "maps/UndergroundPath.asm"
 INCLUDE "maps/RockTunnel1F.asm" ; B1F is at bottom
-INCLUDE "maps/SafariZoneFuchsiaGateBeta.asm"
-INCLUDE "maps/SafariZoneBeta.asm"
+INCLUDE "maps/SaffronMoveDeletersHouse.asm"
 INCLUDE "maps/VictoryRoad.asm"
 INCLUDE "maps/OlivinePort.asm"
 INCLUDE "maps/VermilionPort.asm"
@@ -491,7 +490,6 @@ INCLUDE "maps/SeafoamIslandsEntrance.asm"
 INCLUDE "maps/LancesRoom.asm"
 INCLUDE "maps/Route5CleanseTagHouse.asm"
 INCLUDE "maps/RockTunnelB1F.asm"
-INCLUDE "maps/SaffronMoveDeletersHouse.asm"
 
 SECTION "Map Scripts 26", ROMX
 

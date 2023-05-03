@@ -165,7 +165,6 @@ CherrygroveEvolutionSpeechHouse_Blocks:
 Route30BerryHouse_Blocks:
 	INCBIN "maps/House1.blk"
 
-SafariZoneFuchsiaGateBeta_Blocks:
 Route19FuchsiaGate_Blocks:
 Route43MahoganyGate_Blocks:
 Route43Gate_Blocks:
@@ -809,9 +808,6 @@ VermilionPortPassage_Blocks:
 
 FuchsiaGym_Blocks:
 	INCBIN "maps/FuchsiaGym.blk"
-	
-SafariZoneBeta_Blocks:
-	INCBIN "maps/SafariZoneBeta.blk"
 
 UndergroundPath_Blocks:
 	INCBIN "maps/UndergroundPath.blk"

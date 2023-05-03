@@ -9,6 +9,7 @@ SafariZoneMainOffice_MapEvents:
 	def_warp_events
 	warp_event  2,  7, FUCHSIA_CITY, 2
 	warp_event  3,  7, FUCHSIA_CITY, 2
+	warp_event  3,  1, FUCHSIA_CITY, 7
 
 	def_coord_events
 
