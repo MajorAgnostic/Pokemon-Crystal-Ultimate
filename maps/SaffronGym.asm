@@ -36,11 +36,19 @@ SaffronGymSabrinaScript:
 	waitsfx
 	setflag ENGINE_SOULBADGE
 	writetext SabrinaMarshBadgeText
-	waitbutton
+	promptbutton
 	closetext
-	end
-
+	pause 20
+	opentext
 .FightDone:
+	checkevent EVENT_GOT_TM09_PSYCH_UP
+	iftrue .AfterTM
+	writetext SabrinaPsychUpText
+	promptbutton
+	verbosegiveitem TM_PSYCH_UP
+	iffalse .AfterTM
+	setevent EVENT_GOT_TM09_PSYCH_UP
+.AfterTM:
 	writetext SabrinaFightDoneText
 	waitbutton
 	closetext
@@ -183,13 +191,26 @@ SabrinaMarshBadgeText:
 
 	para "Although I failed"
 	line "to accurately pre-"
-	cont "dict your power,"
-	cont "this much I know"
-	cont "to be true."
+	cont "dict your current"
+	cont "power, this much I"
+	cont "know to be true:"
 
-	para "You will become a"
-	line "celebrated and"
-	cont "beloved CHAMPION!"
+	para "You will surpass"
+	line "all trainers that"
+	cont "have come before"
+	cont "you."
+	done
+	
+SabrinaPsychUpText:
+	text "SABRINA: Oh, you"
+	line "should also take"
+	cont "this TM."
+
+	para "It contains PSYCH"
+	line "UP, which boosts"
+
+	para "your #MON's"
+	line "SPECIAL stats."
 	done
 
 SabrinaFightDoneText:

@@ -10,6 +10,7 @@
 	const ROUTE17_BIKER9
 	const ROUTE17_BIKER10
 	const ROUTE17_BIKER11
+	const ROUTE17_POKE_BALL
 
 Route17_MapScripts:
 	def_scene_scripts
@@ -143,8 +144,8 @@ TrainerBikerTheron:
 	closetext
 	end
 
-Route17HiddenMaxEther:
-	hiddenitem MAX_ETHER, EVENT_ROUTE_17_HIDDEN_MAX_ETHER
+Route17Nugget:
+	itemball NUGGET
 
 Route17HiddenMaxElixer:
 	hiddenitem MAX_ELIXER, EVENT_ROUTE_17_HIDDEN_MAX_ELIXER
@@ -273,7 +274,7 @@ DanAfterBattleText:
 	
 TeddySeenText:
 	text "Hey, that's some"
-	line "cool Bike you're"
+	line "cool bike you're"
 	cont "riding!"
 	done
 
@@ -299,15 +300,15 @@ MarkeyBeatenText:
 	done
 
 MarkeyAfterBattleText:
-	text "Won't you give it"
-	line "a try?"
-
-	para "Would you like to"
+	text "Would you like to"
 	line "join my team?"
+
+	para "We're part of the"
+	line "KANTO FEDERATION!"
 	done
 	
 JacobSeenText:
-	text "Modding my Bike is"
+	text "Modding my bike is"
 	line "really expensive!"
 	
 	para "I need a job!"
@@ -320,7 +321,7 @@ JacobBeatenText:
 JacobAfterBattleText:
 	text "Bike?"
 	line "Oh, I was talking"
-	cont "about my Bicycle!"
+	cont "about my BICYCLE!"
 	done
 	
 TheronSeenText:
@@ -338,7 +339,7 @@ TheronBeatenText:
 	done
 
 TheronAfterBattleText:
-	text "You have got some"
+	text "Huh, you got some"
 	line "nerve!"
 	cont "That's awesome!"
 	done
@@ -353,7 +354,6 @@ Route17_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event  9, 53, BGEVENT_ITEM, Route17HiddenMaxEther
 	bg_event  8, 77, BGEVENT_ITEM, Route17HiddenMaxElixer
 
 	def_object_events
@@ -368,3 +368,4 @@ Route17_MapEvents:
 	object_event 18, 17, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerMarkey, -1
 	object_event 14, 33, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerJacob, -1
 	object_event 16, 52, SPRITE_BIKER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBikerTheron, -1
+	object_event  9, 53, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route17Nugget, EVENT_ROUTE_17_HIDDEN_MAX_ETHER

@@ -1,7 +1,7 @@
-GOLDENRODGAMECORNER_TM25_COINS EQU 7500
-GOLDENRODGAMECORNER_TM14_COINS EQU 7500
-GOLDENRODGAMECORNER_TM38_COINS EQU 7500
-GOLDENRODGAMECORNER_CUBONE_COINS    EQU 1000
+GOLDENRODGAMECORNER_TM25_COINS EQU 3000
+GOLDENRODGAMECORNER_TM14_COINS EQU 2000
+GOLDENRODGAMECORNER_TM38_COINS EQU 1000
+GOLDENRODGAMECORNER_CUBONE_COINS    EQU 1500
 GOLDENRODGAMECORNER_SLOWPOKE_COINS  EQU 2800
 GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 9999
 
@@ -76,40 +76,40 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
-	checkitem TM_THUNDER
+	checkitem TM_ENDURE
 	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM25_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_THUNDER
+	getitemname STRING_BUFFER_3, TM_ENDURE
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
-	giveitem TM_THUNDER
+	giveitem TM_ENDURE
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM25_COINS
 	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .Blizzard:
-	checkitem TM_BLIZZARD
+	checkitem TM_DEFENSE_CURL
 	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM14_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_BLIZZARD
+	getitemname STRING_BUFFER_3, TM_DEFENSE_CURL
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
-	giveitem TM_BLIZZARD
+	giveitem TM_DEFENSE_CURL
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM14_COINS
 	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .FireBlast:
-	checkitem TM_FIRE_BLAST
+	checkitem TM_SWEET_SCENT
 	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM38_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_FIRE_BLAST
+	getitemname STRING_BUFFER_3, TM_SWEET_SCENT
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
-	giveitem TM_FIRE_BLAST
+	giveitem TM_SWEET_SCENT
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM38_COINS
 	sjump GoldenrodGameCornerTMVendor_FinishScript
@@ -164,9 +164,9 @@ GoldenrodGameCornerTMVendorMenuHeader:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "TM25    7500@"
-	db "TM14    7500@"
-	db "TM38    7500@"
+	db "TM20    3000@"
+	db "TM40    2000@"
+	db "TM12    1000@"
 	db "CANCEL@"
 
 GoldenrodGameCornerPrizeMonVendorScript:
@@ -250,7 +250,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "CUBONE     1000@"
+	db "CUBONE     1500@"
 	db "SLOWPOKE   2800@"
 	db "WOBBUFFET  9999@"
 	db "CANCEL@"

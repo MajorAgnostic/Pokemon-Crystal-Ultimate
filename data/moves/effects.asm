@@ -1873,7 +1873,14 @@ PsychUp:
 	checkobedience
 	usedmovetext
 	doturn
-	psychup
+	specialattackup
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	specialdefenseup
+	statupmessage
+	statupfailtext
 	endmove
 
 MirrorCoat:

@@ -106,23 +106,23 @@ RocketScript_ShakeDownNorth:
 RocketScript_MakingABundle:
 	jumptextfaceplayer RocketText_MakingABundle
 
-OfficerScript_GuardWithSludgeBomb:
+OfficerScript_GuardWithGigaDrain:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
-	iftrue .GotSludgeBomb
+	checkevent EVENT_GOT_TM19_GIGA_DRAIN
+	iftrue .GotGigaDrain
 	writetext OfficerText_FoundTM
 	promptbutton
 	verbosegiveitem TM_GIGA_DRAIN
-	iffalse .NoRoomForSludgeBomb
-	setevent EVENT_GOT_TM36_SLUDGE_BOMB
+	iffalse .NoRoomForGigaDrain
+	setevent EVENT_GOT_TM19_GIGA_DRAIN
 	closetext
 	end
 
-.GotSludgeBomb:
+.GotGigaDrain:
 	writetext OfficerText_AvoidGrass
 	waitbutton
-.NoRoomForSludgeBomb:
+.NoRoomForGigaDrain:
 	closetext
 	end
 
@@ -254,6 +254,6 @@ Route43Gate_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithGigaDrain, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event  2,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
 	object_event  7,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS

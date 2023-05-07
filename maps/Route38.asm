@@ -6,6 +6,7 @@
 	const ROUTE38_SAILOR
 	const ROUTE38_FRUIT_TREE
 	const ROUTE38_BEAUTY2
+	const ROUTE38_POKE_BALL
 
 Route38_MapScripts:
 	def_scene_scripts
@@ -288,6 +289,9 @@ Route38TrainerTips:
 
 Route38FruitTree:
 	fruittree FRUITTREE_ROUTE_38
+	
+Route46XSpeed:
+	itemball SUN_STONE
 
 BirdKeeperTobySeenText:
 	text "Fly high into the"
@@ -460,3 +464,4 @@ Route38_MapEvents:
 	object_event 24,  5, SPRITE_SAILOR, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSailorHarry, -1
 	object_event 12, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route38FruitTree, -1
 	object_event  5,  6, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBeautyOlivia, -1
+	object_event  4, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route46XSpeed, EVENT_ROUTE_46_X_SPEED

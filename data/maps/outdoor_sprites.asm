@@ -117,10 +117,14 @@ FuchsiaGroupSprites:
 	db SPRITE_TEACHER
 	db SPRITE_SUPER_NERD
 	db SPRITE_BIKER
+	db SPRITE_JANINE
 	; 7 of max 9 walking sprites
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
 	db SPRITE_LAPRAS
+	db SPRITE_SLOWPOKE
+	db SPRITE_KANGASKHAN
+	db SPRITE_VOLTORB
 	db 0 ; end
 
 IndigoGroupSprites:
@@ -228,6 +232,7 @@ CianwoodGroupSprites:
 	db SPRITE_ROCK
 	db SPRITE_YOUNGSTER
 	db SPRITE_SUICUNE
+	db SPRITE_POKE_BALL
 	db 0 ; end
 
 MahoganyGroupSprites:

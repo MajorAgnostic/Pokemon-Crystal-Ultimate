@@ -4436,18 +4436,16 @@ BattleAnim_MirrorCoat:
 	anim_ret
 
 BattleAnim_PsychUp:
-	anim_1gfx ANIM_GFX_STATUS
-	anim_call BattleAnim_TargetObj_1Row
-	anim_bgeffect ANIM_BG_1A, $0, $1, $20
-	anim_sound 0, 0, SFX_PSYBEAM
-	anim_obj ANIM_OBJ_PSYCH_UP, 44, 88, $0
-	anim_obj ANIM_OBJ_PSYCH_UP, 44, 88, $10
-	anim_obj ANIM_OBJ_PSYCH_UP, 44, 88, $20
-	anim_obj ANIM_OBJ_PSYCH_UP, 44, 88, $30
-	anim_wait 64
-	anim_incbgeffect ANIM_BG_1A
-	anim_call BattleAnim_ShowMon_0
+	anim_1gfx ANIM_GFX_MISC
+	anim_sound 6, 1, SFX_FLASH
+.loop
+	anim_obj ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $3
+	anim_obj ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $12
+	anim_obj ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $20
+	anim_obj ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $31
 	anim_wait 16
+	anim_loop 2, .loop
+	anim_wait 32
 	anim_ret
 
 BattleAnim_Extremespeed:

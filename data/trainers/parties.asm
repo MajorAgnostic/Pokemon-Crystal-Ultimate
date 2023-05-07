@@ -621,7 +621,7 @@ WillGroup:
 	
 	; WILL (2)
 	db "WILL@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM | TRAINERTYPE_MOVES
-	db 91, LUGIA
+	db 90, LUGIA
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db LEFTOVERS
@@ -635,7 +635,7 @@ WillGroup:
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db NEVERMELTICE
-			db PSYCHIC_M, BLIZZARD, SUBSTITUTE, LOVELY_KISS
+			db PSYCHIC_M, BLIZZARD, PSYCH_UP, LOVELY_KISS
 	db 89, ESPEON
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
@@ -659,8 +659,8 @@ PKMNTrainerGroup:
 	db 84, TOGETIC
 			db $bb, $bb ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
-			db SCOPE_LENS
-			db AEROBLAST, DOUBLE_EDGE, FIRE_BLAST, SAFEGUARD
+			db NO_ITEM
+			db FLAMETHROWER, NO_MOVE, NO_MOVE, NO_MOVE
 	db 85, AIPOM
 			db $bb, $bb ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
@@ -1756,7 +1756,7 @@ BirdKeeperGroup:
 	db "HANK@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
 	db 84, DODRIO
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
-			db HI_JUMP_KICK, DRILL_PECK, PSYCH_UP, TRI_ATTACK
+			db HI_JUMP_KICK, DRILL_PECK, SUBSTITUTE, TRI_ATTACK
 	db 85, MANTINE
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db HYDRO_PUMP, TOXIC, HAZE, CONFUSE_RAY
@@ -2127,7 +2127,7 @@ JanineGroup:
 			db PERFECT_DV, $bf ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
 			db LEFTOVERS
-			db SLUDGE_BOMB, EARTHQUAKE, WHIRLPOOL, AMNESIA
+			db TOXIC, EARTHQUAKE, WHIRLPOOL, AMNESIA
 	db 83, CROBAT
 			db PERFECT_DV, $fb ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
@@ -3276,7 +3276,7 @@ SabrinaGroup:
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
 			db LEFTOVERS
-			db SEISMIC_TOSS, LIGHT_SCREEN, REST, POISON_GAS
+			db SEISMIC_TOSS, PSYCH_UP, PSYCHIC_M, POISON_GAS
 	db 83, EXEGGUTOR
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
@@ -3291,12 +3291,12 @@ SabrinaGroup:
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
 			db MYSTIC_WATER
-			db REST, SLEEP_TALK, SURF, THUNDER_WAVE
+			db PSYCH_UP, PSYCHIC_M, SURF, THUNDER_WAVE
 	db 85, ALAKAZAM
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $018D, $018D, $018D, $018D, $018D
 			db TWISTEDSPOON
-			db PSYCHIC_M, TOXIC, RECOVER, FIRE_PUNCH
+			db PSYCHIC_M, PSYCH_UP, RECOVER, FIRE_PUNCH
 	db -1 ; end
 
 BugCatcherGroup:
@@ -3731,7 +3731,7 @@ SuperNerdGroup:
 			db CROSS_CHOP, EARTHQUAKE, CURSE, ROCK_SLIDE
 	db 61, MILTANK
 			dw $0082, $0082, $0082, $0082, $0082
-			db STRENGTH, MILK_DRINK, EARTHQUAKE, PSYCH_UP
+			db STRENGTH, MILK_DRINK, ROLLOUT, DEFENSE_CURL
 	db 63, HOUNDOOM
 			dw $0082, $0082, $0082, $0082, $0082
 			db CRUNCH, FIRE_BLAST, PURSUIT, COUNTER
@@ -3750,7 +3750,7 @@ SuperNerdGroup:
 			db PSYCHIC_M, ICE_PUNCH, REFLECT, ENCORE
 	db 48, PRIMEAPE
 			dw $006B, $006B, $006B, $006B, $006B
-			db SUBMISSION, SEISMIC_TOSS, PSYCH_UP, MUD_SLAP
+			db SUBMISSION, SEISMIC_TOSS, MEDITATE, MUD_SLAP
 	db -1 ; end
 	
 	; SUPER_NERD (17) - Added to Seafoam Gym
@@ -5138,7 +5138,7 @@ HikerGroup:
 			db EARTHQUAKE, IRON_TAIL, ROCK_SLIDE, SANDSTORM
 	db 80, DUGTRIO
 			dw $0173, $0173, $0173, $0173, $0173
-			db EARTHQUAKE, BEAT_UP, SWORDS_DANCE, ROCK_SLIDE
+			db EARTHQUAKE, SLUDGE_BOMB, SWORDS_DANCE, ROCK_SLIDE
 	db 80, PILOSWINE
 			dw $0173, $0173, $0173, $0173, $0173
 			db EARTHQUAKE, BLIZZARD, REST, SLEEP_TALK
@@ -5423,14 +5423,14 @@ BlaineGroup:
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db FOCUS_BAND
-			db HYPNOSIS, SUNNY_DAY, SOLARBEAM, HI_JUMP_KICK
+			db FIRE_BLAST, SUNNY_DAY, SOLARBEAM, HI_JUMP_KICK
 	db 86, DITTO
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db LEFTOVERS
 			db TRANSFORM, NO_MOVE, NO_MOVE, NO_MOVE
 	db 88, MOLTRES
-			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
+			db $fb, PERFECT_DV ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $01ED
 			db CHARCOAL
 			db SUNNY_DAY, FIRE_BLAST, REST, SLEEP_TALK
@@ -5535,6 +5535,8 @@ FirebreatherGroup:
 	db 17, GRIMER
 			dw $0002, $0002, $0002, $0002, $0002
 	db 17, KOFFING
+			dw $0002, $0002, $0002, $0002, $0002
+	db 17, CYNDAQUIL
 			dw $0002, $0002, $0002, $0002, $0002
 	db 18, MAGBY
 			dw $0002, $0002, $0002, $0002, $0002
@@ -5682,14 +5684,17 @@ BlackbeltGroup:
 	db -1 ; end
 
 	; BLACKBELT_T (6)
-	db "KIYO@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db "KIYO@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
 	db 59, HITMONLEE
+			db $bb, $bb
 			dw $0082, $0082, $0082, $0082, $0082
 			db EARTHQUAKE, HI_JUMP_KICK, MEGA_KICK, COMET_PUNCH
 	db 59, HITMONCHAN
+			db $bb, $bb
 			dw $0082, $0082, $0082, $0082, $0082
 			db ROCK_SLIDE, COMET_PUNCH, MACH_PUNCH, SUBSTITUTE
 	db 59, HITMONTOP
+			db PERFECT_DV, PERFECT_DV
 			dw $0082, $0082, $0082, $0082, $0082
 			db ROCK_SLIDE, COMET_PUNCH, TRIPLE_KICK, SUBSTITUTE
 	db -1 ; end
@@ -6560,7 +6565,7 @@ CamperGroup:
 	db 79, SNEASEL
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0173, $0173, $0173, $0173, $0173
-			db BEAT_UP, ICE_BEAM, MOONLIGHT, PSYCH_UP
+			db BEAT_UP, ICE_BEAM, MOONLIGHT, REFLECT
 	db 80, SANDSLASH
 			db $dd, $dd ; atk|def, spd|spc
 			dw $0173, $0173, $0173, $0173, $0173
@@ -7259,7 +7264,7 @@ BlueGroup:
 			db SILVERPOWDER
 			db CUT, BATON_PASS, SWORDS_DANCE, RAZOR_WIND
 	db 90, ZAPDOS
-			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
+			db PERFECT_DV, $bf ; atk|def, spd|spc
 			dw $01ED, $01ED, $01ED, $01ED, $00ED
 			db BRIGHTPOWDER
 			db THUNDERBOLT, WHIRLWIND, RAZOR_WIND, HIDDEN_POWER
@@ -7376,7 +7381,7 @@ MysticalmanGroup:
 	db 42, HYPNO
 			db $fc, $bb ; atk|def, spd|spc
 			dw $0020, $0020, $0020, $0020, $0020
-			db POISON_GAS, PSYCH_UP, HIDDEN_POWER, REFLECT
+			db POISON_GAS, PSYCHIC_M, HIDDEN_POWER, REFLECT
 	db 41, GENGAR
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0020, $0020, $0020, $0020, $0020

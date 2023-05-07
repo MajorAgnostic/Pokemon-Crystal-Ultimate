@@ -155,7 +155,6 @@ ENDM
 	command switchturn              ; 93
 	command fakeout                 ; 94
 	command bellydrum               ; 95
-	command psychup                 ; 96
 	command rage                    ; 97
 	command doubleflyingdamage      ; 98
 	command doubleundergrounddamage ; 99

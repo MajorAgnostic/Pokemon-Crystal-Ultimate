@@ -7,6 +7,8 @@
 	const ROUTE13_TEACHER1
 	const ROUTE13_TEACHER2
 	const ROUTE13_POKEFAN_M4
+	const ROUTE13_POKE_BALL1
+	const ROUTE13_POKE_BALL2
 
 Route13_MapScripts:
 	def_scene_scripts
@@ -112,6 +114,12 @@ Route13DirectionsSign:
 
 Route13HiddenCalcium:
 	hiddenitem PP_UP, EVENT_ROUTE_13_HIDDEN_CALCIUM
+	
+Route13FH1:
+	itemball FULL_HEAL
+	
+Route13FH2:
+	itemball FULL_HEAL
 	
 BooneSeenText:
 	text "Hey, your #MON…"
@@ -262,8 +270,8 @@ Route13TrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "Look! Right there,"
-	line "at the left side"
-	cont "of the post."
+	line "on the right side"
+	cont "of this sign."
 	done
 
 Route13SignText:
@@ -301,5 +309,7 @@ Route13_MapEvents:
 	object_event 14, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerHikerKenny, -1
 	object_event 25,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanmAlex, -1
 	object_event 54,  8, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPiper, -1
-	object_event 15,  6, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerGinger, -1
+	object_event 15,  6, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerGinger, -1
 	object_event  6,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerBoone, -1
+	object_event  6, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route13FH1, EVENT_ROUTE_13_FH1
+	object_event  5, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route13FH2, EVENT_ROUTE_13_FH2

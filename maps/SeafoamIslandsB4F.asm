@@ -13,9 +13,6 @@ SeafoamIslandsB4F_MapScripts:
 .Articuno:
 	checkevent EVENT_ARTICUNO
 	iftrue .NoAppear
-	sjump .Appear
-
-.Appear:
 	appear SEAFOAMB4F_ARTICUNO
 	endcallback
 
@@ -41,8 +38,8 @@ Articuno:
 SeafoamB4FIceBoulder:
 	jumptext SeafoamB4FIceBoulderText
 	
-SeafoamB4FNevermeltice:
-	itemball NEVERMELTICE
+SeafoamB4FBlizzard:
+	itemball TM_BLIZZARD
 	
 SeafoamHiddenUltraBall:
 	hiddenitem ULTRA_BALL, EVENT_SEAFOAM_HIDDEN_ULTRA
@@ -73,5 +70,5 @@ SeafoamIslandsB4F_MapEvents:
 	def_object_events
 	object_event  4,  4, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SeafoamB4FIceBoulder, EVENT_BOULDER_IN_SEAFOAM_13
 	object_event  9,  5, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SeafoamB4FIceBoulder, EVENT_BOULDER_IN_SEAFOAM_14
-	object_event  6,  1, SPRITE_ARTICUNO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Articuno, EVENT_ARTICUNO
-	object_event 25, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SeafoamB4FNevermeltice, EVENT_SEAFOAM_NEVERMELTICE
+	object_event  8,  1, SPRITE_ARTICUNO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Articuno, EVENT_ARTICUNO
+	object_event 25, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SeafoamB4FBlizzard, EVENT_BLIZZARD_TM

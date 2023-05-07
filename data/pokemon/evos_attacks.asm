@@ -700,6 +700,7 @@ DiglettEvosAttacks:
 
 DugtrioEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, BEAT_UP
 	db 1, SCRATCH
 	db 5, GROWL
 	db 9, MAGNITUDE
@@ -708,9 +709,8 @@ DugtrioEvosAttacks:
 	db 26, TRI_ATTACK
 	db 35, SLASH
 	db 45, EARTHQUAKE
-	db 50, BEAT_UP
+	db 50, SWORDS_DANCE
 	db 55, FISSURE
-	db 65, SWORDS_DANCE
 	db 0 ; no more level-up moves
 
 MeowthEvosAttacks:
@@ -1336,11 +1336,10 @@ DrowzeeEvosAttacks:
 	db 10, DISABLE
 	db 18, CONFUSION
 	db 25, HEADBUTT
-	db 32, POISON_GAS
-	db 36, LIGHT_SCREEN
-	db 40, PSYCHIC_M
-	db 43, PSYCH_UP
-	db 45, FUTURE_SIGHT
+	db 31, POISON_GAS
+	db 39, PSYCHIC_M
+	db 46, LIGHT_SCREEN
+	db 57, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 HypnoEvosAttacks:
@@ -1350,10 +1349,9 @@ HypnoEvosAttacks:
 	db 10, DISABLE
 	db 18, CONFUSION
 	db 25, HEADBUTT
-	db 34, POISON_GAS
-	db 40, LIGHT_SCREEN
-	db 49, PSYCHIC_M
-	db 55, PSYCH_UP
+	db 31, POISON_GAS
+	db 40, PSYCHIC_M
+	db 48, LIGHT_SCREEN
 	db 60, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
@@ -2731,7 +2729,7 @@ EspeonEvosAttacks:
 	db 30, SWIFT
 	db 36, PSYBEAM
 	db 42, PSYCHIC_M
-	db 47, PSYCH_UP
+	db 47, FUTURE_SIGHT
 	db 52, MORNING_SUN
 	db 0 ; no more level-up moves
 
@@ -3142,7 +3140,7 @@ SkarmoryEvosAttacks:
 	db 0 ; no more level-up moves
 
 HoundourEvosAttacks:
-	db EVOLVE_LEVEL, 24, HOUNDOOM
+	db EVOLVE_LEVEL, 42, HOUNDOOM
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, EMBER
@@ -3431,31 +3429,33 @@ TyranitarEvosAttacks:
 
 LugiaEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, HYDRO_PUMP
 	db 1, MOONLIGHT
 	db 1, GUST
 	db 11, RAIN_DANCE
 	db 22, SWIFT
 	db 33, WHIRLWIND
-	db 44, RECOVER
+	db 44, ANCIENTPOWER
 	db 55, SAFEGUARD
-	db 66, HYDRO_PUMP
+	db 66, PSYCHIC_M
 	db 77, AEROBLAST
-	db 88, ANCIENTPOWER
+	db 88, RECOVER
 	db 99, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 HoOhEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, FIRE_BLAST
 	db 1, MORNING_SUN
 	db 1, GUST
 	db 11, SUNNY_DAY
 	db 22, SWIFT
 	db 33, WHIRLWIND
-	db 44, RECOVER
+	db 44, ANCIENTPOWER
 	db 55, SAFEGUARD
 	db 66, DRILL_PECK
 	db 77, SACRED_FIRE
-	db 88, ANCIENTPOWER
+	db 88, RECOVER
 	db 99, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 

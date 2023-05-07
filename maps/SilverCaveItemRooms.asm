@@ -12,9 +12,6 @@ SilverCaveItemRooms_MapScripts:
 .Moltres:
 	checkevent EVENT_MOLTRES
 	iftrue .NoAppear
-	sjump .Appear
-
-.Appear:
 	appear SILVERCAVEITEMROOMS_MOLTRES
 	endcallback
 
@@ -31,7 +28,7 @@ Moltres:
 	closetext
 	setevent EVENT_MOLTRES
 	loadvar VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
-	loadwildmon MOLTRES, 95
+	loadwildmon MOLTRES, 85
 	startbattle
 	disappear SILVERCAVEITEMROOMS_MOLTRES
 	reloadmapafterbattle

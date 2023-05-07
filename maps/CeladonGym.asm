@@ -35,14 +35,6 @@ CeladonGymErikaScript:
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
 .FightDone:
-	checkevent EVENT_GOT_TM19_GIGA_DRAIN
-	iftrue .GotGigaDrain
-	writetext ErikaExplainTMText
-	promptbutton
-	verbosegiveitem TM_GIGA_DRAIN
-	iffalse .GotGigaDrain
-	setevent EVENT_GOT_TM19_GIGA_DRAIN
-.GotGigaDrain:
 	writetext ErikaAfterBattleText
 	waitbutton
 	closetext
@@ -153,27 +145,6 @@ ErikaBeatenText:
 PlayerReceivedRainbowBadgeText:
 	text "<PLAYER> received"
 	line "RAINBOWBADGE."
-	done
-
-ErikaExplainTMText:
-	text "ERIKA: That was a"
-	line "delightful match."
-
-	para "I felt inspired."
-	line "Please, I wish you"
-	cont "to have this TM."
-
-	para "It is GIGA DRAIN."
-
-	para "It is a wonderful"
-	line "move that drains"
-
-	para "half the damage it"
-	line "inflicts to heal"
-	cont "your #MON."
-
-	para "Please use it if"
-	line "it pleases you…"
 	done
 
 ErikaAfterBattleText:

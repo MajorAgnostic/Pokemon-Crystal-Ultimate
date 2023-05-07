@@ -272,7 +272,7 @@ SeafoamGymBlaineScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_VOLCANOBADGE
-	iftrue .FightDone
+	iftrue .AfterTM
 	writetext BlaineIntroText
 	waitbutton
 	closetext
@@ -305,11 +305,11 @@ SeafoamGymBlaineScript:
 	setevent EVENT_QUIZ5
 	setscene SCENE_FINISHED
 	writetext BlaineAfterBattleText
-	waitbutton
-	closetext
-	end
-
-.FightDone:
+	promptbutton
+	verbosegiveitem TM_FIRE_BLAST
+	iffalse .AfterTM
+	setevent EVENT_FIRE_BLAST_TM
+.AfterTM:
 	writetext BlaineFightDoneText
 	waitbutton
 	closetext
@@ -760,7 +760,7 @@ BlaineWinLossText:
 	text "BLAINE: Awesome."
 	line "I've burned out…"
 
-	para "You've earned"
+	para "You've earned the"
 	line "VOLCANOBADGE!"
 	done
 
@@ -774,21 +774,31 @@ BlaineAfterBattleText:
 	line "this time, but I'm"
 
 	para "going to win the"
-	line "next time."
+	line "next."
 
-	para "When I rebuild my"
-	line "CINNABAR GYM,"
+	para "Meanwhile, keep up"
+	line "that strength."
 
-	para "we'll have to have"
-	line "a rematch."
+	para "I have a TM that"
+	line "should help with"
+	cont "that."
+	
+	para "I'm sure you can"
+	line "guess what it is,"
+	cont "ha!"
 	done
 
 BlaineFightDoneText:
-	text "BLAINE: My fire"
-	line "#MON will be"
+	text "BLAINE: When I re-"
+	line "build the CINNABAR"
+	cont "GYM, we'll have to"
+	cont "have a rematch."
+	
+	para "My fire #MON"
+	line "will be stronger"
 
-	para "even stronger."
-	line "Just you watch!"
+	para "than ever, just"
+	line "you watch!"
 	done
 
 SeafoamGymGuideWinText:

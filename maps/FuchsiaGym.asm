@@ -270,8 +270,8 @@ JanineText_ToxicSpeech:
 	para "It's TOXIC, a pow-"
 	line "erful poison that"
 
-	para "steadily saps the"
-	line "victim's HP."
+	para "increasingly saps"
+	line "the victim's HP."
 	done
 
 JanineText_ApplyMyself:

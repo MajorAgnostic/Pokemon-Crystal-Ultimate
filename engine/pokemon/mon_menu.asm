@@ -1224,7 +1224,7 @@ String_MoveType_Top:
 String_MoveType_Bottom:
 	db "│TYPE/└@"
 String_MoveAtk:
-	db "ATK/@"
+	db "POW/@"
 String_MoveNoPower:
 	db "---@"
 

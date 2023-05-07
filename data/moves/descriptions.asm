@@ -1237,8 +1237,8 @@ MirrorCoatDescription:
 	next "ATK move double.@"
 
 PsychUpDescription:
-	db   "Copies the foe's"
-	next "stat changes.@"
+	db   "Raises both SPCL."
+	next "ATK and SPCL.DEF.@"
 
 ExtremespeedDescription:
 	db   "A powerful first-"

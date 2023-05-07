@@ -4,6 +4,7 @@
 	const SAFFRONMAGNETTRAINSTATION_TEACHER
 	const SAFFRONMAGNETTRAINSTATION_LASS
 	const SAFFRONMAGNETTRAINSTATION_ZAPDOS
+	const SAFFRONMAGNETTRAINSTATION_POKE_BALL
 
 SaffronMagnetTrainStation_MapScripts:
 	def_scene_scripts
@@ -26,9 +27,6 @@ SaffronMagnetTrainStation_MapScripts:
 .Zapdos:
 	checkevent EVENT_ZAPDOS_STATION
 	iftrue .NoAppear
-	sjump .Appear
-
-.Appear:
 	appear SAFFRONMAGNETTRAINSTATION_ZAPDOS
 	endcallback
 
@@ -159,6 +157,9 @@ SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	turn_head UP
 	step_end
 	
+ThunderTM:
+	itemball TM_THUNDER
+
 TrainStationMagnet:
 	hiddenitem MAGNET, EVENT_TRAIN_STATION_MAGNET
 	
@@ -285,3 +286,4 @@ SaffronMagnetTrainStation_MapEvents:
 	object_event  6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	object_event  6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	object_event  9,  2, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Zapdos, EVENT_ZAPDOS_STATION
+	object_event  9,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ThunderTM, EVENT_THUNDER_TM

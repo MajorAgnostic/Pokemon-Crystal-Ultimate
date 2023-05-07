@@ -45,17 +45,22 @@ Route34IlexForestGateTeacherScript:
 	opentext
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .ForestIsRestless
-	checkevent EVENT_GOT_TM12_SWEET_SCENT
-	iftrue .GotSweetScent
-	writetext Route34IlexForestGateTeacherText
+	checkevent EVENT_ILEX_LUCKY_EGG
+	iftrue .GotEgg
+	writetext Route34IlexForestGateLassEggText
 	promptbutton
-	verbosegiveitem TM_SWEET_SCENT
+	verbosegiveitem LUCKY_EGG
 	iffalse .NoRoom
-	setevent EVENT_GOT_TM12_SWEET_SCENT
-.GotSweetScent:
-	writetext Route34IlexForestGateTeacher_GotSweetScent
+	setevent EVENT_ILEX_LUCKY_EGG
+	writetext Route34IlexForestGateLassGotEggText
 	waitbutton
 .NoRoom:
+	closetext
+	end
+	
+.GotEgg:
+	writetext Route34IlexForestGateTeacherText
+	waitbutton
 	closetext
 	end
 
@@ -76,23 +81,8 @@ Route34IlexForestGateButterfreeScript:
 Route34IlexForestGateLassScript:
 	faceplayer
 	opentext
-	checkevent EVENT_ILEX_LUCKY_EGG
-	iftrue .GotEgg
-	writetext Route34IlexForestGateLassEggText
-	promptbutton
-	verbosegiveitem LUCKY_EGG
-	iffalse .NoRoom
-	setevent EVENT_ILEX_LUCKY_EGG
-.GotSweetScent:
-	writetext Route34IlexForestGateLassGotEggText
-	waitbutton
-.NoRoom:
-	closetext
-	end
-	
-.GotEgg:
 	writetext Route34IlexForestGateLassText
-	promptbutton
+	waitbutton
 	closetext
 	end
 
@@ -105,7 +95,7 @@ MovementData_0x62d9a:
 	step DOWN
 	step RIGHT
 	step_end
-
+	
 Route34IlexForestGateTeacherText:
 	text "Oh, honey. You're"
 	line "making a #DEX?"
@@ -114,17 +104,14 @@ Route34IlexForestGateTeacherText:
 	line "#MON won't"
 
 	para "appear. Try using"
-	line "this TM."
-	done
-
-Route34IlexForestGateTeacher_GotSweetScent:
-	text "It's SWEET SCENT."
-
-	para "Use it wherever"
-	line "#MON appear."
-
+	line "SWEET SCENT."
+	
 	para "#MON will be"
 	line "enticed by it."
+	
+	para "I think it's sold"
+	line "at the GOLDENROD"
+	cont "GAME CORNER."
 	done
 
 Route34IlexForestGateTeacher_ForestIsRestless:
@@ -158,11 +145,14 @@ Route34IlexForestGateLassEggText:
 	line "forest is protec-"
 	cont "ted makes me feel"
 	cont "lucky!"
+	
+	para "Here, take this!"
 	done
 	
 Route34IlexForestGateLassGotEggText:
-	text "That will allow"
-	line "#MON to gain"
+	text "Giving a #MON"
+	line "that to hold will"
+	cont "allow them to gain"
 
 	para "experience at an"
 	line "increased rate!"

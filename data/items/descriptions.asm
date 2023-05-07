@@ -890,8 +890,8 @@ LureBallDesc:
 	next "hooked by a ROD.@"
 
 FastBallDesc:
-	db   "A BALL for catch-"
-	next "ing fast #MON.@"
+	db   "A BALL for #MON"
+	next "that flee easily.@"
 
 NESDesc:
 	db   "A classic console"
