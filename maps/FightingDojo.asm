@@ -19,12 +19,15 @@ FightingDojoBlackBelt2:
 	jumptextfaceplayer QuestDoneText
 
 FightingDojoBlackBelt:
+	checkevent EVENT_BEAT_BLACKBELT_KIYO
+	iffalse .NoFirstBattle
 	checkevent EVENT_BEAT_BLACKBELT_KIYO2
 	iftrue .QuestDone
 	checkevent EVENT_PICKED_UP_FOCUS_BAND
 	iftrue .Waterfall
 	checkitem BRICK_PIECE
 	iftrue .StartQuest
+.NoFirstBattle:
 	jumptextfaceplayer FightingDojoBlackBeltText
 	
 .StartQuest:
@@ -309,8 +312,8 @@ FightingDojoSign1Text:
 	done
 
 FightingDojoSign2Text:
-	text "Enemies on every"
-	line "side!"
+	text "We accept BRICK"
+	line "donations."
 	done
 
 FightingDojo_MapEvents:

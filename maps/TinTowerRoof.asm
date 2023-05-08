@@ -31,6 +31,7 @@ TinTowerRoof_MapScripts:
 	
 Tin_MortyScene1:
 	turnobject PLAYER, DOWN
+	special FadeOutMusic
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 20
 	playsound SFX_ENTER_DOOR
@@ -38,8 +39,6 @@ Tin_MortyScene1:
 	applymovement TINTOWERROOF_MORTY, MortyMovement1a
 	turnobject TINTOWERROOF_MORTY, LEFT
 	turnobject PLAYER, RIGHT
-	checkevent EVENT_TIN_MORTY
-	iftrue .Done
 	opentext
 	writetext MortyBeforeText
 	waitbutton
@@ -63,18 +62,16 @@ Tin_MortyScene1:
 	playsound SFX_EXIT_BUILDING
 	disappear TINTOWERROOF_MORTY
 	pause 20
-.Done:
 	end
 	
 Tin_MortyScene2:
 	turnobject PLAYER, DOWN
+	special FadeOutMusic
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 20
 	playsound SFX_ENTER_DOOR
 	appear TINTOWERROOF_MORTY
 	applymovement TINTOWERROOF_MORTY, MortyMovement1b
-	checkevent EVENT_TIN_MORTY
-	iftrue .Done
 	opentext
 	writetext MortyBeforeText
 	waitbutton
@@ -96,7 +93,6 @@ Tin_MortyScene2:
 	playsound SFX_EXIT_BUILDING
 	disappear TINTOWERROOF_MORTY
 	pause 20
-.Done:
 	end
 
 TinTowerHoOh:
@@ -108,7 +104,7 @@ TinTowerHoOh:
 	closetext
 	setevent EVENT_FOUGHT_HO_OH
 	loadvar VAR_BATTLETYPE, BATTLETYPE_HOOH
-	loadwildmon HO_OH, 85
+	loadwildmon HO_OH, 90
 	startbattle
 	disappear TINTOWERROOF_HO_OH
 	reloadmapafterbattle
@@ -155,18 +151,19 @@ MortyBeforeText:
 	line "roost."
 	
 	para "I realize that you"
-	line "have also worked"
+	line "also worked very"
 	
 	para "hard to reach this"
 	line "point."
 	
-	para "You have changed a"
+	para "You've changed a"
 	line "lot since you cha-"
 
 	para "llenged me at the"
-	line "ECRUTEAK GYM."
+	line "ECRUTEAK GYM,"
+	cont "haven't you?"
 	
-	para "But I will not be"
+	para "Well, I won't be"
 	line "challenging you as"
 	
 	para "a GYM LEADER this"
@@ -202,8 +199,8 @@ MortyAfterText:
 	para "<PLAYER>, you know"
 	line "what to do now."
 	
-	para "I have nothing mo-"
-	line "re to say."
+	para "I have nothing"
+	line "more to say."
 
 	para "Best of luck."
 	done

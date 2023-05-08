@@ -254,6 +254,7 @@ KRIS EQU __trainer_class__
 	const VALERIE
 	const OLIVIA
 	const MONICA
+	const SELINA
 
 	trainerclass POKEMANIAC ; 1e
 	const LARRY
@@ -594,7 +595,6 @@ KRIS EQU __trainer_class__
 	const TIFFANY4
 	const BETH
 	const FRIEDA
-	const SELINA
 	const ALICIA
 	const SOFIA
 	const LEAH

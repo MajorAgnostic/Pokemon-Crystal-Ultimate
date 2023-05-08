@@ -282,14 +282,13 @@ MartCeladon3F:
 	db -1 ; end
 
 MartCeladon4F:
-	db 8 ; # items
+	db 7 ; # items
 	db LEAF_STONE
 	db FIRE_STONE
 	db WATER_STONE
 	db THUNDERSTONE
 	db POKE_DOLL
 	db LOVELY_MAIL
-	db SURF_MAIL
 	db FLOWER_MAIL
 	db -1 ; end
 

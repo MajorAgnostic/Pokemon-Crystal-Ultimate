@@ -1,5 +1,5 @@
 	object_const_def
-	const VERMILIONCITY_LASS
+	const VERMILIONCITY_TEACHER
 	const VERMILIONCITY_GRAMPS
 	const VERMILIONCITY_MACHOKE
 	const VERMILIONCITY_SUPER_NERD
@@ -289,7 +289,7 @@ VermilionCity_MapEvents:
 	bg_event 12, 19, BGEVENT_ITEM, VermilionCityHiddenFullHeal
 
 	def_object_events
-	object_event 18,  9, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionCityTeacherScript, -1
+	object_event 18,  9, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionCityTeacherScript, -1
 	object_event 23,  6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMachopOwner, -1
 	object_event 26,  7, SPRITE_MACHOKE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, VermilionMachop, -1
 	object_event 14, 16, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionCitySuperNerdScript, -1

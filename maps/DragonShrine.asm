@@ -641,6 +641,11 @@ DragonShrineRisingBadgeExplanationText:
 	para "#MON to use the"
 	line "move for climbing"
 	cont "waterfalls."
+	
+	para "I hear that you"
+	line "can find a large"
+	cont "waterfall in MT."
+	cont "MORTAR."
 
 	para "Also, all #MON"
 	line "will recognize you"

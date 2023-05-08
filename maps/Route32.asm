@@ -99,12 +99,15 @@ Route32RoarTMGuyScript:
 	iftrue .AlreadyHaveRoar
 	writetext Text_RoarIntro
 	promptbutton
-	verbosegiveitem TM_ROAR
+	verbosegiveitem TM_TELEPORT
 	iffalse .Finish
 	setevent EVENT_GOT_TM05_ROAR
 .AlreadyHaveRoar:
 	writetext Text_RoarOutro
 	waitbutton
+	playsound SFX_WARP_TO
+	applymovement ROUTE32_FISHER5, TMGuyTeleportIntoSkyMovement
+	disappear ROUTE32_FISHER5
 .Finish:
 	closetext
 	end
@@ -508,6 +511,10 @@ Movement_Route32CooltrainerMReset1:
 Movement_Route32CooltrainerMReset2:
 	step RIGHT
 	step_end
+	
+TMGuyTeleportIntoSkyMovement:
+	teleport_from
+	step_end
 
 Route32CooltrainerMText_WhatsTheHurry:
 	text "Wait up!"
@@ -764,22 +771,29 @@ BirdKeeperPeterAfterText:
 	done
 
 Text_RoarIntro:
-	text "WROOOOAR!"
-	line "PEOPLE RUN WHEN I"
+	text "Did you know that"
+	line "some #MON can"
 
-	para "ROAR! BUT YOU"
-	line "CAME LOOKING!"
+	para "TELEPORT you to"
+	line "#MON CENTERS?"
 
-	para "THAT PLEASES ME!"
-	line "NOW TAKE THIS!"
+	para "Here, try it out"
+	line "with this TM!"
 	done
 
 Text_RoarOutro:
-	text "WROOOAR!"
-	line "IT'S ROAR!"
+	text "TELEPORT allows a"
+	line "#MON to escape"
+	
+	para "from wild battles"
+	line "too, but using it"
+	cont "in the field is"
+	cont "more useful."
 
-	para "EVEN #MON RUN"
-	line "FROM A GOOD ROAR!"
+	para "Besides, it's so"
+	line "much fun!"
+	
+	para "WEEEEEEEEEEEEE-"
 	done
 
 MeetFriedaText:
@@ -913,7 +927,7 @@ Route32_MapEvents:
 	object_event 11, 82, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperPeter, -1
 	object_event  7, 70, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SlowpokeTailSalesmanScript, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event  6, 53, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route32GreatBall, EVENT_ROUTE_32_GREAT_BALL
-	object_event 15, 13, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route32RoarTMGuyScript, -1
+	object_event 15, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route32RoarTMGuyScript, -1
 	object_event 12, 67, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FriedaScript, EVENT_ROUTE_32_FRIEDA_OF_FRIDAY
 	object_event  2, 24, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, Route32Twin1Script, EVENT_BEAT_YOUNGSTER_IAN
 	object_event  2, 25, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_TEAL, OBJECTTYPE_SCRIPT, 0, Route32Twin2Script, EVENT_BEAT_YOUNGSTER_IAN

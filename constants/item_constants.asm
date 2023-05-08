@@ -228,7 +228,7 @@ ENDM
 	add_tm HEADBUTT     ; c0
 	add_tm CURSE        ; c1
 	add_tm ROLLOUT      ; c2
-	add_tm ROAR         ; c4
+	add_tm TELEPORT     ; c4 - Ultimate
 	add_tm TOXIC        ; c5
 	add_tm ZAP_CANNON   ; c6
 	add_tm ROCK_SMASH   ; c7
