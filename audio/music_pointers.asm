@@ -95,6 +95,7 @@ Music:
 	dba Music_Route37
 	dba Music_Route38Night
 	dba Music_RocketHideout
+	dba Music_RocketHideout
 	dba Music_DragonsDen
 	dba Music_JohtoWildBattleNight
 	dba Music_RuinsOfAlphRadio
@@ -122,8 +123,6 @@ Music:
 	dba Music_BattleTowerTheme
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
-	dba Music_Route47GBS
-	dba Music_Route47GBSNight
 	dba Music_RBYIndigoPlateau
 	dba Music_LugiasSong2000
 	dba Music_FinalBattle

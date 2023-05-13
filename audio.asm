@@ -105,7 +105,6 @@ INCLUDE "audio/music/buenaspassword.asm"
 INCLUDE "audio/music/battletowertheme.asm"
 INCLUDE "audio/music/suicunebattle.asm"
 INCLUDE "audio/music/battletowerlobby.asm"
-INCLUDE "audio/music/route47.asm"
 INCLUDE "audio/music/pokeleaguerby.asm"
 INCLUDE "audio/music/lugiassong.asm"
 

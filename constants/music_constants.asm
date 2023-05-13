@@ -95,6 +95,7 @@
 	const MUSIC_ROUTE_37                     ; 47
 	const MUSIC_ROUTE_38_NIGHT
 	const MUSIC_ROCKET_HIDEOUT               ; 48
+	const MUSIC_ROCKET_HIDEOUT2
 	const MUSIC_DRAGONS_DEN                  ; 49
 	const MUSIC_JOHTO_WILD_BATTLE_NIGHT      ; 4a
 	const MUSIC_RUINS_OF_ALPH_RADIO          ; 4b
@@ -123,9 +124,7 @@
 	const MUSIC_BATTLE_TOWER_THEME           ; 63
 	const MUSIC_SUICUNE_BATTLE               ; 64
 	const MUSIC_BATTLE_TOWER_LOBBY           ; 65
-	const MUSIC_ROUTE_47                     ; Ultimate additions start here, excluding the above night theme additions
-	const MUSIC_ROUTE_47_NIGHT
-	const MUSIC_RBY_INDIGO_PLATEAU
+	const MUSIC_RBY_INDIGO_PLATEAU			 ; Ultimate additions start here
 	const MUSIC_LUGIAS_SONG
 	const MUSIC_KANTO_CHAMPION
 	const MUSIC_STEVEN

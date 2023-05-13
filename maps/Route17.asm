@@ -9,7 +9,7 @@
 	const ROUTE17_BIKER8
 	const ROUTE17_BIKER9
 	const ROUTE17_BIKER10
-	const ROUTE17_BIKER11
+	const ROUTE17_PHARMACIST
 	const ROUTE17_POKE_BALL
 
 Route17_MapScripts:
@@ -22,6 +22,32 @@ Route17_MapScripts:
 	setflag ENGINE_ALWAYS_ON_BIKE
 	setflag ENGINE_DOWNHILL
 	endcallback
+	
+CapturedNightShiftGuy:
+	faceplayer
+	opentext
+	writetext CapturedText1
+	yesorno
+	iftrue .AgreedToHelp
+.RefusedToHelp:
+	writetext CapturedRefusedText
+	yesorno
+	iffalse .RefusedToHelp
+.AgreedToHelp:
+	writetext CapturedText2
+	waitbutton
+	closetext
+	special FadeBlackQuickly
+	special ReloadSpritesNoPalettes
+	disappear ROUTE17_PHARMACIST
+	pause 15
+	special FadeInQuickly
+	refreshscreen
+	setevent EVENT_BEAT_FED1_1
+	setevent EVENT_SUSPICIOUS_BOOK
+	clearevent EVENT_GUY_FREED
+	clearevent EVENT_GUY_FREED2
+	end
 
 TrainerBikerCharles:
 	trainer BIKER, CHARLES, EVENT_BEAT_BIKER_CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, .Script
@@ -129,17 +155,6 @@ TrainerBikerJacob:
 	endifjustbattled
 	opentext
 	writetext JacobAfterBattleText
-	waitbutton
-	closetext
-	end
-	
-TrainerBikerTheron:
-	trainer BIKER, THERON, EVENT_BEAT_THERON, TheronSeenText, TheronBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
-	opentext
-	writetext TheronAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -324,24 +339,55 @@ JacobAfterBattleText:
 	cont "about my BICYCLE!"
 	done
 	
-TheronSeenText:
-	text "Vroom vroom!"
-	line "Baribaribaribari!"
+CapturedText1:
+	text "HELP! HELP! HE-"
+	line "…huh?"
 	
-	para "What do you think"
-	line "of my engine imi-"
-	cont "tation?"
+	para "Hey buddy, these"
+	line "crazy KANTO FEDE-"
+	
+	para "RATION goons ab-"
+	line "ducted me and left"
+	cont "me out here!"
+	
+	para "How about you"
+	line "untie me?"
 	done
-
-TheronBeatenText:
-	text "Hnnff, hnnff, I'm"
-	line "out of breath…"
+	
+CapturedRefusedText:
+	text "Ha,"
+	line "ha,"
+	cont "ha."
+	
+	para "Okay, buster,"
+	line "hilarious."
+	
+	para "Now get me out of"
+	line "this!"
 	done
-
-TheronAfterBattleText:
-	text "Huh, you got some"
-	line "nerve!"
-	cont "That's awesome!"
+	
+CapturedText2:
+	text "Thanks, buddy. I"
+	line "owe you one."
+	
+	para "I don't know what"
+	line "is happening, but"
+	
+	para "I don't want to"
+	line "lose my job."
+	
+	para "How about we head"
+	line "back to the DELI-"
+	cont "VERY CENTER?"
+	
+	para "I'm guessing you"
+	line "have an interest"
+	
+	para "in getting those"
+	line "guys out of there"
+	cont "too."
+	
+	para "See you there!"
 	done
 
 Route17_MapEvents:
@@ -364,8 +410,8 @@ Route17_MapEvents:
 	object_event  6,  3, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerDal, -1
 	object_event  5, 12, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerReese, -1
 	object_event  2, 28, SPRITE_BIKER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBikerDan, -1
-	object_event  3, 73, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBikerTeddy, -1
+	object_event 16, 73, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBikerTeddy, -1
 	object_event 18, 17, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerMarkey, -1
-	object_event 14, 33, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerJacob, -1
-	object_event 16, 52, SPRITE_BIKER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBikerTheron, -1
+	object_event 14, 49, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerJacob, -1
+	object_event 14,  5, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CapturedNightShiftGuy, EVENT_BEAT_FED1_1
 	object_event  9, 53, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route17Nugget, EVENT_ROUTE_17_HIDDEN_MAX_ETHER

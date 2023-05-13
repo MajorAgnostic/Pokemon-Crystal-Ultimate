@@ -18,7 +18,7 @@ Route16_MapScripts:
 	endcallback
 	
 .RoadClosed:
-	checkflag ENGINE_FLYPOINT_LAVENDER
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .RoadUnblocked
 	changeblock 15, 7, $1b ; road closed
 .RoadUnblocked:

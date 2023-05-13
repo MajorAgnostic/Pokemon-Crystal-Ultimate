@@ -34,7 +34,7 @@ TrainerPokefanmAllan:
 	end
 	
 TrainerPicnickerSelina:
-	trainer BEAUTY, SELINA, EVENT_BEAT_SELINA, SelinaSeenText, SelinaBeatenText, 0, .Script
+	trainer TEACHER, SELINA, EVENT_BEAT_SELINA, SelinaSeenText, SelinaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled

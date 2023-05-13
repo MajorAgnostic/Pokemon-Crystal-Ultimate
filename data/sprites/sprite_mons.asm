@@ -57,3 +57,4 @@ SpriteMons:
 	db MOLTRES
 	db ZAPDOS
 	db ARTICUNO
+	db WEEZING

@@ -82,7 +82,8 @@ CeladonGroupSprites:
 	db SPRITE_YOUNGSTER
 	db SPRITE_LASS
 	db SPRITE_BIKER
-	; 6 of max 9 walking sprites
+	db SPRITE_PHARMACIST
+	; 7 of max 9 walking sprites
 	db SPRITE_POLIWRATH
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
@@ -112,6 +113,7 @@ FuchsiaGroupSprites:
 	db SPRITE_VOLTORB
 	db SPRITE_BIG_SNORLAX
 	db SPRITE_MACHOKE
+	db SPRITE_WEEZING
 	db 0 ; end
 
 IndigoGroupSprites:

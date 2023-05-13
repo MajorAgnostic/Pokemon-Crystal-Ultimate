@@ -16,10 +16,6 @@ RadioTower2F_MapScripts:
 
 	def_callbacks
 
-RadioTower2FUnusedDummyScene:
-; unused
-	end
-
 RadioTower2FSuperNerdScript:
 	jumptextfaceplayer RadioTower2FSuperNerdText
 

@@ -4,6 +4,11 @@ GAME_FEE EQU 2000
 	const FUCHSIACITY_YOUNGSTER
 	const FUCHSIACITY_POKEFAN_M1
 	const FUCHSIACITY_TEACHER
+	const FUCHSIACITY_BIKER1
+	const FUCHSIACITY_BIKER2
+	const FUCHSIACITY_BIKER3
+	const FUCHSIACITY_JANINE
+	const FUCHSIACITY_FISHER
 	const FUCHSIACITY_FRUIT_TREE
 	const FUCHSIACITY_POKEFAN_M2
 	const FUCHSIACITY_FRUIT_TREE2
@@ -11,6 +16,7 @@ GAME_FEE EQU 2000
 	const FUCHSIACITY_SLOWPOKE
 	const FUCHSIACITY_KANGASKHAN
 	const FUCHSIACITY_VOLTORB
+	const FUCHSIACITY_WEEZING
 	const FUCHSIACITY_ITEMBALL
 
 FuchsiaCity_MapScripts:
@@ -27,10 +33,59 @@ FuchsiaCityYoungster:
 	jumptextfaceplayer FuchsiaCityYoungsterText
 
 FuchsiaCityPokefanM:
+	checkevent EVENT_BEAT_KANTO_FEDERATION
+	iffalse .Invasion
 	jumptextfaceplayer FuchsiaCityPokefanMText
+.Invasion
+	jumptextfaceplayer FuchsiaCityPokefanMText2
 
 FuchsiaCityTeacher:
 	jumptextfaceplayer FuchsiaCityTeacherText
+	
+FuchsiaGymBlocker:
+	jumptextfaceplayer FuchsiaGymBlockerText
+	
+BackBiker1:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_BACK_BIKER
+	iftrue .Beaten
+	writetext BackBiker1Text
+	waitbutton
+	closetext
+	winlosstext BackBiker1BeatenText, 0
+	setlasttalked FUCHSIACITY_BIKER1
+	loadtrainer BIKER, STRAUSS
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_BACK_BIKER
+	opentext
+	writetext BackBiker1AfterBattleText
+	waitbutton
+	closetext
+	applymovement FUCHSIACITY_BIKER2, BikerMovement1
+	turnobject FUCHSIACITY_BIKER2, LEFT
+	applymovement FUCHSIACITY_BIKER1, BikerMovement1
+	end
+	
+.Beaten:
+	writetext BackBiker1AfterBattleText
+	waitbutton
+	closetext
+	end
+
+BackBiker2:
+	jumptext BackBiker2Text
+	
+BikerVsJanine:
+	checkevent EVENT_BEAT_NEV
+	iftrue .Defeated
+	jumptext BikerVsJanineText
+.Defeated:
+	jumptextfaceplayer BikerVsJanineText2
+	
+JanineOutdoors:
+	jumptext JanineOutdoorsText
 	
 FuchsiaCityCloysterScript:
 	opentext
@@ -99,6 +154,14 @@ FuchsiaCityMartSign:
 	
 GameSign:
 	jumptext GameSignText
+	
+FuchsiaCityWeezingScript:
+	opentext
+	writetext FuchsiaCityWeezingText
+	cry WEEZING
+	waitbutton
+	closetext
+	end
 
 FuchsiaCityFruitTree:
 	fruittree FRUITTREE_FUCHSIA_CITY
@@ -108,6 +171,11 @@ FuchsiaCityFruitTree2:
 	
 GameTeleportIntoSkyMovement:
 	teleport_from
+	step_end
+	
+BikerMovement1:
+	step RIGHT
+	step RIGHT
 	step_end
 	
 SafariLockedDoorText:
@@ -187,6 +255,12 @@ FuchsiaCityPokefanMText:
 	line "after he joined"
 	cont "the ELITE FOUR."
 	done
+	
+FuchsiaCityPokefanMText2:
+	text "What is going on"
+	line "at the DELIVERY"
+	cont "CENTER?"
+	done
 
 FuchsiaCityTeacherText:
 	text "The SAFARI ZONE is"
@@ -195,6 +269,73 @@ FuchsiaCityTeacherText:
 	para "considering it's"
 	line "FUCHSIA's main"
 	cont "attraction."
+	done
+	
+FuchsiaGymBlockerText:
+	text "Our GYM LEADER,"
+	line "JANINE, is out"
+
+	para "dealing with some"
+	line "ne'er-do-wells"
+	cont "stirring up quite"
+	cont "a ruckus."
+	
+	para "Could you lend her"
+	line "a hand?"
+	
+	para "You seem quite"
+	line "capable."
+	done
+	
+JanineOutdoorsText:
+	text "Gah, they won't"
+	line "stop coming!"
+
+	para "I might run out of"
+	line "#MON if this"
+	cont "continues…"
+	done
+	
+BackBiker1Text:
+	text "Huh? Uh… we're uh…"
+	line "moving packages to"
+	cont "the-"
+
+	para "Wait, you're just"
+	line "some little punk!"
+	
+	para "Why am I trying to"
+	line "cover up?"
+	
+	para "Get him!"
+	done
+	
+BackBiker1BeatenText:
+	text "Ouch!"
+	done
+	
+BackBiker1AfterBattleText:
+	text "Fine, we'll get"
+	line "out of the way…"
+	done
+	
+BackBiker2Text:
+	text "Hey, psst… psst…"
+	done
+	
+BikerVsJanineText:
+	text "Get lost, this is"
+	line "the KANTO FEDERA-"
+	cont "TION's turf now!"
+	done
+	
+BikerVsJanineText2:
+	text "That GYM LEADER is"
+	line "tough…"
+	
+	para "I thought we had"
+	line "the advantage in"
+	cont "numbers."
 	done
 
 FuchsiaCitySignText:
@@ -237,22 +378,27 @@ GameSignText:
 	
 	para "Riches await!"
 	done
+	
+FuchsiaCityWeezingText:
+	text "Weeezinnnngg…"
+	done
 
 FuchsiaCity_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
 	warp_event  5, 13, FUCHSIA_MART, 2
-	warp_event 22, 15, SAFARI_ZONE_MAIN_OFFICE, 1
+	warp_event 22,  9, SAFARI_ZONE_MAIN_OFFICE, 1
 	warp_event  8, 27, FUCHSIA_GYM, 1
 	warp_event 11, 27, BILLS_BROTHERS_HOUSE, 1
 	warp_event 19, 27, FUCHSIA_POKECENTER_1F, 1
 	warp_event 27, 27, SAFARI_ZONE_WARDENS_HOME, 1
-	warp_event 22,  9, SAFARI_ZONE_MAIN_OFFICE, 3
+	warp_event 22, 15, SAFARI_ZONE_MAIN_OFFICE, 3
 	warp_event 37, 22, ROUTE_15_FUCHSIA_GATE, 1
 	warp_event 37, 23, ROUTE_15_FUCHSIA_GATE, 2
 	warp_event  7, 35, ROUTE_19_FUCHSIA_GATE, 1
 	warp_event  8, 35, ROUTE_19_FUCHSIA_GATE, 2
+	warp_event 23,  9, SAFARI_ZONE_MAIN_OFFICE, 2
 
 	def_coord_events
 
@@ -271,11 +417,17 @@ FuchsiaCity_MapEvents:
 	object_event 14, 29, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
 	object_event 16, 14, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
 	object_event 13,  8, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
+	object_event 22,  9, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BackBiker1, EVENT_BEAT_BACK_BIKER
+	object_event 23,  9, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BackBiker2, EVENT_BEAT_BACK_BIKER
+	object_event 22, 16, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BikerVsJanine, EVENT_BEAT_KANTO_FEDERATION
+	object_event 22, 18, SPRITE_JANINE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, JanineOutdoors, EVENT_BEAT_NEV
+	object_event  8, 28, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymBlocker, EVENT_BEAT_KANTO_FEDERATION
 	object_event  8,  1, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree, -1
 	object_event 33, 24, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityCloysterScript, -1
 	object_event 31,  4, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree2, -1
-	object_event  8, 17, SPRITE_LAPRAS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaCityCloysterScript, -1
-	object_event  6,  6, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityCloysterScript, -1
-	object_event 30, 15, SPRITE_KANGASKHAN, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityCloysterScript, -1
-	object_event 31,  9, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityCloysterScript, -1
+	object_event  8, 17, SPRITE_LAPRAS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaCityWeezingScript, -1
+	object_event  6,  6, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityWeezingScript, -1
+	object_event 30, 15, SPRITE_KANGASKHAN, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityWeezingScript, -1
+	object_event 31,  9, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityWeezingScript, -1
+	object_event 22, 17, SPRITE_WEEZING, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, FuchsiaCityWeezingScript, EVENT_BEAT_NEV
 	object_event 37, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, FuchsiaItem, EVENT_FUCHSIA_ITEM

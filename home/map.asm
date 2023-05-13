@@ -2169,6 +2169,8 @@ GetMapMusic::
     jr z, .mahoganymart
     cp MUSIC_RADIO_TOWER
     jr z, .radiotower
+	cp MUSIC_ROCKET_HIDEOUT2
+    jr z, .silphdeliv
 .done
 	call ChangeMusicIfNight
     ld e, c
@@ -2197,6 +2199,17 @@ GetMapMusic::
 
 .clearedmahogany
 	ld c, MUSIC_CHERRYGROVE_CITY
+	jr .done
+	
+.silphdeliv
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FEDERATION_IN_FUCHSIA_F, a
+	jr z, .clearedsilph
+	ld c, MUSIC_ROCKET_HIDEOUT
+	jr .done
+	
+.clearedsilph
+	ld c, MUSIC_CELADON_CITY
 	jr .done
 	
 ChangeMusicIfNight::

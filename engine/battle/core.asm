@@ -3356,21 +3356,39 @@ LookUpTheEffectivenessOfEveryMove:
 	ld e, NUM_MOVES + 1
 .loop
 	dec e
-	jr z, .done
+	ret z
 	ld a, [hli]
 	and a
-	jr z, .done
+	ret z
 	push hl
 	push de
 	push bc
-	dec a
-	ld hl, Moves
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	and a
+	jr z, .pop_loop
+	dec hl
+	dec hl
 	ld de, wEnemyMoveStruct
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
+	ld hl, wEnemyMoveStruct
+	ld a, [hl]
+	cp HIDDEN_POWER
+	jr nz, .continue
+	pop bc
+	ld hl, wOTPartyMon1DVs
+	ld a, b
+	push bc
+	call GetPartyLocation
+	ld b, h
+	ld c, l
+	farcall HiddenPowerDamage
+.continue
 	callfar BattleCheckTypeMatchup
 	pop bc
 	pop de
@@ -3381,8 +3399,12 @@ LookUpTheEffectivenessOfEveryMove:
 	ld hl, wBuffer1
 	set 0, [hl]
 	ret
-.done
-	ret
+
+.pop_loop
+	pop bc
+	pop de
+	pop hl
+	jr .loop
 
 IsThePlayerMonTypesEffectiveAgainstOTMon:
 ; Calculates the effectiveness of the types of the PlayerMon

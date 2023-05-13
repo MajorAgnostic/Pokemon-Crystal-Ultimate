@@ -9,9 +9,17 @@ LavenderTown_MapScripts:
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_TILES, .WayClosed
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_LAVENDER
+	endcallback
+	
+.WayClosed:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iffalse .StayClosed
+	changeblock 9, 17, $01 ; tunnel open
+.StayClosed:
 	endcallback
 
 LavenderTownPokefanMScript:

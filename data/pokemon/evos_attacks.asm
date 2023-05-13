@@ -856,13 +856,14 @@ PoliwhirlEvosAttacks:
 
 PoliwrathEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, BUBBLEBEAM
 	db 1, HYPNOSIS
 	db 1, BODY_SLAM
-	db 35, MIND_READER
-	db 43, SUBMISSION
+	db 1, BUBBLEBEAM
+	db 30, VITAL_THROW
+	db 37, MIND_READER
+	db 44, SUBMISSION
 	db 51, BELLY_DRUM
-	db 59, HYDRO_PUMP
+	db 58, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
 AbraEvosAttacks:

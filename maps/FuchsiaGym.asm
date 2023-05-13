@@ -30,7 +30,7 @@ FuchsiaGymJanineScript:
 	setevent EVENT_BEAT_LASS_LINDA
 	setevent EVENT_BEAT_PICNICKER_CINDY
 	setevent EVENT_BEAT_CAMPER_BARRY
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_BEAUTY
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
@@ -63,7 +63,7 @@ LassAliceScript:
 	iftrue .AliceUnmasked
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
 	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_BEAUTY
 	special LoadUsedSpritesGFX
 .AliceUnmasked:
 	faceplayer
@@ -74,7 +74,7 @@ LassAliceScript:
 	waitbutton
 	closetext
 	winlosstext LassAliceBeatenText, 0
-	loadtrainer LASS, ALICE
+	loadtrainer BEAUTY, ALICE
 	startbattle
 	iftrue .AliceBecomesJanine
 	reloadmapafterbattle
@@ -404,6 +404,6 @@ FuchsiaGym_MapEvents:
 	object_event  1, 10, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
 	object_event  5,  7, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassAliceScript, -1
 	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
-	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
-	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
+	object_event  4,  2, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
+	object_event  9,  4, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
 	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuideScript, -1

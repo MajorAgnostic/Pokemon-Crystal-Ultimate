@@ -184,7 +184,6 @@ KRIS EQU __trainer_class__
 	trainerclass LASS ; 19
 	const CARRIE
 	const BRIDGET
-	const ALICE
 	const KRISE
 	const CONNIE1
 	const LINDA
@@ -254,7 +253,7 @@ KRIS EQU __trainer_class__
 	const VALERIE
 	const OLIVIA
 	const MONICA
-	const SELINA
+	const ALICE
 
 	trainerclass POKEMANIAC ; 1e
 	const LARRY
@@ -322,6 +321,7 @@ KRIS EQU __trainer_class__
 	const PIPER
 	const GINGER
 	const CLARICE
+	const SELINA
 
 	trainerclass SABRINA ; 23
 	const SABRINA1
@@ -509,6 +509,7 @@ KRIS EQU __trainer_class__
 	const MARKEY
 	const JACOB
 	const THERON
+	const STRAUSS
 
 	trainerclass BLAINE ; 2e
 	const BLAINE1
@@ -517,6 +518,7 @@ KRIS EQU __trainer_class__
 	const DUNCAN
 	const EDDIE
 	const COREY
+	const ALEXANDER
 
 	trainerclass FIREBREATHER ; 30
 	const OTIS

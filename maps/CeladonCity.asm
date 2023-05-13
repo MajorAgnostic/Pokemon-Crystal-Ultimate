@@ -478,12 +478,13 @@ endc
 CeladonCityTrainerTipsText:
 	text "TRAINER TIPS"
 
-	para "GUARD SPEC."
-	line "protects #MON"
+	para "GUARD SPEC. will"
+	line "protect a #MON"
 
-	para "against SPECIAL"
-	line "attacks such as"
-	cont "fire and water."
+	para "against stat-"
+	line "lowering moves"
+	cont "used by an oppo-"
+	cont "nent."
 
 	para "Get your items at"
 	line "CELADON DEPT."

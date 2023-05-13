@@ -3294,8 +3294,7 @@ AIGetEnemyMove:
 	push hl
 	push de
 	push bc
-	dec a
-	ld hl, Moves
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 
