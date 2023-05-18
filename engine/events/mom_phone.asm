@@ -228,9 +228,5 @@ MomItsInYourRoomText:
 	text_far _MomItsInYourRoomText
 	text_end
 
-	db 0 ; unused
-
 DummyPredef3A:
 	ret
-
-	ret ; unused

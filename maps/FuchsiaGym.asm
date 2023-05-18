@@ -246,6 +246,30 @@ JanineText_DisappointYou:
 
 	para "JANINE of FUCHSIA"
 	line "GYM, that's me!"
+	
+	para "JANINE: …I'm sorry"
+	line "for my behaviour"
+	cont "at the DELIVERY"
+	cont "CENTER."
+
+	para "I was too focused"
+	line "on my loss when I"
+	
+	para "should've been"
+	line "thanking you."
+	
+	para "But now, I'm ready"
+	line "to take you on as"
+	
+	para "a revitalized GYM"
+	line "LEADER!"
+	
+	para "You better be as"
+	line "tough as I think"
+	cont "you are."
+	
+	para "Because I'm going"
+	line "all out!"
 	done
 
 JanineText_ToughOne:

@@ -135,7 +135,7 @@ PowerPlantManager:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .FoundMachinePart
+	iftrue .ReturnedMachinePart
 	checkitem MACHINE_PART
 	iftrue .FoundMachinePart
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
@@ -165,14 +165,6 @@ PowerPlantManager:
 	setevent EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
 	setevent EVENT_ROUTE_24_ROCKET
 	setevent EVENT_RESTORED_POWER_TO_KANTO
-	setflag ENGINE_FEDERATION_IN_FUCHSIA
-	setevent EVENT_BEAT_FED1_1
-	setevent EVENT_GUY_FREED
-	setevent EVENT_GUY_FREED2
-	setevent EVENT_SUSPICIOUS_BOOK
-	clearevent EVENT_BEAT_BIKER_DWAYNE
-	clearevent EVENT_BEAT_BIKER_HARRIS
-	clearevent EVENT_BEAT_BIKER_ZEKE
 	clearevent EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
 .ReturnedMachinePart:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON

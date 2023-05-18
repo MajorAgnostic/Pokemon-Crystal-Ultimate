@@ -112,6 +112,7 @@
 	const SFX_NO_SIGNAL                   ; 6c
 	const SFX_SANDSTORM                   ; 6d
 	const SFX_ELEVATOR                    ; 6e
+	const SFX_ELEVATOR_2
 	const SFX_PROTECT                     ; 6f
 	const SFX_SKETCH                      ; 70
 	const SFX_RAIN_DANCE                  ; 71

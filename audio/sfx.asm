@@ -482,6 +482,13 @@ Sfx_Elevator:
 	channel 6, Sfx_Elevator_Ch6
 	channel 7, Sfx_Elevator_Ch7
 	channel 8, Sfx_Elevator_Ch8
+	
+Sfx_Elevator_2:
+	channel_count 4
+	channel 5, Sfx_Elevator_Ch5_2
+	channel 6, Sfx_Elevator_Ch6
+	channel 7, Sfx_Elevator_Ch7
+	channel 8, Sfx_Elevator_Ch8
 
 Sfx_LevelUp:
 Sfx_DexFanfare5079:
@@ -4975,6 +4982,15 @@ Sfx_Elevator_Ch5:
 	square_note 15, 7, 4, 1792
 	square_note 15, 4, 4, 1792
 	square_note 15, 2, 4, 1792
+	sound_ret
+	
+Sfx_Elevator_Ch5_2:
+	duty_cycle 2
+	pitch_sweep 5, -2
+.loop:
+	square_note 2, 15, 1, 768
+	sound_loop 36, .loop
+	pitch_sweep 0, 8
 	sound_ret
 
 Sfx_Elevator_Ch6:

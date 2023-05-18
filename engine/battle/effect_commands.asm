@@ -3015,10 +3015,6 @@ BattleCommand_DamageCalc:
 
 .dont_selfdestruct
 
-; Variable-hit moves and Conversion can have a power of 0.
-	cp EFFECT_MULTI_HIT
-	jr z, .skip_zero_damage_check
-
 	cp EFFECT_CONVERSION
 	jr z, .skip_zero_damage_check
 

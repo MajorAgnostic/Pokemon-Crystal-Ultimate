@@ -150,6 +150,8 @@ PlayBattleMusic:
 	jr z, .done
 	cp EXECUTIVEF
 	jr z, .done
+	cp ROUGHNECK
+	jr z, .done
 	
 	ld de, MUSIC_ALOLA_E4
 	cp ARCHER

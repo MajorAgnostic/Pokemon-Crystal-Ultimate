@@ -727,6 +727,7 @@ GhostFrontpic:       INCBIN "gfx/pokemon/a_marowak/front.animated.2bpp.lz"
 GhostBackpic:        INCBIN "gfx/pokemon/a_marowak/back.2bpp.lz"
 KarateKingPic:       INCBIN "gfx/trainers/karateking.2bpp.lz"
 GiovanniPic:         INCBIN "gfx/trainers/giovanni.2bpp.lz"
+RoughneckPic:        INCBIN "gfx/trainers/roughneck.2bpp.lz"
 PaddingPic:			 INCBIN "gfx/trainers/giovanni.2bpp.lz"
 
 

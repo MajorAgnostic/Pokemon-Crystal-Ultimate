@@ -3363,7 +3363,8 @@ LookUpTheEffectivenessOfEveryMove:
 	push hl
 	push de
 	push bc
-	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
+	dec a
+	ld hl, Moves + MOVE_POWER
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

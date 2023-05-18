@@ -111,6 +111,7 @@ SFX:
 	dba Sfx_NoSignal
 	dba Sfx_Sandstorm
 	dba Sfx_Elevator
+	dba Sfx_Elevator_2
 	dba Sfx_Protect
 	dba Sfx_Sketch
 	dba Sfx_RainDance

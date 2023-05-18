@@ -79,4 +79,5 @@ TrainerPicPointers::
 	dba Champion2Pic
 	dba KarateKingPic
 	dba GiovanniPic
+	dba RoughneckPic
 	dba PaddingPic

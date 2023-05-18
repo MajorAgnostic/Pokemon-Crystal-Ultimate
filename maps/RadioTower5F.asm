@@ -280,9 +280,8 @@ RadioTower5FRocketBossBeforeText:
 	para "We intend to take"
 	line "over this RADIO"
 
-	para "STATION and an-"
-	line "nounce our come-"
-	cont "back."
+	para "TOWER and announce"
+	line "our comeback."
 
 	para "That should bring"
 	line "our boss GIOVANNI"

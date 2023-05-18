@@ -508,8 +508,11 @@ KRIS EQU __trainer_class__
 	const TEDDY
 	const MARKEY
 	const JACOB
+	const TONY
 	const THERON
 	const STRAUSS
+	const NEV
+	const BUCK
 
 	trainerclass BLAINE ; 2e
 	const BLAINE1
@@ -748,6 +751,9 @@ KRIS EQU __trainer_class__
 	
 	trainerclass GIOVANNI
 	const GIOVANNI1
+	
+	trainerclass ROUGHNECK
+	const PAXTON
 	
 	trainerclass PADDING
 	const PADDING1

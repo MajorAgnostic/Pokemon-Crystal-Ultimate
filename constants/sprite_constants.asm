@@ -122,6 +122,7 @@
 	const SPRITE_ANDREA
 	const SPRITE_HAT_GIOVANNI
 	const SPRITE_GIOVANNI
+	const SPRITE_ROUGHNECK
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_next $80
@@ -184,6 +185,8 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_ZAPDOS
 	const SPRITE_ARTICUNO
 	const SPRITE_WEEZING
+	const SPRITE_VENOMOTH
+	const SPRITE_FORRETRESS
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_next $e0

@@ -78,4 +78,5 @@ TrainerClassDVs:
 	dn 14, 14, 14, 14 ; CHAMPION2
 	dn 13, 13, 13, 11 ; KING
 	dn 13, 15, 13, 15 ; GIOVANNI
+	dn 13, 15, 13, 15 ; ROUGHNECK
 	dn 13, 15, 13, 15 ; PADDING

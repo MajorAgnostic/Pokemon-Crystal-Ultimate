@@ -58,3 +58,5 @@ SpriteMons:
 	db ZAPDOS
 	db ARTICUNO
 	db WEEZING
+	db VENOMOTH
+	db FORRETRESS

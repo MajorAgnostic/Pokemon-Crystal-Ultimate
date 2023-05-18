@@ -9,26 +9,35 @@
 	const SILPHB1F_SUDOWOODO
 	const SILPHB1F_POKE_BALL1
 	const SILPHB1F_POKE_BALL2
+	const SILPHB1F_POKE_BALL3
 	const SILPHB1F_BOOK
 
 SafariZoneMainOffice_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_TILES, .CratesBlocking
 	
-TrainerBikerTheron:
-	trainer BIKER, STRAUSS, EVENT_BEAT_THERON, TheronSeenText, TheronBeatenText, 0, .Script
+.CratesBlocking:
+	checkevent EVENT_CRATES_MOVED
+	iftrue .WayUnblocked
+	changeblock 5, 3, $0b ; way blocked
+.WayUnblocked:
+	endcallback
+	
+TrainerBikerStrauss:
+	trainer BIKER, STRAUSS, EVENT_BEAT_STRAUSS, StraussSeenText, StraussBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext TheronAfterBattleText
+	writetext StraussAfterBattleText
 	waitbutton
 	closetext
 	end
 	
-TrainerBiker2:
-	trainer BIKER, STRAUSS, EVENT_BEAT_THERON, TheronSeenText, TheronBeatenText, 0, .Script
+TrainerBikerTheron:
+	trainer BIKER, THERON, EVENT_BEAT_THERON, TheronSeenText, TheronBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -52,16 +61,32 @@ SilphBurglar:
 NightShiftGuy:
 	faceplayer
 	opentext
+	checkevent EVENT_BEAT_KANTO_FEDERATION
+	iftrue .Saved
 	checkevent EVENT_CRATES_MOVED
 	iftrue .SkipCrane
 	writetext NightShiftGuyText1
 	waitbutton
 	closetext
-	playsound SFX_ELEVATOR
+	pause 10
+	turnobject SILPHB1F_PHARMACIST2, UP
+	pause 10
+	playsound SFX_ELEVATOR_2
 	pause 80
+	playsound SFX_ELEVATOR_2
+	pause 80
+	faceplayer
+	setevent EVENT_CRATES_MOVED
+	changeblock 5, 3, $0d ; way opened
 	opentext
 .SkipCrane:
 	writetext NightShiftGuyText2
+	waitbutton
+	closetext
+	end
+	
+.Saved:
+	writetext NightShiftGuyText3
 	waitbutton
 	closetext
 	end
@@ -80,7 +105,7 @@ SudowoodoDoll:
 	jumptext SudowoodoDollText
 	
 TrainerBikerNev:
-	trainer BIKER, STRAUSS, EVENT_BEAT_NEV, NevSeenText, NevBeatenText, 0, .Script
+	trainer BIKER, NEV, EVENT_BEAT_NEV, NevSeenText, NevBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -175,9 +200,28 @@ SilphDelivUltraBall:
 SilphDelivFR:
 	itemball FULL_RESTORE
 	
+SilphDelivMaxRevive:
+	itemball MAX_REVIVE
+	
 SilphDelivRevive:
 	itemball REVIVE
 	
+StraussSeenText:
+	text "We're the KANTO"
+	line "FEDERATION!"
+	cont "Right on!"
+	done
+
+StraussBeatenText:
+	text "Yikes! Sorry!"
+	done
+
+StraussAfterBattleText:
+	text "I'll try not to"
+	line "disturb anyone"
+	cont "from now on…"
+	done
+
 TheronSeenText:
 	text "Vroom vroom!"
 	line "Baribaribaribari!"
@@ -193,8 +237,8 @@ TheronBeatenText:
 	done
 
 TheronAfterBattleText:
-	text "Huh, you got some"
-	line "nerve!"
+	text "Hnnff, hnnff, I'm"
+	line "out of breath…"
 	done
 	
 AlexSeenText:
@@ -338,6 +382,12 @@ NightShiftGuyText2:
 	line "cha?"
 	done
 	
+NightShiftGuyText3:
+	text "So it's all over?"
+	line "Thanks bud, you"
+	cont "are a lifesaver!"
+	done
+	
 SudowoodoDollText:
 	text "This is a rare"
 	line "SUDOWOODO! Huh?"
@@ -372,8 +422,15 @@ SafariZoneMainOffice_MapEvents:
 	def_warp_events
 	warp_event  9,  0, FUCHSIA_CITY, 2
 	warp_event 10,  0, FUCHSIA_CITY, 12
-	warp_event  8, 16, FUCHSIA_CITY, 7
-	warp_event  9, 16, FUCHSIA_CITY, 7
+	warp_event  3, 12, SAFARI_ZONE_MAIN_OFFICE2, 1
+	warp_event  8, 10, SAFARI_ZONE_MAIN_OFFICE2, 4
+	warp_event 10,  9, SAFARI_ZONE_MAIN_OFFICE2, 5
+	warp_event  9, 11, SAFARI_ZONE_MAIN_OFFICE2, 6
+	warp_event 11,  9, SAFARI_ZONE_MAIN_OFFICE2, 7
+	warp_event 13,  9, SAFARI_ZONE_MAIN_OFFICE2, 8
+	warp_event  8,  5, SAFARI_ZONE_MAIN_OFFICE2, 9
+	warp_event  9,  7, SAFARI_ZONE_MAIN_OFFICE2, 10
+	warp_event  2,  2, SAFARI_ZONE_MAIN_OFFICE2, 11
 
 	def_coord_events
 
@@ -383,13 +440,14 @@ SafariZoneMainOffice_MapEvents:
 
 	def_object_events
 	object_event 12, 11, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, SilphBurglar, EVENT_BEAT_KANTO_FEDERATION
-	object_event  4,  1, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBikerTheron, EVENT_BEAT_KANTO_FEDERATION
-	object_event 15,  9, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBiker2, EVENT_BEAT_KANTO_FEDERATION
-	object_event  3, 10, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBikerNev, EVENT_BEAT_KANTO_FEDERATION
+	object_event  4,  1, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_TRAINER, 1, TrainerBikerStrauss, EVENT_BEAT_KANTO_FEDERATION
+	object_event 15,  9, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_TRAINER, 5, TrainerBikerTheron, EVENT_BEAT_KANTO_FEDERATION
+	object_event  3, 10, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_TRAINER, 2, TrainerBikerNev, EVENT_BEAT_KANTO_FEDERATION
 	object_event 12, 14, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, KantoFed1, EVENT_BEAT_KANTO_FEDERATION
 	object_event  8, 14, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NightShiftGuy, EVENT_GUY_FREED
 	object_event 12,  1, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NightShiftGuy2, EVENT_GUY_FREED2
 	object_event 18,  8, SPRITE_SUDOWOODO, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SudowoodoDoll, -1
 	object_event  5, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilphDelivRevive, EVENT_SILPDELIV_REVIVE
 	object_event  7, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilphDelivFR, EVENT_SILPDELIV_FR
+	object_event  7,  7, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilphDelivMaxRevive, EVENT_SILPDELIV_MAX_REVIVE
 	object_event  8, 13, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuspiciousBook, EVENT_SUSPICIOUS_BOOK

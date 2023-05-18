@@ -114,6 +114,12 @@ Route24RocketDisappearsText:
 	para "Oh, no! Should I"
 	line "do what now on"
 	cont "from, me?"
+	
+	para "…"
+	
+	para "Maybe GIOVANNI if"
+	line "me find, TEAM"
+	cont "ROCKET return!"
 	done
 
 Route24_MapEvents:
