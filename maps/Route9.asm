@@ -13,14 +13,6 @@ Route9_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .TunnelClosed
-	
-.TunnelClosed:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iffalse .StayClosed
-	changeblock 24, 8, $02 ; tunnel open
-.StayClosed:
-	endcallback
 
 TrainerCamperDean:
 	trainer CAMPER, DEAN, EVENT_BEAT_CAMPER_DEAN, CamperDeanSeenText, CamperDeanBeatenText, 0, .Script

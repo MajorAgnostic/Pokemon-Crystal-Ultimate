@@ -7,6 +7,7 @@
 	const SILPHB1F_PHARMACIST2
 	const SILPHB1F_PHARMACIST22
 	const SILPHB1F_SUDOWOODO
+	const SILPHB1F_MACHOKE
 	const SILPHB1F_POKE_BALL1
 	const SILPHB1F_POKE_BALL2
 	const SILPHB1F_POKE_BALL3
@@ -168,6 +169,14 @@ KantoFed1:
 	waitbutton
 	closetext
 	end 
+	
+SilphB1FMachoke:
+	opentext
+	writetext SilphB1FMachokeText
+	cry MACHOKE
+	waitbutton
+	closetext
+	end
 	
 PlayerMovement:
 	step LEFT
@@ -415,6 +424,10 @@ SuspiciousBookText:
 	line "wrote this in a"
 	cont "hurry…"
 	done
+	
+SilphB1FMachokeText:
+	text "Maaacho!"
+	done
 
 SafariZoneMainOffice_MapEvents:
 	db 0, 0 ; filler
@@ -447,6 +460,7 @@ SafariZoneMainOffice_MapEvents:
 	object_event  8, 14, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NightShiftGuy, EVENT_GUY_FREED
 	object_event 12,  1, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NightShiftGuy2, EVENT_GUY_FREED2
 	object_event 18,  8, SPRITE_SUDOWOODO, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SudowoodoDoll, -1
+	object_event 12,  3, SPRITE_MACHOKE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, SilphB1FMachoke, -1
 	object_event  5, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilphDelivRevive, EVENT_SILPDELIV_REVIVE
 	object_event  7, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilphDelivFR, EVENT_SILPDELIV_FR
 	object_event  7,  7, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilphDelivMaxRevive, EVENT_SILPDELIV_MAX_REVIVE
