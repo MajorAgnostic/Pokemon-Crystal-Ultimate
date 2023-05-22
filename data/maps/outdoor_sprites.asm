@@ -278,6 +278,8 @@ SilverGroupSprites:
 	db SPRITE_FISHER
 	db SPRITE_BUG_CATCHER
 	; 4 of max 9 walking sprites
+	db SPRITE_FRUIT_TREE
+	db SPRITE_POKE_BALL
 	db 0 ; end
 
 DungeonsGroupSprites:
