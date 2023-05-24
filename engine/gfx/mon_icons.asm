@@ -125,6 +125,7 @@ GetMenuMonIconPalette_PredeterminedShininess:
 	swap a
 .shiny
 	and $f
+	ld e, a
 	ret
 
 LoadMenuMonIcon:
