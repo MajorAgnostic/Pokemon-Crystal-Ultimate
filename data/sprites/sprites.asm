@@ -88,7 +88,6 @@ OverworldSprites:
 	overworld_sprite BigOnixSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GRAY
 	overworld_sprite N64SpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
 	overworld_sprite SudowoodoSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
-	overworld_sprite SurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite PokeBallSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite PokedexSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite PaperSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
