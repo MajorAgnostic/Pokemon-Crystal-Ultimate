@@ -514,20 +514,22 @@ VulpixEvosAttacks:
 	db 13, ROAR
 	db 19, CONFUSE_RAY
 	db 25, FLAME_WHEEL
-	db 31, FIRE_SPIN
+	db 31, HYPNOSIS
 	db 37, FLAMETHROWER
-	db 43, HYPNOSIS
+	db 43, FIRE_SPIN
+	db 49, DREAM_EATER
 	db 0 ; no more level-up moves
 
 NinetalesEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, EMBER
 	db 1, QUICK_ATTACK
 	db 1, CONFUSE_RAY
 	db 1, FLAME_WHEEL
+	db 1, HYPNOSIS
 	db 43, FLAMETHROWER
-	db 49, HYPNOSIS
-	db 55, SPITE
+	db 49, FIRE_SPIN
+	db 55, DREAM_EATER
+	db 62, SPITE
 	db 0 ; no more level-up moves
 
 JigglypuffEvosAttacks:
@@ -1885,7 +1887,7 @@ JolteonEvosAttacks:
 	db 36, SPARK
 	db 42, PIN_MISSILE
 	db 47, AGILITY
-	db 52, THUNDER
+	db 52, THUNDER_WAVE
 	db 0 ; no more level-up moves
 
 FlareonEvosAttacks:

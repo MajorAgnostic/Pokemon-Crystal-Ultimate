@@ -11,17 +11,13 @@ Route16FuchsiaSpeechHouseSuperNerdScript:
 	opentext
 	checkevent EVENT_ENTIREFLYMAP
 	iftrue .Finished
-	checkflag ENGINE_FLYPOINT_CELADON
+	checkflag ENGINE_FLYPOINT_SILVER_CAVE
 	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_FUCHSIA
-	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_CINNABAR
+	checkflag ENGINE_FLYPOINT_MT_MOON
 	iffalse .Intro
 	checkflag ENGINE_FLYPOINT_PALLET
 	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_VIRIDIAN
-	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_PEWTER
+	checkflag ENGINE_FLYPOINT_CINNABAR
 	iffalse .Intro
 	writetext UnlockEntireFlyMapText
 	promptbutton
@@ -63,11 +59,11 @@ IntroText:
 	para "Tell you what, if"
 	line "you visit every"
 	
-	para "city and town in"
-	line "KANTO, I'll show"
+	para "single location in"
+	line "the world, I will"
 	
-	para "you how to FLY"
-	line "across regions."
+	para "show you how to"
+	line "FLY anywhere."
 	done
 	
 UnlockEntireFlyMapText:
@@ -84,17 +80,17 @@ UnlockEntireFlyMapText:
 	para "Tell you what, if"
 	line "you visit every"
 	
-	para "city and town in"
-	line "KANTO, I'll show"
+	para "single location in"
+	line "the world, I will"
 	
-	para "you how to FLY"
-	line "across regions."
+	para "show you how to"
+	line "FLY anywhere."
 	
 	para "What's that? You"
 	line "already traveled"
 	
 	para "around the whole"
-	line "region?"
+	line "world?"
 	
 	para "I'm impressed!"
 	

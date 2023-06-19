@@ -148,7 +148,6 @@ TrainerHikerParry:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_HIKER_PARRY
-	endifjustbattled
 	opentext
 	checkflag ENGINE_PARRY_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -252,31 +251,14 @@ TrainerCooltrainerfKelly:
 	waitbutton
 	closetext
 	end
-
+	
 TrainerCamperQuentin:
-	faceplayer
+	trainer CAMPER, QUENTIN, EVENT_BEAT_CAMPER_QUENTIN, CamperQuentinSeenText, CamperQuentinBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
 	opentext
-	checkevent EVENT_BEAT_CAMPER_QUENTIN
-	iftrue .Defeated
-	writetext CamperQuentinSeenText
-	waitbutton
-	closetext
-	winlosstext CamperQuentinBeatenText, 0
-	loadtrainer CAMPER, QUENTIN
-	startbattle
-	reloadmapafterbattle
-	setevent EVENT_BEAT_CAMPER_QUENTIN
-	closetext
-	end
-
-.Defeated:
 	writetext CamperQuentinAfterBattleText
-	waitbutton
-	closetext
-	end
-
-Route45DummyScript:
-	writetext Route45DummyText
 	waitbutton
 	closetext
 	end
@@ -487,15 +469,6 @@ CooltrainerfKellyAfterBattleText:
 	cont "to harm #MON."
 	done
 
-Route45DummyText:
-	text "I'm really, really"
-	line "tough!"
-
-	para "Is there anywhere"
-	line "I can prove how"
-	cont "tough I really am?"
-	done
-
 CamperQuentinSeenText:
 	text "I'm really, really"
 	line "tough!"
@@ -544,4 +517,4 @@ Route45_MapEvents:
 	object_event  5, 66, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45Revive, EVENT_ROUTE_45_REVIVE
 	object_event  6, 20, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45Elixer, EVENT_ROUTE_45_ELIXER
 	object_event  7, 33, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45MaxPotion, EVENT_ROUTE_45_MAX_POTION
-	object_event  4, 70, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 2, TrainerCamperQuentin, -1
+	object_event  4, 70, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerCamperQuentin, -1

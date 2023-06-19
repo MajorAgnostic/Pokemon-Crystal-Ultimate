@@ -17,9 +17,9 @@ LavenderTown_MapScripts:
 	
 .WayClosed:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iffalse .StayClosed
-	changeblock 9, 17, $01 ; tunnel open
-.StayClosed:
+	iftrue .StayOpen
+	changeblock 9, 17, $7a ; tunnel open
+.StayOpen:
 	endcallback
 
 LavenderTownPokefanMScript:

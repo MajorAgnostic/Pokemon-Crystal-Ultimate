@@ -71,9 +71,7 @@ CianwoodGymGuideText:
 	line "instant!"
 	
 	para "Another one holds"
-	line "some sort of CLAW"
-	cont "and throws punches"
-	cont "like a COMET!"
+	line "some sort of CLAW."
 
 	para "And those boulders"
 	line "in the middle of"
