@@ -122,6 +122,8 @@
 	const SPRITE_HAT_GIOVANNI
 	const SPRITE_GIOVANNI
 	const SPRITE_ROUGHNECK
+	const SPRITE_CHRIS_RUN 
+ 	const SPRITE_KRIS_RUN 
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_next $80
