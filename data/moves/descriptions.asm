@@ -458,7 +458,7 @@ SupersonicDescription:
 
 SonicboomDescription:
 	db   "Always inflicts"
-	next "30HP damage.@"
+	next "25HP damage.@"
 
 DisableDescription:
 	db   "Disables the foe's"
