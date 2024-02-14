@@ -83,5 +83,5 @@ INCBIN "gfx/trainers/morty2.gbcpal", middle_colors
 INCBIN "gfx/trainers/clair2.gbcpal", middle_colors
 INCBIN "gfx/trainers/champion2.gbcpal", middle_colors
 INCBIN "gfx/trainers/karateking.gbcpal", middle_colors
-INCBIN "gfx/trainers/giovanni.gbcpal", middle_colors
+INCLUDE "gfx/trainers/giovanni.pal"
 INCLUDE "gfx/trainers/roughneck.pal"
