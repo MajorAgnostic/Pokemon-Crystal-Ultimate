@@ -34,7 +34,7 @@ MonMenuIconPals:
 	iconpal BROWN, GREEN ; SANDSHREW
 	iconpal BROWN, RED ; SANDSLASH
 	iconpal BLUE, PINK ; NIDORAN_F
-	iconpal BLUE, PINK ; NIDORINA
+	iconpal TEAL, PINK ; NIDORINA
 	iconpal BLUE, GREEN ; NIDOQUEEN
 	iconpal PURPLE, BLUE ; NIDORAN_M
 	iconpal PURPLE, BLUE ; NIDORINO

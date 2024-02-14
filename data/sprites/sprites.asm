@@ -115,12 +115,12 @@ OverworldSprites:
 	overworld_sprite ShellderSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
 	overworld_sprite OddishSpriteGFX, 4, STILL_SPRITE, PAL_OW_GREEN
 	overworld_sprite SquirtleSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
-	overworld_sprite DiglettSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
+	overworld_sprite DiglettSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite StarmieSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
 	overworld_sprite BulbasaurSpriteGFX, 4, STILL_SPRITE, PAL_OW_TEAL
 	overworld_sprite GrimerSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
 	overworld_sprite TentacoolSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
-	overworld_sprite MachopSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
+	overworld_sprite MachopSpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
 	overworld_sprite SlowbroSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite AndreaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite HatGiovanniSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
