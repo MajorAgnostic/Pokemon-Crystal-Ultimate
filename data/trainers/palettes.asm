@@ -61,7 +61,6 @@ INCBIN "gfx/trainers/executive_m.gbcpal", middle_colors
 INCBIN "gfx/trainers/psychic_t.gbcpal", middle_colors
 INCBIN "gfx/trainers/picnicker.gbcpal", middle_colors
 INCBIN "gfx/trainers/camper.gbcpal", middle_colors
-INCBIN "gfx/trainers/executive_f.gbcpal", middle_colors
 INCBIN "gfx/trainers/sage.gbcpal", middle_colors
 INCBIN "gfx/trainers/medium.gbcpal", middle_colors
 INCBIN "gfx/trainers/boarder.gbcpal", middle_colors
@@ -85,3 +84,6 @@ INCBIN "gfx/trainers/champion2.gbcpal", middle_colors
 INCBIN "gfx/trainers/karateking.gbcpal", middle_colors
 INCLUDE "gfx/trainers/giovanni.pal"
 INCLUDE "gfx/trainers/roughneck.pal"
+INCLUDE "gfx/trainers/ariana.pal"
+INCLUDE "gfx/trainers/petrel.pal"
+INCLUDE "gfx/trainers/proton.pal"

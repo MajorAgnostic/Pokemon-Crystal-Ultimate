@@ -55,7 +55,6 @@ TrainerClassDVs:
 	dn  7,  8,  8,  8 ; PSYCHIC_T
 	dn  6,  7, 10,  8 ; PICNICKER
 	dn  7,  8,  8,  8 ; CAMPER
-	dn  7, 14, 10,  8 ; EXECUTIVEF
 	dn  7,  8,  8,  8 ; SAGE
 	dn  7,  8,  8,  8 ; MEDIUM
 	dn  7,  8,  8,  8 ; BOARDER
@@ -79,4 +78,5 @@ TrainerClassDVs:
 	dn 13, 13, 13, 11 ; KING
 	dn 13, 15, 13, 15 ; GIOVANNI
 	dn 13, 15, 13, 15 ; ROUGHNECK
+	dn  7, 14, 10,  8 ; EXECUTIVEF
 	dn 13, 15, 13, 15 ; PADDING

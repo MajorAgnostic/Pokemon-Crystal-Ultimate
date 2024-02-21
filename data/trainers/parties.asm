@@ -6674,59 +6674,6 @@ CamperGroup:
 			db HYDRO_PUMP, HYPNOSIS, CROSS_CHOP, THUNDER
 	db -1 ; end
 
-ExecutiveFGroup:
-	; EXECUTIVEF (1) - Radio Tower 2
-	db "EXECUTIVE@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 54, ARBOK
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db SLUDGE_BOMB, GLARE, EARTHQUAKE, GIGA_DRAIN
-	db 53, UMBREON
-			db $bb, $bb
-			dw $006B, $006B, $006B, $006B, $006B
-			db PURSUIT, MOONLIGHT, TOXIC, CHARM
-	db 55, VILEPLUME
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db RAIN_DANCE, PETAL_DANCE, SLUDGE_BOMB, MOONLIGHT
-	db 56, MURKROW
-			db $cc, $cc
-			dw $006B, $006B, $006B, $006B, $006B
-			db BEAT_UP, MEAN_LOOK, TOXIC, FLY
-	db 54, TENTACRUEL
-			db $bb, $bb
-			dw $006B, $006B, $006B, $006B, $006B
-			db WATERFALL, SUBSTITUTE, SLUDGE_BOMB, BARRIER
-	db 55, NIDOQUEEN
-			db $bb, $bb
-			dw $006B, $006B, $006B, $006B, $006B
-			db EARTHQUAKE, RAIN_DANCE, THUNDER, MOONLIGHT
-	db -1 ; end
-
-	; EXECUTIVEF (2) - Hideout
-	db "EXECUTIVE@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 49, ARBOK
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db SLUDGE_BOMB, GLARE, EARTHQUAKE, SUBSTITUTE
-	db 48, UMBREON
-			db $bb, $bb
-			dw $006B, $006B, $006B, $006B, $006B
-			db PURSUIT, MOONLIGHT, TOXIC, CHARM
-	db 49, TENTACOOL
-			db $bb, $bb
-			dw $006B, $006B, $006B, $006B, $006B
-			db HYDRO_PUMP, RAIN_DANCE, SLUDGE_BOMB, BARRIER
-	db 50, VILEPLUME
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db SLEEP_POWDER, LEECH_SEED, SLUDGE_BOMB, MOONLIGHT
-	db 51, MURKROW
-			db $cc, $cc
-			dw $006B, $006B, $006B, $006B, $006B
-			db FAINT_ATTACK, NIGHT_SHADE, TOXIC, SKY_ATTACK
-	db -1 ; end
-
 SageGroup:
 	; SAGE (1)
 	db "CHOW@", TRAINERTYPE_NORMAL
@@ -7795,6 +7742,59 @@ RoughneckGroup:
 			db PERFECT_DV, PERFECT_DV
 			dw $018D, $018D, $018D, $018D, $018D
 			db SLEEP_POWDER, PSYCHIC_M, BARRAGE, GIGA_DRAIN
+	db -1 ; end
+	
+ExecutiveFGroup:
+	; EXECUTIVEF (1) - Radio Tower 2
+	db "ARIANA@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db 54, ARBOK
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db SLUDGE_BOMB, GLARE, EARTHQUAKE, GIGA_DRAIN
+	db 53, UMBREON
+			db $bb, $bb
+			dw $006B, $006B, $006B, $006B, $006B
+			db PURSUIT, MOONLIGHT, TOXIC, CHARM
+	db 55, VILEPLUME
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db RAIN_DANCE, PETAL_DANCE, SLUDGE_BOMB, MOONLIGHT
+	db 56, MURKROW
+			db $cc, $cc
+			dw $006B, $006B, $006B, $006B, $006B
+			db BEAT_UP, MEAN_LOOK, TOXIC, FLY
+	db 54, TENTACRUEL
+			db $bb, $bb
+			dw $006B, $006B, $006B, $006B, $006B
+			db WATERFALL, SUBSTITUTE, SLUDGE_BOMB, BARRIER
+	db 55, NIDOQUEEN
+			db $bb, $bb
+			dw $006B, $006B, $006B, $006B, $006B
+			db EARTHQUAKE, RAIN_DANCE, THUNDER, MOONLIGHT
+	db -1 ; end
+
+	; EXECUTIVEF (2) - Hideout
+	db "ARIANA@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db 49, ARBOK
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db SLUDGE_BOMB, GLARE, EARTHQUAKE, SUBSTITUTE
+	db 48, UMBREON
+			db $bb, $bb
+			dw $006B, $006B, $006B, $006B, $006B
+			db PURSUIT, MOONLIGHT, TOXIC, CHARM
+	db 49, TENTACOOL
+			db $bb, $bb
+			dw $006B, $006B, $006B, $006B, $006B
+			db HYDRO_PUMP, RAIN_DANCE, SLUDGE_BOMB, BARRIER
+	db 50, VILEPLUME
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db SLEEP_POWDER, LEECH_SEED, SLUDGE_BOMB, MOONLIGHT
+	db 51, MURKROW
+			db $cc, $cc
+			dw $006B, $006B, $006B, $006B, $006B
+			db FAINT_ATTACK, NIGHT_SHADE, TOXIC, SKY_ATTACK
 	db -1 ; end
 	
 PaddingGroup:

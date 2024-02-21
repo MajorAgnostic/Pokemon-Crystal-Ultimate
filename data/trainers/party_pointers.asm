@@ -56,7 +56,6 @@ TrainerGroups:
 	dba PsychicGroup
 	dba PicnickerGroup
 	dba CamperGroup
-	dba ExecutiveFGroup
 	dba SageGroup
 	dba MediumGroup
 	dba BoarderGroup
@@ -80,4 +79,5 @@ TrainerGroups:
 	dba KingGroup
 	dba GiovanniGroup
 	dba RoughneckGroup
+	dba ExecutiveFGroup
 	dba PaddingGroup

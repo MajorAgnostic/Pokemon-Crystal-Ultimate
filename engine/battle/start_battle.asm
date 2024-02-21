@@ -148,7 +148,7 @@ PlayBattleMusic:
 	ld de, MUSIC_UNOVA_E4
 	cp EXECUTIVEM
 	jr z, .done
-	cp EXECUTIVEF
+	cp ARIANA
 	jr z, .done
 	cp ROUGHNECK
 	jr z, .done

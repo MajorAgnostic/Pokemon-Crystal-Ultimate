@@ -57,7 +57,6 @@ TrainerEncounterMusic::
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; psychic_t
 	db MUSIC_LASS_ENCOUNTER        ; picnicker
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; camper
-	db MUSIC_ROCKET_ENCOUNTER      ; executivef
 	db MUSIC_SAGE_ENCOUNTER        ; sage
 	db MUSIC_SAGE_ENCOUNTER        ; medium
 	db MUSIC_HIKER_ENCOUNTER       ; boarder
@@ -81,4 +80,5 @@ TrainerEncounterMusic::
 	db MUSIC_HIKER_ENCOUNTER       ; king
 	db MUSIC_HIKER_ENCOUNTER       ; giovanni
 	db MUSIC_HIKER_ENCOUNTER       ; roughneck
+	db MUSIC_ROCKET_ENCOUNTER      ; executivef
 	db MUSIC_HIKER_ENCOUNTER       ; padding

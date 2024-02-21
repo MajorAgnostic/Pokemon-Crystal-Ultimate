@@ -120,10 +120,14 @@
 	const SPRITE_SLOWBRO
 	const SPRITE_ANDREA
 	const SPRITE_HAT_GIOVANNI
-	const SPRITE_GIOVANNI
 	const SPRITE_ROUGHNECK
 	const SPRITE_CHRIS_RUN 
  	const SPRITE_KRIS_RUN 
+	const SPRITE_EXECUTIVE
+ 	const SPRITE_ARIANA
+	const SPRITE_PETREL
+ 	const SPRITE_PROTON
+	const SPRITE_MRFUJI
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_next $80

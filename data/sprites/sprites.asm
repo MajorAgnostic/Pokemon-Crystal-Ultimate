@@ -124,7 +124,11 @@ OverworldSprites:
 	overworld_sprite SlowbroSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite AndreaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite HatGiovanniSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
-	overworld_sprite GiovanniSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite RoughneckSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite ChrisRunSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
  	overworld_sprite KrisRunSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite ExecutiveSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
+ 	overworld_sprite ArianaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite PetrelSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
+ 	overworld_sprite ProtonSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite MrFujiSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN

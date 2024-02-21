@@ -628,10 +628,6 @@ KRIS EQU __trainer_class__
 	const FRANCIS
 	const PATRICK
 
-	trainerclass EXECUTIVEF ; 37
-	const EXECUTIVEF_1
-	const EXECUTIVEF_2
-
 	trainerclass SAGE ; 38
 	const CHOW
 	const NICO
@@ -754,6 +750,10 @@ KRIS EQU __trainer_class__
 	
 	trainerclass ROUGHNECK
 	const PAXTON
+	
+	trainerclass ARIANA ; 37
+	const ARIANA1
+	const ARIANA2
 	
 	trainerclass PADDING
 	const PADDING1

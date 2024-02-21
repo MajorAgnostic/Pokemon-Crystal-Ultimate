@@ -56,7 +56,6 @@ TrainerPicPointers::
 	dba PsychicTPic
 	dba PicnickerPic
 	dba CamperPic
-	dba ExecutivefPic
 	dba SagePic
 	dba MediumPic
 	dba BoarderPic
@@ -80,4 +79,6 @@ TrainerPicPointers::
 	dba KarateKingPic
 	dba GiovanniPic
 	dba RoughneckPic
-	dba PaddingPic
+	dba ArianaPic
+	dba PetrelPic
+	dba ProtonPic

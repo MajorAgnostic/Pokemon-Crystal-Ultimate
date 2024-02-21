@@ -54,7 +54,6 @@ TrainerClassNames::
 	db "PSYCHIC@"
 	db "PICNICKER@"
 	db "CAMPER@"
-	db "ROCKET@"
 	db "SAGE@"
 	db "MEDIUM@"
 	db "BOARDER@"
@@ -78,4 +77,5 @@ TrainerClassNames::
 	db "KARATE KING@"
 	db "<PKMN> TRAINER@"
 	db "ROUGHNECK@"
+	db "EXECUTIVE@"
 	db "PADDING@"
