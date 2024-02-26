@@ -57,7 +57,7 @@ INCLUDE "maps/RadioTower2F.asm"
 INCLUDE "maps/RadioTower3F.asm"
 INCLUDE "maps/RadioTower4F.asm"
 INCLUDE "maps/ViridianGym.asm"
-INCLUDE "maps/Route15.asm"
+INCLUDE "maps/Route11.asm"
 
 
 SECTION "Map Scripts 4", ROMX
@@ -75,7 +75,7 @@ INCLUDE "maps/ViridianForest.asm"
 
 SECTION "Map Scripts 5", ROMX
 
-INCLUDE "maps/Route11.asm"
+INCLUDE "maps/Route15.asm"
 INCLUDE "maps/VioletMart.asm"
 INCLUDE "maps/VioletGym.asm"
 INCLUDE "maps/EarlsPokemonAcademy.asm"

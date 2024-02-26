@@ -37,7 +37,7 @@ FakeDirectorScript:
 	closetext
 	winlosstext FakeDirectorWinText, 0
 	setlasttalked RADIOTOWER5F_DIRECTOR
-	loadtrainer EXECUTIVEM, EXECUTIVEM_3
+	loadtrainer PETREL, PETREL2
 	startbattle
 	reloadmapafterbattle
 	opentext
@@ -203,11 +203,11 @@ FakeDirectorTextBefore2:
 	para "Wrong!"
 	line "I'm an imposter!"
 
-	para "I pretended to be"
-	line "the real thing to"
-
-	para "prepare for our"
-	line "takeover."
+	para "PETREL: I pre-"
+	line "tended to be the"
+	cont "real thing to pre-"
+	cont "pare for our"
+	cont "takeover."
 
 	para "Do you want to"
 	line "know where we hid"
@@ -219,15 +219,16 @@ FakeDirectorTextBefore2:
 	done
 
 FakeDirectorWinText:
-	text "OK, OK. I'll tell"
-	line "you where he is."
+	text "PETREL: OK, OK."
+	line "I'll tell you"
+	cont "where he is."
 	done
 
 FakeDirectorTextAfter:
-	text "We stashed the"
-	line "real DIRECTOR in"
+	text "PETREL: We stashed"
+	line "the real DIRECTOR"
 
-	para "the UNDERGROUND"
+	para "in the UNDERGROUND"
 	line "WAREHOUSE."
 
 	para "It's at the far"
@@ -239,24 +240,34 @@ FakeDirectorTextAfter:
 	done
 
 Executivef1SeenText:
-	text "Remember me from"
-	line "the HIDEOUT in"
-	cont "MAHOGANY TOWN?"
+	text "ARIANA: Remember"
+	line "me from MAHOGANY"
+	cont "TOWN?"
+	
+	para "This time…"
 
+	para "Hee hee hee. This"
+	line "time it looks like"
+	cont "you're really all"
+	cont "alone. All alone…"
+	
 	para "I lost then, but I"
 	line "won't this time."
+	
+	para "Let's finish this!"
 	done
 
 Executivef1BeatenText:
-	text "This can't be"
-	line "happening!"
+	text "ARIANA: This can't"
+	line "be happening!"
 
 	para "I fought hard, but"
 	line "I still lost…"
 	done
 
 Executivef1AfterBattleText:
-	text "<PLAYER>, isn't it?"
+	text "ARIANA: <PLAYER>,"
+	line "isn't it?"
 
 	para "A brat like you"
 	line "won't appreciate"
@@ -280,8 +291,9 @@ RadioTower5FRocketBossBeforeText:
 	para "We intend to take"
 	line "over this RADIO"
 
-	para "TOWER and announce"
-	line "our comeback."
+	para "TOWER and offi-"
+	line "cially announce"
+	cont "our comeback."
 
 	para "That should bring"
 	line "our boss GIOVANNI"
@@ -291,20 +303,22 @@ RadioTower5FRocketBossBeforeText:
 
 	para "We are going to"
 	line "regain our former"
-	cont "glory."
+	cont "glory…"
 
 	para "I won't allow you"
 	line "to interfere with"
-	cont "our plans."
+	cont "our meticulous"
+	cont "plans!"
 	done
 
 RadioTower5FRocketBossWinText:
-	text "No! Forgive me,"
-	line "GIOVANNI!"
+	text "ARCHER: No! For-"
+	line "give me, GIOVANNI!"
 	done
 
 RadioTower5FRocketBossAfterText:
-	text "How could this be?"
+	text "ARCHER: How could"
+	line "this be?"
 
 	para "Our dreams have"
 	line "come to naught."
@@ -440,6 +454,6 @@ RadioTower5F_MapEvents:
 	def_object_events
 	object_event  3,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
 	object_event 13,  5, SPRITE_ARCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_TEAL, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 17,  2, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 17,  2, SPRITE_ARIANA, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 13,  5, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event  8,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL

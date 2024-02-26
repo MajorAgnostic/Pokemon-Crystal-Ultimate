@@ -28,8 +28,8 @@ TrainerGruntM29:
 	closetext
 	end
 
-TrainerGruntM1:
-	trainer GRUNTM, GRUNTM_1, EVENT_BEAT_ROCKET_GRUNTM_1, GruntM1SeenText, GruntM1BeatenText, 0, .Script
+ProtonScript:
+	trainer PROTON, PROTON1, EVENT_BEAT_ROCKET_GRUNTM_1, GruntM1SeenText, GruntM1BeatenText, 0, .Script
 
 .Script:
 	opentext
@@ -225,7 +225,13 @@ GruntM29AfterBattleText:
 	done
 
 GruntM1SeenText:
-	text "What do you want?"
+	text "PROTON: What do we"
+	line "have here?"
+	
+	para "I'm often labeled"
+	line "as the scariest"
+	cont "and cruelest guy"
+	cont "in TEAM ROCKET…"
 
 	para "If you interrupt"
 	line "our work, don't"
@@ -233,19 +239,27 @@ GruntM1SeenText:
 	done
 
 GruntM1BeatenText:
-	text "You did OK today,"
-	line "but wait till next"
-	cont "time!"
+	text "PROTON: Grr…"
+	line "For a kid to be"
+	cont "this good…"
+	cont "I didn't see it"
+	cont "coming."
 	done
 
 TrainerGruntM1WhenTalkText:
-	text "Yeah, TEAM ROCKET"
-	line "was broken up"
+	text "PROTON: Humph…"
+	line "TEAM ROCKET was"
+	cont "indeed broken up"
 	cont "three years ago."
 
 	para "But we continued"
 	line "our activities"
 	cont "underground."
+	
+	para "A small obstacle"
+	line "like you won't be"
+	cont "much of a problem"
+	cont "for our mission."
 
 	para "Now you can have"
 	line "fun watching us"
@@ -334,7 +348,7 @@ SlowpokeWellB1F_MapEvents:
 
 	def_object_events
 	object_event 15,  7, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
-	object_event  5,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
+	object_event  5,  2, SPRITE_PROTON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, ProtonScript, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event 10,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event  7,  4, SPRITE_SLOWPOKE2, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SlowpokeWellB1FSlowpokeWithMailScript, EVENT_SLOWPOKE_WELL_SLOWPOKES

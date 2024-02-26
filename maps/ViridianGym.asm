@@ -358,7 +358,7 @@ ViridianGymGuideText:
 	done
 
 ViridianGymGuideWinText:
-	text "Man, you are truly"
+	text "Wow, you are truly"
 	line "tough…"
 
 	para "That was a heck of"

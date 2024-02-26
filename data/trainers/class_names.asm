@@ -78,4 +78,6 @@ TrainerClassNames::
 	db "<PKMN> TRAINER@"
 	db "ROUGHNECK@"
 	db "EXECUTIVE@"
+	db "ADMIN@"
+	db "ADMIN@"
 	db "PADDING@"

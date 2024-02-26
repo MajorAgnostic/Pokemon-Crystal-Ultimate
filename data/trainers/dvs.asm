@@ -79,4 +79,6 @@ TrainerClassDVs:
 	dn 13, 15, 13, 15 ; GIOVANNI
 	dn 13, 15, 13, 15 ; ROUGHNECK
 	dn  7, 14, 10,  8 ; EXECUTIVEF
+	dn  7, 12, 10,  8 ; PETREL
+	dn  7, 11, 10,  8 ; PROTON
 	dn 13, 15, 13, 15 ; PADDING

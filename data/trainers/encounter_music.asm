@@ -81,4 +81,6 @@ TrainerEncounterMusic::
 	db MUSIC_HIKER_ENCOUNTER       ; giovanni
 	db MUSIC_HIKER_ENCOUNTER       ; roughneck
 	db MUSIC_ROCKET_ENCOUNTER      ; executivef
+	db MUSIC_ROCKET_ENCOUNTER      ; petrel
+	db MUSIC_ROCKET_ENCOUNTER      ; proton
 	db MUSIC_HIKER_ENCOUNTER       ; padding

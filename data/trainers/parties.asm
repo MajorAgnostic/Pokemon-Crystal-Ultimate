@@ -2869,18 +2869,7 @@ PokemaniacGroup:
 	db -1 ; end
 
 GruntMGroup:
-	; GRUNTM (1) - Slowpoke Well
-	db "GRUNT@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 20, MURKROW
-			dw $0002, $0002, $0002, $0002, $0002 ; hp, atk, def, spd, spc
-			db PECK, FAINT_ATTACK, HAZE, MEAN_LOOK
-	db 21, KOFFING
-			dw $0002, $0002, $0002, $0002, $0002 ; hp, atk, def, spd, spc
-			db SLUDGE, SMOKESCREEN, POISON_GAS, SELFDESTRUCT
-	db 21, ARBOK
-			dw $0002, $0002, $0002, $0002, $0002 ; hp, atk, def, spd, spc
-			db ACID, BITE, GLARE, WRAP
-	db -1 ; end
+	; GRUNTM (1) - Slowpoke Well (Now Proton)
 
 	; GRUNTM (2) - Slowpoke Well
 	db "GRUNT@", TRAINERTYPE_STAT_EXP
@@ -3073,19 +3062,6 @@ GruntMGroup:
 			dw $006B, $006B, $006B, $006B, $006B
 	db 47, MUK
 			dw $006B, $006B, $006B, $006B, $006B
-	db -1 ; end
-
-	; GRUNTM (24) - Warehouse
-	db "GRUNT@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 53, KOFFING
-			dw $006B, $006B, $006B, $006B, $006B
-			db EXPLOSION, ACID_ARMOR, SLUDGE_BOMB, SCREECH
-	db 53, SHUCKLE
-			dw $006B, $006B, $006B, $006B, $006B
-			db WITHDRAW, BATON_PASS, ENCORE, SAFEGUARD
-	db 53, SANDSLASH
-			dw $006B, $006B, $006B, $006B, $006B
-			db EARTHQUAKE, IRON_TAIL, ROCK_SLIDE, MUD_SLAP
 	db -1 ; end
 
 	; GRUNTM (25) - Underground
@@ -5835,61 +5811,23 @@ BlackbeltGroup:
 	db -1 ; end
 
 ExecutiveMGroup:
-	; EXECUTIVEM (1) is now Archer
-	; EXECUTIVEM (2) - Radio Tower 2
-	db "EXECUTIVE@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 53, VENOMOTH
+	; EXECUTIVEM (1) - Mercenary
+	db "MERCENARY@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db 52, KOFFING
 			dw $006B, $006B, $006B, $006B, $006B
-			db LEECH_LIFE, SLUDGE_BOMB, SLEEP_POWDER, PSYCHIC_M
-	db 52, NOCTOWL
+			db EXPLOSION, ACID_ARMOR, SLUDGE_BOMB, SCREECH
+	db 53, SHUCKLE
+			dw $006B, $006B, $006B, $006B, $006B
+			db WITHDRAW, BATON_PASS, ENCORE, SAFEGUARD
+	db 53, NOCTOWL
 			dw $006B, $006B, $006B, $006B, $006B
 			db HYPNOSIS, DREAM_EATER, TAKE_DOWN, REFLECT
 	db 54, VENUSAUR
 			dw $006B, $006B, $006B, $006B, $006B
 			db RAZOR_LEAF, SLUDGE_BOMB, LEECH_SEED, SLEEP_POWDER
-	db 55, CROBAT
+	db 54, SANDSLASH
 			dw $006B, $006B, $006B, $006B, $006B
-			db LEECH_LIFE, SLUDGE_BOMB, TOXIC, FLY
-	db -1 ; end
-
-	; EXECUTIVEM (3) - Radio Tower
-	db "EXECUTIVE@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 51, KOFFING
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db DESTINY_BOND, SLUDGE_BOMB, FIRE_SPIN, SMOKESCREEN
-	db 52, ARIADOS
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db LEECH_LIFE, SLUDGE_BOMB, TOXIC, CONSTRICT
-	db 51, DUNSPARCE
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db STRENGTH, ROCK_SLIDE, SCREECH, SPITE
-	db 53, DONPHAN
-			db $bb, $bb
-			dw $006B, $006B, $006B, $006B, $006B
-			db EARTHQUAKE, ROCK_SLIDE, BODY_SLAM, GROWL
-	db 54, WEEZING
-			db $cc, $cc ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db EXPLOSION, SLUDGE_BOMB, FIRE_SPIN, POISON_GAS
-	db -1 ; end
-
-	; EXECUTIVEM (4) - Hideout
-	db "EXECUTIVE@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 49, GOLBAT
-			dw $006B, $006B, $006B, $006B, $006B
-			db WING_ATTACK, SLUDGE, TOXIC, GIGA_DRAIN
-	db 49, VENOMOTH
-			dw $006B, $006B, $006B, $006B, $006B
-			db LEECH_LIFE, SLUDGE, PSYCHIC_M, SLEEP_POWDER
-	db 50, WEEZING
-			dw $006B, $006B, $006B, $006B, $006B
-			db DESTINY_BOND, SLUDGE_BOMB, FIRE_SPIN, POISON_GAS
-	db 51, RATICATE
-			dw $006B, $006B, $006B, $006B, $006B
-			db BODY_SLAM, SUPER_FANG, TOXIC, SCREECH
+			db EARTHQUAKE, IRON_TAIL, ROCK_SLIDE, MUD_SLAP
 	db -1 ; end
 
 PsychicGroup:
@@ -7390,6 +7328,9 @@ GruntFGroup:
 			dw $006B, $006B, $006B, $006B, $006B
 			db GIGA_DRAIN, MOONLIGHT, SLUDGE_BOMB, SLEEP_POWDER
 	db -1 ; end
+	
+	
+SECTION "Enemy Trainer Parties 3", ROMX
 
 MysticalmanGroup:
 	; MYSTICALMAN (1)
@@ -7747,14 +7688,14 @@ RoughneckGroup:
 ExecutiveFGroup:
 	; EXECUTIVEF (1) - Radio Tower 2
 	db "ARIANA@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
-	db 54, ARBOK
-			db $bb, $bb ; atk|def, spd|spc
-			dw $006B, $006B, $006B, $006B, $006B
-			db SLUDGE_BOMB, GLARE, EARTHQUAKE, GIGA_DRAIN
 	db 53, UMBREON
 			db $bb, $bb
 			dw $006B, $006B, $006B, $006B, $006B
 			db PURSUIT, MOONLIGHT, TOXIC, CHARM
+	db 54, ARBOK
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db SLUDGE_BOMB, GLARE, EARTHQUAKE, GIGA_DRAIN
 	db 55, VILEPLUME
 			db $bb, $bb ; atk|def, spd|spc
 			dw $006B, $006B, $006B, $006B, $006B
@@ -7795,6 +7736,92 @@ ExecutiveFGroup:
 			db $cc, $cc
 			dw $006B, $006B, $006B, $006B, $006B
 			db FAINT_ATTACK, NIGHT_SHADE, TOXIC, SKY_ATTACK
+	db -1 ; end
+
+PetrelGroup:	
+; PETREL (1) - Hideout
+	db "PETREL@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db 48, GOLBAT
+			dw $006B, $006B, $006B, $006B, $006B
+			db WING_ATTACK, SLUDGE, TOXIC, GIGA_DRAIN
+	db 48, VENOMOTH
+			dw $006B, $006B, $006B, $006B, $006B
+			db LEECH_LIFE, SLUDGE, PSYCHIC_M, SLEEP_POWDER
+	db 49, WEEZING
+			dw $006B, $006B, $006B, $006B, $006B
+			db DESTINY_BOND, SLUDGE_BOMB, FIRE_BLAST, POISON_GAS
+	db 50, WEEZING
+			dw $006B, $006B, $006B, $006B, $006B
+			db DESTINY_BOND, SLUDGE_BOMB, FIRE_SPIN, POISON_GAS
+	db 50, RATICATE
+			dw $006B, $006B, $006B, $006B, $006B
+			db BODY_SLAM, SUPER_FANG, TOXIC, SCREECH
+	db -1 ; end
+	
+; PETREL (2) - Radio Tower Director
+	db "PETREL@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db 52, ARIADOS
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db LEECH_LIFE, SLUDGE_BOMB, TOXIC, CONSTRICT
+	db 51, VENOMOTH
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db LEECH_LIFE, SLUDGE, PSYCHIC_M, SLEEP_POWDER
+	db 52, WEEZING
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db DESTINY_BOND, SLUDGE_BOMB, FIRE_BLAST, POISON_GAS
+	db 53, DONPHAN
+			db $bb, $bb
+			dw $006B, $006B, $006B, $006B, $006B
+			db EARTHQUAKE, ROCK_SLIDE, BODY_SLAM, GROWL
+	db 53, RATICATE
+			db $bb, $bb
+			dw $006B, $006B, $006B, $006B, $006B
+			db EARTHQUAKE, ROCK_SLIDE, BODY_SLAM, GROWL
+	db 54, WEEZING
+			db $cc, $cc ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db EXPLOSION, SLUDGE_BOMB, FIRE_SPIN, POISON_GAS
+	db -1 ; end
+	
+ProtonGroup:
+; PROTON (1) - Slowpoke Well
+	db "PROTON@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db 20, MURKROW
+			dw $0002, $0002, $0002, $0002, $0002 ; hp, atk, def, spd, spc
+			db PECK, FAINT_ATTACK, HAZE, MEAN_LOOK
+	db 21, KOFFING
+			dw $0002, $0002, $0002, $0002, $0002 ; hp, atk, def, spd, spc
+			db SLUDGE, SMOKESCREEN, POISON_GAS, SELFDESTRUCT
+	db 21, ARBOK
+			dw $0002, $0002, $0002, $0002, $0002 ; hp, atk, def, spd, spc
+			db ACID, BITE, GLARE, WRAP
+	db -1 ; end
+	
+; PROTON (2) - Radio Tower
+	db "PROTON@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_MOVES
+	db 53, VENOMOTH
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db LEECH_LIFE, SLUDGE_BOMB, SLEEP_POWDER, PSYCHIC_M
+	db 54, WEEZING
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db EXPLOSION, SLUDGE_BOMB, FIRE_SPIN, POISON_GAS
+	db 53, DUNSPARCE
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db STRENGTH, ROCK_SLIDE, SCREECH, SPITE
+	db 54, CROBAT
+			db $bb, $bb ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db LEECH_LIFE, SLUDGE_BOMB, TOXIC, FLY
+	db 55, ARBOK
+			db $cc, $cc ; atk|def, spd|spc
+			dw $006B, $006B, $006B, $006B, $006B
+			db SLUDGE_BOMB, GLARE, EARTHQUAKE, GIGA_DRAIN
 	db -1 ; end
 	
 PaddingGroup:

@@ -102,7 +102,7 @@ RocketBaseBoss:
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e142
 	winlosstext ExecutiveM4BeatenText, 0
 	setlasttalked TEAMROCKETBASEB3F_ROCKET1
-	loadtrainer EXECUTIVEM, EXECUTIVEM_4
+	loadtrainer PETREL, PETREL1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_4
@@ -386,11 +386,12 @@ RocketBaseRivalText:
 	done
 
 ExecutiveM4BeforeText:
-	text "What? Who are you?"
-	line "This is the office"
-
-	para "of our leader,"
-	line "GIOVANNI."
+	text "PETREL: What? Who"
+	line "are you?"
+	
+	para "This is the office"
+	line "of our leader,"
+	cont "GIOVANNI."
 
 	para "Since disbanding"
 	line "TEAM ROCKET three"
@@ -413,16 +414,18 @@ ExecutiveM4BeforeText:
 	done
 
 ExecutiveM4BeatenText:
-	text "I… I couldn't do a"
-	line "thing…"
+	text "PETREL: I… I"
+	line "couldn't do a"
+	cont "thing…"
 
 	para "GIOVANNI, please"
 	line "forgive me…"
 	done
 
 ExecutiveM4AfterText:
-	text "No, I can't let"
-	line "this affect me."
+	text "PETREL: No, I"
+	line "can't let this"
+	cont "affect me."
 
 	para "I have to inform"
 	line "the others…"
@@ -593,7 +596,7 @@ TeamRocketBaseB3F_MapEvents:
 
 	def_object_events
 	object_event 25, 14, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
-	object_event  8,  3, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
+	object_event  8,  3, SPRITE_PETREL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
 	object_event  7,  2, SPRITE_MURKROW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 21,  7, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, SlowpokeTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  5, 14, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, RaticateTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION

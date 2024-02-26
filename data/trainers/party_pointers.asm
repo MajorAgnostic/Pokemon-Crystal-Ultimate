@@ -80,4 +80,6 @@ TrainerGroups:
 	dba GiovanniGroup
 	dba RoughneckGroup
 	dba ExecutiveFGroup
+	dba PetrelGroup
+	dba ProtonGroup
 	dba PaddingGroup

@@ -296,7 +296,6 @@ KRIS EQU __trainer_class__
 	const GRUNTM_19
 	const GRUNTM_20
 	const GRUNTM_21
-	const GRUNTM_24
 	const GRUNTM_25
 	const GRUNTM_28
 	const GRUNTM_29
@@ -551,9 +550,7 @@ KRIS EQU __trainer_class__
 	const BOBBY
 
 	trainerclass EXECUTIVEM ; 33
-	const EXECUTIVEM_2
-	const EXECUTIVEM_3
-	const EXECUTIVEM_4
+	const MERCENARY1
 
 	trainerclass PSYCHIC_T ; 34
 	const NATHAN
@@ -751,9 +748,17 @@ KRIS EQU __trainer_class__
 	trainerclass ROUGHNECK
 	const PAXTON
 	
-	trainerclass ARIANA ; 37
+	trainerclass ARIANA 
 	const ARIANA1
 	const ARIANA2
+	
+	trainerclass PETREL 
+	const PETREL1
+	const PETREL2
+	
+	trainerclass PROTON 
+	const PROTON1
+	const PROTON2
 	
 	trainerclass PADDING
 	const PADDING1

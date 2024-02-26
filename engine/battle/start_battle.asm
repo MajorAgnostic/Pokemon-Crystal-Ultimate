@@ -137,7 +137,7 @@ PlayBattleMusic:
 	cp ANDREA
 	jp z, .done
 	cp MORTY2
-	jr z, .done
+	jp z, .done
 
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
@@ -149,6 +149,10 @@ PlayBattleMusic:
 	cp EXECUTIVEM
 	jr z, .done
 	cp ARIANA
+	jr z, .done
+	cp PETREL
+	jr z, .done
+	cp PROTON
 	jr z, .done
 	cp ROUGHNECK
 	jr z, .done
