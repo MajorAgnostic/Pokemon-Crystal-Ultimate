@@ -450,7 +450,7 @@ GoldenrodGameCornerCooltrainerFText:
 	done
 
 GoldenrodGameCornerGentlemanText:
-	text "I taught BLIZZARD"
+	text "I taught ENDURE"
 	line "to my #MON."
 
 	para "It was hard to get"

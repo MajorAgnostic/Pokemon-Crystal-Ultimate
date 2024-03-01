@@ -1217,8 +1217,8 @@ CrossChopDescription:
 	next "cal hit ratio.@"
 
 TwisterDescription:
-	db   "Whips up a torn-"
-	next "ado, may flinch.@"
+	db   "An attack that"
+	next "never misses.@"
 
 RainDanceDescription:
 	db   "Boosts water-type"

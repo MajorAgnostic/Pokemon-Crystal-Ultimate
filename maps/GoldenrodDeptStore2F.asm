@@ -41,7 +41,7 @@ GoldenrodDeptStore2FElevatorButton:
 
 GoldenrodDeptStore2FYoungsterText:
 	text "#GEAR can store"
-	line "up to ten phone"
+	line "up to 25 phone"
 	cont "numbers."
 
 	para "It's hard to de-"
@@ -50,7 +50,7 @@ GoldenrodDeptStore2FYoungsterText:
 	done
 
 GoldenrodDeptStore2FCooltrainerFText:
-	text "I got my ABRA at"
+	text "I got my CUBONE at"
 	line "the GAME CORNER."
 
 	para "Now it's my best"
