@@ -73,7 +73,7 @@ NewBarkTown_TeacherStopsYouScene2:
 NewBarkTown_FisherStopsYouScene1:
 	checkevent EVENT_HOMEUPGRADE
 	iftrue .End
-	checkevent EVENT_BEAT_CLAIR
+	checkflag ENGINE_RISINGBADGE
 	iffalse .End
 	playmusic MUSIC_MOM
 	turnobject NEWBARKTOWN_FISHER, RIGHT
@@ -103,7 +103,7 @@ NewBarkTown_FisherStopsYouScene1:
 NewBarkTown_FisherStopsYouScene2:
 	checkevent EVENT_HOMEUPGRADE
 	iftrue .End
-	checkevent EVENT_BEAT_CLAIR
+	checkflag ENGINE_RISINGBADGE
 	iffalse .End
 	playmusic MUSIC_MOM
 	turnobject NEWBARKTOWN_FISHER, RIGHT
@@ -133,7 +133,7 @@ NewBarkTown_FisherStopsYouScene2:
 NewBarkTown_FisherStopsYouScene3:
 	checkevent EVENT_HOMEUPGRADE
 	iftrue .End
-	checkevent EVENT_BEAT_CLAIR
+	checkflag ENGINE_RISINGBADGE
 	iffalse .End
 	playmusic MUSIC_MOM
 	turnobject NEWBARKTOWN_FISHER, RIGHT
@@ -164,7 +164,7 @@ NewBarkTown_FisherStopsYouScene3:
 NewBarkTown_FisherStopsYouScene4:
 	checkevent EVENT_HOMEUPGRADE
 	iftrue .End
-	checkevent EVENT_BEAT_CLAIR
+	checkflag ENGINE_RISINGBADGE
 	iffalse .End
 	playmusic MUSIC_MOM
 	turnobject NEWBARKTOWN_FISHER, RIGHT

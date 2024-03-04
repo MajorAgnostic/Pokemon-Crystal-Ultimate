@@ -17,8 +17,6 @@ Route16FuchsiaSpeechHouseSuperNerdScript:
 	iffalse .Intro
 	checkflag ENGINE_FLYPOINT_PALLET
 	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_CINNABAR
-	iffalse .Intro
 	writetext UnlockEntireFlyMapText
 	promptbutton
 	verbosegiveitem SILVER_LEAF

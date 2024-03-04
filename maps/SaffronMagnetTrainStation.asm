@@ -278,7 +278,7 @@ SaffronMagnetTrainStation_MapEvents:
 	coord_event 11,  6, SCENE_DEFAULT, Script_ArriveFromGoldenrod
 
 	def_bg_events
-	bg_event 19,  4, BGEVENT_ITEM, TrainStationMagnet
+	bg_event 19,  3, BGEVENT_ITEM, TrainStationMagnet
 
 	def_object_events
 	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationOfficerScript, -1
@@ -286,4 +286,4 @@ SaffronMagnetTrainStation_MapEvents:
 	object_event  6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	object_event  6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	object_event  9,  2, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Zapdos, EVENT_ZAPDOS_STATION
-	object_event  9,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ThunderTM, EVENT_THUNDER_TM
+	object_event 19,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ThunderTM, EVENT_THUNDER_TM

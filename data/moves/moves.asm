@@ -75,7 +75,7 @@ Moves:
 	move BUBBLEBEAM,   EFFECT_SPEED_DOWN_HIT,     65, WATER,        100, 15,  30
 	move AURORA_BEAM,  EFFECT_ATTACK_DOWN_HIT,    65, ICE,          100, 15,  30
 	move HYPER_BEAM,   EFFECT_HYPER_BEAM,        160, NORMAL,        90,  5,   0
-	move PECK,         EFFECT_NORMAL_HIT,         35, FLYING,       100, 35,   0
+	move PECK,         EFFECT_NORMAL_HIT,         40, FLYING,       100, 30,   0
 	move DRILL_PECK,   EFFECT_NORMAL_HIT,         80, FLYING,       100, 15,   0
 	move SUBMISSION,   EFFECT_RECOIL_HIT,         90, FIGHTING,     100, 15,   0
 	move LOW_KICK,     EFFECT_FLINCH_HIT,         50, FIGHTING,     100, 20,  30
