@@ -279,7 +279,7 @@ JohtoGrassWildMons:
 	db 28, KOFFING
 	db 27, MACHOP
 	db 28, GRIMER
-	db 28, GRIMER
+	db 28, HOUNDOUR
 	db 29, HAUNTER
 	db 29, HAUNTER
 	; day
@@ -287,7 +287,7 @@ JohtoGrassWildMons:
 	db 28, KOFFING
 	db 27, MACHOP
 	db 28, GRIMER
-	db 28, GRIMER
+	db 28, HOUNDOUR
 	db 29, HAUNTER
 	db 29, HAUNTER
 	; nite
@@ -295,7 +295,7 @@ JohtoGrassWildMons:
 	db 28, KOFFING
 	db 27, MACHOP
 	db 28, GRIMER
-	db 28, GRIMER
+	db 28, HOUNDOUR
 	db 29, HAUNTER
 	db 29, HAUNTER
 

@@ -522,6 +522,7 @@ VulpixEvosAttacks:
 
 NinetalesEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, SPITE
 	db 1, QUICK_ATTACK
 	db 1, CONFUSE_RAY
 	db 1, FLAME_WHEEL
@@ -529,7 +530,7 @@ NinetalesEvosAttacks:
 	db 43, FLAMETHROWER
 	db 49, FIRE_SPIN
 	db 55, DREAM_EATER
-	db 62, SPITE
+	db 62, NIGHT_SHADE
 	db 0 ; no more level-up moves
 
 JigglypuffEvosAttacks:
