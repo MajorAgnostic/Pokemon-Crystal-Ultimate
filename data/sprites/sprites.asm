@@ -132,3 +132,4 @@ OverworldSprites:
 	overworld_sprite PetrelSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
  	overworld_sprite ProtonSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite MrFujiSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite KingSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED

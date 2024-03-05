@@ -128,6 +128,7 @@
 	const SPRITE_PETREL
  	const SPRITE_PROTON
 	const SPRITE_MRFUJI
+	const SPRITE_KING
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_next $80

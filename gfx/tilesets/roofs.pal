@@ -74,9 +74,9 @@
 	RGB 16,14,12, 08,09,11 ; eve
 
 ; group 15 (Mount Moon Square)
-	RGB 14,17,31, 07,11,15 ; morn/day
-	RGB 09,13,19, 07,07,16 ; nite
-	RGB 12,13,23, 06,08,11 ; eve
+	RGB 19,19,16, 10,12,15 ; morn/day
+	RGB 09,09,11, 04,05,07 ; nite
+	RGB 16,14,12, 08,09,11 ; eve
 
 ; group 16 (Indigo)
 	RGB 21,21,21, 13,13,13 ; morn/day
@@ -94,9 +94,9 @@
 	RGB 20,11,23, 13,03,23 ; eve
 
 ; group 19 (Silver Cave)
-	RGB 21,21,25, 16,16,16 ; morn/day
-	RGB 13,13,13, 07,07,07 ; nite
-	RGB 08,18,22, 08,10,19 ; eve
+	RGB 19,19,16, 10,12,15 ; morn/day
+	RGB 09,09,11, 04,05,07 ; nite
+	RGB 16,14,12, 08,09,11 ; eve
 
 ; group 20 (Cable Club)
 	RGB 21,21,21, 11,11,11 ; morn/day
@@ -125,7 +125,7 @@
 
 ; group 25 (Saffron)
 	RGB 31,26,00, 31,15,00 ; morn/day
-	RGB 13,13,01, 08,08,01 ; nite
+	RGB 17,13,01, 14,08,01 ; nite
 	RGB 25,20,00, 25,11,00 ; eve
 
 ; group 26 (Cherrygrove)

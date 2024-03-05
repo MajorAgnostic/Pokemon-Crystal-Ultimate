@@ -6674,7 +6674,7 @@ SageGroup:
 	db -1 ; end
 
 	; SAGE (9)
-	db "JASON@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP
+	db "LI@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP
 	db 11, BELLSPROUT
 			db $bb, $bb
 			dw $0002, $0002, $0002, $0002, $0002
