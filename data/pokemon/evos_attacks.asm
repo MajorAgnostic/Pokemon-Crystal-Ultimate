@@ -2877,7 +2877,8 @@ GligarEvosAttacks:
 	db 34, SLASH
 	db 41, RAZOR_WIND
 	db 48, SCREECH
-	db 55, GUILLOTINE
+	db 55, EARTHQUAKE
+	db 62, GUILLOTINE
 	db 0 ; no more level-up moves
 
 SteelixEvosAttacks:
