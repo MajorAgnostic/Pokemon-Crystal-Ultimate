@@ -66,7 +66,7 @@ Director:
 	end
 
 TrainerExecutivef1:
-	trainer ARIANA, ARIANA2, EVENT_BEAT_ROCKET_EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, .Script
+	trainer ARIANA, ARIANA1, EVENT_BEAT_ROCKET_EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
