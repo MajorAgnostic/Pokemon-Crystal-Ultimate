@@ -8,15 +8,15 @@
 
 GoldenrodGym_MapScripts:
 	def_scene_scripts
-	scene_script GoldenrodGymNoop1Scene, SCENE_GOLDENRODGYM_NOOP
-	scene_script GoldenrodGymNoop2Scene, SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
+	scene_script .DummyScene0, SCENE_GOLDENRODGYM_NOOP
+	scene_script .DummyScene1, SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
 
 	def_callbacks
 
-GoldenrodGymNoop1Scene:
+.DummyScene0:
 	end
 
-GoldenrodGymNoop2Scene:
+.DummyScene1:
 	end
 
 GoldenrodGymWhitneyScript:
@@ -32,6 +32,7 @@ GoldenrodGymWhitneyScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY
+	clearevent EVENT_HOMEPPUP
 	setevent EVENT_MADE_WHITNEY_CRY
 	setscene SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
 	setevent EVENT_BEAT_BEAUTY_VICTORIA
@@ -59,6 +60,7 @@ GoldenrodGymWhitneyScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_PLAINBADGE
+	specialphonecall SPECIALCALL_GIFT
 	readvar VAR_BADGES
 	scall GoldenrodGymActivateRockets
 .GotPlainBadge:
@@ -240,10 +242,6 @@ WhitneyPlainBadgeText:
 	para "STRENGTH outside"
 	line "of battle."
 
-	para "It also boosts"
-	line "your #MON's"
-	cont "SPEED."
-
 	para "Oh, you can have"
 	line "this too!"
 	done
@@ -369,6 +367,10 @@ GoldenrodGymGuideText:
 	para "I recommend you"
 	line "use fighting-type"
 	cont "#MON."
+	
+	para "You just have to"
+	line "take the bull by"
+	cont "the horns!"
 	done
 
 GoldenrodGymGuideWinText:

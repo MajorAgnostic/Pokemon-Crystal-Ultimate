@@ -41,7 +41,7 @@ RedCredits::
 	ld [wMusicFadeID + 1], a
 	ld a, 10
 	ld [wMusicFade], a
-	farcall FadeOutToWhite
+	farcall FadeOutPalettes
 	xor a
 	ld [wStateFlags], a
 	ldh [hMapAnims], a
@@ -63,13 +63,12 @@ HallOfFame_FadeOutMusic:
 	ld [wMusicFadeID + 1], a
 	ld a, 10
 	ld [wMusicFade], a
-	farcall FadeOutToWhite
+	farcall FadeOutPalettes
 	xor a
 	ld [wStateFlags], a
 	ldh [hMapAnims], a
 	farcall InitDisplayForHallOfFame
-	ld c, 100
-	jp DelayFrames
+	ret
 
 HallOfFame_PlayMusicDE:
 	push de

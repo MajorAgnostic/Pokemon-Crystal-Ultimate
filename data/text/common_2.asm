@@ -375,7 +375,7 @@ _CantUseDigText::
 	done
 
 _TeleportReturnText::
-	text "Return to the last"
+	text "Returning to last"
 	line "#MON CENTER."
 	done
 
@@ -541,6 +541,40 @@ _CantCarryItemText::
 _WhitedOutText::
 	text "<PLAYER> is out of"
 	line "useable #MON!"
+
+	para "<PLAYER> whited"
+	line "out!"
+	done
+	
+_WhitedOutToWildMonText::
+	text "<PLAYER> is out of"
+	line "useable #MON!"
+
+	para "<PLAYER> panicked"
+	line "and dropped"
+	cont "¥@"
+	text_decimal hMoneyTemp, 3, 6
+	text "…"
+
+	para "<……><……><……>"
+	line "<……><……><……>"
+
+	para "<PLAYER> whited"
+	line "out!"
+	done
+
+_WhitedOutToTrainerText::
+	text "<PLAYER> is out of"
+	line "useable #MON!"
+
+	para "<PLAYER> paid"
+	line "¥@"
+	text_decimal hMoneyTemp, 3, 6
+	text " to the"
+	cont "winner…"
+
+	para "<……><……><……>"
+	line "<……><……><……>"
 
 	para "<PLAYER> whited"
 	line "out!"

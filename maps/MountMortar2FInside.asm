@@ -30,7 +30,7 @@ MountMortar2FInsideRareCandy:
 	itemball RARE_CANDY
 
 MountMortar2FInsideTMDefenseCurl:
-	itemball TM_DEFENSE_CURL
+	itemball NUGGET
 
 MountMortar2FInsideDragonScale:
 	itemball DRAGON_SCALE
@@ -60,8 +60,8 @@ SupernerdHughAfterBattleText:
 	para "Have you seen a"
 	line "trainer who has a"
 
-	para "SLOWPOKE that can"
-	line "use STRENGTH?"
+	para "SLOWKING that can"
+	line "use SPIKES?"
 	done
 
 MountMortar2FInside_MapEvents:

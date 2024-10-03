@@ -10,16 +10,16 @@ OverworldSprites:
 	overworld_sprite ChrisSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite ChrisBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite GameboyKidSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
-	overworld_sprite RivalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite SilverSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite OakSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite RedSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite BlueSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite BlueSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BillSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite ElderSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
-	overworld_sprite JanineSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite JanineSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite KurtSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite MomSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite BlaineSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite BlaineSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite RedsMomSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite DaisySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite ElmSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
@@ -27,19 +27,19 @@ OverworldSprites:
 	overworld_sprite FalknerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite WhitneySpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite BugsySpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite MortySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
-	overworld_sprite ChuckSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite JasmineSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite PryceSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
-	overworld_sprite ClairSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite MortySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite ChuckSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite JasmineSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite PryceSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite ClairSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BrockSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite KarenSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BrunoSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite MistySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite MistySpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite LanceSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite SurgeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite ErikaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite KogaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite KogaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite SabrinaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite CooltrainerMSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite CooltrainerFSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
@@ -69,13 +69,13 @@ OverworldSprites:
 	overworld_sprite ScientistSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite KimonoGirlSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite SageSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
-	overworld_sprite UnusedGuySpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED
 	overworld_sprite GentlemanSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BlackBeltSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite ReceptionistSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite OfficerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite CalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite SlowpokeSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
+	overworld_sprite SlowpokeSprite2GFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite CaptainSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite BigLaprasSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite GymGuideSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
@@ -84,29 +84,54 @@ OverworldSprites:
 	overworld_sprite PharmacistSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite MonsterSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite FairySpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite BirdSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite FarfetchdSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite DragonSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite BigOnixSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BROWN
-	overworld_sprite N64SpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
+	overworld_sprite BigOnixSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GRAY
+	overworld_sprite N64SpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
 	overworld_sprite SudowoodoSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
-	overworld_sprite SurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite PokeBallSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite PokedexSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite PaperSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
 	overworld_sprite VirtualBoySpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
-	overworld_sprite OldLinkReceptionistSpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED
-	overworld_sprite RockSpriteGFX, 4, STILL_SPRITE, PAL_OW_ROCK
-	overworld_sprite BoulderSpriteGFX, 4, STILL_SPRITE, PAL_OW_ROCK
-	overworld_sprite SnesSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
+	overworld_sprite RockSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
+	overworld_sprite BoulderSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
+	overworld_sprite SnesSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
 	overworld_sprite FamicomSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite FruitTreeSpriteGFX, 4, STILL_SPRITE, PAL_OW_TREE
 	overworld_sprite GoldTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
-	overworld_sprite SilverTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_EMOTE
+	overworld_sprite SilverTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
 	overworld_sprite KrisSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite KrisBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite KurtOutsideSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BROWN
 	overworld_sprite SuicuneSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
 	overworld_sprite EnteiSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
-	overworld_sprite RaikouSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
-	overworld_sprite StandingYoungsterSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
+	overworld_sprite RaikouSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
+	overworld_sprite NicholasSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GRAY
+	overworld_sprite ArcherSpriteGFX, 12, WALKING_SPRITE, PAL_OW_TEAL
+	overworld_sprite EusineSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
+	overworld_sprite ChrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite KrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite RattataSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
+	overworld_sprite GeodudeSpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
+	overworld_sprite RattataBackSpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
+	overworld_sprite ShellderSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
+	overworld_sprite OddishSpriteGFX, 4, STILL_SPRITE, PAL_OW_GREEN
+	overworld_sprite SquirtleSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
+	overworld_sprite DiglettSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
+	overworld_sprite StarmieSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
+	overworld_sprite BulbasaurSpriteGFX, 4, STILL_SPRITE, PAL_OW_TEAL
+	overworld_sprite GrimerSpriteGFX, 4, STILL_SPRITE, PAL_OW_PURPLE
+	overworld_sprite TentacoolSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
+	overworld_sprite MachopSpriteGFX, 4, STILL_SPRITE, PAL_OW_GRAY
+	overworld_sprite SlowbroSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
+	overworld_sprite AndreaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite HatGiovanniSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite RoughneckSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite ChrisRunSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+ 	overworld_sprite KrisRunSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite ExecutiveSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
+ 	overworld_sprite ArianaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite PetrelSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
+ 	overworld_sprite ProtonSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite MrFujiSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite KingSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	assert_table_length NUM_OVERWORLD_SPRITES

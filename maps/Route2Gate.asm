@@ -7,7 +7,42 @@ Route2Gate_MapScripts:
 	def_callbacks
 
 Route2GateScientistScript:
-	jumptextfaceplayer Route2GateScientistText
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_ROUTE2SHARE
+	iftrue .GotShare
+	writetext Route2GateScientistText
+	readvar VAR_DEXCAUGHT
+	ifgreater NUM_POKEMON - 154, .GiveShare
+	promptbutton
+	writetext Route2GateScientistNotEnoughText
+	waitbutton
+	closetext
+	end
+	
+.GiveShare:
+	promptbutton
+	writetext Route2GateScientistText3
+	promptbutton
+	verbosegiveitem EXP_SHARE
+	iffalse .NoRoom
+	setevent EVENT_GOT_ROUTE2SHARE
+	writetext Route2GateScientistText2
+	waitbutton
+	closetext
+	end
+	
+.NoRoom:
+	writetext Route2GateScientistNoRoomText
+	waitbutton
+	closetext
+	end
+	
+.GotShare:
+	writetext Route2GateScientistText2
+	waitbutton
+	closetext
+	end
 
 Route2GateScientistText:
 	text "Are you <PLAY_G>?"
@@ -21,6 +56,50 @@ Route2GateScientistText:
 	para "PROF.OAK's LAB is"
 	line "nearby in PALLET"
 	cont "TOWN."
+	
+	para "By the by, could I"
+	line "take a gander at"
+	cont "your #DEX?"
+	
+	para "Hmm…"
+	done
+	
+Route2GateScientistNotEnoughText:
+	text "I see, this isn't"
+	line "bad, <PLAY_G>!"
+	
+	para "Keep up the good"
+	line "work. If you ob-"
+	
+	para "tain at least 100"
+	line "#MON, I will"
+	cont "give you an EXP."
+	cont "SHARE!"
+	
+	para "If you drop by the"
+	line "LAB, say hello to"
+	cont "PROF.OAK for me."
+	done
+	
+Route2GateScientistText2:
+	text "If you drop by the"
+	line "LAB, say hello to"
+	cont "PROF.OAK for me."
+	done
+	
+Route2GateScientistText3:
+	text "Wow! You've caught"
+	line "over 100 species!"
+	cont "You deserve this."
+	done
+	
+Route2GateScientistNoRoomText:
+	text "It seems as though"
+	line "you have no more"
+	cont "room for this."
+	
+	para "Drop by again once"
+	line "you've made room."
 	done
 
 Route2Gate_MapEvents:

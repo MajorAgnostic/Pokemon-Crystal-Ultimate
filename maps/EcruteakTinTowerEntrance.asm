@@ -6,19 +6,19 @@
 
 EcruteakTinTowerEntrance_MapScripts:
 	def_scene_scripts
-	scene_script EcruteakTinTowerEntranceNoop1Scene, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS
-	scene_script EcruteakTinTowerEntranceNoop2Scene, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
+	scene_script .DummyScene0, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS
+	scene_script .DummyScene1, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, EcruteakTinTowerEntranceInitializeSagesCallback
+	callback MAPCALLBACK_OBJECTS, .InitializeSages
 
-EcruteakTinTowerEntranceNoop1Scene:
+.DummyScene0:
 	end
 
-EcruteakTinTowerEntranceNoop2Scene:
+.DummyScene1:
 	end
 
-EcruteakTinTowerEntranceInitializeSagesCallback:
+.InitializeSages:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .DontBlockTower
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
@@ -41,27 +41,27 @@ EcruteakTinTowerEntranceInitializeSagesCallback:
 	clearevent EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
 	endcallback
 
-EcruteakTinTowerEntranceSageBlocksLeft:
+EcruteakTinTowerEntrance_CoordEvent1:
 	checkevent EVENT_RANG_CLEAR_BELL_2
-	iftrue EcruteakTinTowerEntranceAlreadyBlocked
-	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE2, EcruteakTinTowerEntranceSageBlocksLeftMovement
+	iftrue EcruteakTinTowerEntrance_CoordEvent_DontMove
+	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE2, MovementData_0x980c7
 	moveobject ECRUTEAKTINTOWERENTRANCE_SAGE1, 4, 6
 	appear ECRUTEAKTINTOWERENTRANCE_SAGE1
 	pause 5
 	disappear ECRUTEAKTINTOWERENTRANCE_SAGE2
 	end
 
-EcruteakTinTowerEntranceSageBlocksRight:
+EcruteakTinTowerEntrance_CoordEvent2:
 	checkevent EVENT_RANG_CLEAR_BELL_1
-	iftrue EcruteakTinTowerEntranceAlreadyBlocked
-	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE1, EcruteakTinTowerEntranceSageBlocksRightMovement
+	iftrue EcruteakTinTowerEntrance_CoordEvent_DontMove
+	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE1, MovementData_0x980cc
 	moveobject ECRUTEAKTINTOWERENTRANCE_SAGE2, 5, 6
 	appear ECRUTEAKTINTOWERENTRANCE_SAGE2
 	pause 5
 	disappear ECRUTEAKTINTOWERENTRANCE_SAGE1
 	end
 
-EcruteakTinTowerEntranceAlreadyBlocked:
+EcruteakTinTowerEntrance_CoordEvent_DontMove:
 	end
 
 EcruteakTinTowerEntranceSageScript:
@@ -135,14 +135,14 @@ EcruteakTinTowerEntranceWanderingSageScript:
 EcruteakTinTowerEntranceGrampsScript:
 	jumptextfaceplayer EcruteakTinTowerEntranceGrampsText
 
-EcruteakTinTowerEntranceSageBlocksLeftMovement:
+MovementData_0x980c7:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
 	turn_head DOWN
 	step_end
 
-EcruteakTinTowerEntranceSageBlocksRightMovement:
+MovementData_0x980cc:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
@@ -286,8 +286,8 @@ EcruteakTinTowerEntrance_MapEvents:
 	warp_event 17,  3, WISE_TRIOS_ROOM, 3
 
 	def_coord_events
-	coord_event  4,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksLeft
-	coord_event  5,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksRight
+	coord_event  4,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntrance_CoordEvent1
+	coord_event  5,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntrance_CoordEvent2
 
 	def_bg_events
 

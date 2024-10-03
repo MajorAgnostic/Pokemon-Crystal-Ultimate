@@ -41,12 +41,14 @@ CianwoodGymChuckScript:
 	loadtrainer CHUCK, CHUCK1
 	startbattle
 	reloadmapafterbattle
+	loadmem wLevelCap, 60
 	setevent EVENT_BEAT_CHUCK
 	opentext
 	writetext GetStormBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_STORMBADGE
+	specialphonecall SPECIALCALL_GIFT
 	readvar VAR_BADGES
 	scall CianwoodGymActivateRockets
 .FightDone:
@@ -202,8 +204,9 @@ ChuckExplainBadgeText:
 	text "STORMBADGE makes"
 	line "all #MON up to"
 
-	para "L70 obey, even"
-	line "traded ones."
+	para "L60 obey and able"
+	line "to grow, even"
+	cont "traded ones."
 
 	para "It also lets your"
 	line "#MON use FLY"

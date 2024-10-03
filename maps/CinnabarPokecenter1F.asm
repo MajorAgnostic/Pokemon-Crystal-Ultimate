@@ -21,9 +21,16 @@ CinnabarPokecenter1FCooltrainerFText:
 	text "CINNABAR GYM's"
 	line "BLAINE apparently"
 
-	para "lives alone in the"
-	line "SEAFOAM ISLANDS"
-	cont "cave…"
+	para "started a new GYM"
+	line "in the SEAFOAM"
+	cont "ISLANDS."
+	
+	para "I heard that the"
+	line "left side of the"
+	cont "GYM quizzes you"
+	
+	para "and the right side"
+	line "battles you."
 	done
 
 CinnabarPokecenter1FFisherText:

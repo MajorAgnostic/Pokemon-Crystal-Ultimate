@@ -679,7 +679,7 @@ BattleCommand_CheckObedience:
 
 	; stormbadge
 	bit STORMBADGE, [hl]
-	ld a, 70
+	ld a, 60
 	jr nz, .getlevel
 
 	; fogbadge
@@ -689,11 +689,11 @@ BattleCommand_CheckObedience:
 
 	; hivebadge
 	bit HIVEBADGE, [hl]
-	ld a, 30
+	ld a, 40
 	jr nz, .getlevel
 
 	; no badges
-	ld a, 10
+	ld a, 30
 
 .getlevel
 ; c = obedience level
@@ -1252,12 +1252,6 @@ BattleCommand_Stab:
 	pop bc
 	pop de
 	pop hl
-
-	push de
-	push bc
-	farcall DoBadgeTypeBoosts
-	pop bc
-	pop de
 
 	ld a, [wCurType]
 	cp b
@@ -2083,7 +2077,6 @@ BattleCommand_FailureText:
 	inc hl
 	ld a, [hl]
 
-; BUG: Beat Up may fail to raise Substitute (see docs/bugs_and_glitches.md)
 	cp EFFECT_MULTI_HIT
 	jr z, .multihit
 	cp EFFECT_DOUBLE_HIT
@@ -2409,8 +2402,6 @@ BattleCommand_CheckFaint:
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_TRIPLE_KICK
-	jr z, .multiple_hit_raise_sub
-	cp EFFECT_BEAT_UP
 	jr nz, .finish
 
 .multiple_hit_raise_sub
@@ -2769,9 +2760,19 @@ SpeciesItemBoost:
 	ret nz
 
 ; Double the stat
-; BUG: Thick Club and Light Ball can make (Special) Attack wrap around above 1024 (see docs/bugs_and_glitches.md)
 	sla l
 	rl h
+	
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+
+.cap
+	ld hl, MAX_STAT_VALUE
 	ret
 
 EnemyAttackDamage:
@@ -2852,8 +2853,6 @@ EnemyAttackDamage:
 	and a
 	ret
 
-INCLUDE "engine/battle/move_effects/beat_up.asm"
-
 BattleCommand_ClearMissDamage:
 	ld a, [wAttackMissed]
 	and a
@@ -2913,10 +2912,6 @@ BattleCommand_DamageCalc:
 	inc c
 
 .dont_selfdestruct
-
-; Variable-hit moves and Conversion can have a power of 0.
-	cp EFFECT_MULTI_HIT
-	jr z, .skip_zero_damage_check
 
 	cp EFFECT_CONVERSION
 	jr z, .skip_zero_damage_check
@@ -3543,8 +3538,6 @@ DoSubstituteDamage:
 	jr z, .ok
 	cp EFFECT_TRIPLE_KICK
 	jr z, .ok
-	cp EFFECT_BEAT_UP
-	jr z, .ok
 	xor a
 	ld [hl], a
 .ok
@@ -3822,6 +3815,91 @@ PoisonOpponent:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set PSN, [hl]
+	jp UpdateOpponentInParty
+	
+BattleCommand_Burn:
+; burn
+
+	ld hl, DoesntAffectText
+	ld a, [wTypeModifier]
+	and $7f
+	jp z, .failed
+
+	call CheckIfTargetIsFireType
+	jp z, .failed
+
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	ld b, a
+	ld hl, AlreadyBurnedText
+	and 1 << BRN
+	jp nz, .failed
+
+	call GetOpponentItem
+	ld a, b
+	cp HELD_PREVENT_BURN
+	jr nz, .do_burn
+	ld a, [hl]
+	ld [wNamedObjectIndex], a
+	call GetItemName
+	ld hl, ProtectedByText
+	jr .failed
+
+.do_burn
+	ld hl, DidntAffect1Text
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	jr nz, .failed
+
+	call CheckSubstituteOpp
+	jr nz, .failed
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .failed2
+
+	call .apply_burn
+	ld hl, WasBurnedText
+	call StdBattleTextbox
+	jr .finished
+
+.finished
+	farcall UseHeldStatusHealingItem
+	ret
+
+.failed
+	push hl
+	call AnimateFailedMove
+	pop hl
+	jp StdBattleTextbox
+	
+.failed2
+	jp PrintDidntAffect2
+
+.apply_burn
+	call AnimateCurrentMove
+	call BurnOpponent
+	jp RefreshBattleHuds
+
+CheckIfTargetIsFireType:
+	ld de, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld de, wBattleMonType1
+.ok
+	ld a, [de]
+	inc de
+	cp FIRE
+	ret z
+	ld a, [de]
+	cp FIRE
+	ret
+
+BurnOpponent:
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set BRN, [hl]
 	jp UpdateOpponentInParty
 
 BattleCommand_DrainTarget:
@@ -4749,6 +4827,38 @@ BattleCommand_Curl:
 	call GetBattleVarAddr
 	set SUBSTATUS_CURLED, [hl]
 	ret
+	
+BattleCommand_CheckGrassType:
+; checkgrasstype - new to Ultimate
+    ld a, [wTypeModifier]
+    and $7f
+    jp z, .failed
+
+    call CheckIfTargetIsGrassType
+    ret nz
+	
+.failed
+	push hl
+	call AnimateFailedMove
+	pop hl
+	ld a, $01
+    ld [wAttackMissed], a
+    ret
+	
+CheckIfTargetIsGrassType:
+	ld de, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld de, wBattleMonType1
+.ok
+	ld a, [de]
+	inc de
+	cp GRASS
+	ret z
+	ld a, [de]
+	cp GRASS
+	ret
 
 BattleCommand_RaiseSubNoAnim:
 	ld hl, GetBattleMonBackpic
@@ -4781,9 +4891,6 @@ CalcPlayerStats:
 
 	ld a, NUM_BATTLE_STATS
 	call CalcBattleStats
-
-	ld hl, BadgeStatBoosts
-	call CallBattleCore
 
 	call BattleCommand_SwitchTurn
 
@@ -4955,7 +5062,7 @@ SetBattleDraw:
 
 BattleCommand_ForceSwitch:
 	ld a, [wBattleType]
-	cp BATTLETYPE_FORCESHINY
+	cp BATTLETYPE_SHINY
 	jp z, .fail
 	cp BATTLETYPE_TRAP
 	jp z, .fail
@@ -5225,8 +5332,6 @@ BattleCommand_EndLoop:
 	ld a, 1
 	jr z, .double_hit
 	ld a, [hl]
-	cp EFFECT_BEAT_UP
-	jr z, .beat_up
 	cp EFFECT_TRIPLE_KICK
 	jr nz, .not_triple_kick
 .reject_triple_kick_sample
@@ -5238,34 +5343,6 @@ BattleCommand_EndLoop:
 	ld a, 1
 	ld [bc], a
 	jr .done_loop
-
-.beat_up
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .check_ot_beat_up
-	ld a, [wPartyCount]
-	cp 1
-	jp z, .only_one_beatup
-	dec a
-	jr .double_hit
-
-.check_ot_beat_up
-	ld a, [wBattleMode]
-	cp WILD_BATTLE
-	jp z, .only_one_beatup
-	ld a, [wOTPartyCount]
-	cp 1
-	jp z, .only_one_beatup
-	dec a
-	jr .double_hit
-
-.only_one_beatup
-; BUG: Beat Up works incorrectly with only one Pokémon in the party (see docs/bugs_and_glitches.md)
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	res SUBSTATUS_IN_LOOP, [hl]
-	call BattleCommand_BeatUpFailText
-	jp EndMoveEffect
 
 .not_triple_kick
 	call BattleRandom
@@ -5304,10 +5381,6 @@ BattleCommand_EndLoop:
 .got_hit_n_times_text
 
 	push bc
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_BEAT_UP
-	jr z, .beat_up_2
 	call StdBattleTextbox
 .beat_up_2
 
@@ -5603,10 +5676,6 @@ BattleCommand_Charge:
 .BattleDugText:
 	text_far _BattleDugText
 	text_end
-
-BattleCommand_Unused3C:
-; effect0x3c
-	ret
 
 BattleCommand_TrapTarget:
 	ld a, [wAttackMissed]
@@ -6352,10 +6421,6 @@ INCLUDE "engine/battle/move_effects/sandstorm.asm"
 
 INCLUDE "engine/battle/move_effects/rollout.asm"
 
-BattleCommand_Unused5D:
-; effect0x5d
-	ret
-
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"
 
 INCLUDE "engine/battle/move_effects/attract.asm"
@@ -6506,8 +6571,6 @@ INCLUDE "engine/battle/move_effects/rain_dance.asm"
 INCLUDE "engine/battle/move_effects/sunny_day.asm"
 
 INCLUDE "engine/battle/move_effects/belly_drum.asm"
-
-INCLUDE "engine/battle/move_effects/psych_up.asm"
 
 INCLUDE "engine/battle/move_effects/mirror_coat.asm"
 

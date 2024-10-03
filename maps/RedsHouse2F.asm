@@ -1,3 +1,7 @@
+	object_const_def
+	const REDSHOUSE2F_POKE_BALL1
+	const REDSHOUSE2F_POKE_BALL2
+
 RedsHouse2F_MapScripts:
 	def_scene_scripts
 
@@ -8,6 +12,12 @@ RedsHouse2FN64Script:
 
 RedsHouse2FPCScript:
 	jumptext RedsHouse2FPCText
+	
+RedsHouse2FBrickPiece:
+	itemball BRICK_PIECE
+
+RedsHouse2FBigOnixDoll:
+	itemball BIG_ONIX_DOLL
 
 RedsHouse2FN64Text:
 	text "<PLAYER> played the"
@@ -36,3 +46,5 @@ RedsHouse2F_MapEvents:
 	bg_event  0,  1, BGEVENT_READ, RedsHouse2FPCScript
 
 	def_object_events
+	object_event  6,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RedsHouse2FBrickPiece, EVENT_HOMEBRICKPIECE
+	object_event  5,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RedsHouse2FBigOnixDoll, EVENT_HOMEBIGONIXDOLL

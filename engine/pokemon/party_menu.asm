@@ -77,6 +77,7 @@ WritePartyMenuTilemap:
 	dw PlacePartyMonEvoStoneCompatibility
 	dw PlacePartyMonGender
 	dw PlacePartyMonMobileBattleSelection
+	dw PlacePartyMonGenderStats
 
 PlacePartyNicknames:
 	hlcoord 3, 1
@@ -269,7 +270,7 @@ PlacePartyMonStatus:
 	ret z
 	ld c, a
 	ld b, 0
-	hlcoord 5, 2
+	hlcoord 4, 2
 .loop
 	push bc
 	push hl
@@ -385,7 +386,6 @@ PlacePartyMonEvoStoneCompatibility:
 	ret
 
 .DetermineCompatibility:
-; BUG: Only the first three evolution entries can have Stone compatibility reported correctly (see docs/bugs_and_glitches.md)
 	ld de, wStringBuffer1
 	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
@@ -396,7 +396,7 @@ PlacePartyMonEvoStoneCompatibility:
 	ld l, a
 	ld de, wStringBuffer1
 	ld a, BANK("Evolutions and Attacks")
-	ld bc, 10
+	ld bc, STRING_BUFFER_LENGTH
 	call FarCopyBytes
 	ld hl, wStringBuffer1
 .loop2
@@ -426,6 +426,49 @@ PlacePartyMonEvoStoneCompatibility:
 	db "ABLE@"
 .string_not_able
 	db "NOT ABLE@"
+	
+PlacePartyMonGenderStats:
+	ld a, [wPartyCount]
+	and a
+	ret z
+	ld c, a
+	ld b, 0
+	hlcoord 7, 2
+.loop
+	push bc
+	push hl
+	call PartyMenuCheckEgg
+	jr z, .next
+	ld [wCurPartySpecies], a
+	push hl
+	ld a, b
+	ld [wCurPartyMon], a
+	xor a
+	ld [wMonType], a
+	call GetGender
+	ld de, .unknown
+	jr c, .got_gender
+	ld de, .male
+	jr nz, .got_gender
+	ld de, .female
+.got_gender
+	pop hl
+	call PlaceString
+.next
+	pop hl
+	ld de, 2 * SCREEN_WIDTH
+	add hl, de
+	pop bc
+	inc b
+	dec c
+	jr nz, .loop
+	ret
+.male
+	db "♂@"
+.female
+	db "♀@"
+.unknown
+	db "@"
 
 PlacePartyMonGender:
 	ld a, [wPartyCount]

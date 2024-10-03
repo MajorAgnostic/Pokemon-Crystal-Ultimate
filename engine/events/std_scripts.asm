@@ -65,6 +65,8 @@ PokecenterNurseScript:
 	iftrue .morn
 	checktime DAY
 	iftrue .day
+	checktime EVE
+	iftrue .eve
 	checktime NITE
 	iftrue .nite
 	sjump .ok
@@ -88,6 +90,17 @@ PokecenterNurseScript:
 	sjump .ok
 .day_comcenter
 	farwritetext PokeComNurseDayText
+	promptbutton
+	sjump .ok
+	
+.eve
+	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
+	iftrue .eve_comcenter
+	farwritetext NurseEveText
+	promptbutton
+	sjump .ok
+.eve_comcenter
+	farwritetext PokeComNurseEveText
 	promptbutton
 	sjump .ok
 
@@ -359,8 +372,8 @@ BugContestResults_DidNotLeaveMons:
 	waitbutton
 BugContestResults_CleanUp:
 	closetext
-	setscene SCENE_ROUTE36NATIONALPARKGATE_NOOP
-	setmapscene ROUTE_35_NATIONAL_PARK_GATE, SCENE_ROUTE35NATIONALPARKGATE_NOOP
+	setscene SCENE_ROUTE36NATIONALPARKGATE_NOTHING
+	setmapscene ROUTE_35_NATIONAL_PARK_GATE, SCENE_ROUTE35NATIONALPARKGATE_NOTHING
 	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_3A
@@ -478,6 +491,16 @@ BugContestResults_CopyContestantsToResults:
 	end
 
 InitializeEventsScript:
+	setevent EVENT_HOMEPIKAPOSTER
+	setevent EVENT_HOMEPPUP
+	setevent EVENT_HOMESNES
+	setevent EVENT_HOMEVOLTORBDOLL
+	setevent EVENT_HOMEUPGRADE
+	setevent EVENT_HOMEBIGLAPRASDOLL
+	setevent EVENT_HOMEBRICKPIECE
+	setevent EVENT_HOMEBIGONIXDOLL
+	setevent EVENT_HOMEUSELESS7
+	setevent EVENT_HOMEUSELESS8
 	setevent EVENT_EARLS_ACADEMY_EARL
 	setevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	setevent EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
@@ -584,18 +607,22 @@ InitializeEventsScript:
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	setevent EVENT_CIANWOOD_CITY_EUSINE
 	setevent EVENT_TIN_TOWER_1F_EUSINE
+	setevent EVENT_TIN_TOWER_1F_MORTY ; Ultimate
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	setevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_36
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
 	setevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	setevent EVENT_BATTLE_TOWER_OPEN_CIVILIANS
+	setevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	setflag ENGINE_ROCKET_SIGNAL_ON_CH20
 	setflag ENGINE_ROCKETS_IN_MAHOGANY
-	variablesprite SPRITE_WEIRD_TREE, SPRITE_SUDOWOODO
-	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_RIVAL
-	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_ROCKET
+	setflag ENGINE_FEDERATION_IN_FUCHSIA ; Ultimate
+	setevent EVENT_BEAT_FED1_1
+	setevent EVENT_GUY_FREED
+	setevent EVENT_GUY_FREED2
+	setevent EVENT_SUSPICIOUS_BOOK
+	setevent EVENT_NO_JANINE
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
@@ -613,6 +640,20 @@ InitializeEventsScript:
 	setevent EVENT_MT_MOON_SQUARE_CLEFAIRY
 	setevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
+	setevent EVENT_NO_E4_REMATCH
+	setevent EVENT_DOJO_KIYO
+	setevent EVENT_GOT_DOJOPOKE
+	setevent EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
+	setevent EVENT_ROUTE26_LEFTOVERS
+	setevent EVENT_BOULDER_IN_SEAFOAM_3
+	setevent EVENT_BOULDER_IN_SEAFOAM_4
+	setevent EVENT_BOULDER_IN_SEAFOAM_5
+	setevent EVENT_BOULDER_IN_SEAFOAM_6
+	setevent EVENT_BOULDER_IN_SEAFOAM_7
+	setevent EVENT_BOULDER_IN_SEAFOAM_8
+	setevent EVENT_BOULDER_IN_SEAFOAM_13
+	setevent EVENT_BOULDER_IN_SEAFOAM_14
+	setevent EVENT_ADAM_APPEARS
 	setevent EVENT_INITIALIZED_EVENTS
 	endcallback
 
@@ -1808,6 +1849,7 @@ CoinVendor_IntroScript:
 	closewindow
 	ifequal 1, .Buy50
 	ifequal 2, .Buy500
+	ifequal 3, .Buy2500
 	sjump .Cancel
 
 .Buy50:
@@ -1835,6 +1877,19 @@ CoinVendor_IntroScript:
 	farwritetext CoinVendor_Buy500CoinsText
 	waitbutton
 	sjump .loop
+	
+.Buy2500:
+	checkcoins MAX_COINS - 2500
+	ifequal HAVE_MORE, .CoinCaseFull
+	checkmoney YOUR_MONEY, 50000
+	ifequal HAVE_LESS, .NotEnoughMoney
+	givecoins 2500
+	takemoney YOUR_MONEY, 50000
+	waitsfx
+	playsound SFX_TRANSACTION
+	farwritetext CoinVendor_Buy2500CoinsText
+	waitbutton
+	sjump .loop
 
 .NotEnoughMoney:
 	farwritetext CoinVendor_NotEnoughMoneyText
@@ -1856,15 +1911,16 @@ CoinVendor_IntroScript:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 4, 15, TEXTBOX_Y - 1
+	menu_coords 0, 2, 14, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
-	db 3 ; items
-	db " 50 :  ¥1000@"
-	db "500 : ¥10000@"
+	db 4 ; items
+	db "  50:  ¥1000@"
+	db " 500: ¥10000@"
+	db "2500: ¥50000@"
 	db "CANCEL@"
 
 HappinessCheckScript:

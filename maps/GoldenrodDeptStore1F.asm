@@ -67,7 +67,8 @@ GoldenrodDeptStore1FDirectoryText:
 	para "3F BATTLE"
 	line "   COLLECTION"
 
-	para "4F MEDICINE BOX"
+	para "4F NUTRIENTS"
+	line "   & STONES"
 
 	para "5F TM CORNER"
 

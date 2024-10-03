@@ -23,6 +23,9 @@ MountMoonGiftShopLassText:
 	text "When the sun goes"
 	line "down, CLEFAIRY"
 	cont "come out to play."
+	
+	para "But only on MON-"
+	line "DAY nights!"
 	done
 
 MountMoonGiftShop_MapEvents:

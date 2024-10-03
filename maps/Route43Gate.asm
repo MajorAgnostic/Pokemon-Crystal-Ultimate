@@ -1,4 +1,4 @@
-DEF ROUTE43GATE_TOLL EQU 1000
+DEF ROUTE43GATE_TOLL EQU 2000
 
 	object_const_def
 	const ROUTE43GATE_OFFICER
@@ -7,20 +7,20 @@ DEF ROUTE43GATE_TOLL EQU 1000
 
 Route43Gate_MapScripts:
 	def_scene_scripts
-	scene_script Route43GateRocketShakedownScene, SCENE_ROUTE43GATE_ROCKET_SHAKEDOWN
-	scene_script Route43GateNoopScene,            SCENE_ROUTE43GATE_NOOP
+	scene_script .RocketShakedown, SCENE_43GATE_DEFAULT
+	scene_script .DummyScene, SCENE_43GATE_FINISHED
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, Route43GateCheckIfRocketsCallback
+	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
-Route43GateRocketShakedownScene:
-	sdefer Route43GateRocketTakeoverScript
+.RocketShakedown:
+	prioritysjump .RocketTakeover
 	end
 
-Route43GateNoopScene:
+.DummyScene:
 	end
 
-Route43GateCheckIfRocketsCallback:
+.CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
 	setmapscene ROUTE_43, 0 ; Route 43 does not have a scene variable
@@ -30,12 +30,12 @@ Route43GateCheckIfRocketsCallback:
 	setmapscene ROUTE_43, 1 ; Route 43 does not have a scene variable
 	endcallback
 
-Route43GateRocketTakeoverScript:
+.RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	readvar VAR_FACING
 	ifequal DOWN, RocketScript_Southbound
 	ifequal UP, RocketScript_Northbound
-	setscene SCENE_ROUTE43GATE_NOOP
+	setscene SCENE_43GATE_FINISHED
 	end
 
 RocketScript_Southbound:
@@ -67,7 +67,7 @@ RocketScript_ShakeDownSouth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
-	setscene SCENE_ROUTE43GATE_NOOP
+	setscene SCENE_43GATE_FINISHED
 	special RestartMapMusic
 	end
 
@@ -99,30 +99,30 @@ RocketScript_ShakeDownNorth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
-	setscene SCENE_ROUTE43GATE_NOOP
+	setscene SCENE_43GATE_FINISHED
 	special RestartMapMusic
 	end
 
 RocketScript_MakingABundle:
 	jumptextfaceplayer RocketText_MakingABundle
 
-OfficerScript_GuardWithSludgeBomb:
+OfficerScript_GuardWithGigaDrain:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
-	iftrue .GotSludgeBomb
+	checkevent EVENT_GOT_TM19_GIGA_DRAIN
+	iftrue .GotGigaDrain
 	writetext OfficerText_FoundTM
 	promptbutton
-	verbosegiveitem TM_SLUDGE_BOMB
-	iffalse .NoRoomForSludgeBomb
-	setevent EVENT_GOT_TM36_SLUDGE_BOMB
+	verbosegiveitem TM_GIGA_DRAIN
+	iffalse .NoRoomForGigaDrain
+	setevent EVENT_GOT_TM19_GIGA_DRAIN
 	closetext
 	end
 
-.GotSludgeBomb:
+.GotGigaDrain:
 	writetext OfficerText_AvoidGrass
 	waitbutton
-.NoRoomForSludgeBomb:
+.NoRoomForGigaDrain:
 	closetext
 	end
 
@@ -196,7 +196,7 @@ RocketText_TollFee:
 	text "Hold it there,"
 	line "kiddo!"
 
-	para "The toll is ¥{d:ROUTE43GATE_TOLL}"
+	para "The toll is ¥2000"
 	line "to go through."
 	done
 
@@ -234,11 +234,6 @@ OfficerText_FoundTM:
 	cont "you take it away?"
 	done
 
-Text_ReceivedTM30: ; unreferenced
-	text "<PLAYER> received"
-	line "TM30."
-	done
-
 OfficerText_AvoidGrass:
 	text "Use this gate to"
 	line "avoid walking in"
@@ -259,6 +254,6 @@ Route43Gate_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithGigaDrain, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event  2,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
 	object_event  7,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS

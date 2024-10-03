@@ -6,11 +6,11 @@
 
 AzaleaPokecenter1F_MapScripts:
 	def_scene_scripts
-	scene_script AzaleaPokecenter1FNoopScene ; unusable
+	scene_script .DummyScene
 
 	def_callbacks
 
-AzaleaPokecenter1FNoopScene:
+.DummyScene:
 	end
 
 AzaleaPokecenter1FNurseScript:
@@ -36,7 +36,7 @@ AzaleaPokecenter1FGentlemanText:
 	line "fainted."
 	done
 
-AzaleaPokecenter1FUnusedText: ; unreferenced
+AzaleaPokecenter1FFishingGuruText:
 	text "This BILL guy"
 	line "created the system"
 
@@ -44,12 +44,6 @@ AzaleaPokecenter1FUnusedText: ; unreferenced
 	line "#MON in a PC."
 
 	para "BILL's PC can"
-	line "store up to 20"
-	cont "#MON per BOX."
-	done
-
-AzaleaPokecenter1FFishingGuruText:
-	text "BILL's PC can"
 	line "store up to 20"
 	cont "#MON per BOX."
 	done

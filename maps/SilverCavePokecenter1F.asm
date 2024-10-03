@@ -23,8 +23,8 @@ SilverCavePokecenter1FGrannyText:
 	para "With their trusted"
 	line "#MON, they must"
 
-	para "feel they can go"
-	line "anywhere…"
+	para "feel like they can"
+	line "go anywhere…"
 	done
 
 SilverCavePokecenter1F_MapEvents:

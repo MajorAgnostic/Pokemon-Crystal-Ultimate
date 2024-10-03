@@ -3,11 +3,11 @@
 
 Route6SaffronGate_MapScripts:
 	def_scene_scripts
-	scene_script Route6SaffronGateNoopScene ; unusable
+	scene_script .DummyScene
 
 	def_callbacks
 
-Route6SaffronGateNoopScene:
+.DummyScene:
 	end
 
 Route6SaffronGuardScript:
@@ -30,21 +30,6 @@ Route6SaffronGuardWelcomeText:
 	text "Welcome to SAFFRON"
 	line "CITY, home of the"
 	cont "MAGNET TRAIN!"
-
-	para "…That's what I'd"
-	line "normally say, but"
-
-	para "the MAGNET TRAIN"
-	line "isn't running now."
-
-	para "It's not getting"
-	line "any electricity"
-
-	para "because there's"
-	line "something wrong"
-
-	para "with the POWER"
-	line "PLANT."
 	done
 
 Route6SaffronGuardMagnetTrainText:

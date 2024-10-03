@@ -18,19 +18,24 @@ VioletPokecenter1F_ElmsAideScript:
 	opentext
 	checkevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	iftrue .SecondTimeAsking
+	checkevent EVENT_BEAT_WHITNEY
+	iftrue .SkipCall
+	checkevent EVENT_HOMEPIKAPOSTER
+	iftrue .SkipCall
+	specialphonecall SPECIALCALL_GIFT
+.SkipCall:
 	writetext VioletPokecenterElmsAideFavorText
 .AskTakeEgg:
 	yesorno
 	iffalse .RefusedEgg
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .PartyFull
-	giveegg TOGEPI, EGG_LEVEL
+	giveegg TOGEPI, 10
 	getstring STRING_BUFFER_4, .eggname
 	scall .AideGivesEgg
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
 	clearevent EVENT_TOGEPI_HATCHED
-	setmapscene ROUTE_32, SCENE_ROUTE32_OFFER_SLOWPOKETAIL
 	writetext VioletPokecenterElmsAideGiveEggText
 	waitbutton
 	closetext
@@ -157,7 +162,8 @@ VioletPokecenterElmsAideAskEggText:
 	line "take the EGG?"
 	done
 
-VioletPokecenterFarawayLinkText: ; unreferenced
+; unused
+VioletPokecenterFarawayLinkText:
 	text "I've been thinking"
 	line "it'd be great to"
 
@@ -168,7 +174,8 @@ VioletPokecenterFarawayLinkText: ; unreferenced
 	line "far away."
 	done
 
-VioletPokecenterMobileAdapterText: ; unreferenced
+; unused
+VioletPokecenterMobileAdapterText:
 	text "I just battled a"
 	line "friend in CIANWOOD"
 	cont "over a link."

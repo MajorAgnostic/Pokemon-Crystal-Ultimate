@@ -1,7 +1,13 @@
+	object_const_def
+	const ROUTE7_POKE_BALL
+
 Route7_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	
+Route7LeafStone:
+	itemball LEAF_STONE
 
 Route7UndergroundPathSign:
 	jumptext Route7UndergroundPathSignText
@@ -46,3 +52,4 @@ Route7_MapEvents:
 	bg_event  6,  9, BGEVENT_READ, Route7LockedDoor
 
 	def_object_events
+	object_event 17,  0, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route7LeafStone, EVENT_ROUTE_7_LEAF_STONE

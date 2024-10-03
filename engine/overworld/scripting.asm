@@ -189,8 +189,8 @@ ScriptCommandTable:
 	dw Script_changeblock                ; 7a
 	dw Script_reloadmap                  ; 7b
 	dw Script_refreshmap                 ; 7c
-	dw Script_writecmdqueue              ; 7d
-	dw Script_delcmdqueue                ; 7e
+	dw Script_usestonetable              ; 7d
+	dw Script_clearstonetable            ; 7e
 	dw Script_playmusic                  ; 7f
 	dw Script_encountermusic             ; 80
 	dw Script_musicfadeout               ; 81
@@ -1175,6 +1175,8 @@ Script_reloadmapafterbattle:
 	ld hl, wBattleScriptFlags
 	ld d, [hl]
 	ld [hl], 0
+	ld hl, wWildBattlePanic
+	ld [hl], d
 	ld a, [wBattleResult]
 	and ~BATTLERESULT_BITMASK
 	cp LOSE
@@ -1267,9 +1269,6 @@ ScriptCall:
 	ret
 
 CallCallback::
-	ld a, [wScriptBank]
-	or $80
-	ld [wScriptBank], a
 	jp ScriptCall
 
 Script_sjump:
@@ -2112,25 +2111,17 @@ Script_dontrestartmapmusic:
 	ld [wDontPlayMapMusicOnReload], a
 	ret
 
-Script_writecmdqueue:
+Script_usestonetable:
 	call GetScriptByte
-	ld e, a
+	ld [wStoneTableAddress], a
 	call GetScriptByte
-	ld d, a
-	ld a, [wScriptBank]
-	ld b, a
-	farcall WriteCmdQueue ; no need to farcall
+	ld [wStoneTableAddress+1], a
 	ret
 
-Script_delcmdqueue:
+Script_clearstonetable:
 	xor a
-	ld [wScriptVar], a
-	call GetScriptByte
-	ld b, a
-	farcall DelCmdQueue ; no need to farcall
-	ret c
-	ld a, TRUE
-	ld [wScriptVar], a
+	ld [wStoneTableAddress], a
+	ld [wStoneTableAddress+1], a
 	ret
 
 Script_changemapblocks:
@@ -2289,7 +2280,6 @@ ExitScriptSubroutine:
 	add hl, de
 	ld a, [hli]
 	ld b, a
-	and $7f
 	ld [wScriptBank], a
 	ld a, [hli]
 	ld e, a

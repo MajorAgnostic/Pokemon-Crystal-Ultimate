@@ -4,19 +4,19 @@
 
 MrPokemonsHouse_MapScripts:
 	def_scene_scripts
-	scene_script MrPokemonsHouseMeetMrPokemonScene, SCENE_MRPOKEMONSHOUSE_MEET_MR_POKEMON
-	scene_script MrPokemonsHouseNoopScene,          SCENE_MRPOKEMONSHOUSE_NOOP
+	scene_script .MeetMrPokemon, SCENE_MRPOKEMON_DEFAULT
+	scene_script .DummyScene, SCENE_MRPOKEMON_FINISHED
 
 	def_callbacks
 
-MrPokemonsHouseMeetMrPokemonScene:
-	sdefer MrPokemonsHouseMrPokemonEventScript
+.MeetMrPokemon:
+	prioritysjump .MrPokemonEvent
 	end
 
-MrPokemonsHouseNoopScene:
+.DummyScene:
 	end
 
-MrPokemonsHouseMrPokemonEventScript:
+.MrPokemonEvent:
 	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
 	turnobject MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	opentext
@@ -50,8 +50,8 @@ MrPokemonsHouseMrPokemonEventScript:
 MrPokemonsHouse_MrPokemonScript:
 	faceplayer
 	opentext
-	checkitem RED_SCALE
-	iftrue .RedScale
+	checkitem DARK_SCALE
+	iftrue .DarkScale
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue .AlwaysNewDiscoveries
 	writetext MrPokemonText_ImDependingOnYou
@@ -65,13 +65,13 @@ MrPokemonsHouse_MrPokemonScript:
 	closetext
 	end
 
-.RedScale:
+.DarkScale:
 	writetext MrPokemonText_GimmeTheScale
 	yesorno
 	iffalse .refused
-	verbosegiveitem EXP_SHARE
+	verbosegiveitem LUCKY_EGG
 	iffalse .full
-	takeitem RED_SCALE
+	takeitem DARK_SCALE
 	sjump .AlwaysNewDiscoveries
 
 .refused
@@ -108,13 +108,13 @@ MrPokemonsHouse_OakScript:
 	writetext MrPokemonsHouse_MrPokemonHealText
 	waitbutton
 	closetext
-	special FadeOutToBlack
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
 	special StubbedTrainerRankings_Healings
 	special HealParty
 	pause 60
-	special FadeInFromBlack
+	special FadeInQuickly
 	special RestartMapMusic
 	opentext
 	writetext MrPokemonText_ImDependingOnYou
@@ -123,7 +123,7 @@ MrPokemonsHouse_OakScript:
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_PLAYERS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR
-	setscene SCENE_MRPOKEMONSHOUSE_NOOP
+	setscene SCENE_MRPOKEMON_FINISHED
 	setmapscene CHERRYGROVE_CITY, SCENE_CHERRYGROVECITY_MEET_RIVAL
 	setmapscene ELMS_LAB, SCENE_ELMSLAB_MEET_OFFICER
 	specialphonecall SPECIALCALL_ROBBED
@@ -233,7 +233,7 @@ MrPokemonText_ImDependingOnYou:
 
 MrPokemonText_AlwaysNewDiscoveries:
 	text "Life is delight-"
-	line "ful! Always, new"
+	line "ful! Always new"
 
 	para "discoveries to be"
 	line "made!"
@@ -329,7 +329,7 @@ MrPokemonsHouse_OakText2:
 MrPokemonText_GimmeTheScale:
 	text "Hm? That SCALE!"
 	line "What's that?"
-	cont "A red GYARADOS?"
+	cont "A dark GYARADOS?"
 
 	para "That's rare! "
 	line "I, I want it…"
@@ -338,7 +338,7 @@ MrPokemonText_GimmeTheScale:
 	line "care to trade it?"
 
 	para "I can offer this"
-	line "EXP.SHARE I got"
+	line "LUCKY EGG I got"
 	cont "from PROF.OAK."
 	done
 

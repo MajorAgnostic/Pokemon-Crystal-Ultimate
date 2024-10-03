@@ -36,9 +36,9 @@ EngineFlags:
 	engine_flag wStatusFlags2, STATUSFLAGS2_SAFARI_GAME_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_BIKE_SHOP_CALL_F
-	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_5_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_REACHED_GOLDENROD_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_FEDERATION_IN_FUCHSIA_F
 
 	engine_flag wBikeFlags, BIKEFLAGS_STRENGTH_ACTIVE_F
 	engine_flag wBikeFlags, BIKEFLAGS_ALWAYS_ON_BIKE_F
@@ -78,6 +78,7 @@ EngineFlags:
 	engine_flag wVisitedSpawns, SPAWN_PALLET
 	engine_flag wVisitedSpawns, SPAWN_VIRIDIAN
 	engine_flag wVisitedSpawns, SPAWN_PEWTER
+	engine_flag wVisitedSpawns, SPAWN_MT_MOON
 	engine_flag wVisitedSpawns, SPAWN_CERULEAN
 	engine_flag wVisitedSpawns, SPAWN_ROCK_TUNNEL
 	engine_flag wVisitedSpawns, SPAWN_VERMILION
@@ -110,7 +111,6 @@ EngineFlags:
 	engine_flag wDailyFlags1, DAILYFLAGS1_FISH_SWARM_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_TIME_CAPSULE_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_ALL_FRUIT_TREES_F
-	engine_flag wDailyFlags1, DAILYFLAGS1_GOT_SHUCKIE_TODAY_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_TRAINER_HOUSE_F
 

@@ -1156,13 +1156,13 @@ BattleTowerRoomMenu_PlacePickLevelMenu:
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr nz, .asm_11896b
-	ld hl, Strings_Ll0ToL40 ; Address to list of strings with the choosable levels
-	ld a, 5                 ; 4 levels to choose from, including 'Cancel'-option
+	ld hl, Strings_L50 ; Address to list of strings with the choosable levels
+	ld a, 2              ; 2 levels to choose from, including 'Cancel'-option
 	jr .asm_118970
-
+	
 .asm_11896b
-	ld hl, Strings_L10ToL100 ; Address to list of strings with the choosable levels
-	ld a, 11                 ; 10 levels to choose from, including 'Cancel'-option
+	ld hl, Strings_L50ToL100 ; Address to list of strings with the choosable levels
+	ld a, 3                ; 3 levels to choose from, including 'Cancel'-option
 
 .asm_118970
 	ld [wcd4a], a
@@ -3870,28 +3870,14 @@ MenuData_119cff: ; unreferenced
 String_119d07:
 	db "   ▼@"
 
-Strings_L10ToL100:
-	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
+Strings_L50:
 	db " L:50 @@"
-	db " L:60 @@"
-	db " L:70 @@"
-	db " L:80 @@"
-	db " L:90 @@"
+	db "CANCEL@@"
+
+Strings_L50ToL100:
+	db " L:50 @@"
 	db " L:100@@"
 	db "CANCEL@@"
-
-Strings_Ll0ToL40:
-	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
-	db "CANCEL@@"
-
-BattleTowerCancelString: ; unreferenced
-	db "CANCEL@"
 
 BattleTower_LevelCheck:
 	ldh a, [rSVBK]
@@ -3899,10 +3885,13 @@ BattleTower_LevelCheck:
 	ld a, BANK(wPartyMons)
 	ldh [rSVBK], a
 	ld a, [wcd4f]
-	ld c, 10
-	call SimpleMultiply
+	ld b, 50
+	dec a
+	jr z, .got_level
+	ld b, 100
+.got_level:
 	ld hl, wcd50
-	ld [hl], a
+	ld [hl], b
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wPartyMon1Level
 	ld a, [wPartyCount]
@@ -3941,8 +3930,8 @@ BattleTower_UbersCheck:
 	ldh a, [rSVBK]
 	push af
 	ld a, [wcd4f]
-	cp 70 / 10
-	jr nc, .level_70_or_more
+	cp 2
+	jr z, .level_100_tier
 	ld a, BANK(wPartyMons)
 	ldh [rSVBK], a
 	ld hl, wPartyMon1Level
@@ -3962,7 +3951,7 @@ BattleTower_UbersCheck:
 	jr nc, .next
 .uber
 	ld a, [hl]
-	cp 70
+	cp 90
 	jr c, .uber_under_70
 .next
 	add hl, bc
@@ -3970,7 +3959,7 @@ BattleTower_UbersCheck:
 	pop af
 	dec a
 	jr nz, .loop
-.level_70_or_more
+.level_100_tier
 	pop af
 	ldh [rSVBK], a
 	and a
@@ -5470,11 +5459,9 @@ Text_PartyMonTopsThisLevel:
 
 Text_UberRestriction:
 	text_ram wcd49
-	text " may go"
-	line "only to BATTLE"
-
-	para "ROOMS that are"
-	line "Lv.70 or higher."
+	text " may only"
+	line "enter BATTLE ROOM"
+	cont "Lv.100."
 	done
 
 Text_CancelBattleRoomChallenge:

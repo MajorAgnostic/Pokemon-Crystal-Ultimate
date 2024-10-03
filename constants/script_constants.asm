@@ -145,25 +145,6 @@ DEF NUM_BGEVENTS EQU const_value
 	const OBJECTTYPE_6
 DEF NUM_OBJECT_TYPES EQU const_value
 
-; command queue members
-rsreset
-DEF CMDQUEUE_TYPE            rb
-DEF CMDQUEUE_ADDR            rb
-DEF CMDQUEUE_02              rb
-DEF CMDQUEUE_03              rb
-DEF CMDQUEUE_04              rb
-DEF CMDQUEUE_JUMPTABLE_INDEX rb
-DEF CMDQUEUE_ENTRY_SIZE EQU _RS
-DEF CMDQUEUE_CAPACITY EQU 4
-
-; HandleQueuedCommand.Jumptable indexes (see engine/overworld/events.asm)
-	const_def
-	const CMDQUEUE_NULL
-	const CMDQUEUE_TYPE1
-	const CMDQUEUE_STONETABLE
-	const CMDQUEUE_TYPE3
-	const CMDQUEUE_TYPE4
-DEF NUM_CMDQUEUE_TYPES EQU const_value
 
 ; elevfloor macro values
 ; ElevatorFloorNames indexes (see data/events/elevator_floors.asm)
@@ -238,6 +219,8 @@ DEF EMOTE_LENGTH EQU 6
 	const FRUITTREE_PEWTER_CITY_1 ; 1c
 	const FRUITTREE_PEWTER_CITY_2 ; 1d
 	const FRUITTREE_FUCHSIA_CITY  ; 1e
+	const FRUITTREE_FUCHSIA_CITY2 ; 1f
+	const FRUITTREE_ROUTE_14      ; 20
 DEF NUM_FRUIT_TREES EQU const_value - 1
 
 ; describedecoration arguments
@@ -326,3 +309,4 @@ DEF NUM_UNOWN_PUZZLES EQU const_value
 	const MOVETUTOR_FLAMETHROWER ; 1
 	const MOVETUTOR_THUNDERBOLT  ; 2
 	const MOVETUTOR_ICE_BEAM     ; 3
+	const MOVETUTOR_ROCK_SLIDE

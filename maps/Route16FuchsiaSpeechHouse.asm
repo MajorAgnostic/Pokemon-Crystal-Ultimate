@@ -7,17 +7,129 @@ Route16FuchsiaSpeechHouse_MapScripts:
 	def_callbacks
 
 Route16FuchsiaSpeechHouseSuperNerdScript:
-	jumptextfaceplayer Route16FuchsiaSpeechHouseSuperNerdText
+	faceplayer
+	opentext
+	checkevent EVENT_ENTIREFLYMAP
+	iftrue .Finished
+	checkflag ENGINE_FLYPOINT_SILVER_CAVE
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_MT_MOON
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_PALLET
+	iffalse .Intro
+	writetext UnlockEntireFlyMapText
+	promptbutton
+	verbosegiveitem SILVER_LEAF
+	iffalse .BagFull
+	setevent EVENT_ENTIREFLYMAP
+	writetext ReceivedLeafText
+	waitbutton
+.BagFull:
+	closetext
+	end
+	
+.Finished:
+	writetext FinishedText
+	waitbutton
+	closetext
+	end
+	
+.Intro:
+	writetext IntroText
+	waitbutton
+	closetext
+	end
 
 Route16FuchsiaSpeechHouseBookshelf:
 	jumpstd PictureBookshelfScript
 
-Route16FuchsiaSpeechHouseSuperNerdText:
+IntroText:
 	text "If you cruise down"
 	line "CYCLING ROAD, you"
 
 	para "will end up in"
 	line "FUCHSIA CITY."
+	
+	para "But it's much more"
+	line "convenient to get"
+	cont "around using FLY."
+	
+	para "Tell you what, if"
+	line "you visit every"
+	
+	para "single location in"
+	line "the world, I will"
+	
+	para "show you how to"
+	line "FLY anywhere."
+	done
+	
+UnlockEntireFlyMapText:
+	text "If you cruise down"
+	line "CYCLING ROAD, you"
+
+	para "will end up in"
+	line "FUCHSIA CITY."
+	
+	para "But it's much more"
+	line "convenient to get"
+	cont "around using FLY."
+	
+	para "Tell you what, if"
+	line "you visit every"
+	
+	para "single location in"
+	line "the world, I will"
+	
+	para "show you how to"
+	line "FLY anywhere."
+	
+	para "What's that? You"
+	line "already traveled"
+	
+	para "around the whole"
+	line "world?"
+	
+	para "I'm impressed!"
+	
+	para "As promised, I'll"
+	line "share my secret"
+	cont "with you."
+	done
+	
+ReceivedLeafText:
+	text "This SILVER LEAF"
+	line "seems to possess"
+	
+	para "the ability to"
+	line "propel a #MON"
+	
+	para "through strong"
+	line "air currents."
+	
+	para "I wonder if that"
+	line "power comes from"
+	
+	para "the silver #-"
+	line "MON of storms…"
+	
+	para "Anyway, this can"
+	line "get your flying"
+	cont "#MON across"
+	cont "regions!"
+	
+	para "How amazing is"
+	line "that?"
+	done
+	
+FinishedText:
+	text "I hope you enjoy"
+	line "your travels to"
+	cont "the fullest."
+	
+	para "And make sure to"
+	line "hold on to that"
+	cont "SILVER LEAF!"
 	done
 
 Route16FuchsiaSpeechHouse_MapEvents:

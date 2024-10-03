@@ -9,7 +9,6 @@
 	const ROUTE35_SUPER_NERD
 	const ROUTE35_OFFICER
 	const ROUTE35_FRUIT_TREE
-	const ROUTE35_POKE_BALL
 
 Route35_MapScripts:
 	def_scene_scripts
@@ -32,7 +31,6 @@ TrainerJugglerIrwin:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_JUGGLER_IRWIN
-	endifjustbattled
 	opentext
 	checkcellnum PHONE_JUGGLER_IRWIN
 	iftrue Route35NumberAcceptedM
@@ -131,7 +129,6 @@ TrainerBugCatcherArnie:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
-	endifjustbattled
 	opentext
 	checkflag ENGINE_ARNIE_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -160,29 +157,17 @@ TrainerBugCatcherArnie:
 .WantsBattle:
 	scall Route35RematchM
 	winlosstext BugCatcherArnieBeatenText, 0
-	readmem wArnieFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .LoadFight4
-.Fight3:
-	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .LoadFight3
-.Fight2:
 	checkflag ENGINE_FLYPOINT_BLACKTHORN
+	iftrue .LoadFight4
+	checkflag ENGINE_FLYPOINT_MAHOGANY
+	iftrue .LoadFight3
+	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight2
-.Fight1:
-	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
+	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	reloadmapafterbattle
-	loadmem wArnieFightCount, 1
 	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
@@ -190,7 +175,6 @@ TrainerBugCatcherArnie:
 	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	reloadmapafterbattle
-	loadmem wArnieFightCount, 2
 	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
@@ -198,7 +182,6 @@ TrainerBugCatcherArnie:
 	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	reloadmapafterbattle
-	loadmem wArnieFightCount, 3
 	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
@@ -206,7 +189,6 @@ TrainerBugCatcherArnie:
 	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	reloadmapafterbattle
-	loadmem wArnieFightCount, 4
 	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
@@ -268,11 +250,14 @@ TrainerOfficerDirk:
 Route35Sign:
 	jumptext Route35SignText
 
-Route35TMRollout:
-	itemball TM_ROLLOUT
-
 Route35FruitTree:
 	fruittree FRUITTREE_ROUTE_35
+	
+Route32ShortcutSign:
+	jumptext Route32ShortcutSignText
+	
+Route35HiddenRareCandy:
+	hiddenitem RARE_CANDY, EVENT_ROUTE_35_HIDDEN_CANDY
 
 CamperIvanSeenText:
 	text "I've been getting"
@@ -455,9 +440,14 @@ OfficerDirkPrettyToughText:
 	para "You could go any-"
 	line "where safely."
 	done
-
+	
 Route35SignText:
 	text "ROUTE 35"
+	done
+
+Route32ShortcutSignText:
+	text "FOREST SHORTCUT"
+	line "TO ROUTE 32"
 	done
 
 Route35_MapEvents:
@@ -467,12 +457,15 @@ Route35_MapEvents:
 	warp_event  9, 33, ROUTE_35_GOLDENROD_GATE, 1
 	warp_event 10, 33, ROUTE_35_GOLDENROD_GATE, 2
 	warp_event  3,  5, ROUTE_35_NATIONAL_PARK_GATE, 3
+	warp_event 19, 26, ROUTE_32, 5
+	warp_event 19, 27, ROUTE_32, 6
 
 	def_coord_events
 
 	def_bg_events
-	bg_event  1,  7, BGEVENT_READ, Route35Sign
-	bg_event 11, 31, BGEVENT_READ, Route35Sign
+	bg_event  8, 30, BGEVENT_READ, Route35Sign
+	bg_event 14, 26, BGEVENT_READ, Route32ShortcutSign
+	bg_event  7, 11, BGEVENT_ITEM, Route35HiddenRareCandy
 
 	def_object_events
 	object_event  4, 19, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerCamperIvan, -1
@@ -485,4 +478,3 @@ Route35_MapEvents:
 	object_event  5, 10, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerJugglerIrwin, -1
 	object_event  5,  6, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TrainerOfficerDirk, -1
 	object_event  2, 25, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route35FruitTree, -1
-	object_event 13, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route35TMRollout, EVENT_ROUTE_35_TM_ROLLOUT

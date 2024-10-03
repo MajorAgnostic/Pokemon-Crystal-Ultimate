@@ -1,7 +1,7 @@
 	object_const_def
 	const ROUTE21_SWIMMER_GIRL
 	const ROUTE21_SWIMMER_GUY
-	const ROUTE21_FISHER
+	const ROUTE21_YOUNGSTER
 
 Route21_MapScripts:
 	def_scene_scripts
@@ -37,6 +37,17 @@ TrainerFisherArnold:
 	endifjustbattled
 	opentext
 	writetext FisherArnoldAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerKinsley:
+	trainer BIRD_KEEPER, KINSLEY, EVENT_BEAT_KINSLEY, KinsleySeenText, KinsleyBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext KinsleyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -86,6 +97,25 @@ FisherArnoldAfterBattleText:
 	text "I'll just go back"
 	line "to fishing…"
 	done
+	
+KinsleySeenText:
+	text "Surrounding your-"
+	line "self with bird"
+	cont "#MON gives you"
+	cont "the feeling that"
+	cont "you can fly too!"
+	done
+
+KinsleyBeatenText:
+	text "I couldn't fly…"
+	done
+
+KinsleyAfterBattleText:
+	text "I guess I just"
+	line "need to practice"
+	cont "flapping my wings"
+	cont "more!"
+	done
 
 Route21_MapEvents:
 	db 0, 0 ; filler
@@ -98,5 +128,6 @@ Route21_MapEvents:
 
 	def_object_events
 	object_event 11, 16, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNikki, -1
-	object_event  2, 30, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerSwimmermSeth, -1
+	object_event  3, 25, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerSwimmermSeth, -1
 	object_event 14, 22, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherArnold, -1
+	object_event  9, 30, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerKinsley, -1

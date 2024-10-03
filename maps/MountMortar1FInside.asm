@@ -56,7 +56,7 @@ MountMortar1FInsideNugget:
 	itemball NUGGET
 
 MountMortar1FInsideIron:
-	itemball IRON
+	itemball FULL_HEAL
 
 MountMortar1FInsideUltraBall:
 	itemball ULTRA_BALL

@@ -20,7 +20,7 @@ RandyScript:
 	writetext Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText
 	yesorno
 	iffalse .refused
-	writetext Route35GoldenrodGateRandyThanksText
+	writetext Route35GoldenrodGateRandyThanksKidText
 	promptbutton
 	waitsfx
 	readvar VAR_PARTYCOUNT
@@ -28,7 +28,7 @@ RandyScript:
 	writetext Route35GoldenrodGatePlayerReceivedAMonWithMailText
 	playsound SFX_KEY_ITEM
 	waitsfx
-	givepoke SPEAROW, 10, NO_ITEM, GiftSpearowName, GiftSpearowOTName
+	givepoke SPEAROW, 20, NO_ITEM, TRUE, GiftSpearowName, GiftSpearowOTName
 	givepokemail GiftSpearowMail
 	setevent EVENT_GOT_KENYA
 .alreadyhavekenya
@@ -52,7 +52,7 @@ RandyScript:
 .questcomplete
 	writetext Route35GoldenrodGateRandySomethingForYourTroubleText
 	promptbutton
-	verbosegiveitem HP_UP
+	verbosegiveitem EON_MAIL
 	iffalse .bagfull
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
 .gothpup
@@ -73,7 +73,7 @@ GiftSpearowName:
 GiftSpearowOTName:
 	db "RANDY@"
 
-	db 0 ; unused
+	db 0 ; filler
 
 Route35GoldenrodGatePokefanFScript:
 	faceplayer
@@ -106,7 +106,7 @@ Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText:
 	para "He's on ROUTE 31."
 	done
 
-Route35GoldenrodGateRandyThanksText:
+Route35GoldenrodGateRandyThanksKidText:
 	text "You will? Perfect!"
 	line "Thanks, kid!"
 

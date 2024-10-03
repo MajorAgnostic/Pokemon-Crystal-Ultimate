@@ -24,7 +24,7 @@ BillScript:
 	writetext ReceivedEeveeText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke EEVEE, 20
+	givepoke EEVEE, 25
 	setevent EVENT_GOT_EEVEE
 	writetext BillEeveeMayEvolveText
 	waitbutton
@@ -44,6 +44,41 @@ BillScript:
 	end
 
 .GotEevee:
+	checkevent EVENT_GOT_POCKETPC
+	iftrue .PopWontWork
+	writetext BillPocketPCQuestText
+	waitbutton
+	writetext BillGiveAwayASoftSandText
+	yesorno
+	iffalse .NoSoftSand
+	takeitem SOFT_SAND
+	iffalse .NoSoftSand
+	writetext BillPlayerGaveAwayTheSoftSandText
+	waitbutton
+	writetext BillThisIsForYouText
+	waitbutton
+	verbosegiveitem POCKET_PC
+	iffalse .NoRoom2
+	setevent EVENT_GOT_POCKETPC
+	writetext BillPocketPCExplanationText
+	waitbutton
+	closetext
+	end
+	
+.NoSoftSand:
+	writetext BillTooBadText
+	waitbutton
+	closetext
+	end
+	
+.NoRoom2:
+	giveitem SOFT_SAND
+	writetext BillAnotherTimeThenText
+	waitbutton
+	closetext
+	end
+	
+.PopWontWork:
 	writetext BillPopWontWorkText
 	waitbutton
 	closetext
@@ -162,6 +197,75 @@ BillPartyFullText:
 BillNoEeveeText:
 	text "Oh… Now what to"
 	line "do?"
+	done
+	
+BillPocketPCQuestText:
+	text "BILL: Hey, so I'm"
+	line "looking for a SOFT"
+
+	para "SAND. It's pretty"
+	line "rare, so if you"
+
+	para "find one for me, I"
+	line "will let you try"
+	
+	para "out my new POCKET"
+	line "PC prototype!"
+	
+	para "So, do you have"
+	line "one?"
+	done
+	
+BillGiveAwayASoftSandText:
+	text "Give away a SOFT"
+	line "SAND?"
+	done
+	
+BillTooBadText:
+	text "You don't have one?"
+	line "Well, let me know"
+	cont "when you do!"
+	done
+	
+BillPlayerGaveAwayTheSoftSandText:
+	text "<PLAYER> gave away"
+	line "the SOFT SAND."
+	done
+	
+BillAnotherTimeThenText:
+	text "Oh… Well, another"
+	line "time, then."
+	done
+	
+BillThisIsForYouText:
+	text "Excellent, thank"
+	line "you! As promised,"
+
+	para "here is my POCKET"
+	line "PC!"
+	done
+	
+BillPocketPCExplanationText:
+	text "As I've mentioned"
+	line "before, this is a"
+	
+	para "prototype, so you"
+	line "can only use it to"
+	cont "deposit #MON."
+	
+	para "Be careful not to"
+	line "deposit a #MON"
+	
+	para "that knows an HM"
+	line "required to leave"
+	cont "an area."
+	
+	para "You don't want to"
+	line "get stranded!"
+	
+	para "Anyway, I hope it"
+	line "proves useful to"
+	cont "you."
 	done
 
 BillPopWontWorkText:

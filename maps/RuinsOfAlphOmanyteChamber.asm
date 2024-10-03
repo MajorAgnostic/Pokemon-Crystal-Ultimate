@@ -1,25 +1,25 @@
 RuinsOfAlphOmanyteChamber_MapScripts:
 	def_scene_scripts
-	scene_script RuinsOfAlphOmanyteChamberCheckWallScene, SCENE_RUINSOFALPHOMANYTECHAMBER_CHECK_WALL
-	scene_script RuinsOfAlphOmanyteChamberNoopScene,      SCENE_RUINSOFALPHOMANYTECHAMBER_NOOP
+	scene_script .CheckWall, SCENE_OMANYTE_DEFAULT
+	scene_script .DummyScene, SCENE_OMANYTE_FINISHED
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, RuinsOfAlphOmanyteChamberHiddenDoorsCallback
+	callback MAPCALLBACK_TILES, .HiddenDoors
 
-RuinsOfAlphOmanyteChamberCheckWallScene:
+.CheckWall:
 	special OmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .OpenWall
 	end
 
 .OpenWall:
-	sdefer RuinsOfAlphOmanyteChamberWallOpenScript
+	prioritysjump .WallOpenScript
 	end
 
-RuinsOfAlphOmanyteChamberNoopScene:
+.DummyScene:
 	end
 
-RuinsOfAlphOmanyteChamberHiddenDoorsCallback:
+.HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .WallOpen
 	changeblock 4, 0, $2e ; closed wall
@@ -33,21 +33,21 @@ RuinsOfAlphOmanyteChamberHiddenDoorsCallback:
 	changeblock 4, 2, $02 ; right floor
 	endcallback
 
-RuinsOfAlphOmanyteChamberWallOpenScript:
+.WallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20
 	pause 30
 	playsound SFX_STRENGTH
 	changeblock 4, 0, $30 ; open wall
-	refreshmap
+	reloadmappart
 	earthquake 50
-	setscene SCENE_RUINSOFALPHOMANYTECHAMBER_NOOP
+	setscene SCENE_OMANYTE_FINISHED
 	closetext
 	end
 
 RuinsOfAlphOmanyteChamberPuzzle:
-	reanchormap
+	refreshscreen
 	setval UNOWNPUZZLE_OMANYTE
 	special UnownPuzzle
 	closetext
@@ -63,7 +63,7 @@ RuinsOfAlphOmanyteChamberPuzzle:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole
 	changeblock 4, 2, $19 ; right hole
-	refreshmap
+	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
 	applymovement PLAYER, RuinsOfAlphOmanyteChamberSkyfallTopMovement
@@ -113,7 +113,8 @@ RuinsOfAlphOmanyteChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphOmanyteChamberUnownText: ; unreferenced
+RuinsOfAlphOmanyteChamberUnownText:
+; unused
 	text "It's UNOWN text!"
 	done
 

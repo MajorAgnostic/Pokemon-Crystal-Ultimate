@@ -111,21 +111,21 @@ CeladonGameCornerPoster2Script:
 CeladonGameCornerLuckySlotMachineScript:
 	random 6
 	ifequal 0, CeladonGameCornerSlotMachineScript
-	reanchormap
+	refreshscreen
 	setval FALSE
 	special SlotMachine
 	closetext
 	end
 
 CeladonGameCornerSlotMachineScript:
-	reanchormap
+	refreshscreen
 	setval TRUE
 	special SlotMachine
 	closetext
 	end
 
 CeladonGameCornerCardFlipScript:
-	reanchormap
+	refreshscreen
 	special CardFlip
 	closetext
 	end
@@ -140,11 +140,6 @@ CeladonGameCornerSodaCanScript:
 	special CardFlip
 	closetext
 	end
-
-CeladonGameCornerUnusedMovementData: ; unreferenced
-	step RIGHT
-	turn_head LEFT
-	step_end
 
 CeladonGameCornerReceptionistText:
 	text "Welcome!"
@@ -271,6 +266,17 @@ endc
 
 	para "But I don't have"
 	line "enough coins yet…"
+	
+	para "What's that? You"
+	line "want my advice for"
+	cont "taking on ERIKA?"
+	
+	para "I would make it a"
+	line "point to bring a"
+	
+	para "#MON that knows"
+	line "SANDSTORM or RAIN"
+	cont "DANCE."
 	done
 
 CeladonGameCornerGrampsText:

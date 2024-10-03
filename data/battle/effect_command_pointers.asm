@@ -52,6 +52,7 @@ BattleCommandPointers:
 	dw BattleCommand_Transform
 	dw BattleCommand_Screen
 	dw BattleCommand_Poison
+	dw BattleCommand_Burn ; Ultimate
 	dw BattleCommand_Paralyze
 	dw BattleCommand_Substitute
 	dw BattleCommand_RechargeNextTurn
@@ -64,7 +65,6 @@ BattleCommandPointers:
 	dw BattleCommand_Charge
 	dw BattleCommand_CheckCharge
 	dw BattleCommand_TrapTarget
-	dw BattleCommand_Unused3C
 	dw BattleCommand_Rampage
 	dw BattleCommand_CheckRampage
 	dw BattleCommand_ConstantDamage
@@ -97,7 +97,6 @@ BattleCommandPointers:
 	dw BattleCommand_Endure
 	dw BattleCommand_CheckCurl
 	dw BattleCommand_RolloutPower
-	dw BattleCommand_Unused5D
 	dw BattleCommand_FuryCutter
 	dw BattleCommand_Attract
 	dw BattleCommand_HappinessPower
@@ -154,7 +153,6 @@ BattleCommandPointers:
 	dw BattleCommand_SwitchTurn
 	dw BattleCommand_FakeOut
 	dw BattleCommand_BellyDrum
-	dw BattleCommand_PsychUp
 	dw BattleCommand_Rage
 	dw BattleCommand_DoubleFlyingDamage
 	dw BattleCommand_DoubleUndergroundDamage
@@ -165,14 +163,12 @@ BattleCommandPointers:
 	dw BattleCommand_SkipSunCharge
 	dw BattleCommand_ThunderAccuracy
 	dw BattleCommand_Teleport
-	dw BattleCommand_BeatUp
 	dw BattleCommand_RageDamage
 	dw BattleCommand_ResetTypeMatchup
 	dw BattleCommand_AllStatsUp
 	dw BattleCommand_BideFailText
 	dw BattleCommand_RaiseSubNoAnim
 	dw BattleCommand_LowerSubNoAnim
-	dw BattleCommand_BeatUpFailText
 	dw BattleCommand_ClearMissDamage
 	dw BattleCommand_MoveDelay
 	dw BattleCommand_MoveAnim
@@ -180,4 +176,5 @@ BattleCommandPointers:
 	dw BattleCommand_SuperEffectiveLoopText
 	dw BattleCommand_StartLoop
 	dw BattleCommand_Curl
+	dw BattleCommand_CheckGrassType ; Ultimate
 	assert_table_length NUM_EFFECT_COMMANDS

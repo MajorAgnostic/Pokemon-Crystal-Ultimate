@@ -9,11 +9,31 @@ RuinsOfAlphKabutoItemRoom_MapScripts:
 
 	def_callbacks
 
-RuinsOfAlphKabutoItemRoomBerry:
-	itemball BERRY
+RuinsOfAlphKabutoItemRoomKabuto:
+	opentext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	disappear RUINSOFALPHKABUTOITEMROOM_POKE_BALL1
+	setevent EVENT_GOT_KABUTO
+	writetext FoundKabutoText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke KABUTO, 10
+	closetext
+	end
+	
+.NoRoom
+	writetext FoundKabutoText
+	waitsfx
+	promptbutton
+	writetext KabutoPartyFullText
+	waitbutton
+	closetext
+	end
 
 RuinsOfAlphKabutoItemRoomPsncureberry:
-	itemball PSNCUREBERRY
+	itemball PEARL
 
 RuinsOfAlphKabutoItemRoomHealPowder:
 	itemball HEAL_POWDER
@@ -23,6 +43,17 @@ RuinsOfAlphKabutoItemRoomEnergypowder:
 
 RuinsOfAlphKabutoItemRoomAncientReplica:
 	jumptext RuinsOfAlphKabutoItemRoomAncientReplicaText
+	
+FoundKabutoText:
+	text "<PLAYER> found"
+	line "KABUTO!"
+	done
+	
+KabutoPartyFullText:
+	text "But there's no"
+	line "more room left"
+	cont "in the party…"
+	done
 
 RuinsOfAlphKabutoItemRoomAncientReplicaText:
 	text "It's a replica of"
@@ -46,7 +77,7 @@ RuinsOfAlphKabutoItemRoom_MapEvents:
 	bg_event  5,  1, BGEVENT_READ, RuinsOfAlphKabutoItemRoomAncientReplica
 
 	def_object_events
-	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphKabutoItemRoomBerry, EVENT_PICKED_UP_BERRY_FROM_KABUTO_ITEM_ROOM
+	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoItemRoomKabuto, EVENT_GOT_KABUTO
 	object_event  5,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphKabutoItemRoomPsncureberry, EVENT_PICKED_UP_PSNCUREBERRY_FROM_KABUTO_ITEM_ROOM
 	object_event  2,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphKabutoItemRoomHealPowder, EVENT_PICKED_UP_HEAL_POWDER_FROM_KABUTO_ITEM_ROOM
 	object_event  5,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphKabutoItemRoomEnergypowder, EVENT_PICKED_UP_ENERGYPOWDER_FROM_KABUTO_ITEM_ROOM

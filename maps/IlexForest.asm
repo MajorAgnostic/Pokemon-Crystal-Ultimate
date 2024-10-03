@@ -7,17 +7,21 @@
 	const ILEXFOREST_KURT
 	const ILEXFOREST_LASS
 	const ILEXFOREST_YOUNGSTER2
+	const ILEXFOREST_LASS2
+	const ILEXFOREST_YOUNGSTER3
+	const ILEXFOREST_YOUNGSTER4
 	const ILEXFOREST_POKE_BALL2
 	const ILEXFOREST_POKE_BALL3
 	const ILEXFOREST_POKE_BALL4
+	const ILEXFOREST_POKE_BALL5
 
 IlexForest_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, IlexForestFarfetchdCallback
+	callback MAPCALLBACK_OBJECTS, .FarfetchdCallback
 
-IlexForestFarfetchdCallback:
+.FarfetchdCallback:
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Static
 	readmem wFarfetchdPosition
@@ -395,6 +399,39 @@ TrainerBugCatcherWayne:
 	waitbutton
 	closetext
 	end
+	
+TrainerPicnickerBeth:
+	trainer PICNICKER, BETH, EVENT_BEAT_PICNICKER_BETH, PicnickerBethSeenText, PicnickerBethBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext PicnickerBethAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerBugCatcherTobias:
+	trainer BUG_CATCHER, TOBIAS, EVENT_BEAT_BUG_CATCHER_TOBIAS, BugCatcherTobiasSeenText, BugCatcherTobiasBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext BugCatcherTobiasAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerBugCatcherAdam:
+	trainer BUG_CATCHER, ADAM, EVENT_BEAT_BUG_CATCHER_ADAM, BugCatcherAdamSeenText, BugCatcherAdamBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext BugCatcherAdamAfterBattleText
+	waitbutton
+	closetext
+	end
 
 IlexForestLassScript:
 	jumptextfaceplayer Text_IlexForestLass
@@ -410,17 +447,30 @@ IlexForestAntidote:
 
 IlexForestEther:
 	itemball ETHER
+	
+IlexForestSilverpowder:
+	itemball SILVERPOWDER
 
 IlexForestHiddenEther:
-	hiddenitem ETHER, EVENT_ILEX_FOREST_HIDDEN_ETHER
+	hiddenitem TINYMUSHROOM, EVENT_ILEX_FOREST_HIDDEN_ETHER
 
 IlexForestHiddenSuperPotion:
 	hiddenitem SUPER_POTION, EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION
 
 IlexForestHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL
+	
+IlexForestHiddenBigMushroom:
+	hiddenitem BIG_MUSHROOM, EVENT_ILEX_FOREST_HIDDEN_BIGMUSHROOM
+	
+IlexForestHiddenTinyMushroom:
+	hiddenitem TINYMUSHROOM, EVENT_ILEX_FOREST_HIDDEN_TINYMUSHROOM
+	
+IlexForestHiddenTinyMushroom2:
+	hiddenitem TINYMUSHROOM, EVENT_ILEX_FOREST_HIDDEN_TINYMUSHROOM2
 
-IlexForestBoulder: ; unreferenced
+IlexForestBoulder:
+; unused
 	jumpstd StrengthBoulderScript
 
 IlexForestSignpost:
@@ -457,25 +507,29 @@ IlexForestShrineScript:
 	pause 20
 	showemote EMOTE_SHOCK, PLAYER, 20
 	special FadeOutMusic
-	applymovement PLAYER, IlexForestPlayerStepsDownMovement
+	applymovement PLAYER, MovementData_0x6ef58
 	pause 30
 	turnobject PLAYER, DOWN
 	pause 20
 	clearflag ENGINE_FOREST_IS_RESTLESS
 	special CelebiShrineEvent
-	loadwildmon CELEBI, 30
+	opentext
+	writetext CelebiCryText
+	cry CELEBI
+	loadwildmon CELEBI, 50
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CELEBI
 	startbattle
 	reloadmapafterbattle
 	pause 20
 	special CheckCaughtCelebi
 	iffalse .DidntCatchCelebi
 	appear ILEXFOREST_KURT
-	applymovement ILEXFOREST_KURT, IlexForestKurtStepsUpMovement
+	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e
 	opentext
 	writetext Text_KurtCaughtCelebi
 	waitbutton
 	closetext
-	applymovement ILEXFOREST_KURT, IlexForestKurtStepsDownMovement
+	applymovement ILEXFOREST_KURT, MovementData_0x6ef53
 	disappear ILEXFOREST_KURT
 .DidntCatchCelebi:
 	end
@@ -715,25 +769,29 @@ MovementData_Farfetched_Pos9_Pos8_Down:
 	big_step UP
 	step_end
 
-IlexForestKurtStepsUpMovement:
+MovementData_0x6ef4e:
 	step UP
 	step UP
 	step UP
 	step UP
 	step_end
 
-IlexForestKurtStepsDownMovement:
+MovementData_0x6ef53:
 	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
 	step_end
 
-IlexForestPlayerStepsDownMovement:
+MovementData_0x6ef58:
 	fix_facing
 	slow_step DOWN
 	remove_fixed_facing
 	step_end
+	
+CelebiCryText:
+	text "Celebiiiii!"
+	done
 
 IlexForestApprenticeIntroText:
 	text "Oh, man… My boss"
@@ -758,7 +816,7 @@ IlexForestApprenticeAfterText:
 	text "Wow! Thanks a"
 	line "whole bunch!"
 
-	para "My boss's #MON"
+	para "My boss' #MON"
 	line "won't obey me be-"
 	cont "cause I don't have"
 	cont "a BADGE."
@@ -933,6 +991,84 @@ BugCatcherWayneAfterBattleText:
 	line "HEADBUTT in other"
 	cont "places too."
 	done
+	
+PicnickerBethSeenText:
+	text "There's nothing"
+	line "like a good pic-"
+
+	para "nic and a battle"
+	line "by the water!"
+	done
+
+PicnickerBethBeatenText:
+	text "This was suppo-"
+	line "sed to be FUN!"
+	done
+
+PicnickerBethAfterBattleText:
+	text "You ruined my"
+	line "picnic, meanie."
+
+	para "Leave me alone!"
+	done
+	
+BugCatcherTobiasSeenText:
+	text "I used to train"
+	line "my bug #MON"
+
+	para "with BUGSY. You"
+	line "have been warned!"
+	done
+
+BugCatcherTobiasBeatenText:
+	text "Guess I'm a wee"
+	line "bit rusty, huh?"
+	done
+
+BugCatcherTobiasAfterBattleText:
+	text "Well, I guess you"
+	line "have to be pretty"
+
+	para "strong to defeat"
+	line "BUGSY."
+	
+	para "Since you beat me,"
+	line "here's a tip."
+	
+	para "If you talk to the"
+	line "lass in the gate"
+	
+	para "up ahead, she may"
+	line "give you a LUCKY"
+	cont "EGG!"
+	done
+	
+BugCatcherAdamSeenText:
+	text "Well, won't you"
+	line "diddle daddle"
+
+	para "my doodles! A"
+	line "fellow #MON"
+	cont "trainer!"
+	
+	para "Care for a dan-"
+	line "dy ol' rough-"
+	cont "'er-upper?"
+	done
+
+BugCatcherAdamBeatenText:
+	text "Dang nabbit!"
+	done
+
+BugCatcherAdamAfterBattleText:
+	text "Geez, Louise! I"
+	line "just got…"
+	cont "atnered!"
+
+	para "Well, there goes"
+	line "all of the money"
+	cont "I saved up…"
+	done
 
 IlexForest_MapEvents:
 	db 0, 0 ; filler
@@ -949,10 +1085,13 @@ IlexForest_MapEvents:
 	bg_event 11,  7, BGEVENT_ITEM, IlexForestHiddenEther
 	bg_event 22, 14, BGEVENT_ITEM, IlexForestHiddenSuperPotion
 	bg_event  1, 17, BGEVENT_ITEM, IlexForestHiddenFullHeal
+	bg_event 23, 22, BGEVENT_ITEM, IlexForestHiddenBigMushroom
+	bg_event 29, 22, BGEVENT_ITEM, IlexForestHiddenTinyMushroom
+	bg_event  1,  9, BGEVENT_ITEM, IlexForestHiddenTinyMushroom2
 	bg_event  8, 22, BGEVENT_UP, IlexForestShrineScript
 
 	def_object_events
-	object_event 14, 31, SPRITE_BIRD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
+	object_event 14, 31, SPRITE_FARFETCHD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
 	object_event  7, 28, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, IlexForestCharcoalApprenticeScript, EVENT_ILEX_FOREST_APPRENTICE
 	object_event  5, 28, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestCharcoalMasterScript, EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	object_event 15, 14, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestHeadbuttGuyScript, -1
@@ -960,6 +1099,10 @@ IlexForest_MapEvents:
 	object_event  8, 29, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
 	object_event  3, 24, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, IlexForestLassScript, EVENT_ILEX_FOREST_LASS
 	object_event 12,  1, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerBugCatcherWayne, -1
+	object_event  8, 12, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerBeth, -1
+	object_event 28,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherTobias, -1
+	object_event 22, 33, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerBugCatcherAdam, EVENT_ADAM_APPEARS
 	object_event  9, 17, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestXAttack, EVENT_ILEX_FOREST_X_ATTACK
 	object_event 17,  7, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestAntidote, EVENT_ILEX_FOREST_ANTIDOTE
 	object_event 27,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestEther, EVENT_ILEX_FOREST_ETHER
+	object_event  3, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestSilverpowder, EVENT_ILEX_FOREST_SILVERPOWDER

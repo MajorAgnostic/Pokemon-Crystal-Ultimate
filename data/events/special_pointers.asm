@@ -57,11 +57,11 @@ SpecialsPointers::
 	add_special CardFlip
 	add_special UnusedMemoryGame ; unused
 	add_special ClearBGPalettesBufferScreen ; unused
-	add_special FadeOutToWhite
+	add_special FadeOutPalettes
 	add_special BattleTowerFade
-	add_special FadeOutToBlack
-	add_special FadeInFromWhite
-	add_special FadeInFromBlack
+	add_special FadeBlackQuickly
+	add_special FadeInPalettes
+	add_special FadeInQuickly
 	add_special ReloadSpritesNoPalettes ; bank 0
 	add_special ClearBGPalettes ; bank 0
 	add_special UpdateTimePals ; bank 0
@@ -85,6 +85,7 @@ SpecialsPointers::
 	add_special SelectRandomBugContestContestants
 	add_special ActivateFishingSwarm
 	add_special ToggleMaptileDecorations
+	add_special CoverTilesWithCarpet
 	add_special ToggleDecorationsVisibility
 	add_special GiveShuckle
 	add_special ReturnShuckie
@@ -173,7 +174,7 @@ SpecialsPointers::
 	add_special StubbedTrainerRankings_Healings
 	add_special RefreshSprites
 	add_special Function1037c2
-	add_special CheckMobileAdapterStatusSpecial
+	add_special Mobile_DummyReturnFalse
 	add_special Function103780
 	add_special Function10387b
 	add_special AskRememberPassword
@@ -182,4 +183,7 @@ SpecialsPointers::
 
 	add_special InitialSetDSTFlag
 	add_special InitialClearDSTFlag
+	add_special PocketPC
+	add_special GiveElekid
+	add_special GiveMagby
 	add_special UnusedDummySpecial ; unused

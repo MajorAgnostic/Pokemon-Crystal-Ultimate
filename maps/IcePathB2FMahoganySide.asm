@@ -21,11 +21,11 @@ IcePathB2FMahoganySideMaxPotion:
 	itemball MAX_POTION
 
 IcePathB2FMahoganySideHiddenCarbos:
-	hiddenitem CARBOS, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS
+	hiddenitem X_SPECIAL, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS
 
 IcePathB2FMahoganySideBoulderText:
 	text "It's immovably"
-	line "imbedded in ice."
+	line "embedded in ice."
 	done
 
 IcePathB2FMahoganySide_MapEvents:

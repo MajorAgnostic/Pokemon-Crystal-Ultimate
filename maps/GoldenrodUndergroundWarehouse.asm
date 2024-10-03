@@ -4,16 +4,15 @@
 	const GOLDENRODUNDERGROUNDWAREHOUSE_ROCKET3
 	const GOLDENRODUNDERGROUNDWAREHOUSE_GENTLEMAN
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL1
-	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL2
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL3
 
 GoldenrodUndergroundWarehouse_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, GoldenrodUndergroundWarehouseResetSwitchesCallback
+	callback MAPCALLBACK_NEWMAP, .ResetSwitches
 
-GoldenrodUndergroundWarehouseResetSwitchesCallback:
+.ResetSwitches:
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
@@ -34,10 +33,11 @@ GoldenrodUndergroundWarehouseResetSwitchesCallback:
 	endcallback
 
 TrainerGruntM24:
-	trainer GRUNTM, GRUNTM_24, EVENT_BEAT_ROCKET_GRUNTM_24, GruntM24SeenText, GruntM24BeatenText, 0, .Script
+	trainer EXECUTIVEM, MERCENARY1, EVENT_BEAT_ROCKET_GRUNTM_24, GruntM24SeenText, GruntM24BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
+	clearevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	opentext
 	writetext GruntM24AfterBattleText
 	waitbutton
@@ -60,6 +60,9 @@ TrainerGruntM15:
 
 .Script:
 	endifjustbattled
+	setevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
 	opentext
 	writetext GruntM15AfterBattleText
 	waitbutton
@@ -89,9 +92,6 @@ GoldenrodUndergroundWarehouseDirectorScript:
 GoldenrodUndergroundWarehouseMaxEther:
 	itemball MAX_ETHER
 
-GoldenrodUndergroundWarehouseTMSleepTalk:
-	itemball TM_SLEEP_TALK
-
 GoldenrodUndergroundWarehouseUltraBall:
 	itemball ULTRA_BALL
 
@@ -102,6 +102,10 @@ GruntM24SeenText:
 	para "I guess it can't"
 	line "be helped. I'll"
 	cont "dispose of you."
+	
+	para "I am paid to do"
+	line "the dirty work,"
+	cont "after all."
 	done
 
 GruntM24BeatenText:
@@ -221,10 +225,9 @@ GoldenrodUndergroundWarehouse_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event  9,  8, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 12,  8, SPRITE_EXECUTIVE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  8, 15, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 14,  3, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 12,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundWarehouseDirectorScript, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 12,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundWarehouseDirectorScript, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 18, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundWarehouseMaxEther, EVENT_GOLDENROD_UNDERGROUND_WAREHOUSE_MAX_ETHER
-	object_event 13,  9, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundWarehouseTMSleepTalk, EVENT_GOLDENROD_UNDERGROUND_WAREHOUSE_TM_SLEEP_TALK
 	object_event  2,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundWarehouseUltraBall, EVENT_GOLDENROD_UNDERGROUND_WAREHOUSE_ULTRA_BALL

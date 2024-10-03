@@ -1,14 +1,15 @@
 	object_const_def
 	const TRAINERHOUSEB1F_RECEPTIONIST
 	const TRAINERHOUSEB1F_CHRIS
+	const TRAINERHOUSEB1F_KRIS
 
 TrainerHouseB1F_MapScripts:
 	def_scene_scripts
-	scene_script TrainerHouseB1FNoopScene, SCENE_TRAINERHOUSEB1F_ASK_BATTLE
+	scene_script .DummyScene, SCENE_THOUSE_DEFAULT
 
 	def_callbacks
 
-TrainerHouseB1FNoopScene:
+.DummyScene:
 	end
 
 TrainerHouseReceptionistScript:
@@ -20,12 +21,21 @@ TrainerHouseReceptionistScript:
 	promptbutton
 	special TrainerHouse
 	iffalse .GetCal3Name
-	gettrainername STRING_BUFFER_3, CAL, CAL2
+	gettrainername STRING_BUFFER_3, CAL, CAL3
 	sjump .GotName
 
 .GetCal3Name:
+	readvar VAR_WEEKDAY
+	ifequal MONDAY, .GetKris3Name
+	ifequal WEDNESDAY, .GetKris3Name
+	ifequal FRIDAY, .GetKris3Name
 	gettrainername STRING_BUFFER_3, CAL, CAL3
+	sjump .GotName
+.GetKris3Name:
+	gettrainername STRING_BUFFER_3, CRYSTAL, CRYSTAL3
+	sjump .GotName2
 .GotName:
+	disappear TRAINERHOUSEB1F_KRIS
 	writetext TrainerHouseB1FYourOpponentIsText
 	promptbutton
 	writetext TrainerHouseB1FAskWantToBattleText
@@ -44,7 +54,33 @@ TrainerHouseReceptionistScript:
 	iffalse .NoSpecialBattle
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
-	loadtrainer CAL, CAL2
+	loadtrainer CAL, CAL3
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+	startbattle
+	reloadmapafterbattle
+	iffalse .End
+.GotName2:
+	disappear TRAINERHOUSEB1F_CHRIS
+	writetext TrainerHouseB1FYourOpponentIsText
+	promptbutton
+	writetext TrainerHouseB1FAskWantToBattleText
+	yesorno
+	iffalse .Declined
+	setflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
+	writetext TrainerHouseB1FGoRightInText
+	waitbutton
+	closetext
+	applymovement PLAYER, Movement_EnterTrainerHouseBattleRoom
+	opentext
+	writetext TrainerHouseB1FCalBeforeText
+	waitbutton
+	closetext
+	special TrainerHouse
+	iffalse .NoSpecialBattle2
+	winlosstext TrainerHouseB1FCalBeatenText, 0
+	setlasttalked TRAINERHOUSEB1F_KRIS
+	loadtrainer CRYSTAL, CRYSTAL3
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	iffalse .End
@@ -52,6 +88,15 @@ TrainerHouseReceptionistScript:
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL3
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+	startbattle
+	reloadmapafterbattle
+	sjump .End
+.NoSpecialBattle2:
+	winlosstext TrainerHouseB1FCalBeatenText, 0
+	setlasttalked TRAINERHOUSEB1F_CHRIS
+	loadtrainer CRYSTAL, CRYSTAL3
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 .End:
@@ -106,7 +151,6 @@ Movement_ExitTrainerHouseBattleRoom:
 
 Movement_TrainerHouseTurnBack:
 	step RIGHT
-	turn_head LEFT
 	step_end
 
 TrainerHouseB1FIntroText:
@@ -116,6 +160,21 @@ TrainerHouseB1FIntroText:
 	para "You may battle a"
 	line "trainer once per"
 	cont "day."
+	
+	para "Please bear in"
+	line "mind that these"
+	
+	para "trainers are very"
+	line "experienced."
+	
+	para "Also, our battle"
+	line "format uses the"
+	
+	para "SET battle style"
+	line "and prohibits the"
+	
+	para "use of items in"
+	line "battle."
 	done
 
 TrainerHouseB1FYourOpponentIsText:
@@ -174,10 +233,11 @@ TrainerHouseB1F_MapEvents:
 	warp_event  9,  4, TRAINER_HOUSE_1F, 3
 
 	def_coord_events
-	coord_event  7,  3, SCENE_TRAINERHOUSEB1F_ASK_BATTLE, TrainerHouseReceptionistScript
+	coord_event  7,  3, SCENE_THOUSE_DEFAULT, TrainerHouseReceptionistScript
 
 	def_bg_events
 
 	def_object_events
 	object_event  7,  1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	object_event  6, 11, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event  6, 11, SPRITE_KRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

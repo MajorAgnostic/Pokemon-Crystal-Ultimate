@@ -5,19 +5,19 @@
 	const SPROUTTOWER3F_SAGE4
 	const SPROUTTOWER3F_POKE_BALL1
 	const SPROUTTOWER3F_POKE_BALL2
-	const SPROUTTOWER3F_RIVAL
+	const SPROUTTOWER3F_SILVER
 
 SproutTower3F_MapScripts:
 	def_scene_scripts
-	scene_script SproutTower3FNoop1Scene, SCENE_SPROUTTOWER3F_RIVAL_ENCOUNTER
-	scene_script SproutTower3FNoop2Scene, SCENE_SPROUTTOWER3F_NOOP
+	scene_script .DummyScene0, SCENE_SPROUTTOWER3F_RIVAL_ENCOUNTER
+	scene_script .DummyScene1, SCENE_SPROUTTOWER3F_NOOP
 
 	def_callbacks
 
-SproutTower3FNoop1Scene:
+.DummyScene0:
 	end
 
-SproutTower3FNoop2Scene:
+.DummyScene1:
 	end
 
 SproutTower3FRivalScene:
@@ -31,61 +31,61 @@ SproutTower3FRivalScene:
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79
-	applymovement PLAYER, SproutTower3FPlayerApproachesRivalMovement
-	applymovement SPROUTTOWER3F_RIVAL, SproutTower3FRivalApproachesElderMovement
+	applymovement PLAYER, MovementData_0x184a1d
+	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a22
 	opentext
 	writetext SproutTowerElderLecturesRivalText
 	waitbutton
 	closetext
-	showemote EMOTE_SHOCK, SPROUTTOWER3F_RIVAL, 15
-	turnobject SPROUTTOWER3F_RIVAL, DOWN
+	showemote EMOTE_SHOCK, SPROUTTOWER3F_SILVER, 15
+	turnobject SPROUTTOWER3F_SILVER, DOWN
 	pause 15
-	applymovement SPROUTTOWER3F_RIVAL, SproutTower3FRivalLeavesElderMovement
+	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext SproutTowerRivalOnlyCareAboutStrongText
 	waitbutton
 	closetext
-	turnobject SPROUTTOWER3F_RIVAL, UP
+	turnobject SPROUTTOWER3F_SILVER, UP
 	opentext
 	writetext SproutTowerRivalUsedEscapeRopeText
 	pause 15
 	closetext
 	playsound SFX_WARP_TO
-	special FadeOutToBlack
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
-	disappear SPROUTTOWER3F_RIVAL
+	disappear SPROUTTOWER3F_SILVER
 	waitsfx
-	special FadeInFromBlack
+	special FadeInQuickly
 	setscene SCENE_SPROUTTOWER3F_NOOP
 	special RestartMapMusic
 	end
 
-SageLiScript:
+SageJasonScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_HM05_FLASH
 	iftrue .GotFlash
-	writetext SageLiSeenText
+	writetext SageJasonSeenText
 	waitbutton
 	closetext
-	winlosstext SageLiBeatenText, 0
-	loadtrainer SAGE, LI
+	winlosstext SageJasonBeatenText, 0
+	loadtrainer SAGE, JASON
 	startbattle
 	reloadmapafterbattle
 	opentext
-	writetext SageLiTakeThisFlashText
+	writetext SageJasonTakeThisFlashText
 	promptbutton
 	verbosegiveitem HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
-	setevent EVENT_BEAT_SAGE_LI
-	writetext SageLiFlashExplanationText
+	setevent EVENT_BEAT_SAGE_JASON
+	writetext SageJasonFlashExplanationText
 	waitbutton
 	closetext
 	end
 
 .GotFlash:
-	writetext SageLiAfterBattleText
+	writetext SageJasonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -135,18 +135,18 @@ SproutTower3FPotion:
 SproutTower3FEscapeRope:
 	itemball ESCAPE_ROPE
 
-SproutTower3FPlayerApproachesRivalMovement:
+MovementData_0x184a1d:
 	step UP
 	step UP
 	step UP
 	step UP
 	step_end
 
-SproutTower3FRivalApproachesElderMovement:
+MovementData_0x184a22:
 	step UP
 	step_end
 
-SproutTower3FRivalLeavesElderMovement:
+MovementData_0x184a24:
 	step RIGHT
 	step DOWN
 	step_end
@@ -203,13 +203,18 @@ SproutTowerRivalUsedEscapeRopeText:
 	line "ESCAPE ROPE!"
 	done
 
-SageLiSeenText:
+SageJasonSeenText:
 	text "So good of you to"
 	line "come here!"
+	
+	para "I'm FATHER JASON,"
+	line "the leader of the"
+	cont "local SAGEs."
 
 	para "SPROUT TOWER is a"
-	line "place of training."
-
+	line "place of training"
+	cont "and reflection."
+	
 	para "People and #MON"
 	line "test their bonds"
 
@@ -226,11 +231,11 @@ SageLiSeenText:
 	line "you!"
 	done
 
-SageLiBeatenText:
+SageJasonBeatenText:
 	text "Ah, excellent!"
 	done
 
-SageLiTakeThisFlashText:
+SageJasonTakeThisFlashText:
 	text "You and your #-"
 	line "MON should have"
 
@@ -241,7 +246,7 @@ SageLiTakeThisFlashText:
 	line "HM."
 	done
 
-SageLiFlashExplanationText:
+SageJasonFlashExplanationText:
 	text "FLASH illuminates"
 	line "even the darkest"
 	cont "of all places."
@@ -253,7 +258,7 @@ SageLiFlashExplanationText:
 	line "from VIOLET's GYM."
 	done
 
-SageLiAfterBattleText:
+SageJasonAfterBattleText:
 	text "I hope you learn"
 	line "and grow from your"
 	cont "journey."
@@ -347,8 +352,8 @@ SproutTower3F_MapEvents:
 	def_object_events
 	object_event  8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
 	object_event  8,  8, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSageTroy, -1
-	object_event 10,  2, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
+	object_event 10,  2, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageJasonScript, -1
 	object_event 11, 11, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageNeal, -1
 	object_event  6, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FPotion, EVENT_SPROUT_TOWER_3F_POTION
 	object_event 14,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FEscapeRope, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
-	object_event 10,  4, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
+	object_event 10,  4, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER

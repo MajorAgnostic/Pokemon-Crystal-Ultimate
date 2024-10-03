@@ -1047,8 +1047,11 @@ _GetCursorMon:
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
 	lb bc, BANK(_GetCursorMon), 7 * 7
-	ld de, wDecompressScratch
+	ld a, BANK(sPaddedEnemyFrontpic)
+	call OpenSRAM
+	ld de, sPaddedEnemyFrontpic
 	call BillsPC_Get2bpp
+	call CloseSRAM
 	pop af
 	ldh [rSVBK], a
 	xor a
@@ -1495,9 +1498,9 @@ ManageBoxes:
 
 .storageitems
 	db 6
+	db BOXMENU_SWITCH
 	db BOXMENU_WITHDRAW
 	db BOXMENU_STATS
-	db BOXMENU_SWITCH
 	db BOXMENU_ITEM
 	db BOXMENU_RELEASE
 	db BOXMENU_CANCEL
@@ -1505,9 +1508,9 @@ ManageBoxes:
 
 .partyitems
 	db 6
+	db BOXMENU_SWITCH
 	db BOXMENU_DEPOSIT
 	db BOXMENU_STATS
-	db BOXMENU_SWITCH
 	db BOXMENU_ITEM
 	db BOXMENU_RELEASE
 	db BOXMENU_CANCEL
@@ -1527,7 +1530,7 @@ BillsPC_MenuStrings:
 	db "WITHDRAW@"
 	db "DEPOSIT@"
 	db "STATS@"
-	db "SWITCH@"
+	db "MOVE@"
 	db "MOVES@"
 	db "ITEM@"
 	db "RELEASE@"

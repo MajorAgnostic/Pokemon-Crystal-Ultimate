@@ -8,19 +8,19 @@
 
 CeruleanGym_MapScripts:
 	def_scene_scripts
-	scene_script CeruleanGymNoopScene,         SCENE_CERULEANGYM_NOOP
-	scene_script CeruleanGymGruntRunsOutScene, SCENE_CERULEANGYM_GRUNT_RUNS_OUT
+	scene_script .DummyScene0, SCENE_CERULEANGYM_NOTHING
+	scene_script .GruntRunsOut, SCENE_CERULEANGYM_GRUNT_RUNS_OUT
 
 	def_callbacks
 
-CeruleanGymNoopScene:
+.DummyScene0:
 	end
 
-CeruleanGymGruntRunsOutScene:
-	sdefer CeruleanGymGruntRunsOutScript
+.GruntRunsOut:
+	prioritysjump .GruntRunsOutScript
 	end
 
-CeruleanGymGruntRunsOutScript:
+.GruntRunsOutScript:
 	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsDownMovement
 	playsound SFX_TACKLE
 	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsIntoYouMovement
@@ -46,7 +46,7 @@ CeruleanGymGruntRunsOutScript:
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	clearevent EVENT_ROUTE_24_ROCKET
 	clearevent EVENT_ROUTE_25_MISTY_BOYFRIEND
-	setscene SCENE_CERULEANGYM_NOOP
+	setscene SCENE_CERULEANGYM_NOTHING
 	setmapscene ROUTE_25, SCENE_ROUTE25_MISTYS_DATE
 	setmapscene POWER_PLANT, SCENE_POWERPLANT_NOOP
 	waitsfx
@@ -66,6 +66,7 @@ CeruleanGymMistyScript:
 	closetext
 	winlosstext MistyWinLossText, 0
 	loadtrainer MISTY, MISTY1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MISTY
@@ -277,7 +278,7 @@ MistyFightDoneText:
 	cont "you, I mean."
 
 	para "I'm going to"
-	line "travel one day, so"
+	line "travel one day so"
 
 	para "I can battle some"
 	line "skilled trainers."
@@ -349,6 +350,19 @@ CeruleanGymGuideText:
 
 	para "for some fun too."
 	line "He-he-he."
+	
+	para "Oh right, you want"
+	line "some tips, huh?"
+
+	para "MISTY's water-type"
+	line "#MON are scary."
+	
+	para "They know moves of"
+	line "all kinds, so try"
+
+	para "and knock them out"
+	line "before they can"
+	cont "strike!"
 	done
 
 CeruleanGymGuideWinText:

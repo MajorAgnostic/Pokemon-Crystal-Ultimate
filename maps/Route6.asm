@@ -2,6 +2,9 @@
 	const ROUTE6_POKEFAN_M1
 	const ROUTE6_POKEFAN_M2
 	const ROUTE6_POKEFAN_M3
+	const ROUTE6_TEACHER
+	const ROUTE6_BUG_CATCHER
+	const ROUTE6_YOUNGSTER
 
 Route6_MapScripts:
 	def_scene_scripts
@@ -29,6 +32,39 @@ TrainerPokefanmAllan:
 	waitbutton
 	closetext
 	end
+	
+TrainerPicnickerSelina:
+	trainer TEACHER, SELINA, EVENT_BEAT_SELINA, SelinaSeenText, SelinaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext SelinaAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerBugCatcherDay:
+	trainer BUG_CATCHER, DAY_T, EVENT_BEAT_DAY, DaySeenText, DayBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext DayAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerCamperVergil:
+	trainer CAMPER, VERGIL, EVENT_BEAT_VERGIL, VergilSeenText, VergilBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext VergilAfterBattleText
+	waitbutton
+	closetext
+	end
 
 Route6PokefanMScript:
 	jumptextfaceplayer Route6PokefanMText
@@ -41,7 +77,7 @@ Route6PokefanMText:
 	line "until the problem"
 
 	para "at the POWER PLANT"
-	line "is solved."
+	line "is resolved."
 	done
 
 Route6UndergroundPathSignText:
@@ -88,6 +124,66 @@ PokefanmAllanAfterBattleText:
 	line "enough to make"
 	cont "your heart melt?"
 	done
+	
+SelinaSeenText:
+	text "I'm headed out on"
+	line "a picnic. Do you"
+	cont "know why?"
+	done
+
+SelinaBeatenText:
+	text "You are pretty"
+	line "good!"
+	done
+
+SelinaAfterBattleText:
+	text "I'm going on a"
+	line "picnic because…"
+
+	para "I really want to"
+	line "smell the fresh"
+	cont "air…"
+	
+	para "Do you know what I"
+	line "mean?"
+	done
+	
+DaySeenText:
+	text "I'll knock you"
+	line "flat!"
+	done
+
+DayBeatenText:
+	text "Waah!"
+	done
+
+DayAfterBattleText:
+	text "Looks like I got"
+	line "bounced."
+	done
+	
+VergilSeenText:
+	text "Walking along with"
+	line "luggage and your"
+	
+	para "companion #MON"
+	line "gives you a great"
+	cont "feeling of outdoor"
+	cont "life!"
+	done
+
+VergilBeatenText:
+	text "Yaha! I lost!"
+	done
+
+VergilAfterBattleText:
+	text "Are you also on a"
+	line "solo journey?"
+	
+	para "I hope to see you"
+	line "again sometime."
+	cont "Bye for now!"
+	done
 
 Route6_MapEvents:
 	db 0, 0 ; filler
@@ -103,5 +199,8 @@ Route6_MapEvents:
 
 	def_object_events
 	object_event 17,  4, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 2, Route6PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
-	object_event  9, 12, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerPokefanmRex, -1
-	object_event 10, 12, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerPokefanmAllan, -1
+	object_event 11,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerPokefanmRex, -1
+	object_event 12,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerPokefanmAllan, -1
+	object_event  8, 12, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerSelina, -1
+	object_event 18, 11, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBugCatcherDay, -1
+	object_event  2,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerCamperVergil, -1

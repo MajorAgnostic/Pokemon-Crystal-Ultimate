@@ -1,7 +1,7 @@
 	object_const_def
 	const ROUTE36_YOUNGSTER1
 	const ROUTE36_YOUNGSTER2
-	const ROUTE36_WEIRD_TREE
+	const ROUTE36_SUDOWOODO
 	const ROUTE36_LASS1
 	const ROUTE36_FISHER
 	const ROUTE36_FRUIT_TREE
@@ -11,27 +11,16 @@
 
 Route36_MapScripts:
 	def_scene_scripts
-	scene_script Route36Noop1Scene, SCENE_ROUTE36_NOOP
-	scene_script Route36Noop2Scene, SCENE_ROUTE36_SUICUNE
+	scene_script .DummyScene0, SCENE_ROUTE36_NOOP
+	scene_script .DummyScene1, SCENE_ROUTE36_SUICUNE
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route36ArthurCallback
 
-Route36Noop1Scene:
+.DummyScene0:
 	end
 
-Route36Noop2Scene:
+.DummyScene1:
 	end
-
-Route36ArthurCallback:
-	readvar VAR_WEEKDAY
-	ifequal THURSDAY, .ArthurAppears
-	disappear ROUTE36_ARTHUR
-	endcallback
-
-.ArthurAppears:
-	appear ROUTE36_ARTHUR
-	endcallback
 
 Route36SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -53,7 +42,7 @@ SudowoodoScript:
 
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement ROUTE36_WEIRD_TREE, SudowoodoShakeMovement
+	applymovement ROUTE36_SUDOWOODO, SudowoodoShakeMovement
 	end
 
 .Fight:
@@ -69,17 +58,16 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
 	closetext
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement ROUTE36_WEIRD_TREE, SudowoodoShakeMovement
+	applymovement ROUTE36_SUDOWOODO, SudowoodoShakeMovement
 	opentext
 	writetext SudowoodoAttackedText
 	waitbutton
 	closetext
-	loadwildmon SUDOWOODO, 20
+	loadwildmon SUDOWOODO, 30
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
 	ifequal DRAW, DidntCatchSudowoodo
-	disappear ROUTE36_WEIRD_TREE
-	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
+	disappear ROUTE36_SUDOWOODO
 	reloadmapafterbattle
 	end
 
@@ -89,11 +77,8 @@ DidntUseSquirtbottleScript:
 
 DidntCatchSudowoodo:
 	reloadmapafterbattle
-	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Flee
-	disappear ROUTE36_WEIRD_TREE
-	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	special LoadUsedSpritesGFX
-	special RefreshSprites
+	applymovement ROUTE36_SUDOWOODO, WeirdTreeMovement_Flee
+	disappear ROUTE36_SUDOWOODO
 	end
 
 Route36FloriaScript:
@@ -169,7 +154,6 @@ TrainerSchoolboyAlan1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
-	endifjustbattled
 	opentext
 	checkflag ENGINE_ALAN_READY_FOR_REMATCH
 	iftrue .ChooseRematch
@@ -198,29 +182,17 @@ TrainerSchoolboyAlan1:
 .ChooseRematch:
 	scall .Rematch
 	winlosstext SchoolboyAlan1BeatenText, 0
-	readmem wAlanFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .LoadFight4
-.Fight3:
-	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .LoadFight3
-.Fight2:
 	checkflag ENGINE_FLYPOINT_BLACKTHORN
+	iftrue .LoadFight4
+	checkflag ENGINE_FLYPOINT_MAHOGANY
+	iftrue .LoadFight3
+	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight2
-.Fight1:
-	checkflag ENGINE_FLYPOINT_OLIVINE
+	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 1
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 
@@ -228,7 +200,6 @@ TrainerSchoolboyAlan1:
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 2
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 
@@ -236,7 +207,6 @@ TrainerSchoolboyAlan1:
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 3
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 
@@ -244,7 +214,6 @@ TrainerSchoolboyAlan1:
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 4
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 
@@ -318,14 +287,19 @@ ArthurScript:
 	opentext
 	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	iftrue .AlreadyGotStone
-	readvar VAR_WEEKDAY
-	ifnotequal THURSDAY, ArthurNotThursdayScript
-	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
-	iftrue .MetArthur
 	writetext MeetArthurText
 	promptbutton
-	setevent EVENT_MET_ARTHUR_OF_THURSDAY
-.MetArthur:
+	readvar VAR_WEEKDAY
+	ifequal THURSDAY, .GiveStone
+	writetext ArthurSeenText
+	waitbutton
+	closetext
+	winlosstext ArthurBeatenText, 0
+	loadtrainer CAMPER, ARTHUR
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveStone:
 	writetext ArthurGivesGiftText
 	promptbutton
 	verbosegiveitem HARD_STONE
@@ -337,8 +311,13 @@ ArthurScript:
 	end
 
 .AlreadyGotStone:
+	readvar VAR_WEEKDAY
+	ifnotequal THURSDAY, ArthurNotThursdayScript
 	writetext ArthurThursdayText
 	waitbutton
+	closetext
+	end
+	
 .BagFull:
 	closetext
 	end
@@ -489,7 +468,7 @@ RockSmashGuyText2:
 	cont "have this."
 	done
 
-Text_ReceivedTM08: ; unreferenced
+UnusedReceivedTM08Text:
 	text "<PLAYER> received"
 	line "TM08."
 	done
@@ -507,9 +486,13 @@ RockSmashGuyText3:
 	para "If any rocks are"
 	line "in your way, just"
 	cont "smash 'em up!"
+	
+	para "I think I saw some"
+	line "that you can smash"
+	cont "in DARK CAVE."
 	done
 
-UnusedOddTreeText: ; unreferenced
+UnusedOddTreeText:
 	text "An odd tree is"
 	line "blocking the way"
 	cont "to GOLDENROD CITY."
@@ -585,6 +568,31 @@ MeetArthurText:
 
 	para "I'm ARTHUR of"
 	line "Thursday."
+	done
+	
+ArthurSeenText:
+	text "I give these rare"
+	line "stones as gifts to"
+
+	para "trainers on Thurs-"
+	line "day."
+	
+	para "Come back then!"
+	
+	para "Huh? You want to"
+	line "challenge me for"
+	cont "one?"
+	
+	para "I suppose I could"
+	line "if you show me a"
+	cont "good battle."
+	
+	para "You're on!"
+	done
+	
+ArthurBeatenText:
+	text "You caught me by"
+	line "surprise!"
 	done
 
 ArthurGivesGiftText:
@@ -679,7 +687,7 @@ Route36_MapEvents:
 	def_object_events
 	object_event 20, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicMark, -1
 	object_event 31, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSchoolboyAlan1, -1
-	object_event 35,  9, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SudowoodoScript, EVENT_ROUTE_36_SUDOWOODO
+	object_event 35,  9, SPRITE_SUDOWOODO, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SudowoodoScript, EVENT_ROUTE_36_SUDOWOODO
 	object_event 51,  8, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36LassScript, -1
 	object_event 44,  9, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36RockSmashGuyScript, -1
 	object_event 21,  4, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36FruitTree, -1

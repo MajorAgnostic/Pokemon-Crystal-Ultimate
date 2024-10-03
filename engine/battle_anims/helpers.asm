@@ -117,11 +117,61 @@ LoadBattleAnimGFX:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	or h ; NULL means it's a Poké Ball
+	call z, .GetBall
 	pop de
 	push bc
 	call DecompressRequest2bpp
 	pop bc
 	ret
+	
+.GetBall
+	ldh a, [rSVBK]
+	push af
+	
+	ld a, BANK(wCurItem)
+	ldh [rSVBK], a
+	ld a, [wCurItem]
+	dec a
+	ld e, a
+	ld d, 0
+	; seek ball's palette
+	push bc
+	push de
+	ld hl, BallColors
+rept 4
+	add hl, de
+endr
+	ld a, BANK(wOBPals2)
+	ldh [rSVBK], a
+	; load the RGB colors into the middle two colors of PAL_BATTLE_OB_RED
+	ld de, wOBPals2 palette PAL_BATTLE_OB_RED color 1
+	ld bc, PAL_COLOR_SIZE * 2
+	call CopyBytes
+	; load white background in PAL_BATTLE_OG_GREEN
+	ld hl, WhitePalette
+	ld de, wOBPals2 palette PAL_BATTLE_OB_GREEN color 1
+	ld bc, PAL_COLOR_SIZE
+	call CopyBytes
+	; apply the updated colors to the palette RAM
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+	pop de
+	pop bc
+
+	pop af
+	ldh [rSVBK], a
+	; get Ball GFX pointer
+	ld b, BANK("Battle Ball Icons")
+	ld hl, AnimBallObjGFX
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+	
+INCLUDE "data/battle_anims/ball_colors.asm"
 
 INCLUDE "data/battle_anims/framesets.asm"
 

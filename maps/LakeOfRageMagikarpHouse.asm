@@ -83,7 +83,8 @@ MagikarpLengthRaterScript:
 	closetext
 	end
 
-LakeOfRageMagikarpHouseUnusedRecordSign: ; unreferenced
+LakeOfRageMagikarpHouseUnusedRecordSign:
+; unused
 	jumptext LakeOfRageMagikarpHouseUnusedRecordText
 
 MagikarpHouseBookshelf:
@@ -204,8 +205,7 @@ LakeOfRageMagikarpHouseUnusedRecordText:
 	text_ram wStringBuffer4
 	text_end
 
-LakeOfRageMagikarpHouseUnusedDummyText: ; unreferenced
-	text_end
+	text_end ; unused
 
 LakeOfRageMagikarpHouse_MapEvents:
 	db 0, 0 ; filler

@@ -26,14 +26,16 @@ MahoganyRedGyaradosSpeechHouseTeacherScript:
 	closetext
 	end
 
-MahoganyRedGyaradosSpeechHouseUnusedBookshelf1: ; unreferenced
+MahoganyRedGyaradosSpeechHouseUnusedBookshelf1:
+; unused
 	jumpstd PictureBookshelfScript
 
-MahoganyRedGyaradosSpeechHouseUnusedBookshelf2: ; unreferenced
+MahoganyRedGyaradosSpeechHouseUnusedBookshelf2:
+; unused
 	jumpstd MagazineBookshelfScript
 
 MahoganyRedGyaradosSpeechHouseBlackBeltText:
-	text "I heard that a red"
+	text "Apparently, a dark"
 	line "GYARADOS appeared"
 	cont "at the LAKE."
 

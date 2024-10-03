@@ -53,6 +53,10 @@ CeladonDeptStore3FYoungsterText:
 
 	para "should use this TM"
 	line "on…"
+	
+	para "Bah, it's reusable"
+	line "so I'll just use"
+	cont "it on both!"
 	done
 
 CeladonDeptStore3FGameboyKid1Text:

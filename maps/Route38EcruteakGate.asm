@@ -7,7 +7,19 @@ Route38EcruteakGate_MapScripts:
 	def_callbacks
 
 Route38EcruteakGateOfficerScript:
-	jumptextfaceplayer Route38EcruteakGateOfficerText
+	opentext
+	checkevent EVENT_BEAT_MORTY
+	iffalse .BeforeMorty
+	writetext Route38EcruteakGateOfficerText
+	waitbutton
+	closetext
+	end
+
+.BeforeMorty:
+	writetext Route38EcruteakGateOfficerText2
+	waitbutton
+	closetext
+	end
 
 Route38EcruteakGateOfficerText:
 	text "Where did you say"
@@ -20,6 +32,25 @@ Route38EcruteakGateOfficerText:
 
 	para "You've come a long"
 	line "way to get here."
+	done
+	
+Route38EcruteakGateOfficerText2:
+	text "Where did you say"
+	line "you're from?"
+
+	para "NEW BARK TOWN?"
+
+	para "PROF.ELM lives"
+	line "over there, right?"
+
+	para "You've come a long"
+	line "way to get here."
+	
+	para "The trainers this"
+	line "this way our quite"
+	
+	para "strong, so I would"
+	line "advise caution."
 	done
 
 Route38EcruteakGate_MapEvents:

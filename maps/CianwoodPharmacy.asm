@@ -3,11 +3,11 @@
 
 CianwoodPharmacy_MapScripts:
 	def_scene_scripts
-	scene_script CianwoodPharmacyNoopScene ; unusable
+	scene_script .DummyScene
 
 	def_callbacks
 
-CianwoodPharmacyNoopScene:
+.DummyScene:
 	end
 
 CianwoodPharmacist:

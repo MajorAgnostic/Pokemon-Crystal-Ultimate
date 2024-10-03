@@ -13,15 +13,15 @@
 
 Route25_MapScripts:
 	def_scene_scripts
-	scene_script Route25Noop1Scene, SCENE_ROUTE25_NOOP
-	scene_script Route25Noop2Scene, SCENE_ROUTE25_MISTYS_DATE
+	scene_script .DummyScene0, SCENE_ROUTE25_NOOP
+	scene_script .DummyScene1, SCENE_ROUTE25_MISTYS_DATE
 
 	def_callbacks
 
-Route25Noop1Scene:
+.DummyScene0:
 	end
 
-Route25Noop2Scene:
+.DummyScene1:
 	end
 
 Route25MistyDate1Script:
@@ -29,21 +29,21 @@ Route25MistyDate1Script:
 	pause 30
 	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
 	turnobject ROUTE25_MISTY, DOWN
-	applymovement ROUTE25_COOLTRAINER_M1, Route25MistysDateLeavesMovement1
+	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efe8
 	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
 	turnobject ROUTE25_MISTY, UP
 	pause 10
-	applymovement ROUTE25_MISTY, Route25MistyApproachesPlayerMovement1
+	applymovement ROUTE25_MISTY, MovementData_0x19efed
 	opentext
 	writetext Route25MistyDateText
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
-	applymovement ROUTE25_MISTY, Route25MistyLeavesPlayerMovement1
+	applymovement ROUTE25_MISTY, MovementData_0x19effa
 	turnobject PLAYER, LEFT
-	applymovement ROUTE25_MISTY, Route25MistyLeavesMovement
+	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	setscene SCENE_ROUTE25_NOOP
@@ -55,21 +55,21 @@ Route25MistyDate2Script:
 	pause 30
 	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
 	turnobject ROUTE25_MISTY, DOWN
-	applymovement ROUTE25_COOLTRAINER_M1, Route25MistysDateLeavesMovement2
+	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efea
 	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
 	turnobject ROUTE25_MISTY, UP
 	pause 10
-	applymovement ROUTE25_MISTY, Route25MistyApproachesPlayerMovement2
+	applymovement ROUTE25_MISTY, MovementData_0x19eff4
 	opentext
 	writetext Route25MistyDateText
 	waitbutton
 	closetext
 	turnobject PLAYER, UP
-	applymovement ROUTE25_MISTY, Route25MistyLeavesPlayerMovement2
+	applymovement ROUTE25_MISTY, MovementData_0x19effd
 	turnobject PLAYER, LEFT
-	applymovement ROUTE25_MISTY, Route25MistyLeavesMovement
+	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	setscene SCENE_ROUTE25_NOOP
@@ -186,21 +186,21 @@ BillsHouseSign:
 	jumptext BillsHouseSignText
 
 Route25Protein:
-	itemball PROTEIN
+	itemball LUCKY_PUNCH
 
 Route25HiddenPotion:
-	hiddenitem POTION, EVENT_ROUTE_25_HIDDEN_POTION
+	hiddenitem FULL_RESTORE, EVENT_ROUTE_25_HIDDEN_POTION
 
-Route25MistysDateLeavesMovement1:
+MovementData_0x19efe8:
 	big_step DOWN
 	step_end
 
-Route25MistysDateLeavesMovement2:
+MovementData_0x19efea:
 	big_step DOWN
 	big_step DOWN
 	step_end
 
-Route25MistyApproachesPlayerMovement1:
+MovementData_0x19efed:
 	step UP
 	step UP
 	step UP
@@ -209,7 +209,7 @@ Route25MistyApproachesPlayerMovement1:
 	step LEFT
 	step_end
 
-Route25MistyApproachesPlayerMovement2:
+MovementData_0x19eff4:
 	step UP
 	step UP
 	step LEFT
@@ -217,17 +217,17 @@ Route25MistyApproachesPlayerMovement2:
 	step LEFT
 	step_end
 
-Route25MistyLeavesPlayerMovement1:
+MovementData_0x19effa:
 	step DOWN
 	step LEFT
 	step_end
 
-Route25MistyLeavesPlayerMovement2:
+MovementData_0x19effd:
 	step UP
 	step LEFT
 	step_end
 
-Route25MistyLeavesMovement:
+MovementData_0x19f000:
 	step LEFT
 	step LEFT
 	step LEFT
@@ -257,16 +257,19 @@ Route25MistyDateText:
 
 	para "If you have eight,"
 	line "you must be good."
-
-	para "OK, then. Come to"
-	line "CERULEAN GYM."
+	
+	para "I'm MISTY, the GYM"
+	line "LEADER of CERULEAN"
+	cont "CITY."
 
 	para "I'll be happy to"
-	line "take you on."
-
-	para "I'm MISTY, the"
-	line "GYM LEADER in"
-	cont "CERULEAN."
+	line "take you on once"
+	
+	para "I get everything"
+	line "set up again."
+	
+	para "OK, then. Come to"
+	line "CERULEAN GYM soon."
 	done
 
 SchoolboyDudleySeenText:
@@ -423,7 +426,7 @@ BillsHouseSignText:
 	line "BILL'S HOUSE"
 	done
 
-UnusedBillsHouseSignText: ; unreferenced
+; unused
 	text "BILL'S HOUSE"
 	done
 

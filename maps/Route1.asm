@@ -1,5 +1,7 @@
 	object_const_def
-	const ROUTE1_YOUNGSTER
+	const ROUTE1_YOUNGSTER1
+	const ROUTE1_YOUNGSTER2
+	const ROUTE1_YOUNGSTER3
 	const ROUTE1_COOLTRAINER_F
 	const ROUTE1_FRUIT_TREE
 
@@ -26,6 +28,28 @@ TrainerCooltrainerfQuinn:
 	endifjustbattled
 	opentext
 	writetext CooltrainerfQuinnAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerSherman:
+	trainer SCHOOLBOY, SHERMAN, EVENT_BEAT_SHERMAN, ShermanSeenText, ShermanBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext ShermanAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerFrench:
+	trainer YOUNGSTER, FRENCH, EVENT_BEAT_FRENCH, FrenchSeenText, FrenchBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext FrenchAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -70,6 +94,46 @@ CooltrainerfQuinnAfterBattleText:
 	para "You obviously must"
 	line "have trained hard."
 	done
+	
+ShermanSeenText:
+	text "After learning it"
+	line "in class, I head"
+	cont "right outside to"
+	cont "practice!"
+	done
+
+ShermanBeatenText:
+	text "I need to follow"
+	line "the textbook…"
+	done
+
+ShermanAfterBattleText:
+	text "I should be sure"
+	line "to record all of"
+
+	para "today's mistakes"
+	line "in a notebook!"
+	done
+	
+FrenchSeenText:
+	text "You!"
+	line "I've been waiting"
+	
+	para "for someone like"
+	line "you!"
+	done
+
+FrenchBeatenText:
+	text "Just as strong as"
+	line "I expected!"
+	done
+
+FrenchAfterBattleText:
+	text "That was a great"
+	line "fight!"
+	
+	para "Don't you agree?"
+	done
 
 Route1SignText:
 	text "ROUTE 1"
@@ -90,5 +154,7 @@ Route1_MapEvents:
 
 	def_object_events
 	object_event  4, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSchoolboyDanny, -1
+	object_event 15,  8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSherman, -1
+	object_event 11, 17, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerFrench, -1
 	object_event  9, 25, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerCooltrainerfQuinn, -1
 	object_event  3,  7, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route1FruitTree, -1

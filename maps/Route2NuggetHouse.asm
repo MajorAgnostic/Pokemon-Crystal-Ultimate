@@ -23,7 +23,8 @@ Route2NuggetHouseFisherScript:
 	closetext
 	end
 
-Route2NuggetHouseBookshelf: ; unreferenced
+Route2NuggetHouseBookshelf:
+; unused
 	jumpstd DifficultBookshelfScript
 
 Route2NuggetHouseFisherText:

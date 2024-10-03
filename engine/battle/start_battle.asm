@@ -78,29 +78,78 @@ PlayBattleMusic:
 	ld de, MUSIC_JOHTO_WILD_BATTLE
 	ld a, [wTimeOfDay]
 	cp NITE_F
-	jr nz, .done
+	jp c, .done ; not NITE_F or EVE_F
 	ld de, MUSIC_JOHTO_WILD_BATTLE_NIGHT
-	jr .done
+	jp .done
 
 .kantowild
-	ld de, MUSIC_KANTO_WILD_BATTLE
-	jr .done
+	;new code    
+    ld de, MUSIC_KANTO_WILD_BATTLE
+    ld a, [wTimeOfDay]
+    cp NITE_F
+    jp c, .done ; not NITE_F or EVE_F
+        ;end new code
+    ld de, MUSIC_KANTO_WILD_BATTLE_NIGHT
+    jp .done
 
 .trainermusic
 	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION
-	jr z, .done
+	jp z, .done
+	cp CLAIR2
+	jp z, .done
+	cp CHAMPION2
+	jp z, .done
+	
+	ld de, MUSIC_GIOVANNI
+	cp GIOVANNI
+	jp z, .done
+	
+	ld de, MUSIC_KANTO_CHAMPION
 	cp RED
-	jr z, .done
+	jp z, .done
+	
+	ld de, MUSIC_STEVEN
+	cp NICHOLAS
+	jp z, .done
+	
+	ld de, MUSIC_ZINNIA_BATTLE
+	cp ANDREA
+	jp z, .done
+	cp MORTY2
+	jp z, .done
 
-; BUG: Team Rocket battle music is not used for Executives or Scientists (see docs/bugs_and_glitches.md)
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
 	jr z, .done
+	
+	ld de, MUSIC_UNOVA_E4
+	cp EXECUTIVEM
+	jr z, .done
+	cp ARIANA
+	jr z, .done
+	cp PETREL
+	jr z, .done
+	cp PROTON
+	jr z, .done
+	cp ROUGHNECK
+	jr z, .done
+	
+	ld de, MUSIC_ALOLA_E4
+	cp ARCHER
+	jr z, .done
+	
+	ld de, MUSIC_PEON_BATTLE
+	cp CAL
+	jr z, .done
+	cp CRYSTAL
+	jr z, .done
 
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
+	cp KING
+	jr z, .done
 	farcall IsKantoGymLeader
 	jr c, .done
 
@@ -112,15 +161,17 @@ PlayBattleMusic:
 
 	ld de, MUSIC_RIVAL_BATTLE
 	ld a, [wOtherTrainerClass]
+	cp RIVAL0
+	jp z, .done
 	cp RIVAL1
 	jr z, .done
 	cp RIVAL2
 	jr nz, .othertrainer
 
 	ld a, [wOtherTrainerID]
-	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
+	cp RIVAL2_1_CHIKORITA ; Rival in Indigo Plateau
 	jr c, .done
-	ld de, MUSIC_CHAMPION_BATTLE
+	ld de, MUSIC_RIVAL_BATTLE
 	jr .done
 
 .othertrainer

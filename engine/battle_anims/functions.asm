@@ -33,6 +33,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunc_Ember
 	dw BattleAnimFunc_Powder
 	dw BattleAnimFunc_PokeBall
+	dw BattleAnimFunc_PokeBall_BG
 	dw BattleAnimFunc_PokeBallBlocked
 	dw BattleAnimFunc_Recover
 	dw BattleAnimFunc_ThunderWave
@@ -272,6 +273,25 @@ BattleAnimFunc_MoveFromUserToTargetAndDisappear:
 .done
 	call DeinitBattleAnimation
 	ret
+	
+BattleAnimFunc_PokeBall_BG:
+	call BattleAnim_AnonJumptable
+.anon_dw
+	dw .zero
+	dw BattleAnimFunc_PokeBall.one
+	dw BattleAnimFunc_PokeBall.two
+	dw BattleAnimFunc_PokeBall.three
+	dw BattleAnimFunc_PokeBall.four
+	dw BattleAnimFunc_PokeBall.five
+	dw BattleAnimFunc_PokeBall.six
+	dw BattleAnimFunc_PokeBall.seven
+	dw BattleAnimFunc_PokeBall.eight
+	dw BattleAnimFunc_PokeBall.nine
+	dw BattleAnimFunc_PokeBall.ten
+	dw DeinitBattleAnimation
+.zero
+	call GetBallAnimBGPal
+	jp BattleAnim_IncAnonJumptableIndex
 
 BattleAnimFunc_PokeBall:
 	call BattleAnim_AnonJumptable
@@ -431,32 +451,16 @@ BattleAnimFunc_PokeBallBlocked:
 	ret
 
 GetBallAnimPal:
-	ld hl, BallColors
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wCurItem)
-	ldh [rSVBK], a
-	ld a, [wCurItem]
-	ld e, a
-	pop af
-	ldh [rSVBK], a
-.IsInArray:
-	ld a, [hli]
-	cp -1
-	jr z, .load
-	cp e
-	jr z, .load
-	inc hl
-	jr .IsInArray
-
-.load
-	ld a, [hl]
 	ld hl, BATTLEANIMSTRUCT_PALETTE
 	add hl, bc
-	ld [hl], a
+	ld [hl], PAL_BATTLE_OB_RED
 	ret
 
-INCLUDE "data/battle_anims/ball_colors.asm"
+GetBallAnimBGPal:
+	ld hl, BATTLEANIMSTRUCT_PALETTE
+	add hl, bc
+	ld [hl], PAL_BATTLE_OB_GREEN
+	ret
 
 BattleAnimFunc_Ember:
 	call BattleAnim_AnonJumptable

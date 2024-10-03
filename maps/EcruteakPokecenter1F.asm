@@ -7,19 +7,19 @@
 
 EcruteakPokecenter1F_MapScripts:
 	def_scene_scripts
-	scene_script EcruteakPokecenter1FMeetBillScene, SCENE_ECRUTEAKPOKECENTER1F_MEET_BILL
-	scene_script EcruteakPokecenter1FNoopScene,     SCENE_ECRUTEAKPOKECENTER1F_NOOP
+	scene_script .MeetBill, SCENE_BILL_DEFAULT
+	scene_script .DummyScene, SCENE_BILL_FINISHED
 
 	def_callbacks
 
-EcruteakPokecenter1FMeetBillScene:
-	sdefer EcruteakPokcenter1FBillActivatesTimeCapsuleScript
+.MeetBill:
+	prioritysjump .BillActivatesTimeCapsule
 	end
 
-EcruteakPokecenter1FNoopScene:
+.DummyScene:
 	end
 
-EcruteakPokcenter1FBillActivatesTimeCapsuleScript:
+.BillActivatesTimeCapsule:
 	pause 30
 	playsound SFX_EXIT_BUILDING
 	appear ECRUTEAKPOKECENTER1F_BILL
@@ -39,9 +39,6 @@ EcruteakPokcenter1FBillActivatesTimeCapsuleScript:
 	opentext
 	writetext EcruteakPokecenter1F_BillText1
 	promptbutton
-	sjump .PointlessJump
-
-.PointlessJump:
 	writetext EcruteakPokecenter1F_BillText2
 	waitbutton
 	closetext
@@ -51,7 +48,7 @@ EcruteakPokcenter1FBillActivatesTimeCapsuleScript:
 	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
-	setscene SCENE_ECRUTEAKPOKECENTER1F_NOOP
+	setscene SCENE_BILL_FINISHED
 	waitsfx
 	end
 
@@ -59,7 +56,7 @@ EcruteakPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
 EcruteakPokecenter1FPokefanMScript:
-	special CheckMobileAdapterStatusSpecial
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer EcruteakPokecenter1FPokefanMText
 
@@ -152,12 +149,26 @@ EcruteakPokecenter1F_BillText2:
 
 	para "running at all"
 	line "#MON CENTERS."
+	
+	para "Oh, I could also"
+	line "use a favour from"
+	
+	para "a #MON trainer"
+	line "like you. If you"
+
+	para "help me out with a"
+	line "little something,"
+	cont "I'll let you try"
+	
+	para "out one of my new"
+	line "prototypes: a"
+	cont "POCKET PC!"
 
 	para "I have to hurry on"
 	line "back to GOLDENROD"
 	cont "and see my folks."
 
-	para "Buh-bye!"
+	para "Drop by soon!"
 	done
 
 EcruteakPokecenter1FPokefanMText:

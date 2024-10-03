@@ -3,6 +3,9 @@
 	const ROUTE3_YOUNGSTER1
 	const ROUTE3_YOUNGSTER2
 	const ROUTE3_FISHER2
+	const ROUTE3_YOUNGSTER3
+	const ROUTE3_COOLTRAINER_F
+	const ROUTE3_FISHER3
 
 Route3_MapScripts:
 	def_scene_scripts
@@ -49,6 +52,39 @@ TrainerFirebreatherBurt:
 	endifjustbattled
 	opentext
 	writetext FirebreatherBurtAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerAnder:
+	trainer BIRD_KEEPER, ANDER, EVENT_BEAT_ANDER, AnderSeenText, AnderBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext AnderAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerAntonia:
+	trainer COOLTRAINERF, ANTONIA, EVENT_BEAT_ANTONIA, AntoniaSeenText, AntoniaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext AntoniaAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerDante:
+	trainer HIKER, DANTE, EVENT_BEAT_DANTE, DanteSeenText, DanteBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext DanteAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -122,6 +158,54 @@ FirebreatherBurtAfterBattleText:
 	para "But not the best"
 	line "trainer…"
 	done
+	
+AnderSeenText:
+	text "Wait a moment! Let"
+	line "us fight!"
+	done
+
+AnderBeatenText:
+	text "You did it…"
+	done
+
+AnderAfterBattleText:
+	text "You came all the"
+	line "way from JOHTO?"
+
+	para "You must be very"
+	line "persistent!"
+	done
+	
+AntoniaSeenText:
+	text "It's rather cold,"
+	line "don't you think?"
+	done
+
+AntoniaBeatenText:
+	text "Not so cold now…"
+	done
+
+AntoniaAfterBattleText:
+	text "Alright, that hot"
+	line "battle warmed me"
+	cont "up good!"
+	done
+	
+DanteSeenText:
+	text "Let's rock, baby!"
+	done
+
+DanteBeatenText:
+	text "Sick skills!"
+	done
+
+DanteAfterBattleText:
+	text "You have to take"
+	line "it easy, man."
+	
+	para "You remind me of"
+	line "my crazy brother."
+	done
 
 Route3MtMoonSquareSignText:
 	text "MT.MOON SQUARE"
@@ -146,3 +230,6 @@ Route3_MapEvents:
 	object_event 10,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterWarren, -1
 	object_event 16,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerYoungsterJimmy, -1
 	object_event 49,  5, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerFirebreatherBurt, -1
+	object_event 20,  8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerAnder, -1
+	object_event 34,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerAntonia, -1
+	object_event 50, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerDante, -1

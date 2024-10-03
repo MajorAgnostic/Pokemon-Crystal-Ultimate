@@ -7,7 +7,7 @@ TinTower7F_MapScripts:
 	def_callbacks
 
 TinTower7FMaxRevive:
-	itemball MAX_REVIVE
+	itemball MAX_POTION
 
 TinTower7F_MapEvents:
 	db 0, 0 ; filler

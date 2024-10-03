@@ -6,19 +6,19 @@
 
 DragonShrine_MapScripts:
 	def_scene_scripts
-	scene_script DragonShrineTakeTestScene, SCENE_DRAGONSHRINE_TAKE_TEST
-	scene_script DragonShrineNoopScene,     SCENE_DRAGONSHRINE_NOOP
+	scene_script .DragonShrineTest, SCENE_DRAGONSHRINE_TAKE_TEST
+	scene_script .DummyScene, SCENE_DRAGONSHRINE_NOOP
 
 	def_callbacks
 
-DragonShrineTakeTestScene:
-	sdefer DragonShrineTakeTestScript
+.DragonShrineTest:
+	prioritysjump .DragonShrineTestScript
 	end
 
-DragonShrineNoopScene:
+.DummyScene:
 	end
 
-DragonShrineTakeTestScript:
+.DragonShrineTestScript:
 	applymovement PLAYER, DragonShrinePlayerWalkInMovement
 	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderStepDownMovement
 	opentext
@@ -158,6 +158,7 @@ DragonShrineTakeTestScript:
 	opentext
 	writetext DragonShrineHereRisingBadgeText
 	waitbutton
+	loadmem wLevelCap, 70
 	setflag ENGINE_RISINGBADGE
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -213,9 +214,11 @@ DragonShrineElder1Script:
 	writetext DragonShrinePlayerReceivedDratiniText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke DRATINI, 15
+	givepoke DRAGONAIR, 35
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
+	iftrue .NoExtremeSpeedDratini
 	special GiveDratini
+.NoExtremeSpeedDratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	writetext DragonShrineSymbolicDragonText
@@ -230,7 +233,7 @@ DragonShrineElder1Script:
 	end
 
 .BeatRivalInMtMoon:
-	writetext DragonShrineRivalIsInTrainingText
+	writetext DragonShrineSilverIsInTrainingText
 	waitbutton
 	closetext
 	end
@@ -503,16 +506,16 @@ DragonShrineTakeThisDratiniText:
 	para "I have something"
 	line "for you."
 
-	para "Take this DRATINI"
-	line "as proof that I"
-
-	para "have recognized"
-	line "your worth."
+	para "Please take this"
+	line "DRAGONAIR as proof"
+	
+	para "that I have recog-"
+	line "nized your worth."
 	done
 
 DragonShrinePlayerReceivedDratiniText:
 	text "<PLAYER> received"
-	line "DRATINI!"
+	line "DRAGONAIR!"
 	done
 
 DragonShrinePartyFullText:
@@ -543,7 +546,7 @@ DragonShrineClairsGrandfatherText:
 	line "grandfather."
 	done
 
-DragonShrineRivalIsInTrainingText:
+DragonShrineSilverIsInTrainingText:
 	text "A boy close to"
 	line "your age is in"
 	cont "training here."
@@ -640,6 +643,11 @@ DragonShrineRisingBadgeExplanationText:
 	para "#MON to use the"
 	line "move for climbing"
 	cont "waterfalls."
+	
+	para "I hear that you"
+	line "can find a large"
+	cont "waterfall in MT."
+	cont "MORTAR."
 
 	para "Also, all #MON"
 	line "will recognize you"
@@ -649,6 +657,12 @@ DragonShrineRisingBadgeExplanationText:
 
 	para "command without"
 	line "question."
+	
+	para "However, they are"
+	line "still limited in"
+	
+	para "their potential to"
+	line "grow."
 	done
 
 DragonShrineSpeechlessText:

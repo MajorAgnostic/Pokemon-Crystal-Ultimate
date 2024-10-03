@@ -53,11 +53,7 @@ GiveShuckle:
 	ld de, SpecialShuckleOT
 	call CopyName2
 
-; Engine flag for this event.
-	ld hl, wDailyFlags1
-	set DAILYFLAGS1_GOT_SHUCKIE_TODAY_F, [hl]
-	ld a, 1
-	ld [wScriptVar], a
+
 	ret
 
 .NotGiven:

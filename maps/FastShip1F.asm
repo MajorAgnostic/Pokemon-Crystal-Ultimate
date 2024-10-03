@@ -6,26 +6,26 @@
 
 FastShip1F_MapScripts:
 	def_scene_scripts
-	scene_script FastShip1FNoop1Scene,     SCENE_FASTSHIP1F_NOOP
-	scene_script FastShip1FEnterShipScene, SCENE_FASTSHIP1F_ENTER_SHIP
-	scene_script FastShip1FNoop2Scene,     SCENE_FASTSHIP1F_MEET_GRANDPA
+	scene_script .DummyScene0, SCENE_FASTSHIP1F_NOOP
+	scene_script .EnterFastShip, SCENE_FASTSHIP1F_ENTER_SHIP
+	scene_script .DummyScene2, SCENE_FASTSHIP1F_MEET_GRANDPA
 
 	def_callbacks
 
-FastShip1FNoop1Scene:
+.DummyScene0:
 	end
 
-FastShip1FEnterShipScene:
-	sdefer FastShip1FEnterShipScript
+.EnterFastShip:
+	prioritysjump .EnterFastShipScript
 	end
 
-FastShip1FNoop2Scene:
+.DummyScene2:
 	end
 
-FastShip1FEnterShipScript:
-	applymovement FASTSHIP1F_SAILOR1, FastShip1F_SailorStepAsideMovement
-	applymovement PLAYER, FastShip1F_PlayerEntersShipMovement
-	applymovement FASTSHIP1F_SAILOR1, FastShip1F_SailorBlocksDoorMovement
+.EnterFastShipScript:
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
+	applymovement PLAYER, MovementData_0x75217
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x75211
 	pause 30
 	playsound SFX_BOAT
 	earthquake 30
@@ -66,7 +66,7 @@ FastShip1FSailor1Script:
 	closetext
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	setmapscene VERMILION_PORT, SCENE_VERMILIONPORT_LEAVE_SHIP
@@ -79,7 +79,7 @@ FastShip1FSailor1Script:
 	closetext
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	setmapscene OLIVINE_PORT, SCENE_OLIVINEPORT_LEAVE_SHIP
@@ -89,13 +89,13 @@ FastShip1FSailor1Script:
 .LetThePlayerOut:
 	readvar VAR_FACING
 	ifequal RIGHT, .YouAreFacingRight
-	applymovement FASTSHIP1F_SAILOR1, FastShip1F_SailorStepAsideMovement
-	applymovement PLAYER, FastShip1F_PlayerLeavesShipMovement
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
+	applymovement PLAYER, MovementData_0x75235
 	end
 
 .YouAreFacingRight:
-	applymovement FASTSHIP1F_SAILOR1, FastShip1F_SailorStepAsideDownMovement
-	applymovement PLAYER, FastShip1F_PlayerLeavesShipRightMovement
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x75214
+	applymovement PLAYER, MovementData_0x75238
 	end
 
 FastShip1FSailor2Script:
@@ -122,53 +122,53 @@ WorriedGrandpaSceneRight:
 
 WorriedGrandpaSceneLeft:
 	appear FASTSHIP1F_GENTLEMAN
-	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaRunsInMovement
+	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x7521b
 	playsound SFX_TACKLE
-	applymovement PLAYER, FastShip1F_PlayerHitByGrandpaMovement
-	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaApproachesPlayerMovement
+	applymovement PLAYER, MovementData_0x7522e
+	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75220
 	opentext
 	writetext FastShip1FGrandpaText
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
-	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaRunsOutMovement
+	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75222
 	disappear FASTSHIP1F_GENTLEMAN
 	setscene SCENE_FASTSHIP1F_NOOP
 	end
 
-FastShip1F_SailorStepAsideMovement:
+MovementData_0x7520e:
 	slow_step LEFT
 	turn_head RIGHT
 	step_end
 
-FastShip1F_SailorBlocksDoorMovement:
+MovementData_0x75211:
 	slow_step RIGHT
 	turn_head DOWN
 	step_end
 
-FastShip1F_SailorStepAsideDownMovement:
+MovementData_0x75214:
 	slow_step DOWN
 	turn_head UP
 	step_end
 
-FastShip1F_PlayerEntersShipMovement:
+MovementData_0x75217:
 	step DOWN
 	step DOWN
 	turn_head DOWN
 	step_end
 
-FastShip1F_GrandpaRunsInMovement:
+MovementData_0x7521b:
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
 	step_end
 
-FastShip1F_GrandpaApproachesPlayerMovement:
+MovementData_0x75220:
 	step RIGHT
 	step_end
 
-FastShip1F_GrandpaRunsOutMovement:
+MovementData_0x75222:
 	big_step DOWN
 	big_step RIGHT
 	big_step RIGHT
@@ -182,25 +182,25 @@ FastShip1F_GrandpaRunsOutMovement:
 	big_step DOWN
 	step_end
 
-FastShip1F_PlayerHitByGrandpaMovement:
+MovementData_0x7522e:
 	big_step RIGHT
 	turn_head LEFT
 	step_end
 
-FastShip1F_StepUpMovement: ; unreferenced
+MovementData_0x75231:
 	step UP
 	step_end
 
-FastShip1F_StepDownMovement: ; unreferenced
+MovementData_0x75233:
 	step DOWN
 	step_end
 
-FastShip1F_PlayerLeavesShipMovement:
+MovementData_0x75235:
 	step UP
 	step UP
 	step_end
 
-FastShip1F_PlayerLeavesShipRightMovement:
+MovementData_0x75238:
 	step RIGHT
 	step UP
 	step_end

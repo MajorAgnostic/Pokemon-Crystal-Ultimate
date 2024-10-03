@@ -3,6 +3,7 @@
 	const ROUTE31_YOUNGSTER
 	const ROUTE31_BUG_CATCHER
 	const ROUTE31_COOLTRAINER_M
+	const ROUTE31_COOLTRAINER_F
 	const ROUTE31_FRUIT_TREE
 	const ROUTE31_POKE_BALL1
 	const ROUTE31_POKE_BALL2
@@ -11,9 +12,9 @@ Route31_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, Route31CheckMomCallCallback
+	callback MAPCALLBACK_NEWMAP, .CheckMomCall
 
-Route31CheckMomCallCallback:
+.CheckMomCall:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iffalse .DoMomCall
 	endcallback
@@ -27,7 +28,6 @@ TrainerBugCatcherWade1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BUG_CATCHER_WADE
-	endifjustbattled
 	opentext
 	checkflag ENGINE_WADE_READY_FOR_REMATCH
 	iftrue .WadeRematch
@@ -56,29 +56,17 @@ TrainerBugCatcherWade1:
 .WadeRematch:
 	scall .RematchSTD
 	winlosstext BugCatcherWade1BeatenText, 0
-	readmem wWadeFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight4
-.Fight3:
-	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue .LoadFight3
-.Fight2:
-	checkflag ENGINE_FLYPOINT_MAHOGANY
-	iftrue .LoadFight2
-.Fight1:
 	checkflag ENGINE_FLYPOINT_GOLDENROD
+	iftrue .LoadFight3
+	checkflag ENGINE_FLYPOINT_AZALEA
+	iftrue .LoadFight2
+	checkflag ENGINE_FLYPOINT_VIOLET
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	reloadmapafterbattle
-	loadmem wWadeFightCount, 1
 	clearflag ENGINE_WADE_READY_FOR_REMATCH
 	end
 
@@ -86,7 +74,6 @@ TrainerBugCatcherWade1:
 	loadtrainer BUG_CATCHER, WADE2
 	startbattle
 	reloadmapafterbattle
-	loadmem wWadeFightCount, 2
 	clearflag ENGINE_WADE_READY_FOR_REMATCH
 	end
 
@@ -94,7 +81,6 @@ TrainerBugCatcherWade1:
 	loadtrainer BUG_CATCHER, WADE3
 	startbattle
 	reloadmapafterbattle
-	loadmem wWadeFightCount, 3
 	clearflag ENGINE_WADE_READY_FOR_REMATCH
 	end
 
@@ -102,7 +88,6 @@ TrainerBugCatcherWade1:
 	loadtrainer BUG_CATCHER, WADE4
 	startbattle
 	reloadmapafterbattle
-	loadmem wWadeFightCount, 4
 	clearflag ENGINE_WADE_READY_FOR_REMATCH
 	end
 
@@ -239,6 +224,17 @@ Route31MailRecipientScript:
 	waitbutton
 	closetext
 	end
+	
+Route31CooltrainerFScript:
+	trainer LASS, JANET, EVENT_BEAT_JANET, JanetSeenText, JanetBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext JanetAfterText
+	waitbutton
+	closetext
+	end
 
 ReceivedSpearowMailText:
 	db   "DARK CAVE leads"
@@ -293,6 +289,27 @@ BugCatcherWade1AfterText:
 	para "If you catch one,"
 	line "it'll go to your"
 	cont "BOX automatically."
+	done
+	
+JanetSeenText:
+	text "Did you think this"
+	line "was a shortcut?"
+
+	para "Think again!"
+	done
+
+JanetBeatenText:
+	text "Well, you cut me"
+	line "short."
+	done
+
+JanetAfterText:
+	text "I don't mind if I"
+	line "lose."
+
+	para "Just seeing PHANPY"
+	line "giving it its all "
+	cont "makes me happy!"
 	done
 
 Text_Route31SleepyMan:
@@ -434,6 +451,7 @@ Route31_MapEvents:
 	object_event  9,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31YoungsterScript, -1
 	object_event 21, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherWade1, -1
 	object_event 33,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
+	object_event 24,  9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_TRAINER, 4, Route31CooltrainerFScript, -1
 	object_event 16,  7, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
 	object_event 29,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
 	object_event 19, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31PokeBall, EVENT_ROUTE_31_POKE_BALL

@@ -1,7 +1,7 @@
 	object_const_def
 	const CERULEANCITY_COOLTRAINER_M
 	const CERULEANCITY_SUPER_NERD
-	const CERULEANCITY_SLOWPOKE
+	const CERULEANCITY_SLOWBRO
 	const CERULEANCITY_COOLTRAINER_F
 	const CERULEANCITY_FISHER
 	const CERULEANCITY_YOUNGSTER
@@ -10,9 +10,9 @@ CeruleanCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, CeruleanCityFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-CeruleanCityFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_CERULEAN
 	endcallback
 
@@ -73,6 +73,8 @@ CeruleanCityFisherScript:
 	checkevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	iftrue .MetCeruleanRocket
 .ReturnedMachinePart:
+	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
+	iftrue .MistyDate
 	writetext CeruleanCityFisherText
 	waitbutton
 	closetext
@@ -80,6 +82,12 @@ CeruleanCityFisherScript:
 
 .MetCeruleanRocket:
 	writetext CeruleanCityFisherRocketTipText
+	waitbutton
+	closetext
+	end
+	
+.MistyDate:
+	writetext CeruleanCityFisherDateText
 	waitbutton
 	closetext
 	end
@@ -92,6 +100,50 @@ CeruleanCityYoungsterScript:
 	closetext
 	checkevent EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 	iffalse .BerserkGenePingsItemfinder
+	faceplayer
+	checkevent EVENT_BERSERKGENE_REPLICATION
+	iftrue .GiveBerserkGene
+	checkitem BERSERK_GENE
+	iftrue .Replicate
+	end
+	
+.Replicate:
+	opentext
+	writetext CeruleanCityYoungsterReplicate
+	waitbutton
+	closetext
+	setevent EVENT_BERSERKGENE_REPLICATION
+	end
+	
+.GiveBerserkGene:
+	opentext
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .NoGene
+	checkitem BERSERK_GENE
+	iftrue .AlreadyHaveOne
+	writetext CeruleanCityYoungsterHereYouGo
+	promptbutton
+	verbosegiveitem BERSERK_GENE
+	iffalse .BagFull
+	closetext
+	end
+	
+.NoGene:
+	writetext CeruleanCityYoungsterNoGene
+	waitbutton
+	closetext
+	end
+	
+.AlreadyHaveOne:
+	writetext CeruleanCityYoungsterAlreadyHaveOne
+	waitbutton
+	closetext
+	end
+	
+.BagFull:
+	writetext CeruleanCityYoungsterBagFull
+	waitbutton
+	closetext
 	end
 
 .BerserkGenePingsItemfinder:
@@ -210,20 +262,78 @@ CeruleanCityFisherRocketTipText:
 	line "guy go off toward"
 	cont "CERULEAN's CAPE."
 	done
+	
+CeruleanCityFisherDateText:
+	text "I heard that some"
+	line "lucky guy took"
+	
+	para "MISTY on a date to"
+	line "CERULEAN's CAPE."
+	done
 
 CeruleanCityYoungsterText1:
 	text "There used to be a"
 	line "cave here that had"
 
 	para "horribly powerful"
-	line "#MON in it."
+	line "#MON in it…"
 	done
 
 CeruleanCityYoungsterText2:
 	text "Ayuh?"
 
 	para "My ITEMFINDER is"
-	line "responding…"
+	line "responding!"
+	
+	para "I sure would like"
+	line "to know what that"
+	cont "is…"
+	done
+	
+CeruleanCityYoungsterReplicate:
+	text "Oh, you found the"
+	line "item that I was"
+	cont "dowsing for!"
+	
+	para "May I see it?"
+	
+	para "…"
+	line "…"
+
+	para "Amazing! I think"
+	line "I can replicate"
+	
+	para "this gene now. If"
+	line "you ever need"
+	
+	para "another BERSERK"
+	line "GENE, just ask!"
+	done
+	
+CeruleanCityYoungsterNoGene:
+	text "Ah! You would like"
+	line "another BERSERK"
+	cont "GENE, yes?"
+	
+	para "I'll need a little"
+	line "more time, sadly."
+	done
+	
+CeruleanCityYoungsterAlreadyHaveOne:
+	text "If you need a new"
+	line "BERSERK GENE, let"
+	cont "me know."
+	done
+	
+CeruleanCityYoungsterHereYouGo:
+	text "Ah! You would like"
+	line "another BERSERK"
+	cont "GENE, yes? Here."
+	done
+	
+CeruleanCityYoungsterBagFull:
+	text "You don't seem to"
+	line "have room for it."
 	done
 
 CeruleanCitySignText:
@@ -300,7 +410,7 @@ CeruleanCity_MapEvents:
 	def_object_events
 	object_event 15, 23, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerMScript, -1
 	object_event 23, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCitySuperNerdScript, -1
-	object_event 20, 24, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1
+	object_event 20, 24, SPRITE_SLOWBRO, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1
 	object_event 21, 24, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerFScript, -1
 	object_event 30, 26, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityFisherScript, -1
 	object_event  6, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityYoungsterScript, -1

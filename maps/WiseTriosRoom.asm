@@ -8,19 +8,19 @@
 
 WiseTriosRoom_MapScripts:
 	def_scene_scripts
-	scene_script WiseTriosRoomNoop1Scene, SCENE_WISETRIOSROOM_SAGE_BLOCKS
-	scene_script WiseTriosRoomNoop2Scene, SCENE_WISETRIOSROOM_NOOP
+	scene_script .DummyScene0, SCENE_WISETRIOSROOM_SAGE_BLOCKS
+	scene_script .DummyScene1, SCENE_WISETRIOSROOM_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, WiseTriosRoomWiseTrioCallback
+	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
 
-WiseTriosRoomNoop1Scene:
+.DummyScene0:
 	end
 
-WiseTriosRoomNoop2Scene:
+.DummyScene1:
 	end
 
-WiseTriosRoomWiseTrioCallback:
+.WiseTrioCallback:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .NoWiseTrio
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
@@ -55,14 +55,14 @@ WiseTriosRoom_CannotEnterTinTowerScript:
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE3, 20
 	follow PLAYER, WISETRIOSROOM_SAGE3
-	applymovement PLAYER, WiseTriosRoomSageBlocksPlayerMovement
+	applymovement PLAYER, MovementData_0x98622
 	stopfollow
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext WiseTriosRoomSage3BlocksExitText
 	waitbutton
 	closetext
-	applymovement WISETRIOSROOM_SAGE3, WiseTriosRoomSageReturnsMovement
+	applymovement WISETRIOSROOM_SAGE3, MovementData_0x98625
 	turnobject WISETRIOSROOM_SAGE3, LEFT
 	end
 
@@ -100,7 +100,7 @@ TrainerSageKoji:
 	writetext SageKojiAfterBattleSpeechText
 	waitbutton
 	closetext
-	applymovement WISETRIOSROOM_SAGE6, WiseTriosRoomSageAllowsPassageMovement
+	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
 	turnobject WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	setscene SCENE_WISETRIOSROOM_NOOP
@@ -113,17 +113,17 @@ TrainerSageKoji:
 	closetext
 	end
 
-WiseTriosRoomSageBlocksPlayerMovement:
+MovementData_0x98622:
 	step LEFT
 	step LEFT
 	step_end
 
-WiseTriosRoomSageReturnsMovement:
+MovementData_0x98625:
 	step RIGHT
 	step DOWN
 	step_end
 
-WiseTriosRoomSageAllowsPassageMovement:
+MovementData_0x98628:
 	step RIGHT
 	step DOWN
 	step_end

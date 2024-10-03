@@ -18,7 +18,8 @@ AnimObjGFX:
 	anim_obj_gfx  9, AnimObjExplosionGFX
 	anim_obj_gfx 17, AnimObjRocksGFX
 	anim_obj_gfx  6, AnimObjIceGFX
-	anim_obj_gfx 10, AnimObjPokeBallGFX
+	anim_obj_gfx 10, NULL ; use AnimBallObjGFX
+	anim_obj_gfx 10, AnimObjPokeBallBGGFX
 	anim_obj_gfx  9, AnimObjPoisonGFX
 	anim_obj_gfx 13, AnimObjBubbleGFX
 	anim_obj_gfx 16, AnimObjNoiseGFX
@@ -50,3 +51,17 @@ AnimObjGFX:
 	anim_obj_gfx  1, NULL
 	anim_obj_gfx  1, NULL
 	assert_table_length NUM_BATTLE_ANIM_GFX + 1
+	
+AnimBallObjGFX:
+	dw AnimObjPokeBallGFX
+	dw AnimObjGreatBallGFX
+	dw AnimObjUltraBallGFX
+	dw AnimObjMasterBallGFX
+	dw AnimObjHeavyBallGFX
+	dw AnimObjLevelBallGFX
+	dw AnimObjLureBallGFX
+	dw AnimObjFastBallGFX
+	dw AnimObjFriendBallGFX
+	dw AnimObjMoonBallGFX
+	dw AnimObjLoveBallGFX
+	dw AnimObjParkBallGFX

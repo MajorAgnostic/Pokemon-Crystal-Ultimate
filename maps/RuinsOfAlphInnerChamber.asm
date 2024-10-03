@@ -5,24 +5,24 @@
 
 RuinsOfAlphInnerChamber_MapScripts:
 	def_scene_scripts
-	scene_script RuinsOfAlphInnerChamberNoopScene,            SCENE_RUINSOFALPHINNERCHAMBER_NOOP
-	scene_script RuinsOfAlphInnerChamberStrangePresenceScene, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
+	scene_script .DummyScene0, SCENE_RUINSOFALPHINNERCHAMBER_NOTHING
+	scene_script .UnownAppear, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 
 	def_callbacks
 
-RuinsOfAlphInnerChamberNoopScene:
+.DummyScene0:
 	end
 
-RuinsOfAlphInnerChamberStrangePresenceScene:
-	sdefer RuinsOfAlphInnerChamberStrangePresenceScript
+.UnownAppear:
+	prioritysjump .StrangePresenceScript
 	end
 
-RuinsOfAlphInnerChamberStrangePresenceScript:
+.StrangePresenceScript:
 	opentext
 	writetext RuinsOfAlphStrangePresenceText
 	waitbutton
 	closetext
-	setscene SCENE_RUINSOFALPHINNERCHAMBER_NOOP
+	setscene SCENE_RUINSOFALPHINNERCHAMBER_NOTHING
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
 	end

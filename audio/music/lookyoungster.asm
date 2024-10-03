@@ -59,8 +59,7 @@ Music_LookYoungster_Ch1:
 	rest 1
 	rest 16
 	sound_loop 0, .mainloop
-
-	sound_ret ; unused
+	sound_ret
 
 Music_LookYoungster_Ch2:
 	stereo_panning TRUE, FALSE
@@ -157,8 +156,7 @@ Music_LookYoungster_Ch2:
 	note C_, 1
 	rest 1
 	sound_loop 0, .mainloop
-
-	sound_ret ; unused
+	sound_ret
 
 Music_LookYoungster_Ch3:
 	stereo_panning TRUE, TRUE
@@ -292,5 +290,4 @@ Music_LookYoungster_Ch3:
 	note G#, 1
 	rest 1
 	sound_loop 0, .mainloop
-
-	sound_ret ; unused
+	sound_ret

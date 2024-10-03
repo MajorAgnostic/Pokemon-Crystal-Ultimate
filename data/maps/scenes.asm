@@ -84,4 +84,10 @@ MapScenes::
 	scene_var MOUNT_MOON_SQUARE,                           wMountMoonSquareSceneID
 	scene_var MOBILE_TRADE_ROOM,                           wMobileTradeRoomSceneID
 	scene_var MOBILE_BATTLE_ROOM,                          wMobileBattleRoomSceneID
+	scene_var ROUTE_42_ECRUTEAK_GATE,                      wRoute42EcruteakGateSceneID
+	scene_var SILVER_CAVE_ROOM_2,                          wSilverCaveRoom2SceneID
+	scene_var SAFFRON_CITY,                                wSaffronCitySceneID
+	scene_var TIN_TOWER_ROOF,                              wTinTowerRoofSceneID
+	scene_var SEAFOAM_GYM,                                 wSeafoamGymSceneID
+	scene_var VIRIDIAN_GYM,                                wViridianGymSceneID
 	db -1 ; end

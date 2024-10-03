@@ -14,7 +14,7 @@ GameFreakGameDesignerScript:
 	opentext
 	writetext GameFreakGameDesignerText
 	readvar VAR_DEXCAUGHT
-	ifgreater NUM_POKEMON - 2 - 1, .CompletedPokedex ; ignore Mew and Celebi
+	ifgreater NUM_POKEMON - 3, .CompletedPokedex ; now requires all Pokemon (except those added from other gens and Mewtwo)
 	waitbutton
 	closetext
 	end
@@ -57,7 +57,8 @@ GameFreakGraphicArtistScript:
 	closetext
 	end
 
-.CancelPrinting: ; unreferenced
+.CancelPrinting:
+; unused
 	writetext GameFreakGraphicArtistErrorText
 	waitbutton
 	closetext

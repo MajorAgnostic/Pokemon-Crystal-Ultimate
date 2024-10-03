@@ -3,17 +3,17 @@
 
 RedsHouse1F_MapScripts:
 	def_scene_scripts
-	scene_script RedHouse1FNoopScene ; unusable
+	scene_script .DummyScene
 
 	def_callbacks
 
-RedHouse1FNoopScene:
+.DummyScene:
 	end
 
 RedsMom:
 	faceplayer
 	opentext
-	checkevent EVENT_MET_REDS_MOM
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MetAlready
 	writetext RedsMomText1
 	waitbutton
@@ -62,8 +62,14 @@ RedsMomText2:
 
 	para "that he is doing"
 	line "what he wants to"
-
-	para "do."
+	cont "do."
+	
+	para "It's too bad that"
+	line "he won't be able"
+	
+	para "to enjoy the gifts"
+	line "I left for him up-"
+	cont "stairs, though."
 	done
 
 RedsHouse1FTVText:

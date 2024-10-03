@@ -1,22 +1,57 @@
 	object_const_def
 	const SAFFRONCITY_LASS1
-	const SAFFRONCITY_POKEFAN_M
+	const SAFFRONCITY_POKEFAN_M1
 	const SAFFRONCITY_COOLTRAINER_M
 	const SAFFRONCITY_COOLTRAINER_F
 	const SAFFRONCITY_FISHER
 	const SAFFRONCITY_YOUNGSTER1
 	const SAFFRONCITY_YOUNGSTER2
 	const SAFFRONCITY_LASS2
+	const SAFFRONCITY_POKEFAN_M2
 
 SaffronCity_MapScripts:
 	def_scene_scripts
+	scene_script .DummyScene0, SCENE_SAFFRONCITYM_DEFAULT
+	scene_script .DummyScene1, SCENE_SAFFRON_HOOH
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, SaffronCityFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	
+.DummyScene0:
+.DummyScene1:
+	end
 
-SaffronCityFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_SAFFRON
 	endcallback
+	
+Saffron_HoohScene:
+	special FadeOutMusic
+	showemote EMOTE_SHOCK, PLAYER, 20
+	turnobject PLAYER, DOWN
+	cry HO_OH
+	opentext
+	writetext SaffronHoOhText
+	pause 40
+	waitbutton
+	cry HO_OH
+	turnobject PLAYER, LEFT
+	pause 20
+	closetext
+	reloadmapafterbattle
+	pause 20
+	refreshscreen
+	pokepic HO_OH
+	waitbutton
+	closepokepic
+	setval HO_OH
+	special UnusedSetSeenMon
+	opentext
+	writetext SaffronHoOh2Text
+	waitbutton
+	closetext
+	setscene SCENE_FINISHED
+	end
 
 SaffronCityLass1Script:
 	faceplayer
@@ -104,6 +139,36 @@ SaffronCityPokecenterSign:
 
 SaffronCityMartSign:
 	jumpstd MartSignScript
+	
+SaffronCityGymBlockerScript:
+	jumptextfaceplayer SaffronCityBlockerText
+	
+SaffronMoveDeleterSign:
+	jumptext SaffronMoveDeleterSignText
+	
+SaffronCityBlockerText:
+	text "The GYM is closed"
+	line "until the problem"
+
+	para "at the POWER PLANT"
+	line "is resolved."
+	
+	para "No power, no warps"
+	line "right?"
+	done
+	
+SaffronHoOhText:
+	text "Shaoooh!"
+	done
+	
+SaffronHoOh2Text:
+	text "The brilliant"
+	line "rainbow-colored"
+
+	para "#MON flew in"
+	line "the direction of"
+	cont "CELADON CITY!"
+	done
 
 SaffronCityLass1Text:
 	text "A little girl who"
@@ -201,7 +266,7 @@ SaffronCityYoungster1Text:
 	para "first time makes"
 	line "me sorta anxious."
 	done
-
+	
 SaffronCityYoungster2Text:
 	text "There's a place"
 	line "called TRAINER"
@@ -262,6 +327,11 @@ SaffronCityMagnetTrainStationSignText:
 	line "MAGNET TRAIN"
 	cont "STATION"
 	done
+	
+SaffronMoveDeleterSignText:
+	text "MOVE DELETER &"
+	line "REMINDER'S HOUSE"
+	done
 
 SaffronCity_MapEvents:
 	db 0, 0 ; filler
@@ -282,8 +352,11 @@ SaffronCity_MapEvents:
 	warp_event 17, 33, ROUTE_6_SAFFRON_GATE, 2
 	warp_event 39, 22, ROUTE_8_SAFFRON_GATE, 1
 	warp_event 39, 23, ROUTE_8_SAFFRON_GATE, 2
+	warp_event 32, 21, SAFFRON_MOVEDELETER, 1
 
 	def_coord_events
+	coord_event 16, 31, SCENE_SAFFRONCITYM_DEFAULT, Saffron_HoohScene
+	coord_event 17, 31, SCENE_SAFFRONCITYM_DEFAULT, Saffron_HoohScene
 
 	def_bg_events
 	bg_event 21,  5, BGEVENT_READ, SaffronCitySign
@@ -294,13 +367,15 @@ SaffronCity_MapEvents:
 	bg_event 11,  5, BGEVENT_READ, SaffronCityMagnetTrainStationSign
 	bg_event 10, 29, BGEVENT_READ, SaffronCityPokecenterSign
 	bg_event 26, 11, BGEVENT_READ, SaffronCityMartSign
+	bg_event 29, 21, BGEVENT_READ, SaffronMoveDeleterSign
 
 	def_object_events
 	object_event  7, 14, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityLass1Script, -1
 	object_event 19, 30, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SaffronCityPokefanMScript, -1
-	object_event 32,  7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityCooltrainerMScript, -1
-	object_event 20, 24, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityCooltrainerFScript, -1
-	object_event 27, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityFisherScript, -1
+	object_event 30,  7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityCooltrainerMScript, -1
+	object_event 12, 24, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityCooltrainerFScript, -1
+	object_event 31, 15, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityFisherScript, -1
 	object_event 15, 19, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronCityYoungster1Script, -1
 	object_event 35, 22, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityYoungster2Script, -1
 	object_event 19,  8, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityLass2Script, -1
+	object_event 34,  4, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SaffronCityGymBlockerScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH

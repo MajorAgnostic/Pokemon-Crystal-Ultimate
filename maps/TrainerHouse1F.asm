@@ -28,9 +28,6 @@ TrainerHouse1FGentlemanScript:
 TrainerHouseSign1:
 	jumptext TrainerHouseSign1Text
 
-TrainerHouseSign2:
-	jumptext TrainerHouseSign2Text
-
 TrainerHouseIllegibleBook:
 	jumptext TrainerHouseIllegibleText
 
@@ -113,17 +110,6 @@ TrainerHouseSign1Text:
 	cont "participate."
 	done
 
-TrainerHouseSign2Text:
-	text "There are no rules"
-	line "or regulations for"
-
-	para "practice matches."
-	line "Just like in field"
-
-	para "battles, anything"
-	line "goes!"
-	done
-
 TrainerHouseIllegibleText:
 	text "…What's this?"
 	line "A strategy memo?"
@@ -132,7 +118,7 @@ TrainerHouseIllegibleText:
 	line "like ONIX tracks…"
 
 	para "It's completely"
-	line "illegible…"
+	line "illegible."
 	done
 
 TrainerHouse1F_MapEvents:
@@ -147,7 +133,6 @@ TrainerHouse1F_MapEvents:
 
 	def_bg_events
 	bg_event  5,  0, BGEVENT_READ, TrainerHouseSign1
-	bg_event  7,  0, BGEVENT_READ, TrainerHouseSign2
 	bg_event  7, 10, BGEVENT_READ, TrainerHouseIllegibleBook
 
 	def_object_events

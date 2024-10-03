@@ -61,13 +61,17 @@ CianwoodGymGuideText:
 
 	para "So you should"
 	line "confound him with"
-	cont "psychic #MON."
+	cont "psychic #MON,"
+	cont "but be careful!"
 
-	para "Wipe out his #-"
-	line "MON before they"
+	para "He has a #MON"
+	line "that can knock"
 
-	para "can use their"
-	line "physical strength."
+	para "them out in an"
+	line "instant!"
+	
+	para "Another one holds"
+	line "some sort of CLAW."
 
 	para "And those boulders"
 	line "in the middle of"
@@ -87,32 +91,6 @@ CianwoodGymGuideWinText:
 	text "<PLAYER>! You won!"
 	line "I could tell by"
 	cont "looking at you!"
-	done
-
-CianwoodPokecenter1FUnusedText1: ; unreferenced
-	text "Don't you get the"
-	line "urge to show off"
-
-	para "your #MON to"
-	line "friends?"
-
-	para "I wish I could"
-	line "show the #MON I"
-
-	para "raised to my pal"
-	line "in VIOLET."
-	done
-
-CianwoodPokecenter1FUnusedText2: ; unreferenced
-	text "I've been battling"
-	line "my pal in VIOLET"
-
-	para "using a MOBILE"
-	line "ADAPTER link."
-
-	para "I'm down 5-7"
-	line "against him. I've"
-	cont "gotta crank it up!"
 	done
 
 CianwoodPokecenter1FSuperNerdText:

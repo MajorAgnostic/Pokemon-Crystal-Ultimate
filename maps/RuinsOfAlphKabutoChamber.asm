@@ -4,25 +4,25 @@
 
 RuinsOfAlphKabutoChamber_MapScripts:
 	def_scene_scripts
-	scene_script RuinsOfAlphKabutoChamberCheckWallScene, SCENE_RUINSOFALPHKABUTOCHAMBER_CHECK_WALL
-	scene_script RuinsOfAlphKabutoChamberNoopScene,      SCENE_RUINSOFALPHKABUTOCHAMBER_NOOP
+	scene_script .CheckWall, SCENE_KABUTO_DEFAULT
+	scene_script .DummyScene, SCENE_KABUTO_FINISHED
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, RuinsOfAlphKabutoChamberHiddenDoorsCallback
+	callback MAPCALLBACK_TILES, .HiddenDoors
 
-RuinsOfAlphKabutoChamberCheckWallScene:
+.CheckWall:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .OpenWall
 	end
 
 .OpenWall:
-	sdefer RuinsOfAlphKabutoChamberWallOpenScript
+	prioritysjump .WallOpenScript
 	end
 
-RuinsOfAlphKabutoChamberNoopScene:
+.DummyScene:
 	end
 
-RuinsOfAlphKabutoChamberHiddenDoorsCallback:
+.HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .WallOpen
 	changeblock 4, 0, $2e ; closed wall
@@ -36,16 +36,16 @@ RuinsOfAlphKabutoChamberHiddenDoorsCallback:
 	changeblock 4, 2, $02 ; right floor
 	endcallback
 
-RuinsOfAlphKabutoChamberWallOpenScript:
+.WallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20
 	pause 30
 	playsound SFX_STRENGTH
 	changeblock 4, 0, $30 ; open wall
-	refreshmap
+	reloadmappart
 	earthquake 50
-	setscene SCENE_RUINSOFALPHKABUTOCHAMBER_NOOP
+	setscene SCENE_KABUTO_FINISHED
 	closetext
 	end
 
@@ -53,7 +53,7 @@ RuinsOfAlphKabutoChamberReceptionistScript:
 	jumptextfaceplayer RuinsOfAlphKabutoChamberReceptionistText
 
 RuinsOfAlphKabutoChamberPuzzle:
-	reanchormap
+	refreshscreen
 	setval UNOWNPUZZLE_KABUTO
 	special UnownPuzzle
 	closetext
@@ -70,7 +70,7 @@ RuinsOfAlphKabutoChamberPuzzle:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole
 	changeblock 4, 2, $19 ; right hole
-	refreshmap
+	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
 	applymovement PLAYER, RuinsOfAlphKabutoChamberSkyfallTopMovement
@@ -200,7 +200,8 @@ RuinsOfAlphKabutoChamberScientistTremorText:
 	cont "this wall here…"
 	done
 
-RuinsOfAlphKabutoChamberUnusedText: ; unreferenced
+RuinsOfAlphKabutoChamberUnusedText:
+; unused
 	text "The patterns on"
 	line "the wall appear to"
 	cont "be words!"
@@ -223,7 +224,8 @@ RuinsOfAlphKabutoChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphKabutoChamberUnownText: ; unreferenced
+RuinsOfAlphKabutoChamberUnownText:
+; unused
 	text "It's UNOWN text!"
 	done
 

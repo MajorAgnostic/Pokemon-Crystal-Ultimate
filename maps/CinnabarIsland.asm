@@ -1,20 +1,38 @@
 	object_const_def
 	const CINNABARISLAND_BLUE
+	const CINNABARISLAND_POKE_BALL
 
 CinnabarIsland_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, CinnabarIslandFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-CinnabarIslandFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_CINNABAR
 	endcallback
 
 CinnabarIslandBlue:
 	faceplayer
 	opentext
+	checkevent EVENT_MET_BLUE_IN_CINNABAR
+	iffalse .FirstTime
+	readvar VAR_BADGES
+	ifequal 15, .Teleport
+	writetext CinnabarIslandBlueYouAgainText
+	waitbutton
+	closetext
+	end
+	
+.FirstTime:
 	writetext CinnabarIslandBlueText
+	waitbutton
+	closetext
+	setevent EVENT_MET_BLUE_IN_CINNABAR
+	end
+	
+.Teleport:
+	writetext CinnabarIslandBlueTeleportText
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
@@ -31,9 +49,12 @@ CinnabarIslandSign:
 
 CinnabarIslandPokecenterSign:
 	jumpstd PokecenterSignScript
+	
+CinnabarIslandFireStone:
+	itemball FIRE_STONE
 
 CinnabarIslandHiddenRareCandy:
-	hiddenitem RARE_CANDY, EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY
+	hiddenitem MAX_REVIVE, EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY
 
 CinnabarIslandBlueTeleport:
 	teleport_from
@@ -91,9 +112,26 @@ CinnabarIslandBlueText:
 
 	para "That's the way it"
 	line "is…"
+	done
+	
+CinnabarIslandBlueYouAgainText:
+	text "You, again."
 
-	para "But, anyway, I'm"
-	line "still a trainer."
+	para "As I said, I'm not"
+	line "in the mood for a"
+	cont "battle right now…"
+
+	para "Come and see me if"
+	line "you run out of GYM"
+	cont "LEADERs to battle."
+	done
+	
+CinnabarIslandBlueTeleportText:
+	text "You, again."
+
+	para "You've managed to"
+	line "defeat every other"
+	cont "GYM LEADER, eh?"
 
 	para "If I see a strong"
 	line "opponent, it makes"
@@ -101,10 +139,12 @@ CinnabarIslandBlueText:
 
 	para "If you want to"
 	line "battle me, come to"
-	cont "the VIRIDIAN GYM."
+	cont "VIRIDIAN GYM."
 
 	para "I'll take you on"
-	line "then."
+	line "there."
+	
+	para "Smell ya later!"
 	done
 
 CinnabarIslandGymSignText:
@@ -141,3 +181,4 @@ CinnabarIsland_MapEvents:
 
 	def_object_events
 	object_event  9,  6, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	object_event  5,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CinnabarIslandFireStone, EVENT_CINNABAR_FIRE_STONE

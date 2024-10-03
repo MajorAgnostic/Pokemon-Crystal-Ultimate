@@ -9,27 +9,42 @@ CeladonMansionRoofHouse_MapScripts:
 CeladonMansionRoofHousePharmacistScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM03_CURSE
-	iftrue .GotCurse
+	checkevent EVENT_GOT_MEWTWO
+	iftrue .GotMewtwo
 	writetext CeladonMansionRoofHousePharmacistIntroText
 	promptbutton
-	checktime NITE
-	iftrue .Night
-	writetext CeladonMansionRoofHousePharmacistNotNightText
+	readvar VAR_DEXCAUGHT
+	ifgreater NUM_POKEMON - 4, .CompletePokedex ; now requires all Pokemon (except those added from other gens and Mewtwo)
+	writetext CeladonMansionRoofHousePharmacistNotCompleteText
 	waitbutton
 	closetext
 	end
 
-.Night:
+.CompletePokedex:
 	writetext CeladonMansionRoofHousePharmacistStoryText
 	promptbutton
-	verbosegiveitem TM_CURSE
-	iffalse .NoRoom
-	setevent EVENT_GOT_TM03_CURSE
-.GotCurse:
+	waitsfx
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	writetext ReceivedMewtwoText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke MEWTWO, 50, GORGEOUS_BOX
+	setevent EVENT_GOT_MEWTWO
 	writetext CeladonMansionRoofHousePharmacistCurseText
 	waitbutton
+	closetext
+	end
+	
+.GotMewtwo:
+	writetext CeladonMansionRoofHousePharmacistEndText
+	waitbutton
+	closetext
+	end
+	
 .NoRoom:
+	writetext PharmacistPartyFullText
+	waitbutton
 	closetext
 	end
 
@@ -38,15 +53,20 @@ CeladonMansionRoofHousePharmacistIntroText:
 	line "terrifying tale…"
 	done
 
-CeladonMansionRoofHousePharmacistNotNightText:
-	text "Then again, it's"
-	line "not as scary while"
+CeladonMansionRoofHousePharmacistNotCompleteText:
+	text "Then again, maybe"
+	line "you should come"
 
-	para "it's still light"
-	line "outside."
+	para "back once you've"
+	line "caught some more"
+	cont "#MON."
 
-	para "Come back after"
-	line "sunset, OK?"
+	para "That should prove"
+	line "that you have the"
+	
+	para "heart to stomach"
+	line "the terror of my"
+	cont "harrowing tale…"
 	done
 
 CeladonMansionRoofHousePharmacistStoryText:
@@ -78,7 +98,7 @@ CeladonMansionRoofHousePharmacistStoryText:
 	line "pedaling, the bike"
 
 	para "began slipping"
-	line "backwards!"
+	line "backwards…"
 
 	para "It was as if the"
 	line "bike were cursed"
@@ -97,21 +117,79 @@ CeladonMansionRoofHousePharmacistStoryText:
 	cont "CYCLING ROAD!"
 
 	para "…"
-	line "Ba-dum ba-dum!"
-
-	para "For listening so"
-	line "patiently, you may"
-	cont "take this--TM03!"
+	line "Ba-dum, tss!"
+	
+	para "Pretty good, eh?"
+	line "For listening so"
+	cont "patiently, you may"
+	
+	para "take this--"
+	line "MEWTHREE!"
+	done
+	
+PharmacistPartyFullText:
+	text "Oh, it seems that"
+	line "you have no room"
+	cont "for this #MON."
+	
+	para "If only we had"
+	line "POCKET PCs!"
+	done
+	
+ReceivedMewtwoText:
+	text "<PLAYER> received"
+	line "MEWTWO!"
 	done
 
 CeladonMansionRoofHousePharmacistCurseText:
-	text "TM03 is CURSE."
+	text "Nah, just kidding."
+	line "It's a regular ol'"
+	cont "MEWTWO."
 
-	para "It's a terrifying"
-	line "move that slowly"
+	para "I bet you thought"
+	line "I would give you"
+	cont "TM03, huh?"
+	
+	para "Anyway, you might"
+	line "be wondering how"
 
-	para "whittles down the"
-	line "victim's HP."
+	para "I got my hands on"
+	line "such a #MON."
+	
+	para "Or why I made it a"
+	line "point to examine"
+	cont "your collection."
+	
+	para "Well, let's just"
+	line "say that I go way"
+	
+	para "back with OAK and"
+	line "TEAM ROCKET, hehe."
+	
+	para "Now don't you have"
+	line "a diploma to pick"
+	cont "up?"
+	done
+	
+CeladonMansionRoofHousePharmacistEndText:
+	text "You know, you re-"
+	line "mind me of another"
+	cont "trainer."
+	
+	para "Name was ANDREA,"
+	line "had red hair and a"
+	cont "cool black jacket."
+	
+	para "I heard he was in"
+	line "ROCK TUNNEL for a"
+	cont "while."
+	
+	para "Anywho, maybe we"
+	line "will meet again,"
+	cont "young trainer!"
+
+	para "Perhaps… in the"
+	line "past…"
 	done
 
 CeladonMansionRoofHouse_MapEvents:

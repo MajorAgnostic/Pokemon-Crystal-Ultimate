@@ -71,6 +71,10 @@ SandstormHouseSandstormDescription:
 	para "It's a move that"
 	line "inflicts damage on"
 	cont "both battlers."
+	
+	para "It also guarantees"
+	line "that ROCK SLIDE"
+	cont "will hit."
 
 	para "It's for advanced"
 	line "trainers only."

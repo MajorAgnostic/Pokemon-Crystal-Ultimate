@@ -14,6 +14,13 @@ LavRadioTower1FReceptionistScript:
 	jumptextfaceplayer LavRadioTower1FReceptionistText
 
 LavRadioTower1FOfficerScript:
+	checkevent OFFERED_METAL_POWDER
+	iffalse .GhostDone
+	checkevent BEAT_GHOST
+	iftrue .GhostDone
+	setevent GHOST_ACTIVATED
+	jumptextfaceplayer LavRadioTower1FOfficerGhostText
+.GhostDone:
 	jumptextfaceplayer LavRadioTower1FOfficerText
 
 LavRadioTower1FSuperNerd1Script:
@@ -72,9 +79,6 @@ LavRadioTower1FDirectory:
 LavRadioTower1FPokeFluteSign:
 	jumptext LavRadioTower1FPokeFluteSignText
 
-LavRadioTower1FReferenceLibrary: ; unreferenced
-	jumptext LavRadioTower1FReferenceLibraryText
-
 LavRadioTower1FReceptionistText:
 	text "Welcome!"
 	line "Feel free to look"
@@ -96,6 +100,22 @@ LavRadioTower1FOfficerText:
 
 	para "have had to step"
 	line "up our security."
+	done
+	
+LavRadioTower1FOfficerGhostText:
+	text "What's that? You"
+	line "heard a ghost in"
+	cont "the SOUL HOUSE?"
+
+	para "Yes, that happened"
+	line "in this tower in"
+	cont "the past."
+
+	para "If you don't have"
+	line "a SILPH SCOPE, a"
+
+	para "sprinkle of water"
+	line "can stir ghosts."
 	done
 
 LavRadioTower1FSuperNerd1Text:
@@ -208,15 +228,6 @@ LavRadioTower1FPokeFluteSignText:
 
 	para "of the # FLUTE"
 	line "on CHANNEL 20"
-	done
-
-LavRadioTower1FReferenceLibraryText:
-	text "Wow! A full rack"
-	line "of #MON CDs and"
-	cont "videos."
-
-	para "This must be the"
-	line "reference library."
 	done
 
 LavRadioTower1F_MapEvents:

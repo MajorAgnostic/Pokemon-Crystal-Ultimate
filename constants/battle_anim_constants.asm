@@ -52,6 +52,7 @@ DEF BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLE_ANIM_OBJ_ICE_BEAM            ; 13
 	const BATTLE_ANIM_OBJ_RAZOR_LEAF          ; 14
 	const BATTLE_ANIM_OBJ_POKE_BALL           ; 15
+	const BATTLE_ANIM_OBJ_POKE_BALL_BG           ; 15
 	const BATTLE_ANIM_OBJ_POKE_BALL_BLOCKED   ; 16
 	const BATTLE_ANIM_OBJ_EXPLOSION1          ; 17
 	const BATTLE_ANIM_OBJ_EXPLOSION2          ; 18
@@ -140,6 +141,7 @@ DEF BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLE_ANIM_OBJ_KINESIS             ; 6b
 	const BATTLE_ANIM_OBJ_FLASH               ; 6c
 	const BATTLE_ANIM_OBJ_SHINY               ; 6d
+	const BATTLE_ANIM_OBJ_SHINY2              ; ULTIMATE
 	const BATTLE_ANIM_OBJ_SKY_ATTACK          ; 6e
 	const BATTLE_ANIM_OBJ_LICK                ; 6f
 	const BATTLE_ANIM_OBJ_WITHDRAW            ; 70
@@ -241,6 +243,7 @@ DEF NUM_BATTLE_ANIM_OBJS EQU const_value
 	const BATTLE_ANIM_FUNC_EMBER                     ; 10
 	const BATTLE_ANIM_FUNC_POWDER                    ; 11
 	const BATTLE_ANIM_FUNC_POKEBALL                  ; 12
+	const BATTLE_ANIM_FUNC_POKEBALL_BG                  ; 12
 	const BATTLE_ANIM_FUNC_POKEBALL_BLOCKED          ; 13
 	const BATTLE_ANIM_FUNC_RECOVER                   ; 14
 	const BATTLE_ANIM_FUNC_THUNDER_WAVE              ; 15
@@ -787,6 +790,7 @@ DEF NUM_BATTLE_BG_EFFECTS EQU const_value - 1
 	const BATTLE_ANIM_GFX_ROCKS      ; 09
 	const BATTLE_ANIM_GFX_ICE        ; 0a
 	const BATTLE_ANIM_GFX_POKE_BALL  ; 0b
+	const BATTLE_ANIM_GFX_POKE_BALL_BG  ; 0b
 	const BATTLE_ANIM_GFX_POISON     ; 0c
 	const BATTLE_ANIM_GFX_BUBBLE     ; 0d
 	const BATTLE_ANIM_GFX_NOISE      ; 0e

@@ -11,9 +11,9 @@ RadioTower3F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, RadioTower3FCardKeyShutterCallback
+	callback MAPCALLBACK_TILES, .CardKeyShutterCallback
 
-RadioTower3FCardKeyShutterCallback:
+.CardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .Change
 	endcallback
@@ -143,7 +143,7 @@ CardKeySlotScript::
 	playsound SFX_ENTER_DOOR
 	changeblock 14, 2, $2a ; open shutter
 	changeblock 14, 4, $01 ; floor
-	refreshmap
+	reloadmappart
 	closetext
 	waitsfx
 	end
@@ -175,6 +175,19 @@ RadioTower3FGymGuideText_Rockets:
 
 	para "trying to control"
 	line "#MON."
+	
+	para "Hey, are you here"
+	line "to rescue us? In"
+	
+	para "that case, here's"
+	line "a tip: lead your"
+	
+	para "party with a psy-"
+	line "chic- or ground-"
+	
+	para "type #MON. That"
+	line "will help handle"
+	cont "EXPLOSIONS!"
 	done
 
 RadioTower3FGymGuideText:

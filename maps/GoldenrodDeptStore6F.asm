@@ -1,6 +1,6 @@
-DEF GOLDENRODDEPTSTORE6F_FRESH_WATER_PRICE EQU 200
-DEF GOLDENRODDEPTSTORE6F_SODA_POP_PRICE    EQU 300
-DEF GOLDENRODDEPTSTORE6F_LEMONADE_PRICE    EQU 350
+DEF GOLDENRODDEPTSTORE6F_LEMONADE_PRICE    EQU 900
+DEF GOLDENRODDEPTSTORE6F_SODA_POP_PRICE    EQU 750
+DEF GOLDENRODDEPTSTORE6F_FRESH_WATER_PRICE EQU 650
 
 	object_const_def
 	const GOLDENRODDEPTSTORE6F_LASS
@@ -19,9 +19,9 @@ GoldenrodVendingMachine:
 	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .FreshWater
+	ifequal 1, .Lemonade
 	ifequal 2, .SodaPop
-	ifequal 3, .Lemonade
+	ifequal 3, .FreshWater
 	closetext
 	end
 
@@ -79,9 +79,9 @@ GoldenrodVendingMachine:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "FRESH WATER  ¥{d:GOLDENRODDEPTSTORE6F_FRESH_WATER_PRICE}@"
-	db "SODA POP     ¥{d:GOLDENRODDEPTSTORE6F_SODA_POP_PRICE}@"
-	db "LEMONADE     ¥{d:GOLDENRODDEPTSTORE6F_LEMONADE_PRICE}@"
+	db "LEMONADE     ¥900@"
+	db "SODA POP     ¥750@"
+	db "FRESH WATER  ¥650@"
 	db "CANCEL@"
 
 GoldenrodDeptStore6FLassScript:

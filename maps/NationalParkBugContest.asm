@@ -129,7 +129,7 @@ BugCatchingContestant2AText:
 
 BugCatchingContestant3AText:
 	text "NICK: I'm raising"
-	line "fast #MON for"
+	line "tough #MON for"
 	cont "battles."
 	done
 

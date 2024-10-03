@@ -23,7 +23,7 @@ MountMortarB1FKiyoScript:
 	waitbutton
 	closetext
 	winlosstext MountMortarB1FKiyoWinText, 0
-	loadtrainer BLACKBELT_T, KIYO
+	loadtrainer BLACKBELT_T, KIYO1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLACKBELT_KIYO
@@ -37,12 +37,51 @@ MountMortarB1FKiyoScript:
 	writetext MountMortarB1FReceiveMonText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke TYROGUE, 10
+	givepoke TYROGUE, 30
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
-.GotTyrogue:
 	writetext MountMortarB1FKiyoGotTyrogueText
 	waitbutton
 	closetext
+	end
+	
+.GotTyrogue:
+	checkevent EVENT_PICKED_UP_FOCUS_BAND
+	iftrue .BrickPieceFight
+.NoBrick:
+	writetext MountMortarB1FKiyoGotTyrogueText
+	waitbutton
+	closetext
+	end
+	
+.BrickPieceFight:
+	checkitem BRICK_PIECE
+	iffalse .NoBrick
+	writetext Battle2IntroText
+	waitbutton
+	closetext
+	winlosstext MountMortarB1FKiyoWinText, 0
+	loadtrainer KING, KIYO2
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_BLACKBELT_KIYO2
+	clearevent EVENT_DOJO_KIYO
+	clearevent EVENT_GOT_DOJOPOKE
+	opentext
+	writetext Battle2EndText
+	takeitem BRICK_PIECE
+	waitbutton
+	closetext
+	pause 15
+	opentext
+	writetext Battle2End2Text
+	waitbutton
+	closetext
+	special FadeBlackQuickly
+	special ReloadSpritesNoPalettes
+	disappear MOUNTMORTARB1F_KIYO
+	pause 15
+	special FadeInQuickly
 	end
 
 .NoRoom:
@@ -58,7 +97,7 @@ MountMortarB1FHyperPotion:
 	itemball HYPER_POTION
 
 MountMortarB1FCarbos:
-	itemball CARBOS
+	itemball NUGGET
 
 MountMortarB1FFullRestore:
 	itemball FULL_RESTORE
@@ -71,12 +110,61 @@ MountMortarB1FPPUp:
 
 MountMortarB1FHiddenMaxRevive:
 	hiddenitem MAX_REVIVE, EVENT_MOUNT_MORTAR_B1F_HIDDEN_MAX_REVIVE
+	
+Battle2IntroText:
+	text "Hey, kid! Looking"
+	line "for another round"
+	cont "with the KARATE"
+	cont "KING?"
+
+	para "Huh? You want to"
+	line "show me something?"
+
+	para "Well I'm all fired"
+	line "up for a battle!"
+
+	para "How about you show"
+	line "me afterward?"
+
+	para "Hwaaarggh!"
+	done
+	
+Battle2EndText:
+	text "You are something"
+	line "else, kid!"
+
+	para "How did you train"
+	line "to get so strong?"
+
+	para "Wait… that BRICK"
+	line "PIECE!"
+	
+	para "Could you hand it"
+	line "over to me?"
+	done
+	
+Battle2End2Text:
+	text "…I can feel all of"
+	line "the memories from"
+	cont "my dojo flooding"
+	cont "back…"
+
+	para "I think I need to"
+	line "return home."
+	
+	para "Kid, you've really"
+	line "stirred up some-"
+	cont "thing deep inside"
+	cont "this old man."
+	
+	para "Thank you."
+	
+	para "Come by the dojo"
+	line "soon."
+	done
 
 MountMortarB1FKiyoIntroText:
 	text "Hey!"
-
-	para "I am the KARATE"
-	line "KING!"
 
 	para "I train alone here"
 	line "in the dark!"
@@ -148,7 +236,7 @@ MountMortarB1F_MapEvents:
 	object_event 29, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FHyperPotion, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
 	object_event  4, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FCarbos, EVENT_MOUNT_MORTAR_B1F_CARBOS
 	object_event  9, 10, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortarB1FBoulder, -1
-	object_event 16,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MountMortarB1FKiyoScript, -1
+	object_event 16,  4, SPRITE_KING, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MountMortarB1FKiyoScript, EVENT_BEAT_BLACKBELT_KIYO2
 	object_event 34, 24, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FFullRestore, EVENT_MOUNT_MORTAR_B1F_FULL_RESTORE
 	object_event 32,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FMaxEther, EVENT_MOUNT_MORTAR_B1F_MAX_ETHER
 	object_event 21, 26, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FPPUp, EVENT_MOUNT_MORTAR_B1F_PP_UP

@@ -7,20 +7,20 @@
 
 MahoganyMart1F_MapScripts:
 	def_scene_scripts
-	scene_script MahoganyMart1FNoopScene,                SCENE_MAHOGANYMART1F_NOOP
-	scene_script MahoganyMart1FLanceUncoversStairsScene, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
+	scene_script .DummyScene0, SCENE_MAHOGANYMART1F_NOTHING
+	scene_script .LanceUncoversStaircase, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, MahoganyMart1FStaircaseCallback
+	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
 
-MahoganyMart1FNoopScene:
+.DummyScene0:
 	end
 
-MahoganyMart1FLanceUncoversStairsScene:
-	sdefer MahoganyMart1FLanceUncoversStaircaseScript
+.LanceUncoversStaircase:
+	prioritysjump MahoganyMart1FLanceUncoversStaircaseScript
 	end
 
-MahoganyMart1FStaircaseCallback:
+.MahoganyMart1FStaircase:
 	checkevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	iftrue .ShowStairs
 	endcallback
@@ -62,14 +62,16 @@ MahoganyMart1FBlackBeltScript:
 
 MahoganyMart1FLanceUncoversStaircaseScript:
 	pause 15
+	cry DRAGONITE
+	pause 15
 	opentext
 	writetext MahoganyMart1FLanceDragoniteHyperBeamText
 	pause 15
 	closetext
-	playsound SFX_TACKLE
+	playsound SFX_OUTRAGE
 	applymovement MAHOGANYMART1F_DRAGONITE, MahoganyMart1FDragoniteTackleMovement
 	applymovement MAHOGANYMART1F_BLACK_BELT, MahoganyMart1FBlackBeltKnockedBackMovement
-	pause 15
+	pause 30
 	disappear MAHOGANYMART1F_DRAGONITE
 	pause 15
 	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachPlayerMovement
@@ -88,7 +90,7 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	showemote EMOTE_SHOCK, MAHOGANYMART1F_PHARMACIST, 10
 	playsound SFX_FAINT
 	changeblock 6, 2, $1e ; stairs
-	refreshmap
+	reloadmappart
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	turnobject MAHOGANYMART1F_LANCE, LEFT
@@ -99,7 +101,7 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceGoDownStairsMovement
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
-	setscene SCENE_MAHOGANYMART1F_NOOP
+	setscene SCENE_MAHOGANYMART1F_NOTHING
 	waitsfx
 	end
 
@@ -154,16 +156,6 @@ MahoganyMart1FLanceGoDownStairsMovement:
 	slow_step RIGHT
 	step_end
 
-MahoganyMart1FRageCandyBarText: ; unreferenced
-	text "Hello, kiddo!"
-
-	para "How would you like"
-	line "some RAGECANDYBAR?"
-
-	para "It's the thing to"
-	line "eat in MAHOGANY!"
-	done
-
 MahoganyMart1FPharmacistText_LanceEntered:
 	text "Arrgh… You found"
 	line "the secret stair-"
@@ -191,7 +183,7 @@ MahoganyMart1FBlackBeltText_LanceEntered:
 
 MahoganyMart1FLanceDragoniteHyperBeamText:
 	text "LANCE: DRAGONITE,"
-	line "HYPER BEAM."
+	line "OUTRAGE."
 	done
 
 MahoganyMart1FLanceRadioText:
@@ -234,5 +226,5 @@ MahoganyMart1F_MapEvents:
 	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyMart1FPharmacistScript, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyMart1FBlackBeltScript, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  4,  6, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	object_event  3,  6, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	object_event  3,  6, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyMart1FGrannyScript, EVENT_MAHOGANY_MART_OWNERS

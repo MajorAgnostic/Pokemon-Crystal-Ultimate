@@ -1,7 +1,7 @@
 	object_const_def
 	const DRAGONSDENB1F_POKE_BALL1
 	const DRAGONSDENB1F_CLAIR
-	const DRAGONSDENB1F_RIVAL
+	const DRAGONSDENB1F_SILVER
 	const DRAGONSDENB1F_COOLTRAINER_M
 	const DRAGONSDENB1F_COOLTRAINER_F
 	const DRAGONSDENB1F_TWIN1
@@ -11,37 +11,36 @@
 
 DragonsDenB1F_MapScripts:
 	def_scene_scripts
-	scene_script DragonsDenB1FNoop1Scene, SCENE_DRAGONSDENB1F_NOOP
-	scene_script DragonsDenB1FNoop2Scene, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
+	scene_script .DummyScene0, SCENE_DRAGONSDENB1F_NOOP
+	scene_script .DummyScene1, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, DragonsDenB1FCheckRivalCallback
+	callback MAPCALLBACK_NEWMAP, .CheckSilver
 
-DragonsDenB1FNoop1Scene:
+.DummyScene0:
 	end
 
-DragonsDenB1FNoop2Scene:
+.DummyScene1:
 	end
 
-DragonsDenB1FCheckRivalCallback:
+.CheckSilver:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue .CheckDay
-	disappear DRAGONSDENB1F_RIVAL
+	disappear DRAGONSDENB1F_SILVER
 	endcallback
 
 .CheckDay:
 	readvar VAR_WEEKDAY
-	ifequal TUESDAY, .AppearRival
-	ifequal THURSDAY, .AppearRival
-	disappear DRAGONSDENB1F_RIVAL
+	ifequal TUESDAY, .AppearSilver
+	ifequal THURSDAY, .AppearSilver
+	disappear DRAGONSDENB1F_SILVER
 	endcallback
 
-.AppearRival:
-	appear DRAGONSDENB1F_RIVAL
+.AppearSilver:
+	appear DRAGONSDENB1F_SILVER
 	endcallback
 
 DragonsDenB1F_ClairScene:
-; BUG: Clair can give TM24 Dragonbreath twice (see docs/bugs_and_glitches.md)
 	appear DRAGONSDENB1F_CLAIR
 	opentext
 	writetext ClairText_Wait
@@ -57,7 +56,7 @@ DragonsDenB1F_ClairScene:
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
 	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
-	writetext Text_ReceivedTM24
+	writetext NotifyReceiveDragonbreath
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
@@ -151,21 +150,21 @@ DragonsDenB1FDragonFangScript:
 	closetext
 	end
 
-DragonsDenB1FRivalScript:
+DragonsDenB1FSilverScript:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue .RivalTalkAgain
-	writetext RivalText_Training1
+	iftrue .SilverTalkAgain
+	writetext SilverText_Training1
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	special RestartMapMusic
 	end
 
-.RivalTalkAgain:
-	writetext RivalText_Training2
+.SilverTalkAgain:
+	writetext SilverText_Training2
 	waitbutton
 	closetext
 	special RestartMapMusic
@@ -175,7 +174,7 @@ DragonShrineSignpost:
 	jumptext DragonShrineSignpostText
 
 DragonsDenB1FCalcium:
-	itemball CALCIUM
+	itemball BIG_PEARL
 
 DragonsDenB1FMaxElixer:
 	itemball MAX_ELIXER
@@ -215,7 +214,7 @@ ClairText_GiveDragonbreathDragonDen:
 	line "my apology."
 	done
 
-Text_ReceivedTM24:
+NotifyReceiveDragonbreath:
 	text "<PLAYER> received"
 	line "TM24."
 	done
@@ -287,7 +286,7 @@ DragonShrineSignpostText:
 	line "in DRAGON'S DEN."
 	done
 
-RivalText_Training1:
+SilverText_Training1:
 	text "…"
 	line "What? <PLAYER>?"
 
@@ -307,7 +306,7 @@ RivalText_Training1:
 	line "MON trainer…"
 	done
 
-RivalText_Training2:
+SilverText_Training2:
 	text "…"
 
 	para "Whew…"
@@ -346,17 +345,15 @@ CooltrainerfCaraBeatenText:
 	done
 
 CooltrainerfCaraAfterBattleText:
-	text "Soon I'm going to"
-	line "get permission"
+	text "I finally got per-"
+	line "mission from our"
 
-	para "from our MASTER to"
-	line "use dragons."
+	para "MASTER to use dra-"
+	line "gons."
 
-	para "When I do, I'm"
-	line "going to become an"
-
-	para "admirable dragon"
-	line "trainer and gain"
+	para "I'm going to be an"
+	line "admirable dragon"
+	cont "trainer and gain"
 
 	para "our MASTER's"
 	line "approval."
@@ -423,7 +420,7 @@ DragonsDenB1F_MapEvents:
 	def_object_events
 	object_event 35, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FDragonFangScript, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
 	object_event 14, 30, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
-	object_event 20, 23, SPRITE_RIVAL, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FRivalScript, EVENT_RIVAL_DRAGONS_DEN
+	object_event 20, 23, SPRITE_SILVER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FSilverScript, EVENT_RIVAL_DRAGONS_DEN
 	object_event 20,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainermDarin, -1
 	object_event  8,  8, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainerfCara, -1
 	object_event  4, 17, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsLeaandpia1, -1

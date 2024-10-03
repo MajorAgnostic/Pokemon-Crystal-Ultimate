@@ -10,8 +10,13 @@ GoldenrodPPSpeechHouse_MapScripts:
 GoldenrodPPSpeechHouseFisherScript:
 	jumptextfaceplayer GoldenrodPPSpeechHouseFisherText
 
-GoldenrodPPSpeechHouseLassScript:
-	jumptextfaceplayer GoldenrodPPSpeechHouseLassText
+MoveDeleterLass:
+	faceplayer
+	opentext
+	special MoveDeletion
+	waitbutton
+	closetext
+	end
 
 GoldenrodPPSpeechHouseBookshelf2:
 	jumpstd DifficultBookshelfScript
@@ -34,15 +39,7 @@ GoldenrodPPSpeechHouseFisherText:
 
 	para "moves were all"
 	line "gone."
-	done
-
-GoldenrodPPSpeechHouseLassText:
-	text "Sometimes, a"
-	line "healthy #MON"
-
-	para "may be unable to"
-	line "use its moves."
-
+	
 	para "If that happens,"
 	line "heal it at a #-"
 	cont "MON CENTER or use"
@@ -65,4 +62,4 @@ GoldenrodPPSpeechHouse_MapEvents:
 
 	def_object_events
 	object_event  2,  4, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
-	object_event  5,  3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1
+	object_event  5,  3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveDeleterLass, -1

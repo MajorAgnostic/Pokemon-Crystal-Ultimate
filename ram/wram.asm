@@ -1508,7 +1508,11 @@ wEnemyHPPal:: db
 wHPPals:: ds PARTY_LENGTH
 wCurHPPal:: db
 
-	ds 7
+	ds 4
+
+wCarpetTile:: db
+wFloorTile:: db
+wCoveredTile:: db
 
 wSGBPals:: ds 48
 
@@ -1621,6 +1625,7 @@ NEXTU
 wCardFlipCursorY:: db
 wCardFlipCursorX:: db
 wCardFlipWhichCard:: db
+wTrainerCardBadgePaletteAddr:: dw
 
 NEXTU
 ; unused memory game
@@ -2328,6 +2333,7 @@ wItemsPocketCursor::    db
 wKeyItemsPocketCursor:: db
 wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
+wMedicinePocketCursor:: db
 
 wPCItemsScrollPosition::        db
 	ds 1
@@ -2335,6 +2341,7 @@ wItemsPocketScrollPosition::    db
 wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db
 wTMHMPocketScrollPosition::     db
+wMedicinePocketScrollPosition:: db
 
 wSwitchMon::
 wSwitchItem::
@@ -2739,25 +2746,24 @@ wBaseItems::
 wBaseItem1:: db
 wBaseItem2:: db
 wBaseGender:: db
-wBaseUnknown1:: db
 wBaseEggSteps:: db
-wBaseUnknown2:: db
 wBasePicSize:: db
-wBaseUnusedFrontpic:: dw
-wBaseUnusedBackpic:: dw
 wBaseGrowthRate:: db
 wBaseEggGroups:: db
 wBaseTMHM:: flag_array NUM_TM_HM_TUTOR
 wCurBaseDataEnd::
 	assert wCurBaseDataEnd - wCurBaseData == BASE_DATA_SIZE
+	
+	ds 6
 
 wCurDamage:: dw
 
-	ds 2
+	ds 1
 
 wMornEncounterRate::  db
 wDayEncounterRate::   db
 wNiteEncounterRate::  db
+wEveEncounterRate::   db
 wWaterEncounterRate:: db
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: db
@@ -2839,7 +2845,7 @@ NEXTU
 ; catch tutorial dude pack
 wDudeNumItems:: db
 wDudeItems:: ds 2 * 4 + 1
-
+wDudeNumMedicine::
 wDudeNumKeyItems:: db
 wDudeKeyItems:: ds 18 + 1
 
@@ -2847,7 +2853,9 @@ wDudeNumBalls:: db
 wDudeBalls:: ds 2 * 4 + 1
 ENDU
 
-	ds 4
+wOtherTrainerType:: db
+wTrainerGroupBank:: db
+	ds 2
 
 wd430:: ; mobile
 wBattleAction:: db
@@ -2884,7 +2892,7 @@ wScriptTextBank::
 wDeferredScriptAddr::
 wScriptTextAddr::
 	dw
-	ds 1
+wWildBattlePanic:: db
 wWildEncounterCooldown:: db
 
 wXYComparePointer:: dw
@@ -2990,9 +2998,8 @@ for n, 1, NUM_OBJECT_STRUCTS
 wObject{d:n}Struct:: object_struct wObject{d:n}
 endr
 
-wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
+wStoneTableAddress:: dw
 
-	ds 40
 
 wMapObjects::
 wPlayerObject:: map_object wPlayer ; player is map object 0
@@ -3065,6 +3072,9 @@ wKeyItems:: ds MAX_KEY_ITEMS + 1
 wNumBalls:: db
 wBalls:: ds MAX_BALLS * 2 + 1
 
+wNumMedicine:: db
+wMedicine:: ds MAX_MEDICINE * 2 + 1
+
 wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
@@ -3091,7 +3101,6 @@ wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db
 
-	ds 13
 
 ; map scene ids
 wPokecenter2FSceneID::                            db
@@ -3173,40 +3182,15 @@ wFastShipB1FSceneID::                             db
 wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
+wRoute42EcruteakGateSceneID::                     db
+wSilverCaveRoom2SceneID::                         db
+wSaffronCitySceneID::                             db
+wTinTowerRoofSceneID::                            db
+wSeafoamGymSceneID::                              db
+wViridianGymSceneID::                             db
+wLevelCap:: db
 
-	ds 49
-
-; fight counts
-wJackFightCount::    db
-wBeverlyFightCount:: db ; unreferenced
-wHueyFightCount::    db
-wGavenFightCount::   db
-wBethFightCount::    db
-wJoseFightCount::    db
-wReenaFightCount::   db
-wJoeyFightCount::    db
-wWadeFightCount::    db
-wRalphFightCount::   db
-wLizFightCount::     db
-wAnthonyFightCount:: db
-wToddFightCount::    db
-wGinaFightCount::    db
-wIrwinFightCount::   db ; unreferenced
-wArnieFightCount::   db
-wAlanFightCount::    db
-wDanaFightCount::    db
-wChadFightCount::    db
-wDerekFightCount::   db ; unreferenced
-wTullyFightCount::   db
-wBrentFightCount::   db
-wTiffanyFightCount:: db
-wVanceFightCount::   db
-wWiltonFightCount::  db
-wKenjiFightCount::   db ; unreferenced
-wParryFightCount::   db
-wErinFightCount::    db
-
-	ds 100
+	ds 69
 
 wEventFlags:: flag_array NUM_EVENTS
 
@@ -3310,7 +3294,6 @@ wSafariTimeRemaining:: dw
 
 wPhoneList:: ds CONTACT_LIST_SIZE + 1
 
-	ds 22
 
 wLuckyNumberShowFlag:: db
 	ds 1
@@ -3696,8 +3679,7 @@ wScratchTilemap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 wScratchAttrmap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 
 NEXTU
-wDecompressScratch:: ds $80 tiles
-wDecompressEnemyFrontpic:: ds $80 tiles
+wDecompressScratch:: ds $100 tiles
 
 NEXTU
 ; unidentified uses

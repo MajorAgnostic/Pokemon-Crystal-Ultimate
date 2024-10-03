@@ -2,23 +2,24 @@
 	const LANCESROOM_LANCE
 	const LANCESROOM_MARY
 	const LANCESROOM_OAK
+	const LANCESROOM_CLAIR
 
 LancesRoom_MapScripts:
 	def_scene_scripts
-	scene_script LancesRoomLockDoorScene, SCENE_LANCESROOM_LOCK_DOOR
-	scene_script LancesRoomNoopScene,     SCENE_LANCESROOM_APPROACH_LANCE
+	scene_script .LockDoor, SCENE_LANCESROOM_LOCK_DOOR
+	scene_script .DummyScene, SCENE_LANCESROOM_APPROACH_LANCE
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, LancesRoomDoorsCallback
+	callback MAPCALLBACK_TILES, .LancesRoomDoors
 
-LancesRoomLockDoorScene:
-	sdefer LancesRoomDoorLocksBehindYouScript
+.LockDoor:
+	prioritysjump .LancesDoorLocksBehindYou
 	end
 
-LancesRoomNoopScene:
+.DummyScene:
 	end
 
-LancesRoomDoorsCallback:
+.LancesRoomDoors:
 	checkevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
 	changeblock 4, 22, $34 ; wall
@@ -29,13 +30,13 @@ LancesRoomDoorsCallback:
 .KeepExitClosed:
 	endcallback
 
-LancesRoomDoorLocksBehindYouScript:
+.LancesDoorLocksBehindYou:
 	applymovement PLAYER, LancesRoom_EnterMovement
-	reanchormap $86
+	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 22, $34 ; wall
-	refreshmap
+	reloadmappart
 	closetext
 	setscene SCENE_LANCESROOM_APPROACH_LANCE
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
@@ -44,11 +45,15 @@ LancesRoomDoorLocksBehindYouScript:
 Script_ApproachLanceFromLeft:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromLeft
+	readvar VAR_BADGES
+	ifequal 16, LancesRoomClairScript
 	sjump LancesRoomLanceScript
 
 Script_ApproachLanceFromRight:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromRight
+	readvar VAR_BADGES
+	ifequal 16, LancesRoomClairScript
 LancesRoomLanceScript:
 	turnobject LANCESROOM_LANCE, LEFT
 	opentext
@@ -58,9 +63,11 @@ LancesRoomLanceScript:
 	winlosstext LanceBattleWinText, 0
 	setlasttalked LANCESROOM_LANCE
 	loadtrainer CHAMPION, LANCE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
+	loadmem wLevelCap, 100
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	opentext
 	writetext LanceBattleAfterText
@@ -68,7 +75,7 @@ LancesRoomLanceScript:
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 0, $0b ; open door
-	refreshmap
+	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, 16
@@ -123,7 +130,47 @@ LancesRoomLanceScript:
 	pause 30
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
-	special FadeOutToWhite
+	special FadeOutPalettes
+	pause 15
+	warpfacing UP, HALL_OF_FAME, 4, 13
+	end
+
+LancesRoomClairScript:
+	turnobject LANCESROOM_CLAIR, LEFT
+	opentext
+	writetext ClairBattleBeforeText
+	waitbutton
+	closetext
+	winlosstext LanceBattleWinText, 0
+	setlasttalked LANCESROOM_CLAIR
+	loadtrainer CLAIR2, CLAIR2A
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	opentext
+	writetext ClairBattleAfterText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 0, $0b ; open door
+	reloadmappart
+	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
+	turnobject LANCESROOM_CLAIR, UP
+	turnobject PLAYER, UP
+	pause 45
+	turnobject PLAYER, RIGHT
+	turnobject LANCESROOM_CLAIR, LEFT
+	opentext
+	writetext LancesRoomClairHallScript
+	waitbutton
+	closetext
+	pause 15
+	turnobject LANCESROOM_CLAIR, UP
+	applymovement PLAYER, LancesRoomMovementData_RematchPlayer
+	playsound SFX_EXIT_BUILDING
+	disappear PLAYER
+	special FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, 4, 13
 	end
@@ -183,6 +230,11 @@ LancesRoomMovementData_LanceLeadsPlayerToHallOfFame:
 LancesRoomMovementData_PlayerExits:
 	step UP
 	step_end
+	
+LancesRoomMovementData_RematchPlayer:
+	step UP
+	step UP
+	step_end
 
 LancesRoomMovementData_MaryTriesToFollow:
 	step UP
@@ -236,6 +288,48 @@ LanceBattleIntroText:
 	cont "your challenge!"
 	done
 
+ClairBattleBeforeText:
+	text "CLAIR: Surprised?"
+	
+	para "Not too surprised,"
+	line "I hope."
+
+	para "I've thought long"
+	line "and hard about our"
+	cont "battle at BLACK-"
+	cont "THORN GYM."
+	
+	para "About the way that"
+	line "I acted…"
+	
+	para "About the words of"
+	line "my grandfather…"
+	
+	para "I had to be better"
+	line "than I was."
+	
+	para "For myself, for my"
+	line "clan and, most im-"
+	
+	para "portantly, for my"
+	line "#MON."
+	
+	para "That is why I have"
+	line "grown as a trainer"
+	
+	para "and become the new"
+	line "CHAMPION of the"
+	cont "#MON LEAGUE."
+
+	para "My dragons and I"
+	line "have trained the"
+	
+	para "world over and are"
+	line "ready for you."
+	
+	para "Now, let us begin."
+	done
+
 LanceBattleWinText:
 	text "…It's over."
 
@@ -249,8 +343,8 @@ LanceBattleWinText:
 	para "Happy that I"
 	line "witnessed the rise"
 
-	para "of a great new"
-	line "CHAMPION!"
+	para "of a true master"
+	line "of #MON!"
 	done
 
 LanceBattleAfterText:
@@ -271,6 +365,51 @@ LanceBattleAfterText:
 
 	para "grow strong with"
 	line "your #MON."
+	done
+
+ClairBattleAfterText:
+	text "…Whew. Well done."
+
+	para "Unlike in BLACK-"
+	line "THORN GYM, I see"
+	cont "clearly that you"
+	cont "have bested me."
+
+	para "I thought that,"
+	line "having surpassed"
+
+	para "LANCE and my own"
+	line "immaturity, I co-"
+	
+	para "ould take on any"
+	line "#MON trainer…"
+	
+	para "It seems that I"
+	line "still have much"
+	cont "to learn."
+	
+	para "But this won't be"
+	line "the last time I"
+	cont "take you on!"
+	
+	para "I'll be livid if"
+	line "you slack off be-"
+	cont "fore our rematch."
+	done
+	
+LancesRoomClairHallScript:
+	text "Well, CHAMPION,"
+	line "it's time to once"
+
+	para "again immortalize"
+	line "your #MON in"
+	cont "the HALL OF FAME."
+	
+	para "Now go on."
+
+	para "Isn't it rude to"
+	line "keep an old friend"
+	cont "waiting?"
 	done
 
 LancesRoomMaryOhNoOakText:
@@ -316,8 +455,7 @@ LancesRoomOakCongratulationsText:
 
 LancesRoomMaryInterviewText:
 	text "MARY: Let's inter-"
-	line "view the brand new"
-	cont "CHAMPION!"
+	line "view the CHAMPION!"
 	done
 
 LancesRoomNoisyText:
@@ -351,6 +489,7 @@ LancesRoom_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  3, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LancesRoomLanceScript, -1
+	object_event  5,  3, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LancesRoomLanceScript, EVENT_BEAT_ELITE_FOUR
 	object_event  4,  7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
 	object_event  4,  7, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	object_event  5,  3, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LancesRoomClairScript, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME

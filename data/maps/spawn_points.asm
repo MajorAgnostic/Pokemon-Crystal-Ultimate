@@ -14,6 +14,7 @@ SpawnPoints:
 	spawn PALLET_TOWN,                 5,  6
 	spawn VIRIDIAN_CITY,              23, 26
 	spawn PEWTER_CITY,                13, 26
+	spawn MOUNT_MOON_SQUARE,          13,  8
 	spawn CERULEAN_CITY,              19, 22
 	spawn ROUTE_10_NORTH,             11,  2
 	spawn VERMILION_CITY,              9,  6
@@ -32,6 +33,7 @@ SpawnPoints:
 	spawn CIANWOOD_CITY,              23, 44
 	spawn GOLDENROD_CITY,             15, 28
 	spawn OLIVINE_CITY,               13, 22
+	spawn BATTLE_TOWER_OUTSIDE,        8, 10
 	spawn ECRUTEAK_CITY,              23, 28
 	spawn MAHOGANY_TOWN,              15, 14
 	spawn LAKE_OF_RAGE,               21, 29

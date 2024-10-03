@@ -1,10 +1,56 @@
 	object_const_def
 	const DAYOFWEEKSIBLINGSHOUSE_POKEDEX
+	const DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
 
 DayOfWeekSiblingsHouse_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_OBJECTS, .NoLeftovers
+	
+.NoLeftovers:
+	checkevent NOMOLEFTOVERS
+	iffalse .None0
+	endcallback
+.None0:
+	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
+	iftrue .None1
+	disappear DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
+	endcallback
+.None1:
+	checkevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
+	iftrue .None2
+	disappear DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
+	endcallback
+.None2:
+	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
+	iftrue .None3
+	disappear DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
+	endcallback
+.None3:
+	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
+	iftrue .None4
+	disappear DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
+	endcallback
+.None4:
+	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
+	iftrue .None5
+	disappear DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
+	endcallback
+.None5:
+	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
+	iftrue .None6
+	disappear DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
+	endcallback
+.None6:
+	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
+	iftrue .None7
+	disappear DAYOFWEEKSIBLINGSHOUSE_POKE_BALL
+	endcallback
+.None7:
+	clearevent EVENT_ROUTE26_LEFTOVERS
+	setevent NOMOLEFTOVERS
+	endcallback
 
 DayOfWeekSiblingsHousePokedexScript:
 	opentext
@@ -19,6 +65,9 @@ DayOfWeekSiblingsHousePokedexScript:
 .End:
 	closetext
 	end
+	
+DayOfWeekSiblingsHouseLeftovers:
+	itemball LEFTOVERS
 
 DayOfWeekSiblingsHousePokedexText1:
 	text "There's something"
@@ -66,6 +115,10 @@ DayOfWeekSiblingsHousePokedexText3:
 
 	para "Sunday, SUNNY"
 	line "ROUTE 37"
+	
+	para "Once you've met"
+	line "us all, drop by"
+	cont "again!"
 	done
 
 DayOfWeekSiblingsHouse_MapEvents:
@@ -81,3 +134,4 @@ DayOfWeekSiblingsHouse_MapEvents:
 
 	def_object_events
 	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayOfWeekSiblingsHousePokedexScript, -1
+	object_event  4,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DayOfWeekSiblingsHouseLeftovers, EVENT_ROUTE26_LEFTOVERS

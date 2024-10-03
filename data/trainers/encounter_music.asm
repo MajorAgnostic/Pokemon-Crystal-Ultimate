@@ -23,7 +23,7 @@ TrainerEncounterMusic::
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; brock
 	db MUSIC_LASS_ENCOUNTER        ; misty
 	db MUSIC_OFFICER_ENCOUNTER     ; lt_surge
-	db MUSIC_ROCKET_ENCOUNTER      ; scientist
+	db MUSIC_POKEMANIAC_ENCOUNTER  ; scientist
 	db MUSIC_OFFICER_ENCOUNTER     ; erika
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; youngster
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; schoolboy
@@ -40,11 +40,11 @@ TrainerEncounterMusic::
 	db MUSIC_BEAUTY_ENCOUNTER      ; teacher
 	db MUSIC_BEAUTY_ENCOUNTER      ; sabrina
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; bug_catcher
+	db MUSIC_POKEMANIAC_ENCOUNTER  ; super_nerd
 	db MUSIC_HIKER_ENCOUNTER       ; fisher
 	db MUSIC_HIKER_ENCOUNTER       ; swimmerm
 	db MUSIC_BEAUTY_ENCOUNTER      ; swimmerf
 	db MUSIC_HIKER_ENCOUNTER       ; sailor
-	db MUSIC_POKEMANIAC_ENCOUNTER  ; super_nerd
 	db MUSIC_RIVAL_ENCOUNTER       ; rival2
 	db MUSIC_HIKER_ENCOUNTER       ; guitarist
 	db MUSIC_HIKER_ENCOUNTER       ; hiker
@@ -58,7 +58,6 @@ TrainerEncounterMusic::
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; psychic_t
 	db MUSIC_LASS_ENCOUNTER        ; picnicker
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; camper
-	db MUSIC_ROCKET_ENCOUNTER      ; executivef
 	db MUSIC_SAGE_ENCOUNTER        ; sage
 	db MUSIC_SAGE_ENCOUNTER        ; medium
 	db MUSIC_HIKER_ENCOUNTER       ; boarder
@@ -71,7 +70,18 @@ TrainerEncounterMusic::
 	db MUSIC_HIKER_ENCOUNTER       ; officer
 	db MUSIC_ROCKET_ENCOUNTER      ; gruntf
 	db MUSIC_HIKER_ENCOUNTER       ; mysticalman
-	assert_table_length NUM_TRAINER_CLASSES + 1
-	db MUSIC_HIKER_ENCOUNTER       ; unused
-	db MUSIC_HIKER_ENCOUNTER       ; unused
-	db MUSIC_HIKER_ENCOUNTER       ; unused
+	db MUSIC_RIVAL_ENCOUNTER       ; rival0
+	db MUSIC_HIKER_ENCOUNTER       ; crystal
+	db MUSIC_HIKER_ENCOUNTER     ; nicholas
+	db MUSIC_OFFICER_ENCOUNTER     ; archer
+	db MUSIC_OFFICER_ENCOUNTER      ; andrea
+	db MUSIC_OFFICER_ENCOUNTER     ; morty2
+	db MUSIC_OFFICER_ENCOUNTER     ; clair2
+	db MUSIC_OFFICER_ENCOUNTER     ; champion2
+	db MUSIC_HIKER_ENCOUNTER       ; king
+	db MUSIC_HIKER_ENCOUNTER       ; giovanni
+	db MUSIC_HIKER_ENCOUNTER       ; roughneck
+	db MUSIC_ROCKET_ENCOUNTER      ; executivef
+	db MUSIC_ROCKET_ENCOUNTER      ; petrel
+	db MUSIC_ROCKET_ENCOUNTER      ; proton
+	db MUSIC_HIKER_ENCOUNTER       ; padding

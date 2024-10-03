@@ -11,18 +11,19 @@
 	const FASTSHIPB1F_TEACHER
 	const FASTSHIPB1F_YOUNGSTER1
 	const FASTSHIPB1F_YOUNGSTER2
+	const FASTSHIPB1F_POKE_BALL
 
 FastShipB1F_MapScripts:
 	def_scene_scripts
-	scene_script FastShipB1FNoop1Scene, SCENE_FASTSHIPB1F_SAILOR_BLOCKS
-	scene_script FastShipB1FNoop2Scene, SCENE_FASTSHIPB1F_NOOP
+	scene_script .DummyScene0, SCENE_SHIP_DEFAULT
+	scene_script .DummyScene1, SCENE_SHIP_FINISHED
 
 	def_callbacks
 
-FastShipB1FNoop1Scene:
+.DummyScene0:
 	end
 
-FastShipB1FNoop2Scene:
+.DummyScene1:
 	end
 
 FastShipB1FSailorBlocksLeft:
@@ -200,6 +201,9 @@ TrainerSchoolboyRicky:
 	waitbutton
 	closetext
 	end
+	
+FastShipRevive:
+	itemball REVIVE
 
 FastShipB1FTrashcan:
 	jumpstd TrashCanScript
@@ -454,8 +458,8 @@ FastShipB1F_MapEvents:
 	warp_event 31, 13, FAST_SHIP_1F, 12
 
 	def_coord_events
-	coord_event 30,  7, SCENE_FASTSHIPB1F_SAILOR_BLOCKS, FastShipB1FSailorBlocksLeft
-	coord_event 31,  7, SCENE_FASTSHIPB1F_SAILOR_BLOCKS, FastShipB1FSailorBlocksRight
+	coord_event 30,  7, SCENE_SHIP_DEFAULT, FastShipB1FSailorBlocksLeft
+	coord_event 31,  7, SCENE_SHIP_DEFAULT, FastShipB1FSailorBlocksRight
 
 	def_bg_events
 	bg_event 27,  9, BGEVENT_READ, FastShipB1FTrashcan
@@ -472,4 +476,5 @@ FastShipB1F_MapEvents:
 	object_event 23,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSailorKenneth, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	object_event  9, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerTeacherShirley, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	object_event 14,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyNate, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	object_event 14, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	object_event 14, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	object_event 16, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, FastShipRevive, EVENT_FAST_SHIP_REVIVE

@@ -53,13 +53,6 @@ MoomooScript:
 	special PlaySlowCry
 	promptbutton
 	writetext Route39BarnItsCryIsWeakText
-	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
-	iftrue .GiveBerry
-	waitbutton
-	closetext
-	end
-
-.GiveBerry:
 	promptbutton
 	writetext Route39BarnAskGiveBerryText
 	yesorno
@@ -67,40 +60,12 @@ MoomooScript:
 	checkitem BERRY
 	iffalse .NoBerriesInBag
 	takeitem BERRY
-	readmem wMooMooBerries
-	addval 1
-	writemem wMooMooBerries
-	ifequal 3, .ThreeBerries
-	ifequal 5, .FiveBerries
-	ifequal 7, .SevenBerries
-	writetext Route39BarnGaveBerryText
-	waitbutton
-	closetext
-	end
-
-.ThreeBerries:
-	writetext Route39BarnGaveBerryText
-	promptbutton
-	writetext Route39BarnLittleHealthierText
-	waitbutton
-	closetext
-	end
-
-.FiveBerries:
-	writetext Route39BarnGaveBerryText
-	promptbutton
-	writetext Route39BarnQuiteHealthyText
-	waitbutton
-	closetext
-	end
-
-.SevenBerries:
 	playmusic MUSIC_HEAL
 	writetext Route39BarnGaveBerryText
 	pause 60
 	promptbutton
 	special RestartMapMusic
-	writetext Route39BarnTotallyHealthyText
+	writetext Route39BarnHealthyText
 	waitbutton
 	closetext
 	setevent EVENT_HEALED_MOOMOO
@@ -128,8 +93,8 @@ MoomooScript:
 Route39BarnTwinMoomooIsSickText:
 	text "MOOMOO is sick…"
 
-	para "She needs lots of"
-	line "BERRIES."
+	para "She needs a good"
+	line "BERRY."
 	done
 
 Route39BarnTwinWereFeedingMoomooText:
@@ -138,7 +103,7 @@ Route39BarnTwinWereFeedingMoomooText:
 	done
 
 MoomooWeakMooText:
-	text "MILTANK: …Moo…"
+	text "MOOMOO: …Moo…"
 	done
 
 Route39BarnItsCryIsWeakText:
@@ -146,32 +111,22 @@ Route39BarnItsCryIsWeakText:
 	done
 
 MoomooHappyMooText:
-	text "MILTANK: Mooo!"
+	text "MOOMOO: Mooo!"
 	done
 
 Route39BarnAskGiveBerryText:
 	text "Give a BERRY to"
-	line "MILTANK?"
+	line "MOOMOO?"
 	done
 
 Route39BarnGaveBerryText:
 	text "<PLAYER> gave a"
-	line "BERRY to MILTANK."
+	line "BERRY to MOOMOO."
 	done
 
-Route39BarnLittleHealthierText:
-	text "MILTANK became a"
-	line "little healthier!"
-	done
-
-Route39BarnQuiteHealthyText:
-	text "MILTANK became"
-	line "quite healthy!"
-	done
-
-Route39BarnTotallyHealthyText:
-	text "MILTANK became"
-	line "totally healthy!"
+Route39BarnHealthyText:
+	text "MOOMOO is now"
+	line "healthy!"
 	done
 
 Route39BarnNoBerriesText:
@@ -183,7 +138,7 @@ Route39BarnRefusedBerryText:
 	text "<PLAYER> wouldn't"
 	line "give a BERRY."
 
-	para "MILTANK looks sad."
+	para "MOOMOO looks sad."
 	done
 
 Route39Barn_MapEvents:
@@ -200,4 +155,4 @@ Route39Barn_MapEvents:
 	def_object_events
 	object_event  2,  3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39BarnTwin1Script, -1
 	object_event  4,  3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route39BarnTwin2Script, -1
-	object_event  3,  3, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoomooScript, -1
+	object_event  3,  3, SPRITE_MILTANK, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, MoomooScript, -1

@@ -3,23 +3,25 @@
 
 HallOfFame_MapScripts:
 	def_scene_scripts
-	scene_script HallOfFameEnterScene, SCENE_HALLOFFAME_ENTER
-	scene_script HallOfFameNoopScene,  SCENE_HALLOFFAME_NOOP
+	scene_script .EnterHallOfFame, SCENE_HALLOFFAME_ENTER
+	scene_script .DummyScene, SCENE_HALLOFFAME_NOOP
 
 	def_callbacks
 
-HallOfFameEnterScene:
-	sdefer HallOfFameEnterScript
+.EnterHallOfFame:
+	prioritysjump .EnterHallOfFameScript
 	end
 
-HallOfFameNoopScene:
+.DummyScene:
 	end
 
-HallOfFameEnterScript:
+.EnterHallOfFameScript:
+	readvar VAR_BADGES
+	ifequal 16, .REMATCH
+	turnobject PLAYER, RIGHT
 	follow HALLOFFAME_LANCE, PLAYER
 	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow
-	turnobject PLAYER, RIGHT
 	opentext
 	writetext HallOfFame_LanceText
 	waitbutton
@@ -31,17 +33,44 @@ HallOfFameEnterScript:
 	setval HEALMACHINE_HALL_OF_FAME
 	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
+	clearevent EVENT_HOMEBIGLAPRASDOLL
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
-	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	clearevent EVENT_NO_E4_REMATCH
+	setevent EVENT_E4_MART
 	setmapscene SPROUT_TOWER_3F, SCENE_SPROUTTOWER3F_NOOP
 	special HealParty
-	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue .SkipPhoneCall
 	specialphonecall SPECIALCALL_SSTICKET
-.SkipPhoneCall:
+	special UnlockMysteryGift
+	halloffame
+	end
+	
+.REMATCH:
+	pause 15
+	turnobject HALLOFFAME_LANCE, DOWN
+	opentext
+	writetext HallOfFame_LanceText2
+	waitbutton
+	closetext
+	follow HALLOFFAME_LANCE, PLAYER
+	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
+	stopfollow
+	turnobject PLAYER, RIGHT
+	opentext
+	writetext HallOfFame_LanceText3
+	waitbutton
+	closetext
+	turnobject HALLOFFAME_LANCE, UP
+	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
+	setscene SCENE_HALLOFFAME_NOOP
+	pause 15
+	setval HEALMACHINE_HALL_OF_FAME
+	special HealMachineAnim
+	setevent EVENT_OPENED_MT_SILVER
+	clearevent EVENT_RED_IN_MT_SILVER
+	special HealParty
 	halloffame
 	end
 
@@ -84,9 +113,9 @@ HallOfFame_LanceText:
 	line "CHAMPION--a"
 
 	para "trainer who feels"
-	line "compassion for,"
+	line "compassion for"
 
-	para "and trust toward,"
+	para "and trust toward"
 	line "all #MON."
 
 	para "A trainer who"
@@ -100,12 +129,88 @@ HallOfFame_LanceText:
 
 	para "all the makings"
 	line "of greatness!"
+	
+	para "From now on, your"
+	line "#MON will know"
+	
+	para "no bounds in their"
+	line "growth alongside"
+	cont "you."
 
 	para "<PLAY_G>, allow me"
 	line "to register you"
 
 	para "and your partners"
 	line "as CHAMPIONS!"
+	done
+	
+HallOfFame_LanceText2:
+	text "LANCE: <PLAY_G>!"
+	
+	para "Congratulations"
+	line "on defeating the"
+
+	para "LEAGUE CHAMPION"
+	line "once again!"
+	
+	para "It's good to see"
+	line "you after such a"
+	cont "long time."
+	done
+	
+HallOfFame_LanceText3:
+	text "It has not been"
+	line "very long since I"
+
+	para "last entered this"
+	line "room, but I still"
+	
+	para "get chills every"
+	line "time…"
+	
+	para "Oh, right! PROF."
+	line "OAK wanted me to"
+	
+	para "allow you entry"
+	line "into MT.SILVER."
+	
+	para "Although I am no"
+	line "longer the LEAGUE"
+	
+	para "CHAMPION, I've de-"
+	line "cided to help out"
+	cont "with logistics."
+	
+	para "I will arrange for"
+	line "the MT.SILVER gu-"
+	
+	para "ard to grant you"
+	line "passage, but you"
+	
+	para "must tread with"
+	line "caution."
+	
+	para "The MT.SILVER and"
+	line "SILVER CAVE areas"
+	
+	para "are fraught with"
+	line "peril."
+	
+	para "Even the most sea-"
+	line "soned of trainers"
+	cont "must be wary."
+	
+	para "But nevermind that"
+	line "right now."
+	
+	para "This is a moment"
+	line "of celebration!"
+	
+	para "Let's register the"
+	line "#MON that stood"
+	
+	para "by your side into"
+	line "the HALL OF FAME!"
 	done
 
 HallOfFame_MapEvents:

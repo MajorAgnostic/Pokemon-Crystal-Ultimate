@@ -4,17 +4,16 @@
 
 BattleTowerBattleRoom_MapScripts:
 	def_scene_scripts
-	scene_script BattleTowerBattleRoomEnterScene, SCENE_BATTLETOWERBATTLEROOM_ENTER
-	scene_script BattleTowerBattleRoomNoopScene,  SCENE_BATTLETOWERBATTLEROOM_NOOP
+	scene_script .EnterBattleRoom, SCENE_BROOM_DEFAULT
+	scene_script .DummyScene, SCENE_BROOM_FINISHED
 
 	def_callbacks
 
-BattleTowerBattleRoomEnterScene:
+.EnterBattleRoom:
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
-	sdefer Script_BattleRoom
-	setscene SCENE_BATTLETOWERBATTLEROOM_NOOP
-	; fallthrough
-BattleTowerBattleRoomNoopScene:
+	prioritysjump Script_BattleRoom
+	setscene SCENE_BROOM_FINISHED
+.DummyScene:
 	end
 
 Script_BattleRoom:
@@ -32,7 +31,7 @@ Script_BattleRoomLoop:
 	promptbutton
 	closetext
 	special BattleTowerBattle ; predef StartBattle
-	special FadeOutToWhite
+	special FadeOutPalettes
 	reloadmap
 	ifnotequal $0, Script_FailedBattleTowerChallenge
 	readmem wNrOfBeatenBattleTowerTrainers
@@ -47,10 +46,10 @@ Script_BattleRoomLoop:
 	waitbutton
 	closetext
 	playmusic MUSIC_HEAL
-	special FadeOutToWhite
+	special FadeOutPalettes
 	special LoadMapPalettes
 	pause 60
-	special FadeInFromWhite
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext Text_NextUpOpponentNo
@@ -74,7 +73,7 @@ Script_DontBattleNextOpponent:
 	special BattleTowerAction
 	playsound SFX_SAVE
 	waitsfx
-	special FadeOutToWhite
+	special FadeOutPalettes
 	special Reset
 Script_DontSaveAndEndTheSession:
 	writetext Text_CancelYourBattleRoomChallenge
@@ -85,7 +84,7 @@ Script_DontSaveAndEndTheSession:
 	setval BATTLETOWERACTION_06
 	special BattleTowerAction
 	closetext
-	special FadeOutToWhite
+	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 	opentext
 	sjump Script_BattleTowerHopeToServeYouAgain
@@ -111,28 +110,7 @@ Script_BeatenAllTrainers2:
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	sjump Script_GivePlayerHisPrize
 
-Script_TooMuchTimeElapsedNoRegister: ; unreferenced
-	setval BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
-	opentext
-	writetext Text_TooMuchTimeElapsedNoRegister
-	waitbutton
-	closetext
-	end
-
-Script_ChallengeCanceled: ; unreferenced
-	setval BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
-	setval BATTLETOWERACTION_06
-	special BattleTowerAction
-	opentext
-	writetext Text_ThanksForVisiting
-	writetext Text_WeHopeToServeYouAgain
-	waitbutton
-	closetext
-	end
-
-Text_ReturnedAfterSave_Mobile: ; unreferenced
+Text_ReturnedAfterSave_Mobile:
 	text "You'll be returned"
 	line "after you SAVE."
 	done

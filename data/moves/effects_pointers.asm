@@ -38,13 +38,11 @@ MoveEffectsPointers:
 	dw PayDay
 	dw LightScreen
 	dw TriAttack
-	dw NormalHit
 	dw OHKOHit
 	dw RazorWind
 	dw SuperFang
 	dw StaticDamage
 	dw TrapTarget
-	dw NormalHit
 	dw MultiHit
 	dw NormalHit
 	dw Mist
@@ -68,6 +66,7 @@ MoveEffectsPointers:
 	dw EvasionDown2
 	dw Reflect
 	dw DoPoison
+	dw DoBurn
 	dw DoParalyze
 	dw AttackDownHit
 	dw DefenseDownHit
@@ -79,7 +78,6 @@ MoveEffectsPointers:
 	dw SkyAttack
 	dw ConfuseHit
 	dw PoisonMultiHit
-	dw NormalHit
 	dw Substitute
 	dw HyperBeam
 	dw Rage
@@ -111,7 +109,6 @@ MoveEffectsPointers:
 	dw Nightmare
 	dw FlameWheel
 	dw Curse
-	dw NormalHit
 	dw Protect
 	dw Spikes
 	dw Foresight
@@ -131,8 +128,6 @@ MoveEffectsPointers:
 	dw BatonPass
 	dw Pursuit
 	dw RapidSpin
-	dw NormalHit
-	dw NormalHit
 	dw MorningSun
 	dw Synthesis
 	dw Moonlight
@@ -155,7 +150,10 @@ MoveEffectsPointers:
 	dw Solarbeam
 	dw Thunder
 	dw Teleport
-	dw BeatUp
 	dw Fly
 	dw DefenseCurl
+	dw GrassPowderSleep ; Ultimate-only
+	dw GrassPowderParalyze
+	dw RockSlide
+	dw NightShade
 	assert_table_length NUM_MOVE_EFFECTS

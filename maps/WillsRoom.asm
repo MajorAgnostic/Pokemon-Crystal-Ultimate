@@ -3,20 +3,20 @@
 
 WillsRoom_MapScripts:
 	def_scene_scripts
-	scene_script WillsRoomLockDoorScene, SCENE_WILLSROOM_LOCK_DOOR
-	scene_script WillsRoomNoopScene,     SCENE_WILLSROOM_NOOP
+	scene_script .LockDoor, SCENE_WILLSROOM_LOCK_DOOR
+	scene_script .DummyScene, SCENE_WILLSROOM_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, WillsRoomDoorsCallback
+	callback MAPCALLBACK_TILES, .WillsRoomDoors
 
-WillsRoomLockDoorScene:
-	sdefer WillsRoomDoorLocksBehindYouScript
+.LockDoor:
+	prioritysjump .WillsDoorLocksBehindYou
 	end
 
-WillsRoomNoopScene:
+.DummyScene:
 	end
 
-WillsRoomDoorsCallback:
+.WillsRoomDoors:
 	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
 	changeblock 4, 14, $2a ; wall
@@ -27,13 +27,13 @@ WillsRoomDoorsCallback:
 .KeepExitClosed:
 	endcallback
 
-WillsRoomDoorLocksBehindYouScript:
+.WillsDoorLocksBehindYou:
 	applymovement PLAYER, WillsRoom_EnterMovement
-	reanchormap $86
+	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 14, $2a ; wall
-	refreshmap
+	reloadmappart
 	closetext
 	setscene SCENE_WILLSROOM_NOOP
 	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
@@ -41,6 +41,8 @@ WillsRoomDoorLocksBehindYouScript:
 	end
 
 WillScript_Battle:
+	readvar VAR_BADGES
+	ifequal 16, .REMATCH
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_WILL
@@ -59,7 +61,33 @@ WillScript_Battle:
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
-	refreshmap
+	reloadmappart
+	closetext
+	setevent EVENT_WILLS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+.REMATCH:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_ELITE_4_WILL
+	iftrue WillScript_AfterBattle2
+	writetext WillScript_WillRematchText
+	waitbutton
+	closetext
+	winlosstext WillScript_WillBeatenText, 0
+	loadtrainer WILL, WILL2
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_WILL
+	opentext
+	writetext WillScript_WillDefeatText2
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
 	closetext
 	setevent EVENT_WILLS_ROOM_EXIT_OPEN
 	waitsfx
@@ -67,6 +95,12 @@ WillScript_Battle:
 
 WillScript_AfterBattle:
 	writetext WillScript_WillDefeatText
+	waitbutton
+	closetext
+	end
+
+WillScript_AfterBattle2:
+	writetext WillScript_WillDefeatText2
 	waitbutton
 	closetext
 	end
@@ -79,8 +113,9 @@ WillsRoom_EnterMovement:
 	step_end
 
 WillScript_WillBeforeText:
-	text "Welcome to #MON"
-	line "LEAGUE, <PLAYER>."
+	text "Welcome to the"
+	line "#MON LEAGUE," 
+	cont "<PLAYER>."
 
 	para "Allow me to intro-"
 	line "duce myself. I am"
@@ -101,6 +136,29 @@ WillScript_WillBeforeText:
 
 	para "Losing is not an"
 	line "option!"
+	done
+
+WillScript_WillRematchText:
+	text "Welcome back,"
+	line "CHAMPION, to the"
+	cont "#MON LEAGUE."
+
+	para "I have carefully"
+	line "studied tactical"
+	
+	para "data and have put"
+	line "my findings into"
+	cont "practice."
+
+	para "I have also added"
+	line "new #MON to my"
+	cont "psychic team."
+
+	para "This time, things"
+	line "will be different."
+	
+	para "Heed my call,"
+	line "LUGIA!"
 	done
 
 WillScript_WillBeatenText:
@@ -124,6 +182,29 @@ WillScript_WillDefeatText:
 
 	para "the true ferocity"
 	line "of the ELITE FOUR."
+	done
+
+WillScript_WillDefeatText2:
+	text "Whew, I've expended"
+	line "all my power and"
+	
+	para "it still wasn't"
+	line "enough to win."
+
+	para "You've shown your-"
+	line "self to be a truly"
+	cont "mighty foe."
+
+	para "<PLAYER>, I will"
+	line "reflect on our ex-"
+	
+	para "perience and forge"
+	line "a new path for my"
+	cont "#MON."
+
+	para "Never forget the"
+	line "spirit of the"
+	cont "ELITE FOUR!"
 	done
 
 WillsRoom_MapEvents:

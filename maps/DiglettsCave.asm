@@ -5,19 +5,38 @@ DiglettsCave_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_TILES, .TunnelLocked
+	
+.TunnelLocked:
+	checkevent EVENT_FOUGHT_SNORLAX
+	iftrue .KeepEntranceOpen
+	changeblock 3, 33, $2 ; wall
+	changeblock 3, 34, $5 ; entrance gone
+.KeepEntranceOpen:
+	endcallback
 
 DiglettsCavePokefanMScript:
+	checkevent EVENT_FOUGHT_SNORLAX
+	iffalse .Text2
 	jumptextfaceplayer DiglettsCavePokefanMText
+.Text2:
+	jumptextfaceplayer DiglettsCavePokefanMText2
 
 DiglettsCaveHiddenMaxRevive:
 	hiddenitem MAX_REVIVE, EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE
 
 DiglettsCavePokefanMText:
-	text "A bunch of DIGLETT"
-	line "popped out of the"
+	text "DUGTRIO… so fast!"
+	line "I really wish I"
 
-	para "ground! That was"
-	line "shocking."
+	para "brought a SMOKE"
+	line "BALL."
+	done
+	
+DiglettsCavePokefanMText2:
+	text "Darn… there's a"
+	line "SNORLAX blocking"
+	cont "the exit!"
 	done
 
 DiglettsCave_MapEvents:

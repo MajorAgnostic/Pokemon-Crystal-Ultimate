@@ -1,24 +1,24 @@
 MobileBattleRoom_MapScripts:
 	def_scene_scripts
-	scene_script MobileBattleRoomInitializeScene, SCENE_MOBILEBATTLEROOM_INITIALIZE
-	scene_script MobileBattleRoomNoopScene,       SCENE_MOBILEBATTLEROOM_NOOP
+	scene_script .InitializeMobileBattleRoom, SCENE_BATTLE_DEFAULT
+	scene_script .DummyScene, SCENE_BATTLE_FINISHED
 
 	def_callbacks
 
-MobileBattleRoomInitializeScene:
-	sdefer MobileBattleRoomInitializeAndPreparePokecenter2FScript
+.InitializeMobileBattleRoom:
+	prioritysjump .InitializeAndPreparePokecenter2F
 	end
 
-MobileBattleRoomNoopScene:
+.DummyScene:
 	end
 
-MobileBattleRoomInitializeAndPreparePokecenter2FScript:
-	setscene SCENE_MOBILEBATTLEROOM_NOOP
+.InitializeAndPreparePokecenter2F:
+	setscene SCENE_BATTLE_FINISHED
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_MOBILE_BATTLE_ROOM
 	end
 
 MobileBattleRoomConsoleScript:
-	reanchormap
+	refreshscreen
 	special Function1037c2
 	ifequal $1, .one
 	special Function1037eb
@@ -31,13 +31,13 @@ MobileBattleRoomConsoleScript:
 	writetext MobileBattleRoom_HealText
 	pause 20
 	closetext
-	special FadeOutToWhite
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	special LoadMapPalettes
 	pause 60
-	special FadeInFromWhite
+	special FadeInPalettes
 	special RestartMapMusic
-	reanchormap
+	refreshscreen
 .two_
 	special StubbedTrainerRankings_Healings
 	special HealParty
@@ -47,7 +47,7 @@ MobileBattleRoomConsoleScript:
 	special Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
 	waitbutton
-	refreshmap
+	reloadmappart
 	special Function101225
 .false
 	closetext

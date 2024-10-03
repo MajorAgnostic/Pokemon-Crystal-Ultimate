@@ -9,16 +9,16 @@
 
 EcruteakGym_MapScripts:
 	def_scene_scripts
-	scene_script EcruteakGymForcedToLeaveScene, SCENE_ECRUTEAKGYM_FORCED_TO_LEAVE
-	scene_script EcruteakGymNoopScene,          SCENE_ECRUTEAKGYM_NOOP
+	scene_script .ForcedToLeave, SCENE_ECRUTEAKGYM_FORCED_TO_LEAVE
+	scene_script .DummyScene, SCENE_ECRUTEAKGYM_NOOP
 
 	def_callbacks
 
-EcruteakGymForcedToLeaveScene:
-	sdefer EcruteakGymClosed
+.ForcedToLeave:
+	prioritysjump EcruteakGymClosed
 	end
 
-EcruteakGymNoopScene:
+.DummyScene:
 	end
 
 EcruteakGymMortyScript:
@@ -33,6 +33,7 @@ EcruteakGymMortyScript:
 	loadtrainer MORTY, MORTY1
 	startbattle
 	reloadmapafterbattle
+	loadmem wLevelCap, 50
 	setevent EVENT_BEAT_MORTY
 	opentext
 	writetext Text_ReceivedFogBadge
@@ -89,7 +90,7 @@ EcruteakGymClosed:
 	follow PLAYER, ECRUTEAKGYM_GRAMPS
 	applymovement PLAYER, EcruteakGymPlayerSlowStepDownMovement
 	stopfollow
-	special FadeOutToWhite
+	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
 	waitsfx
 	warp ECRUTEAK_CITY, 6, 27
@@ -236,7 +237,7 @@ MortyText_FogBadgeSpeech:
 	line "BADGE, #MON up"
 
 	para "to L50 will obey"
-	line "you."
+	line "you and grow."
 
 	para "Also, #MON that"
 	line "know SURF will be"
@@ -253,7 +254,7 @@ MortyText_ShadowBallSpeech:
 	line "It causes damage"
 
 	para "and may reduce"
-	line "SPCL.DEF."
+	line "DEF."
 
 	para "Use it if it"
 	line "appeals to you."
@@ -309,8 +310,8 @@ SagePingBeatenText:
 	done
 
 SagePingAfterBattleText:
-	text "We use only ghost-"
-	line "type #MON."
+	text "We use ghost-type"
+	line "#MON."
 
 	para "No normal-type"
 	line "attack can harm"
@@ -363,6 +364,12 @@ EcruteakGymGuideText:
 
 	para "deep secrets about"
 	line "ECRUTEAK."
+	
+	para "Oh and remember,"
+	line "MORTY uses newly-"
+
+	para "discovered ghost-"
+	line "type #MON."
 	done
 
 EcruteakGymGuideWinText:
@@ -429,7 +436,7 @@ EcruteakGym_MapEvents:
 	bg_event  6, 15, BGEVENT_READ, EcruteakGymStatue
 
 	def_object_events
-	object_event  5,  1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, EcruteakGymMortyScript, -1
+	object_event  5,  1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakGymMortyScript, -1
 	object_event  2,  7, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSageJeffrey, -1
 	object_event  3, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSagePing, -1
 	object_event  7,  5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumMartha, -1

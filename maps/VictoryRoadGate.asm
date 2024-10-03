@@ -5,24 +5,24 @@
 
 VictoryRoadGate_MapScripts:
 	def_scene_scripts
-	scene_script VictoryRoadGateNoop1Scene, SCENE_VICTORYROADGATE_BADGE_CHECK
-	scene_script VictoryRoadGateNoop2Scene, SCENE_VICTORYROADGATE_NOOP
+	scene_script .DummyScene0, SCENE_VICTORYROADGATE_BADGE_CHECK
+	scene_script .DummyScene1, SCENE_VICTORYROADGATE_NOOP
 
 	def_callbacks
 
-VictoryRoadGateNoop1Scene:
+.DummyScene0:
 	end
 
-VictoryRoadGateNoop2Scene:
+.DummyScene1:
 	end
 
-VictoryRoadGateBadgeCheckScript:
+VictoryRoadGateBadgeCheckScene:
 	turnobject PLAYER, LEFT
-	sjump _VictoryRoadGateBadgeCheckScript
+	sjump VictoryRoadGateBadgeCheckScript
 
 VictoryRoadGateOfficerScript:
 	faceplayer
-_VictoryRoadGateBadgeCheckScript:
+VictoryRoadGateBadgeCheckScript:
 	opentext
 	writetext VictoryRoadGateOfficerText
 	promptbutton
@@ -73,6 +73,39 @@ VictoryRoadGateEightBadgesText:
 
 	para "Please, go right"
 	line "on through!"
+	
+	para "But keep in mind"
+	line "that the VICTORY"
+	
+	para "ROAD cave contains"
+	line "some of the most"
+	
+	para "seasoned trainers"
+	line "in the region."
+	
+	para "Also, we will lock"
+	line "the doors behind"
+	
+	para "you. They will not"
+	line "be opened until"
+	
+	para "you've reached the"
+	line "INDIGO PLATEAU, so"
+	
+	para "you best prepare"
+	line "accordingly."
+	
+	para "Make sure to bring"
+	line "#MON that know"
+	
+	para "SURF, WATERFALL &"
+	line "STRENGTH before"
+	cont "entering."
+	
+	para "You don't want to"
+	line "get stuck!"
+	
+	para "Now, good luck!"
 	done
 
 VictoryRoadGateLeftBlackBeltText:
@@ -109,11 +142,11 @@ VictoryRoadGate_MapEvents:
 	warp_event  2,  7, ROUTE_28, 2
 
 	def_coord_events
-	coord_event 10, 11, SCENE_VICTORYROADGATE_BADGE_CHECK, VictoryRoadGateBadgeCheckScript
+	coord_event 10, 11, SCENE_VICTORYROADGATE_BADGE_CHECK, VictoryRoadGateBadgeCheckScene
 
 	def_bg_events
 
 	def_object_events
 	object_event  8, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
 	object_event  7,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
-	object_event 12,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX
+	object_event 12,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_OPENED_RIGHTBB

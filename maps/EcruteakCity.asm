@@ -11,9 +11,9 @@ EcruteakCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, EcruteakCityFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-EcruteakCityFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_ECRUTEAK
 	endcallback
 
@@ -88,7 +88,8 @@ EcruteakCityMartSign:
 EcruteakCityHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION
 
-UnusedMissingDaughterText: ; unreferenced
+UnusedMissingDaughterText:
+; unused
 	text "Oh, no. Oh, no…"
 
 	para "My daughter is"
@@ -267,7 +268,7 @@ EcruteakCity_MapEvents:
 	warp_event 20,  3, WISE_TRIOS_ROOM, 2
 	warp_event 23, 27, ECRUTEAK_POKECENTER_1F, 1
 	warp_event  5, 21, ECRUTEAK_LUGIA_SPEECH_HOUSE, 1
-	warp_event 23, 21, DANCE_THEATER, 1
+	warp_event 23, 21, DANCE_THEATRE, 1
 	warp_event 29, 21, ECRUTEAK_MART, 2
 	warp_event  6, 27, ECRUTEAK_GYM, 1
 	warp_event 13, 27, ECRUTEAK_ITEMFINDER_HOUSE, 1
@@ -295,4 +296,4 @@ EcruteakCity_MapEvents:
 	object_event  3,  9, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityLass2Script, -1
 	object_event  9, 22, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityFisherScript, -1
 	object_event 10, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
-	object_event  3,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS
+	object_event  3,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS

@@ -16,6 +16,7 @@ _ReceiveItem::
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
+	dw .Medicine
 
 .Item:
 	ld h, d
@@ -29,6 +30,10 @@ _ReceiveItem::
 
 .Ball:
 	ld hl, wNumBalls
+	jp PutItemInPocket
+	
+.Medicine:
+	ld hl, wNumMedicine
 	jp PutItemInPocket
 
 .TMHM:
@@ -57,9 +62,14 @@ _TossItem::
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
+	dw .Medicine
 
 .Ball:
 	ld hl, wNumBalls
+	jp RemoveItemFromPocket
+	
+.Medicine:
+	ld hl, wNumMedicine
 	jp RemoveItemFromPocket
 
 .TMHM:
@@ -100,9 +110,14 @@ _CheckItem::
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
+	dw .Medicine
 
 .Ball:
 	ld hl, wNumBalls
+	jp CheckTheItem
+	
+.Medicine:
+	ld hl, wNumMedicine
 	jp CheckTheItem
 
 .TMHM:
@@ -152,6 +167,15 @@ GetPocketCapacity:
 	ret z
 
 .not_pc
+	ld c, MAX_MEDICINE
+	ld a, e
+	cp LOW(wNumMedicine)
+	jr nz, .not_medicine
+	ld a, d
+	cp HIGH(wNumMedicine)
+	ret z
+	
+.not_medicine
 	ld c, MAX_BALLS
 	ret
 
@@ -459,15 +483,6 @@ CheckTMHM:
 GetTMHMNumber::
 ; Return the number of a TM/HM by item id c.
 	ld a, c
-; Skip any dummy items.
-	cp ITEM_C3 ; TM04-05
-	jr c, .done
-	cp ITEM_DC ; TM28-29
-	jr c, .skip
-	dec a
-.skip
-	dec a
-.done
 	sub TM01
 	inc a
 	ld c, a
@@ -476,16 +491,6 @@ GetTMHMNumber::
 GetNumberedTMHM:
 ; Return the item id of a TM/HM by number c.
 	ld a, c
-; Skip any gaps.
-	cp ITEM_C3 - (TM01 - 1)
-	jr c, .done
-	cp ITEM_DC - (TM01 - 1) - 1
-	jr c, .skip_one
-; skip two
-	inc a
-.skip_one
-	inc a
-.done
 	add TM01
 	dec a
 	ld c, a

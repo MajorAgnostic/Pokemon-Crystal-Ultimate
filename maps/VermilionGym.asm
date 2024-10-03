@@ -20,6 +20,7 @@ VermilionGymSurgeScript:
 	closetext
 	winlosstext LtSurgeWinLossText, 0
 	loadtrainer LT_SURGE, LT_SURGE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_LTSURGE
@@ -93,6 +94,34 @@ VermilionGymGuideScript:
 
 VermilionGymTrashCan:
 	jumptext VermilionGymTrashCanText
+	
+VermilionGymTrashCanLeftovers:
+	checkevent EVENT_GYM_LEFTOVERS
+	iftrue .TrashEmpty
+	giveitem LEFTOVERS
+	iffalse .PackFull
+	opentext
+	getitemname STRING_BUFFER_3, LEFTOVERS
+	writetext FoundLeftoversText2
+	playsound SFX_ITEM
+	waitsfx
+	itemnotify
+	closetext
+	setevent EVENT_GYM_LEFTOVERS
+	end
+
+.PackFull:
+	opentext
+	getitemname STRING_BUFFER_3, LEFTOVERS
+	writetext FoundLeftoversText2
+	promptbutton
+	writetext NoRoomText
+	waitbutton
+	closetext
+	end
+
+.TrashEmpty:
+	jumptext VermilionGymTrashCanText
 
 VermilionGymStatue:
 	checkflag ENGINE_THUNDERBADGE
@@ -101,6 +130,18 @@ VermilionGymStatue:
 .Beaten:
 	gettrainername STRING_BUFFER_4, LT_SURGE, LT_SURGE1
 	jumpstd GymStatue2Script
+	
+FoundLeftoversText2:
+	text "<PLAYER> found"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+	
+NoRoomText:
+	text "But <PLAYER> can't"
+	line "hold another item…"
+	done
 
 LtSurgeIntroText:
 	text "SURGE: Hey, you"
@@ -139,11 +180,7 @@ ReceivedThunderBadgeText:
 	done
 
 LtSurgeThunderBadgeText:
-	text "SURGE: THUNDER-"
-	line "BADGE increases"
-	cont "#MON's speed. "
-
-	para "Consider it proof"
+	text "Consider it proof"
 	line "that you defeated"
 
 	para "me. You wear it"
@@ -243,6 +280,19 @@ VermilionGymGuideText:
 	para "You'll have no"
 	line "problem getting to"
 	cont "LT.SURGE."
+	
+	para "However, KANTO GYM"
+	line "LEADERs add a new"
+	cont "rule into the mix:"
+
+	para "You can't freely"
+	line "switch #MON"
+	cont "after making one"
+	cont "faint."
+	
+	para "So think carefully"
+	line "about your first"
+	cont "#MON!"
 	done
 
 VermilionGymGuideWinText:
@@ -274,7 +324,7 @@ VermilionGym_MapEvents:
 	bg_event  7,  7, BGEVENT_READ, VermilionGymTrashCan
 	bg_event  9,  7, BGEVENT_READ, VermilionGymTrashCan
 	bg_event  1,  9, BGEVENT_READ, VermilionGymTrashCan
-	bg_event  3,  9, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  3,  9, BGEVENT_READ, VermilionGymTrashCanLeftovers
 	bg_event  5,  9, BGEVENT_READ, VermilionGymTrashCan
 	bg_event  7,  9, BGEVENT_READ, VermilionGymTrashCan
 	bg_event  9,  9, BGEVENT_READ, VermilionGymTrashCan
@@ -287,8 +337,8 @@ VermilionGym_MapEvents:
 	bg_event  6, 15, BGEVENT_READ, VermilionGymStatue
 
 	def_object_events
-	object_event  5,  2, SPRITE_SURGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, VermilionGymSurgeScript, -1
+	object_event  5,  2, SPRITE_SURGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionGymSurgeScript, -1
 	object_event  8,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanGregory, -1
-	object_event  4,  7, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 3, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGuitaristVincent, -1
+	object_event  4,  7, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGuitaristVincent, -1
 	object_event  0, 10, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerJugglerHorton, -1
 	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, VermilionGymGuideScript, -1

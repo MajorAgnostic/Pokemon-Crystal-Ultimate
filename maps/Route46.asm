@@ -27,7 +27,6 @@ TrainerPicnickerErin1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_ERIN
-	endifjustbattled
 	opentext
 	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -54,21 +53,13 @@ TrainerPicnickerErin1:
 .WantsBattle:
 	scall Route46RematchF
 	winlosstext PicnickerErin1BeatenText, 0
-	readmem wErinFightCount
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight2:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight2
-.Fight1:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	reloadmapafterbattle
-	loadmem wErinFightCount, 1
 	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	end
 
@@ -76,7 +67,6 @@ TrainerPicnickerErin1:
 	loadtrainer PICNICKER, ERIN2
 	startbattle
 	reloadmapafterbattle
-	loadmem wErinFightCount, 2
 	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	end
 
@@ -90,7 +80,7 @@ TrainerPicnickerErin1:
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
 	iftrue .GotCalciumAlready
 	scall Route46RematchGiftF
-	verbosegiveitem CALCIUM
+	verbosegiveitem MAX_POTION
 	iffalse ErinNoRoomForCalcium
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
 	sjump Route46NumberAcceptedF
@@ -102,7 +92,7 @@ TrainerPicnickerErin1:
 	opentext
 	writetext PicnickerErin2BeatenText
 	waitbutton
-	verbosegiveitem CALCIUM
+	verbosegiveitem MAX_POTION
 	iffalse ErinNoRoomForCalcium
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
@@ -159,8 +149,8 @@ TrainerHikerBailey:
 Route46Sign:
 	jumptext Route46SignText
 
-Route46XSpeed:
-	itemball X_SPEED
+Route35TMRollout:
+	itemball TM_ROLLOUT
 
 Route46FruitTree1:
 	fruittree FRUITTREE_ROUTE_46_1
@@ -267,4 +257,4 @@ Route46_MapEvents:
 	object_event  2, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerErin1, -1
 	object_event  7,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route46FruitTree1, -1
 	object_event  8,  6, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route46FruitTree2, -1
-	object_event  1, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route46XSpeed, EVENT_ROUTE_46_X_SPEED
+	object_event  1, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route35TMRollout, EVENT_ROUTE_35_TM_ROLLOUT

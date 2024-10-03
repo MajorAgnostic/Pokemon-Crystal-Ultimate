@@ -6,18 +6,14 @@
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_M1
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN3
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN4
-	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD1
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_M2
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_F
-	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKE_BALL
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-
-FastShipCabins_SE_SSE_CaptainsCabinNoopScene: ; unreferenced
-	end
 
 SSAquaCaptain:
 	faceplayer
@@ -46,18 +42,18 @@ SSAquaGranddaughterBefore:
 	writetext SSAquaGranddaughterHasToFindGrandpaText
 	waitbutton
 	closetext
-	special FadeOutToBlack
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2
-	applymovement PLAYER, SSAquaCaptainsCabinWarpsToGrandpasCabinMovement
+	applymovement PLAYER, MovementData_0x76004
 	moveobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, 3, 19
 	appear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1
 	turnobject PLAYER, UP
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, UP
-	special FadeInFromBlack
+	special FadeInQuickly
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, DOWN
 	showemote EMOTE_SHOCK, FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, 15
-	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, SSAquaGranddaughterEntersCabinMovement
+	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, MovementData_0x7600c
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, RIGHT
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .PlayerIsFemale
@@ -74,12 +70,12 @@ SSAquaGranddaughterBefore:
 	closetext
 .cont:
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, DOWN
-	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, SSAquaGrandpaApproachesPlayerMovement
+	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, MovementData_0x76010
 	opentext
 	writetext SSAquaEntertainedGranddaughterText
 	promptbutton
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_NOOP
+	setmapscene FAST_SHIP_1F, SCENE_DEFAULT
 	sjump SSAquaMetalCoatAndDocking
 
 SSAquaGrandpa:
@@ -92,7 +88,7 @@ SSAquaGrandpa:
 	writetext SSAquaCantFindGranddaughterText
 	waitbutton
 	closetext
-	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_NOOP
+	setmapscene FAST_SHIP_1F, SCENE_DEFAULT
 	end
 
 SSAquaMetalCoatAndDocking:
@@ -161,23 +157,12 @@ TrainerTwinsMegandpeg1:
 	end
 
 TrainerTwinsMegandpeg2:
-	trainer TWINS, MEGANDPEG2, EVENT_BEAT_TWINS_MEG_AND_PEG, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, 0, .Script
+	trainer TWINS, MEGANDPEG1, EVENT_BEAT_TWINS_MEG_AND_PEG, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
 	writetext TwinsMegandpeg2AfterBattleText
-	waitbutton
-	closetext
-	end
-
-TrainerPsychicRodney:
-	trainer PSYCHIC_T, RODNEY, EVENT_BEAT_PSYCHIC_RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
-	opentext
-	writetext PsychicRodneyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -203,22 +188,14 @@ TrainerPokefanfGeorgia:
 	waitbutton
 	closetext
 	end
-
-TrainerSupernerdShawn:
-	trainer SUPER_NERD, SHAWN, EVENT_BEAT_SUPER_NERD_SHAWN, SupernerdShawnSeenText, SupernerdShawnBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
-	opentext
-	writetext SupernerdShawnAfterBattleText
-	waitbutton
-	closetext
-	end
-
+	
+FastShipMaxPotion:
+	itemball MAX_POTION
+	
 FastShipCaptainsCabinTrashcan:
 	jumpstd TrashCanScript
 
-SSAquaCaptainsCabinWarpsToGrandpasCabinMovement:
+MovementData_0x76004:
 	big_step RIGHT
 	big_step UP
 	big_step UP
@@ -228,13 +205,13 @@ SSAquaCaptainsCabinWarpsToGrandpasCabinMovement:
 	big_step UP
 	step_end
 
-SSAquaGranddaughterEntersCabinMovement:
+MovementData_0x7600c:
 	step UP
 	step UP
 	turn_head LEFT
 	step_end
 
-SSAquaGrandpaApproachesPlayerMovement:
+MovementData_0x76010:
 	step DOWN
 	step_end
 
@@ -328,7 +305,7 @@ SSAquaGranddaughterWasPlayingFText:
 	line "am! I was playing"
 
 	para "with the CAPTAIN"
-	line "and this big girl!"
+	line "and this girl!"
 	done
 
 SSAquaGranddaughterHadFunText:
@@ -386,23 +363,6 @@ TwinsMegandpeg2AfterBattleText:
 	cont "grown-ups!"
 	done
 
-PsychicRodneySeenText:
-	text "Ssh! My brain is"
-	line "picking up radio"
-	cont "signals!"
-	done
-
-PsychicRodneyBeatenText:
-	text "…I hear some-"
-	line "thing!"
-	done
-
-PsychicRodneyAfterBattleText:
-	text "I get it. You can"
-	line "hear JOHTO's radio"
-	cont "on the FAST SHIP."
-	done
-
 PokefanmJeremySeenText:
 	text "What do you think?"
 	line "My #MON are"
@@ -437,23 +397,6 @@ PokefanfGeorgiaAfterBattleText:
 	cont "of DAY-CARE!"
 	done
 
-SupernerdShawnSeenText:
-	text "What kinds of #"
-	line "BALLS do you have"
-	cont "with you?"
-	done
-
-SupernerdShawnBeatenText:
-	text "Wait! Stop! Don't!"
-	line "Please!"
-	done
-
-SupernerdShawnAfterBattleText:
-	text "You should use the"
-	line "right BALLS to fit"
-	cont "the situation."
-	done
-
 SSAquaHasArrivedVermilionText:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
@@ -484,7 +427,6 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEvents:
 	object_event  5,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event  2,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event  3,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	object_event  5,  5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	object_event  2,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	object_event  2,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	object_event  5,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	object_event  1, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	object_event  6,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, FastShipMaxPotion, EVENT_FAST_SHIP_MAX_POTION

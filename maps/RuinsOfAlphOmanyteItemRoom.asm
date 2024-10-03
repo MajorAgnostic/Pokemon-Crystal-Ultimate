@@ -15,14 +15,45 @@ RuinsOfAlphOmanyteItemRoomMysteryberry:
 RuinsOfAlphOmanyteItemRoomMysticWater:
 	itemball MYSTIC_WATER
 
-RuinsOfAlphOmanyteItemRoomStardust:
-	itemball STARDUST
+RuinsOfAlphOmanyteItemRoomOmanyte:
+	opentext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	disappear RUINSOFALPHOMANYTEITEMROOM_POKE_BALL3
+	setevent EVENT_GOT_OMANYTE
+	writetext FoundOmanyteText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke OMANYTE, 30
+	closetext
+	end
+	
+.NoRoom
+	writetext FoundOmanyteText
+	waitsfx
+	promptbutton
+	writetext OmanytePartyFullText
+	waitbutton
+	closetext
+	end
 
 RuinsOfAlphOmanyteItemRoomStarPiece:
 	itemball STAR_PIECE
 
 RuinsOfAlphOmanyteItemRoomAncientReplica:
 	jumptext RuinsOfAlphOmanyteItemRoomAncientReplicaText
+	
+FoundOmanyteText:
+	text "<PLAYER> found"
+	line "OMANYTE!"
+	done
+	
+OmanytePartyFullText:
+	text "But there's no"
+	line "more room left"
+	cont "in the party…"
+	done
 
 RuinsOfAlphOmanyteItemRoomAncientReplicaText:
 	text "It's a replica of"
@@ -46,7 +77,7 @@ RuinsOfAlphOmanyteItemRoom_MapEvents:
 	bg_event  5,  1, BGEVENT_READ, RuinsOfAlphOmanyteItemRoomAncientReplica
 
 	def_object_events
-	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphOmanyteItemRoomMysteryberry, EVENT_PICKED_UP_MYSTERYBERRY_FROM_OMANYTE_ITEM_ROOM
+	object_event  2,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphOmanyteItemRoomMysteryberry, EVENT_PICKED_UP_MYSTERYBERRY_FROM_OMANYTE_ITEM_ROOM
 	object_event  5,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphOmanyteItemRoomMysticWater, EVENT_PICKED_UP_MYSTIC_WATER_FROM_OMANYTE_ITEM_ROOM
-	object_event  2,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphOmanyteItemRoomStardust, EVENT_PICKED_UP_STARDUST_FROM_OMANYTE_ITEM_ROOM
+	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphOmanyteItemRoomOmanyte, EVENT_GOT_OMANYTE
 	object_event  5,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphOmanyteItemRoomStarPiece, EVENT_PICKED_UP_STAR_PIECE_FROM_OMANYTE_ITEM_ROOM

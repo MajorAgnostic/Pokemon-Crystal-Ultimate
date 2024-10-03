@@ -10,31 +10,16 @@
 
 Route29_MapScripts:
 	def_scene_scripts
-	scene_script Route29Noop1Scene, SCENE_ROUTE29_NOOP
-	scene_script Route29Noop2Scene, SCENE_ROUTE29_CATCH_TUTORIAL
+	scene_script .DummyScene0, SCENE_ROUTE29_NOTHING
+	scene_script .DummyScene1, SCENE_ROUTE29_CATCH_TUTORIAL
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route29TuscanyCallback
 
-Route29Noop1Scene:
+.DummyScene0:
 	end
 
-Route29Noop2Scene:
+.DummyScene1:
 	end
-
-Route29TuscanyCallback:
-	checkflag ENGINE_ZEPHYRBADGE
-	iftrue .DoesTuscanyAppear
-
-.TuscanyDisappears:
-	disappear ROUTE29_TUSCANY
-	endcallback
-
-.DoesTuscanyAppear:
-	readvar VAR_WEEKDAY
-	ifnotequal TUESDAY, .TuscanyDisappears
-	appear ROUTE29_TUSCANY
-	endcallback
 
 Route29Tutorial1:
 	turnobject ROUTE29_COOLTRAINER_M1, UP
@@ -57,7 +42,7 @@ Route29Tutorial1:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene SCENE_ROUTE29_NOOP
+	setscene SCENE_ROUTE29_NOTHING
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -82,7 +67,7 @@ Route29Tutorial2:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene SCENE_ROUTE29_NOOP
+	setscene SCENE_ROUTE29_NOTHING
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -91,7 +76,7 @@ Script_RefusedTutorial1:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
-	setscene SCENE_ROUTE29_NOOP
+	setscene SCENE_ROUTE29_NOTHING
 	end
 
 Script_RefusedTutorial2:
@@ -99,7 +84,7 @@ Script_RefusedTutorial2:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
-	setscene SCENE_ROUTE29_NOOP
+	setscene SCENE_ROUTE29_NOTHING
 	end
 
 CatchingTutorialDudeScript:
@@ -150,7 +135,7 @@ Route29CooltrainerMScript:
 	opentext
 	checktime DAY
 	iftrue .day_morn
-	checktime NITE
+	checktime EVE | NITE
 	iftrue .nite
 .day_morn
 	writetext Route29CooltrainerMText_WaitingForNight
@@ -170,13 +155,16 @@ TuscanyScript:
 	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	iftrue TuscanyTuesdayScript
 	readvar VAR_WEEKDAY
-	ifnotequal TUESDAY, TuscanyNotTuesdayScript
-	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
-	iftrue .MetTuscany
-	writetext MeetTuscanyText
-	promptbutton
-	setevent EVENT_MET_TUSCANY_OF_TUESDAY
-.MetTuscany:
+	ifequal TUESDAY, .GiveBow
+	writetext TuscanySeenText
+	waitbutton
+	closetext
+	winlosstext TuscanyBeatenText, 0
+	loadtrainer TEACHER, TUSCANY
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveBow:
 	writetext TuscanyGivesGiftText
 	promptbutton
 	verbosegiveitem PINK_BOW
@@ -188,8 +176,13 @@ TuscanyScript:
 	end
 
 TuscanyTuesdayScript:
+	readvar VAR_WEEKDAY
+	ifnotequal TUESDAY, TuscanyNotTuesdayScript
 	writetext TuscanyTuesdayText
 	waitbutton
+	closetext
+	end
+	
 TuscanyDoneScript:
 	closetext
 	end
@@ -322,20 +315,23 @@ Route29FisherText:
 	line "progress."
 	done
 
-Route29CooltrainerMText_WaitingForDay: ; unreferenced
+; unused
+Text_WaitingForDay:
 	text "I'm waiting for"
 	line "#MON that"
 
-	para "appear only in the"
-	line "daytime."
+	para "appear only in"
+	line "the evening or"
+	cont "at night."
 	done
 
 Route29CooltrainerMText_WaitingForNight:
 	text "I'm waiting for"
 	line "#MON that"
 
-	para "appear only at"
-	line "night."
+	para "appear only in"
+	line "the evening or"
+	cont "at night."
 	done
 
 Route29CooltrainerMText_WaitingForMorning:
@@ -345,33 +341,54 @@ Route29CooltrainerMText_WaitingForMorning:
 	para "appear only in the"
 	line "morning."
 	done
-
-MeetTuscanyText:
+	
+TuscanySeenText:
 	text "TUSCANY: I do be-"
 	line "lieve that this is"
 
-	para "the first time"
-	line "we've met?"
+	para "the first time we"
+	line "have met."
 
 	para "Please allow me to"
 	line "introduce myself."
 
 	para "I am TUSCANY of"
 	line "Tuesday."
+	
+	para "You like my PINK"
+	line "BOW, you say?"
+
+	para "I would give you"
+	line "one if today were"
+	
+	para "TUESDAY, although"
+	line "I suppose I could"
+	
+	para "part with one if"
+	line "you can beat me."
+
+	para "Shall we?"
+	done
+	
+TuscanyBeatenText:
+	text "You're just full"
+	line "of potential!"
 	done
 
 TuscanyGivesGiftText:
-	text "By way of intro-"
-	line "duction, please"
+	text "TUSCANY: I think"
+	line "this would look"
+	cont "lovely on one of"
+	cont "your #MON!"
 
-	para "accept this gift,"
-	line "a PINK BOW."
+	para "Please accept this"
+	line "gift."
 	done
 
 TuscanyGaveGiftText:
-	text "TUSCANY: Wouldn't"
-	line "you agree that it"
-	cont "is most adorable?"
+	text "Wouldn't you agree"
+	line "that it is most"
+	cont "adorable?"
 
 	para "It strengthens"
 	line "normal-type moves."

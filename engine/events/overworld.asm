@@ -400,7 +400,6 @@ SurfFromMenuScript:
 	special UpdateTimePals
 
 UsedSurfScript:
-; BUG: Surfing directly across a map connection does not load the new map (see docs/bugs_and_glitches.md)
 	writetext UsedSurfText ; "used SURF!"
 	waitbutton
 	closetext
@@ -410,11 +409,22 @@ UsedSurfScript:
 	readmem wSurfingPlayerState
 	writevar VAR_MOVEMENT
 
+	ifequal PLAYER_SURF_PIKA, .PikachuPaletteCheck
+;.NormalPaletteCheck
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iffalse .StartSurfing
+	setval (PAL_NPC_BLUE << 4)
+	special SetPlayerPalette
+	sjump .StartSurfing
+.PikachuPaletteCheck
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iffalse .StartSurfing
+	setval (PAL_NPC_RED << 4)
+	special SetPlayerPalette
+.StartSurfing
 	special UpdatePlayerSprite
 	special PlayMapMusic
-; step into the water (slow_step DIR, step_end)
 	special SurfStartStep
-	applymovement PLAYER, wMovementBuffer
 	end
 
 .stubbed_fn
@@ -570,6 +580,24 @@ FlyFunction:
 	ldh [hMapAnims], a
 	call LoadStandardMenuHeader
 	call ClearSprites
+	ld a, SILVER_LEAF
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .noentireflymap
+	farcall EntireFlyMap
+	ld a, e
+	cp -1
+	jr z, .illegal
+	cp NUM_SPAWNS
+	jr nc, .illegal
+
+	ld [wDefaultSpawnpoint], a
+	call CloseWindow
+	ld a, $1
+	ret
+	
+.noentireflymap
 	farcall _FlyMap
 	ld a, e
 	cp -1

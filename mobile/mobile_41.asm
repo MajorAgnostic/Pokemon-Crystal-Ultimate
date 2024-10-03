@@ -789,7 +789,7 @@ endr
 
 ; functions related to the cable club and various NPC scripts referencing communications
 
-CheckMobileAdapterStatusSpecial: ; unused
+Mobile_DummyReturnFalse: ; unused
 	; this routine calls CheckMobileAdapterStatus
 	; in the Japanese version
 	xor a

@@ -423,8 +423,6 @@ RestartMapMusic::
 
 SpecialMapMusic::
 	ld a, [wPlayerState]
-	cp PLAYER_SURF
-	jr z, .surf
 	cp PLAYER_SURF_PIKA
 	jr z, .surf
 
@@ -434,11 +432,6 @@ SpecialMapMusic::
 
 .no
 	and a
-	ret
-
-.bike ; unreferenced
-	ld de, MUSIC_BICYCLE
-	scf
 	ret
 
 .surf

@@ -5,20 +5,20 @@
 
 RuinsOfAlphResearchCenter_MapScripts:
 	def_scene_scripts
-	scene_script RuinsOfAlphResearchCenterNoopScene,        SCENE_RUINSOFALPHRESEARCHCENTER_NOOP
-	scene_script RuinsOfAlphResearchCenterGetUnownDexScene, SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX
+	scene_script .DummyScene0, SCENE_RUINSOFALPHRESEARCHCENTER_NOTHING
+	scene_script .GetUnownDex, SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, RuinsOfAlphResearchCenterScientistCallback
+	callback MAPCALLBACK_OBJECTS, .ScientistCallback
 
-RuinsOfAlphResearchCenterNoopScene:
+.DummyScene0:
 	end
 
-RuinsOfAlphResearchCenterGetUnownDexScene:
-	sdefer RuinsOfAlphResearchCenterGetUnownDexScript
+.GetUnownDex:
+	prioritysjump .GetUnownDexScript
 	end
 
-RuinsOfAlphResearchCenterScientistCallback:
+.ScientistCallback:
 	checkscene
 	ifequal SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX, .ShowScientist
 	endcallback
@@ -28,8 +28,8 @@ RuinsOfAlphResearchCenterScientistCallback:
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 	endcallback
 
-RuinsOfAlphResearchCenterGetUnownDexScript:
-	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, RuinsOfAlphResearchCenterApproachesComputerMovement
+.GetUnownDexScript:
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x5926f
 	playsound SFX_BOOT_PC
 	pause 60
 	playsound SFX_SWITCH_POKEMON
@@ -43,7 +43,7 @@ RuinsOfAlphResearchCenterGetUnownDexScript:
 	writetext RuinsOfAlphResearchCenterModifiedDexText
 	waitbutton
 	closetext
-	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, RuinsOfAlphResearchCenterApproachesPlayerMovement
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59274
 	opentext
 	writetext RuinsOfAlphResearchCenterDexUpgradedText
 	playsound SFX_ITEM
@@ -52,8 +52,8 @@ RuinsOfAlphResearchCenterGetUnownDexScript:
 	writetext RuinsOfAlphResearchCenterScientist3Text
 	waitbutton
 	closetext
-	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, RuinsOfAlphResearchCenterLeavesPlayerMovement
-	setscene SCENE_RUINSOFALPHRESEARCHCENTER_NOOP
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59276
+	setscene SCENE_RUINSOFALPHRESEARCHCENTER_NOTHING
 	special RestartMapMusic
 	end
 
@@ -76,6 +76,8 @@ RuinsOfAlphResearchCenterScientist3Script:
 RuinsOfAlphResearchCenterScientist1Script:
 	faceplayer
 	opentext
+	checkevent EVENT_GOT_UNOWN_DOLL
+	iftrue .gotdoll
 	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .GotAllUnown
 	checkflag ENGINE_UNOWN_DEX
@@ -101,9 +103,16 @@ RuinsOfAlphResearchCenterScientist1Script:
 
 .GotAllUnown:
 	writetext RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
-	waitbutton
-	closetext
+	promptbutton
+	verbosegiveitem UNOWN_DOLL
+	iffalse .bagfull
+	setevent EVENT_GOT_UNOWN_DOLL
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+.gotdoll
+	writetext RuinsOfAlphResearchCenterScientist1Text_GotUnownDoll
+	waitbutton
+.bagfull
+	closetext
 	end
 
 RuinsOfAlphResearchCenterScientist2Script:
@@ -167,24 +176,21 @@ RuinsOfAlphResearchCenterPrinter:
 	closetext
 	end
 
-RuinsOfAlphResearchCenterPhoto: ; unreferenced
-	jumptext RuinsOfAlphResearchCenterProfSilktreePhotoText
-
 RuinsOfAlphResearchCenterBookshelf:
 	jumptext RuinsOfAlphResearchCenterAcademicBooksText
 
-RuinsOfAlphResearchCenterApproachesComputerMovement:
+MovementData_0x5926f:
 	step UP
 	step UP
 	step LEFT
 	turn_head UP
 	step_end
 
-RuinsOfAlphResearchCenterApproachesPlayerMovement:
+MovementData_0x59274:
 	step DOWN
 	step_end
 
-RuinsOfAlphResearchCenterLeavesPlayerMovement:
+MovementData_0x59276:
 	step UP
 	step_end
 
@@ -267,8 +273,16 @@ RuinsOfAlphResearchCenterScientist1Text_GotAllUnown:
 
 	para "giving us insight"
 	line "into the RUINS."
-
-	para "The RUINS appear"
+	
+	para "To thank you for"
+	line "aiding us in our"
+	
+	para "research, I'd like"
+	line "to give you this!"
+	done
+	
+RuinsOfAlphResearchCenterScientist1Text_GotUnownDoll:
+	text "The RUINS appear"
 	line "to have been built"
 
 	para "as a habitat for"
@@ -306,7 +320,8 @@ RuinsOfAlphResearchCenterScientist2Text_UnownAppeared:
 	cont "kinds of them…"
 	done
 
-RuinsOfAlphResearchCenterUnusedText1: ; unreferenced
+RuinsOfAlphResearchCenterUnusedText1:
+; unused
 	text "We think something"
 	line "caused the cryptic"
 
@@ -317,7 +332,8 @@ RuinsOfAlphResearchCenterUnusedText1: ; unreferenced
 	line "studies on that."
 	done
 
-RuinsOfAlphResearchCenterUnusedText2: ; unreferenced
+RuinsOfAlphResearchCenterUnusedText2:
+; unused
 	text "According to my"
 	line "research…"
 
@@ -356,7 +372,7 @@ RuinsOfAlphResearchCenterComputerText_GotAllUnown:
 	text "Mystery #MON"
 	line "Name: UNOWN"
 
-	para "A total of {d:NUM_UNOWN}"
+	para "A total of 26"
 	line "kinds found."
 	done
 
@@ -368,14 +384,6 @@ RuinsOfAlphResearchCenterPrinterText_DoesntWork:
 RuinsOfAlphResearchCenterUnownPrinterText:
 	text "UNOWN may be"
 	line "printed out."
-	done
-
-RuinsOfAlphResearchCenterProfSilktreePhotoText:
-	text "It's a photo of"
-	line "the RESEARCH"
-
-	para "CENTER'S founder,"
-	line "PROF.SILKTREE."
 	done
 
 RuinsOfAlphResearchCenterAcademicBooksText:

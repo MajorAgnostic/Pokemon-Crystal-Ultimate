@@ -3,6 +3,9 @@
 	const ROUTE12_FISHER2
 	const ROUTE12_FISHER3
 	const ROUTE12_FISHER4
+	const ROUTE12_FISHER5
+	const ROUTE12_YOUNGSTER1
+	const ROUTE12_YOUNGSTER2
 	const ROUTE12_POKE_BALL1
 	const ROUTE12_POKE_BALL2
 
@@ -54,6 +57,39 @@ TrainerFisherBarney:
 	waitbutton
 	closetext
 	end
+	
+TrainerGuitaristLuca:
+	trainer GUITARIST, LUCA, EVENT_BEAT_LUCA, LucaSeenText, LucaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext LucaAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerFisherKyler:
+	trainer FISHER, KYLER, EVENT_BEAT_KYLER, FisherKylerSeenText, FisherKylerBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext FisherKylerAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerCamperJustin:
+	trainer CAMPER, FRANCIS, EVENT_BEAT_CAMPER_JUSTIN, JustinSeenText, JustinBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext JustinAfterBattleText
+	waitbutton
+	closetext
+	end
 
 Route12Sign:
 	jumptext Route12SignText
@@ -62,13 +98,69 @@ FishingSpotSign:
 	jumptext FishingSpotSignText
 
 Route12Calcium:
-	itemball CALCIUM
+	itemball FULL_RESTORE
 
 Route12Nugget:
 	itemball NUGGET
 
 Route12HiddenElixer:
 	hiddenitem ELIXER, EVENT_ROUTE_12_HIDDEN_ELIXER
+	
+LucaSeenText:
+	text "Electricity is my"
+	line "specialty."
+
+	para "I don't know very"
+	line "much about #MON"
+	cont "of the sea though."
+	done
+
+LucaBeatenText:
+	text "Unplugged!"
+	done
+
+LucaAfterBattleText:
+	text "Water conducts"
+	line "electricity."
+
+	para "So you should zap"
+	line "sea #MON."
+	done
+	
+FisherKylerSeenText:
+	text "#MON battles"
+	line "lure people in!"
+	done
+
+FisherKylerBeatenText:
+	text "My #MON bucket"
+	line "is empty!"
+	done
+
+FisherKylerAfterBattleText:
+	text "That was fun!"
+
+	para "I hope to see you"
+	line "around!"
+	done
+	
+JustinSeenText:
+	text "I'm searching for"
+	line "a MOON STONE."
+
+	para "Have you found"
+	line "one?"
+	done
+
+JustinBeatenText:
+	text "Oww!"
+	done
+
+JustinAfterBattleText:
+	text "I could have made"
+	line "my #MON evolve"
+	cont "with one…"
+	done
 
 FisherMartinSeenText:
 	text "Patience is the"
@@ -179,8 +271,11 @@ Route12_MapEvents:
 
 	def_object_events
 	object_event  5, 13, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherMartin, -1
-	object_event 14, 23, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherStephen, -1
-	object_event 10, 38, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerFisherBarney, -1
-	object_event  6,  7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerFisherKyle, -1
-	object_event  5, 43, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route12Calcium, EVENT_ROUTE_12_CALCIUM
+	object_event  6,  7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerFisherStephen, -1
+	object_event 11, 17, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerFisherBarney, -1
+	object_event 14, 23, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerFisherKyle, -1
+	object_event  6, 43, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherKyler, -1
+	object_event 14, 32, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGuitaristLuca, -1
+	object_event 14, 48, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperJustin, -1
+	object_event  4, 43, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route12Calcium, EVENT_ROUTE_12_CALCIUM
 	object_event  5, 51, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route12Nugget, EVENT_ROUTE_12_NUGGET

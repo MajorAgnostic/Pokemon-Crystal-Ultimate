@@ -11,19 +11,19 @@
 
 BurnedTowerB1F_MapScripts:
 	def_scene_scripts
-	scene_script BurnedTowerB1FNoop1Scene, SCENE_BURNEDTOWERB1F_RELEASE_THE_BEASTS
-	scene_script BurnedTowerB1FNoop2Scene, SCENE_BURNEDTOWERB1F_NOOP
+	scene_script .DummyScene0, SCENE_BURNEDTOWERB1F_RELEASE_THE_BEASTS
+	scene_script .DummyScene1, SCENE_BURNEDTOWERB1F_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, BurnedTowerB1FLadderCallback
+	callback MAPCALLBACK_TILES, .LadderCallback
 
-BurnedTowerB1FNoop1Scene:
+.DummyScene0:
 	end
 
-BurnedTowerB1FNoop2Scene:
+.DummyScene1:
 	end
 
-BurnedTowerB1FLadderCallback:
+.LadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .HideLadder
 	changeblock 6, 14, $02 ; floor
@@ -90,9 +90,9 @@ ReleaseTheBeasts:
 	setevent EVENT_BURNED_TOWER_MORTY
 	setevent EVENT_BURNED_TOWER_1F_EUSINE
 	appear BURNEDTOWERB1F_EUSINE
-	reanchormap
+	refreshscreen
 	changeblock 6, 14, $1b ; ladder
-	refreshmap
+	reloadmappart
 	closetext
 	setscene SCENE_BURNEDTOWERB1F_NOOP
 	end
@@ -117,7 +117,10 @@ BurnedTowerB1FEusine:
 	end
 
 BurnedTowerB1FTMEndure:
-	itemball TM_ENDURE
+	itemball TM_SLUDGE_BOMB
+	
+BurnedTowerB1FHiddenSacredAsh:
+	hiddenitem SACRED_ASH, EVENT_BURNED_TOWER_B1F_HIDDEN_SACRED_ASH
 
 BurnedTowerB1FBoulder:
 	jumpstd StrengthBoulderScript
@@ -152,12 +155,6 @@ BurnedTowerSuicuneMovement2:
 	fast_jump_step UP
 	big_step UP
 	fast_jump_step RIGHT
-	remove_sliding
-	step_end
-
-BurnedTowerUnusedMovement: ; unreferenced
-	set_sliding
-	big_step DOWN
 	remove_sliding
 	step_end
 
@@ -248,14 +245,15 @@ BurnedTowerB1F_MapEvents:
 	coord_event 10,  6, SCENE_BURNEDTOWERB1F_RELEASE_THE_BEASTS, ReleaseTheBeasts
 
 	def_bg_events
+	bg_event 10,  4, BGEVENT_ITEM, BurnedTowerB1FHiddenSacredAsh
 
 	def_object_events
 	object_event 17,  8, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTowerB1FBoulder, -1
-	object_event  7,  3, SPRITE_RAIKOU, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	object_event  7,  3, SPRITE_RAIKOU, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
 	object_event 12,  3, SPRITE_ENTEI, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
 	object_event 10,  4, SPRITE_SUICUNE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	object_event  7,  3, SPRITE_RAIKOU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_EMOTE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	object_event 12,  3, SPRITE_ENTEI, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_EMOTE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	object_event 10,  4, SPRITE_SUICUNE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_EMOTE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	object_event 16,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTowerB1FTMEndure, EVENT_BURNED_TOWER_B1F_TM_ENDURE
-	object_event 10, 12, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BurnedTowerB1FEusine, EVENT_EUSINE_IN_BURNED_TOWER
+	object_event  7,  3, SPRITE_RAIKOU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	object_event 12,  3, SPRITE_ENTEI, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	object_event 10,  4, SPRITE_SUICUNE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	object_event 16,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTowerB1FTMEndure, EVENT_GOT_TM36_SLUDGE_BOMB
+	object_event 10, 12, SPRITE_EUSINE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BurnedTowerB1FEusine, EVENT_EUSINE_IN_BURNED_TOWER

@@ -150,6 +150,9 @@ _ResetWRAM:
 
 	ld hl, wNumBalls
 	call .InitList
+	
+	ld hl, wNumMedicine
+	call .InitList
 
 	ld hl, wNumPCItems
 	call .InitList
@@ -206,6 +209,9 @@ endc
 	ld [hl], HIGH(MOM_MONEY) ; mid
 	inc hl
 	ld [hl], LOW(MOM_MONEY)
+	
+	ld a, 30
+	ld [wLevelCap], a
 
 	call InitializeNPCNames
 
@@ -369,9 +375,9 @@ Continue_MobileAdapterMenu: ; unused
 	ret nz
 	ld a, 5
 	ld [wMusicFade], a
-	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
+	ld a, LOW(MUSIC_CLAIR)
 	ld [wMusicFadeID], a
-	ld a, HIGH(MUSIC_MOBILE_ADAPTER_MENU)
+	ld a, HIGH(MUSIC_CLAIR)
 	ld [wMusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames

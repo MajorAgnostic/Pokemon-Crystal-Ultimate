@@ -1,5 +1,3 @@
-DEF BLUE_CARD_POINT_CAP EQU 30
-
 	object_const_def
 	const RADIOTOWER2F_SUPER_NERD
 	const RADIOTOWER2F_TEACHER
@@ -17,9 +15,6 @@ RadioTower2F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-
-RadioTower2FNoopScene: ; unreferenced
-	end
 
 RadioTower2FSuperNerdScript:
 	jumptextfaceplayer RadioTower2FSuperNerdText
@@ -108,13 +103,13 @@ Buena:
 	checkflag ENGINE_BUENAS_PASSWORD_2
 	iftrue .PlayedAlready
 	readvar VAR_HOUR
-	ifless NITE_HOUR, .TooEarly
+	ifless EVE_HOUR, .TooEarly
 	checkflag ENGINE_BUENAS_PASSWORD
 	iffalse .TuneIn
 	checkitem BLUE_CARD
 	iffalse .NoBlueCard
 	readvar VAR_BLUECARDBALANCE
-	ifequal BLUE_CARD_POINT_CAP, .BlueCardCapped0
+	ifequal 30, .BlueCardCapped0
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext RadioTower2FBuenaDoYouKnowPasswordText
 	special AskRememberPassword
@@ -133,7 +128,7 @@ Buena:
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, DOWN
-	reanchormap
+	refreshscreen
 	special BuenasPassword
 	closetext
 	iffalse .WrongAnswer
@@ -157,7 +152,7 @@ Buena:
 	pause 20
 	special RestartMapMusic
 	readvar VAR_BLUECARDBALANCE
-	ifequal BLUE_CARD_POINT_CAP, .BlueCardCapped1
+	ifequal 30, .BlueCardCapped1
 	end
 
 .Introduction:
@@ -606,7 +601,7 @@ RadioTower2FBuenaTuneInAfterSixText:
 	text "BUENA: Tune in to"
 	line "PASSWORD every"
 
-	para "night from six to"
+	para "night from five to"
 	line "midnight!"
 
 	para "Tune in, then drop"
@@ -627,12 +622,12 @@ RadioTower2FBuenaOfferPhoneNumberText:
 	text "BUENA: Oh! Your"
 	line "BLUE CARD reached"
 
-	para "{d:BLUE_CARD_POINT_CAP} points today!"
+	para "30 points today!"
 	line "That's so wild!"
 
 	para "Hmm… There isn't a"
 	line "prize for hitting"
-	cont "{d:BLUE_CARD_POINT_CAP} points, but…"
+	cont "30 points, but…"
 
 	para "You came by so"
 	line "often, <PLAY_G>."

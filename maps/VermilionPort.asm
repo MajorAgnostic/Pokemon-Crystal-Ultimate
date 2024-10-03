@@ -5,27 +5,27 @@
 
 VermilionPort_MapScripts:
 	def_scene_scripts
-	scene_script VermilionPortNoopScene,      SCENE_VERMILIONPORT_ASK_ENTER_SHIP
-	scene_script VermilionPortLeaveShipScene, SCENE_VERMILIONPORT_LEAVE_SHIP
+	scene_script .DummyScene0, SCENE_VPORT_DEFAULT
+	scene_script .LeaveFastShip, SCENE_VERMILIONPORT_LEAVE_SHIP
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, VermilionPortFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-VermilionPortNoopScene:
+.DummyScene0:
 	end
 
-VermilionPortLeaveShipScene:
-	sdefer VermilionPortLeaveShipScript
+.LeaveFastShip:
+	prioritysjump .LeaveFastShipScript
 	end
 
-VermilionPortFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_VERMILION
 	endcallback
 
-VermilionPortLeaveShipScript:
-	applymovement PLAYER, VermilionPortLeaveFastShipMovement
+.LeaveFastShipScript:
+	applymovement PLAYER, MovementData_0x74ef3
 	appear VERMILIONPORT_SAILOR1
-	setscene SCENE_VERMILIONPORT_ASK_ENTER_SHIP
+	setscene SCENE_VPORT_DEFAULT
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
 	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
@@ -48,22 +48,18 @@ VermilionPortSailorAtGangwayScript:
 	playsound SFX_EXIT_BUILDING
 	disappear VERMILIONPORT_SAILOR1
 	waitsfx
-	applymovement PLAYER, VermilionPortEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
 	clearevent EVENT_BEAT_BURGLAR_COREY
-	clearevent EVENT_BEAT_BUG_CATCHER_KEN
 	clearevent EVENT_BEAT_GUITARIST_CLYDE
-	clearevent EVENT_BEAT_POKEFANM_JEREMY
 	clearevent EVENT_BEAT_POKEFANF_GEORGIA
 	clearevent EVENT_BEAT_SAILOR_KENNETH
 	clearevent EVENT_BEAT_TEACHER_SHIRLEY
 	clearevent EVENT_BEAT_SCHOOLBOY_NATE
-	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear VERMILIONPORT_SAILOR1
 	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_ENTER_SHIP
@@ -101,28 +97,28 @@ VermilionPortWalkUpToShipScript:
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	applymovement PLAYER, VermilionPortApproachFastShipMovement
+	applymovement PLAYER, MovementData_0x74ef8
 	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
 	writetext VermilionPortNoTicketText
 	waitbutton
 	closetext
-	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 .NextShipWednesday:
-	writetext VermilionPortSailWednesdayText
+	writetext VermilionPortSailMondayText
 	waitbutton
 	closetext
-	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 .NextShipSunday:
 	writetext VermilionPortSailSundayText
 	waitbutton
 	closetext
-	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 .skip:
@@ -138,7 +134,7 @@ VermilionPortNotRidingMoveAwayScript:
 	writetext VermilionPortComeAgainText
 	waitbutton
 	closetext
-	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 VermilionPortSailorScript:
@@ -163,7 +159,7 @@ VermilionPortSailorScript:
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	applymovement PLAYER, VermilionPortApproachFastShipRightMovement
+	applymovement PLAYER, MovementData_0x74efe
 	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
@@ -173,7 +169,7 @@ VermilionPortSailorScript:
 	end
 
 .NextShipWednesday:
-	writetext VermilionPortSailWednesdayText
+	writetext VermilionPortSailMondayText
 	waitbutton
 	closetext
 	end
@@ -193,22 +189,22 @@ VermilionPortSuperNerdScript:
 	end
 
 VermilionPortHiddenIron:
-	hiddenitem IRON, EVENT_VERMILION_PORT_HIDDEN_IRON
+	hiddenitem MAX_REVIVE, EVENT_VERMILION_PORT_HIDDEN_IRON
 
-VermilionPortEnterFastShipMovement:
+MovementData_0x74ef1:
 	step DOWN
 	step_end
 
-VermilionPortLeaveFastShipMovement:
+MovementData_0x74ef3:
 	step UP
 	step_end
 
-VermilionPortCannotEnterFastShipMovement:
+MovementData_0x74ef5:
 	step RIGHT
 	turn_head LEFT
 	step_end
 
-VermilionPortApproachFastShipMovement:
+MovementData_0x74ef8:
 	step DOWN
 	step DOWN
 	step DOWN
@@ -216,7 +212,7 @@ VermilionPortApproachFastShipMovement:
 	step DOWN
 	step_end
 
-VermilionPortApproachFastShipRightMovement:
+MovementData_0x74efe:
 	step RIGHT
 	step DOWN
 	step DOWN
@@ -277,7 +273,7 @@ VermilionPortNoTicketText:
 	line "S.S.TICKET."
 	done
 
-VermilionPortSailWednesdayText:
+VermilionPortSailMondayText:
 	text "The FAST SHIP will"
 	line "sail on Wednesday."
 	done
@@ -304,7 +300,7 @@ VermilionPort_MapEvents:
 	warp_event  7, 17, FAST_SHIP_1F, 1
 
 	def_coord_events
-	coord_event  7, 11, SCENE_VERMILIONPORT_ASK_ENTER_SHIP, VermilionPortWalkUpToShipScript
+	coord_event  7, 11, SCENE_VPORT_DEFAULT, VermilionPortWalkUpToShipScript
 
 	def_bg_events
 	bg_event 16, 13, BGEVENT_ITEM, VermilionPortHiddenIron

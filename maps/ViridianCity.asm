@@ -8,9 +8,9 @@ ViridianCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, ViridianCityFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-ViridianCityFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_VIRIDIAN
 	endcallback
 
@@ -89,7 +89,7 @@ ViridianCityCoffeeGrampsQuestionText:
 	text "Hey, kid! I just"
 	line "had a double shot"
 
-	para "of espresso, and"
+	para "of espresso and"
 	line "I am wired!"
 
 	para "I need to talk to"
@@ -219,8 +219,8 @@ ViridianCity_MapEvents:
 	def_warp_events
 	warp_event 32,  7, VIRIDIAN_GYM, 1
 	warp_event 21,  9, VIRIDIAN_NICKNAME_SPEECH_HOUSE, 1
-	warp_event 23, 15, TRAINER_HOUSE_1F, 1
-	warp_event 29, 19, VIRIDIAN_MART, 2
+	warp_event 23, 17, TRAINER_HOUSE_1F, 1
+	warp_event 31, 19, VIRIDIAN_MART, 2
 	warp_event 23, 25, VIRIDIAN_POKECENTER_1F, 1
 
 	def_coord_events
@@ -229,9 +229,9 @@ ViridianCity_MapEvents:
 	bg_event 17, 17, BGEVENT_READ, ViridianCitySign
 	bg_event 27,  7, BGEVENT_READ, ViridianGymSign
 	bg_event 19,  1, BGEVENT_READ, ViridianCityWelcomeSign
-	bg_event 21, 15, BGEVENT_READ, TrainerHouseSign
+	bg_event 21, 17, BGEVENT_READ, TrainerHouseSign
 	bg_event 24, 25, BGEVENT_READ, ViridianCityPokecenterSign
-	bg_event 30, 19, BGEVENT_READ, ViridianCityMartSign
+	bg_event 32, 19, BGEVENT_READ, ViridianCityMartSign
 
 	def_object_events
 	object_event 18,  5, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianCityCoffeeGramps, -1

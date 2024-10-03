@@ -1,24 +1,24 @@
 RuinsOfAlphAerodactylChamber_MapScripts:
 	def_scene_scripts
-	scene_script RuinsOfAlphAerodactylChamberCheckWallScene, SCENE_RUINSOFALPHAERODACTYLCHAMBER_CHECK_WALL
-	scene_script RuinsOfAlphAerodactylChamberNoopScene,      SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOOP
+	scene_script .CheckWall, SCENE_AERO_DEFAULT
+	scene_script .DummyScene, SCENE_AERO_FINISHED
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, RuinsOfAlphAerodactylChamberHiddenDoorsCallback
+	callback MAPCALLBACK_TILES, .HiddenDoors
 
-RuinsOfAlphAerodactylChamberCheckWallScene:
+.CheckWall:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .OpenWall
 	end
 
 .OpenWall:
-	sdefer RuinsOfAlphAerodactylChamberWallOpenScript
+	prioritysjump .WallOpenScript
 	end
 
-RuinsOfAlphAerodactylChamberNoopScene:
+.DummyScene:
 	end
 
-RuinsOfAlphAerodactylChamberHiddenDoorsCallback:
+.HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .WallOpen
 	changeblock 4, 0, $2e ; closed wall
@@ -32,21 +32,21 @@ RuinsOfAlphAerodactylChamberHiddenDoorsCallback:
 	changeblock 4, 2, $02 ; right floor
 	endcallback
 
-RuinsOfAlphAerodactylChamberWallOpenScript:
+.WallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20
 	pause 30
 	playsound SFX_STRENGTH
 	changeblock 4, 0, $30 ; open wall
-	refreshmap
+	reloadmappart
 	earthquake 50
-	setscene SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOOP
+	setscene SCENE_AERO_FINISHED
 	closetext
 	end
 
 RuinsOfAlphAerodactylChamberPuzzle:
-	reanchormap
+	refreshscreen
 	setval UNOWNPUZZLE_AERODACTYL
 	special UnownPuzzle
 	closetext
@@ -62,7 +62,7 @@ RuinsOfAlphAerodactylChamberPuzzle:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole
 	changeblock 4, 2, $19 ; right hole
-	refreshmap
+	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
 	applymovement PLAYER, RuinsOfAlphAerodactylChamberSkyfallTopMovement
@@ -112,7 +112,8 @@ RuinsOfAlphAerodactylChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphAerodactylChamberUnownText: ; unreferenced
+RuinsOfAlphAerodactylChamberUnownText:
+; unused
 	text "It's UNOWN text!"
 	done
 

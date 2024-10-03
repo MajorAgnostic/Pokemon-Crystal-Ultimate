@@ -22,6 +22,7 @@ VioletGymFalknerScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER
+	clearevent EVENT_HOMEPIKAPOSTER
 	opentext
 	writetext ReceivedZephyrBadgeText
 	playsound SFX_GET_BADGE
@@ -34,7 +35,7 @@ VioletGymFalknerScript:
 	iftrue .SpeechAfterTM
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
-	setmapscene ELMS_LAB, SCENE_ELMSLAB_NOOP
+	setmapscene ELMS_LAB, SCENE_ELMSLAB_NOTHING
 	specialphonecall SPECIALCALL_ASSISTANT
 	writetext FalknerZephyrBadgeText
 	promptbutton
@@ -152,15 +153,11 @@ ReceivedZephyrBadgeText:
 	done
 
 FalknerZephyrBadgeText:
-	text "ZEPHYRBADGE"
-	line "raises the attack"
-	cont "power of #MON."
+	text "ZEPHYRBADGE ena-"
+	line "bles #MON to"
 
-	para "It also enables"
-	line "#MON to use"
-
-	para "FLASH, if they"
-	line "have it, anytime."
+	para "use FLASH at all"
+	line "times."
 
 	para "Here--take this"
 	line "too."
@@ -173,9 +170,9 @@ FalknerTMMudSlapText:
 	para "instantly learn a"
 	line "new move."
 
-	para "Think before you"
-	line "act--a TM can be"
-	cont "used only once."
+	para "A TM can be used"
+	line "as many times as"
+	cont "you like!"
 
 	para "TM31 contains"
 	line "MUD-SLAP."
@@ -267,8 +264,12 @@ VioletGymGuideText:
 	para "The grass-type is"
 	line "weak against the"
 
-	para "flying-type. Keep"
-	line "this in mind."
+	para "flying-type. But"
+	line "the flying-type"
+	
+	para "may still use the"
+	line "grass-type. Keep"
+	cont "this in mind."
 	done
 
 VioletGymGuideWinText:

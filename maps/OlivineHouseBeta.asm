@@ -7,8 +7,12 @@ OlivineHouseBeta_MapScripts:
 
 	def_callbacks
 
-OlivineHouseBetaTeacherScript:
-	jumptextfaceplayer OlivineHouseBetaTeacherText
+MoveReminderBeta:
+	faceplayer
+	opentext
+	waitbutton
+	closetext
+	end
 
 OlivineHouseBetaRhydonScript:
 	opentext
@@ -23,15 +27,6 @@ OlivineHouseBetaBookshelf1:
 
 OlivineHouseBetaBookshelf2:
 	jumpstd MagazineBookshelfScript
-
-OlivineHouseBetaTeacherText:
-	text "When my #MON"
-	line "got sick, the"
-
-	para "PHARMACIST in"
-	line "ECRUTEAK made some"
-	cont "medicine for me."
-	done
 
 OlivineHouseBetaRhydonText:
 	text "RHYDON: Gugooh!"
@@ -51,5 +46,5 @@ OlivineHouseBeta_MapEvents:
 	bg_event  1,  1, BGEVENT_READ, OlivineHouseBetaBookshelf2
 
 	def_object_events
-	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
-	object_event  6,  4, SPRITE_RHYDON, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaRhydonScript, -1
+	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveReminderBeta, -1
+	object_event  6,  5, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaRhydonScript, -1

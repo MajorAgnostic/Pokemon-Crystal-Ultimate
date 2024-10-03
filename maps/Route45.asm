@@ -23,7 +23,6 @@ TrainerBlackbeltKenji:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BLACKBELT_KENJI
-	endifjustbattled
 	opentext
 	checkcellnum PHONE_BLACKBELT_KENJI
 	iftrue .Registered
@@ -51,7 +50,7 @@ TrainerBlackbeltKenji:
 	ifnotequal 1, Route45NumberAcceptedM
 	checktime MORN
 	iftrue .Morning
-	checktime NITE
+	checktime EVE | NITE
 	iftrue .Night
 	checkevent EVENT_KENJI_ON_BREAK
 	iffalse Route45NumberAcceptedM
@@ -149,7 +148,6 @@ TrainerHikerParry:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_HIKER_PARRY
-	endifjustbattled
 	opentext
 	checkflag ENGINE_PARRY_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -176,21 +174,13 @@ TrainerHikerParry:
 .WantsBattle:
 	scall Route45RematchM
 	winlosstext HikerParry3BeatenText, 0
-	readmem wParryFightCount
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer HIKER, PARRY3
 	startbattle
 	reloadmapafterbattle
-	loadmem wParryFightCount, 1
 	clearflag ENGINE_PARRY_READY_FOR_REMATCH
 	end
 
@@ -198,7 +188,6 @@ TrainerHikerParry:
 	loadtrainer HIKER, PARRY1
 	startbattle
 	reloadmapafterbattle
-	loadmem wParryFightCount, 2
 	clearflag ENGINE_PARRY_READY_FOR_REMATCH
 	end
 
@@ -212,7 +201,7 @@ TrainerHikerParry:
 	checkevent EVENT_GOT_IRON_FROM_PARRY
 	iftrue .GotIron
 	scall Route45RematchGiftM
-	verbosegiveitem IRON
+	verbosegiveitem NUGGET
 	iffalse HikerParryHasIron
 	setevent EVENT_GOT_IRON_FROM_PARRY
 	sjump Route45NumberAcceptedM
@@ -224,7 +213,7 @@ TrainerHikerParry:
 	opentext
 	writetext HikerParryGivesIronText
 	waitbutton
-	verbosegiveitem IRON
+	verbosegiveitem NUGGET
 	iffalse HikerParryHasIron
 	clearevent EVENT_PARRY_IRON
 	setevent EVENT_GOT_IRON_FROM_PARRY
@@ -262,31 +251,14 @@ TrainerCooltrainerfKelly:
 	waitbutton
 	closetext
 	end
-
+	
 TrainerCamperQuentin:
-	faceplayer
+	trainer CAMPER, QUENTIN, EVENT_BEAT_CAMPER_QUENTIN, CamperQuentinSeenText, CamperQuentinBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
 	opentext
-	checkevent EVENT_BEAT_CAMPER_QUENTIN
-	iftrue .Defeated
-	writetext CamperQuentinSeenText
-	waitbutton
-	closetext
-	winlosstext CamperQuentinBeatenText, 0
-	loadtrainer CAMPER, QUENTIN
-	startbattle
-	reloadmapafterbattle
-	setevent EVENT_BEAT_CAMPER_QUENTIN
-	closetext
-	end
-
-.Defeated:
 	writetext CamperQuentinAfterBattleText
-	waitbutton
-	closetext
-	end
-
-Route45DummyScript: ; unreferenced
-	writetext Route45DummyText
 	waitbutton
 	closetext
 	end
@@ -497,15 +469,6 @@ CooltrainerfKellyAfterBattleText:
 	cont "to harm #MON."
 	done
 
-Route45DummyText:
-	text "I'm really, really"
-	line "tough!"
-
-	para "Is there anywhere"
-	line "I can prove how"
-	cont "tough I really am?"
-	done
-
 CamperQuentinSeenText:
 	text "I'm really, really"
 	line "tough!"
@@ -554,4 +517,4 @@ Route45_MapEvents:
 	object_event  5, 66, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45Revive, EVENT_ROUTE_45_REVIVE
 	object_event  6, 20, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45Elixer, EVENT_ROUTE_45_ELIXER
 	object_event  7, 33, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45MaxPotion, EVENT_ROUTE_45_MAX_POTION
-	object_event  4, 70, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerCamperQuentin, -1
+	object_event  4, 70, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerCamperQuentin, -1

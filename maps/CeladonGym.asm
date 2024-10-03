@@ -21,6 +21,7 @@ CeladonGymErikaScript:
 	closetext
 	winlosstext ErikaBeatenText, 0
 	loadtrainer ERIKA, ERIKA1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ERIKA
@@ -34,14 +35,6 @@ CeladonGymErikaScript:
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
 .FightDone:
-	checkevent EVENT_GOT_TM19_GIGA_DRAIN
-	iftrue .GotGigaDrain
-	writetext ErikaExplainTMText
-	promptbutton
-	verbosegiveitem TM_GIGA_DRAIN
-	iffalse .GotGigaDrain
-	setevent EVENT_GOT_TM19_GIGA_DRAIN
-.GotGigaDrain:
 	writetext ErikaAfterBattleText
 	waitbutton
 	closetext
@@ -92,7 +85,7 @@ TrainerTwinsJoAndZoe1:
 	end
 
 TrainerTwinsJoAndZoe2:
-	trainer TWINS, JOANDZOE2, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe2SeenText, TwinsJoAndZoe2BeatenText, 0, .Script
+	trainer TWINS, JOANDZOE1, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe2SeenText, TwinsJoAndZoe2BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -152,27 +145,6 @@ ErikaBeatenText:
 PlayerReceivedRainbowBadgeText:
 	text "<PLAYER> received"
 	line "RAINBOWBADGE."
-	done
-
-ErikaExplainTMText:
-	text "ERIKA: That was a"
-	line "delightful match."
-
-	para "I felt inspired."
-	line "Please, I wish you"
-	cont "to have this TM."
-
-	para "It is GIGA DRAIN."
-
-	para "It is a wonderful"
-	line "move that drains"
-
-	para "half the damage it"
-	line "inflicts to heal"
-	cont "your #MON."
-
-	para "Please use it if"
-	line "it pleases you…"
 	done
 
 ErikaAfterBattleText:

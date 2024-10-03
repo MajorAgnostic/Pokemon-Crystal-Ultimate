@@ -8,44 +8,43 @@
 
 ElmsLab_MapScripts:
 	def_scene_scripts
-	scene_script ElmsLabMeetElmScene, SCENE_ELMSLAB_MEET_ELM
-	scene_script ElmsLabNoop1Scene,   SCENE_ELMSLAB_CANT_LEAVE
-	scene_script ElmsLabNoop2Scene,   SCENE_ELMSLAB_NOOP
-	scene_script ElmsLabNoop3Scene,   SCENE_ELMSLAB_MEET_OFFICER
-	scene_script ElmsLabNoop4Scene,   SCENE_ELMSLAB_UNUSED
-	scene_script ElmsLabNoop5Scene,   SCENE_ELMSLAB_AIDE_GIVES_POTION
-	scene_const SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS
+	scene_script .MeetElm, SCENE_ELMSLAB_MEET_ELM
+	scene_script .DummyScene1, SCENE_ELMSLAB_CANT_LEAVE
+	scene_script .DummyScene2, SCENE_ELMSLAB_NOTHING
+	scene_script .DummyScene3, SCENE_ELMSLAB_MEET_OFFICER
+	scene_script .DummyScene4, SCENE_ELMSLAB_AIDE_GIVES_POTION
+	scene_script .DummyScene5, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, ElmsLabMoveElmCallback
+	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
 
-ElmsLabMeetElmScene:
-	sdefer ElmsLabWalkUpToElmScript
+.MeetElm:
+	prioritysjump .WalkUpToElm
 	end
 
-ElmsLabNoop1Scene:
+.DummyScene1:
 	end
 
-ElmsLabNoop2Scene:
+.DummyScene2:
 	end
 
-ElmsLabNoop3Scene:
+.DummyScene3:
 	end
 
-ElmsLabNoop4Scene:
+.DummyScene4:
 	end
 
-ElmsLabNoop5Scene:
+.DummyScene5:
 	end
 
-ElmsLabMoveElmCallback:
+.MoveElmCallback:
 	checkscene
 	iftrue .Skip ; not SCENE_ELMSLAB_MEET_ELM
 	moveobject ELMSLAB_ELM, 3, 4
 .Skip:
 	endcallback
 
-ElmsLabWalkUpToElmScript:
+.WalkUpToElm:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
 	turnobject ELMSLAB_ELM, RIGHT
@@ -160,7 +159,7 @@ CyndaquilPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
-	reanchormap
+	refreshscreen
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
 	waitbutton
@@ -190,7 +189,7 @@ TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
-	reanchormap
+	refreshscreen
 	pokepic TOTODILE
 	cry TOTODILE
 	waitbutton
@@ -218,7 +217,7 @@ ChikoritaPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
-	reanchormap
+	refreshscreen
 	pokepic CHIKORITA
 	cry CHIKORITA
 	waitbutton
@@ -274,7 +273,7 @@ ElmDirectionsScript:
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
 	setscene SCENE_ELMSLAB_AIDE_GIVES_POTION
-	setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_NOOP
+	setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_FISHER
 	end
 
 ElmDescribesMrPokemonScript:
@@ -478,7 +477,7 @@ AideScript_GivePotion:
 	writetext AideText_AlwaysBusy
 	waitbutton
 	closetext
-	setscene SCENE_ELMSLAB_NOOP
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 AideScript_WalkBalls1:
@@ -506,7 +505,7 @@ AideScript_GiveYouBalls:
 	promptbutton
 	itemnotify
 	closetext
-	setscene SCENE_ELMSLAB_NOOP
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 AideScript_ReceiveTheBalls:
@@ -561,7 +560,7 @@ CopScript:
 	closetext
 	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
 	disappear ELMSLAB_OFFICER
-	setscene SCENE_ELMSLAB_NOOP
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 ElmsLabWindow:
@@ -602,7 +601,8 @@ ElmsLabTrashcan:
 ElmsLabPC:
 	jumptext ElmsLabPCText
 
-ElmsLabTrashcan2: ; unreferenced
+ElmsLabTrashcan2:
+; unused
 	jumpstd TrashCanScript
 
 ElmsLabBookshelf:
@@ -1209,7 +1209,7 @@ ElmGiveTicketText2:
 	line "PROF.OAK in KANTO!"
 	done
 
-ElmsLabMonEggText: ; unreferenced
+ElmsLabSignpostText_Egg:
 	text "It's the #MON"
 	line "EGG being studied"
 	cont "by PROF.ELM."
@@ -1407,6 +1407,6 @@ ElmsLab_MapEvents:
 	object_event  5,  2, SPRITE_ELM, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
 	object_event  2,  9, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
 	object_event  6,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	object_event  7,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	object_event  8,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	object_event  7,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	object_event  8,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	object_event  5,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB

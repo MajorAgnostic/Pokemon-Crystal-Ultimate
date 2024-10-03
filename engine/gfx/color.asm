@@ -14,65 +14,31 @@ CheckShininess:
 
 ; Attack
 	ld a, [hl]
-	and SHINY_ATK_MASK << 4
-	jr z, .not_shiny
+	cp 12 << 4
+	jr c, .NotShiny
 
 ; Defense
 	ld a, [hli]
-	and %1111
-	cp SHINY_DEF_DV
-	jr nz, .not_shiny
+	and $f
+	cp 12
+	jr c, .NotShiny
 
 ; Speed
 	ld a, [hl]
-	and %1111 << 4
-	cp SHINY_SPD_DV << 4
-	jr nz, .not_shiny
+	cp 12 << 4
+	jr c, .NotShiny
 
 ; Special
 	ld a, [hl]
-	and %1111
-	cp SHINY_SPC_DV
-	jr nz, .not_shiny
+	and $f
+	cp 12
+	jr c, .NotShiny
 
-; shiny
+.Shiny:
 	scf
 	ret
 
-.not_shiny
-	and a
-	ret
-
-Unused_CheckShininess:
-; Return carry if the DVs at hl are all 10 or higher.
-
-; Attack
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .not_shiny
-
-; Defense
-	ld a, [hli]
-	and %1111
-	cp 10
-	jr c, .not_shiny
-
-; Speed
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .not_shiny
-
-; Special
-	ld a, [hl]
-	and %1111
-	cp 10
-	jr c, .not_shiny
-
-; shiny
-	scf
-	ret
-
-.not_shiny
+.NotShiny:
 	and a
 	ret
 
@@ -1204,6 +1170,9 @@ INCLUDE "gfx/battle/hp_bar.pal"
 ExpBarPalette:
 INCLUDE "gfx/battle/exp_bar.pal"
 
+BallHUDPalette:
+INCLUDE "gfx/battle/ball_hud.pal"
+
 INCLUDE "data/pokemon/palettes.asm"
 
 INCLUDE "data/trainers/palettes.asm"
@@ -1278,6 +1247,8 @@ LoadMapPals:
 	ld bc, 8 palettes
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
+	
+	farcall LoadSpecialNPCPalette
 
 	ld a, [wEnvironment]
 	cp TOWN
@@ -1286,24 +1257,94 @@ LoadMapPals:
 	ret nz
 .outside
 	ld a, [wMapGroup]
-	ld l, a
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld de, RoofPals
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, RoofPals
+	add hl, de
+	add hl, de
 	add hl, de
 	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	cp NITE_F
+	ld de, 4
+	jr z, .nite
 	jr c, .morn_day
-rept 4
-	inc hl
-endr
+; eve
+	add hl, de
+.nite
+	add hl, de
 .morn_day
 	ld de, wBGPals1 palette PAL_BG_ROOF color 1
 	ld bc, 4
 	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	
+	; Day Care outdoor palettes by Damien
+	ld a, [wMapGroup]
+	cp GROUP_ROUTE_34
+	ret nz
+
+	ld a, [wMapNumber]
+	cp MAP_ROUTE_34
+	ret nz
+
+	ld a, BANK(wBreedMon1Species)
+	ld hl, wBreedMon1Species
+	call GetFarWRAMByte
+	and a
+	jr z, .day_care_mon_2
+	ld [wCurPartySpecies], a
+
+	ld hl, wBreedMon1DVs ; HL now points to the params of the wBreedMon1, which is needed by GetMenuMonIconPalette to determine if it's shiny.
+	ld de, GetMenuMonIconPalette
+	ld a, BANK(GetMenuMonIconPalette)	
+	call FarCall_de
+	ld a, e
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, PartyMenuOBPals
+	add hl, de
+
+	inc hl
+	inc hl
+
+	ld de, wOBPals1 palette PAL_OW_PURPLE + 2
+	ld bc, 1 palettes - 2
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+
+.day_care_mon_2
+	ld a, BANK(wBreedMon2Species)
+	ld hl, wBreedMon2Species
+	call GetFarWRAMByte
+	and a
+	ret z
+	ld [wCurPartySpecies], a
+
+	ld hl, wBreedMon2DVs ; HL now points to the params of the wBreedMon2, which is needed by GetMenuMonIconPalette to determine if it's shiny.
+	ld de, GetMenuMonIconPalette
+	ld a, BANK(GetMenuMonIconPalette)	
+	call FarCall_de
+	ld a, e
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, PartyMenuOBPals
+	add hl, de
+
+	inc hl
+	inc hl
+
+	ld de, wOBPals1 palette PAL_OW_TEAL + 2
+	ld bc, 1 palettes - 2
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
 
@@ -1335,9 +1376,12 @@ MapObjectPals::
 INCLUDE "gfx/overworld/npc_sprites.pal"
 
 RoofPals:
-	table_width PAL_COLOR_SIZE * 2 * 2, RoofPals
+	table_width PAL_COLOR_SIZE * 3 * 2, RoofPals
 INCLUDE "gfx/tilesets/roofs.pal"
 	assert_table_length NUM_MAP_GROUPS + 1
+	
+NameInputScreenPalettes:
+INCLUDE "gfx/naming_screen/input_screen.pal"
 
 DiplomaPalettes:
 INCLUDE "gfx/diploma/diploma.pal"
@@ -1365,3 +1409,12 @@ INCLUDE "gfx/beta_poker/beta_poker.pal"
 
 SlotMachinePals:
 INCLUDE "gfx/slots/slots.pal"
+
+LoadPokemonPalette:
+	ld a, [wCurPartySpecies]
+	; hl = palette
+	call GetMonPalettePointer
+	; load palette into de (set by caller)
+	ld bc, PAL_COLOR_SIZE * 2
+	ld a, BANK(wBGPals1)
+	jp FarCopyWRAM

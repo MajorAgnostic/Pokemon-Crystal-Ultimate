@@ -140,3 +140,13 @@ MomPhoneLectureScript:
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
 	sjump MomPhoneWontSaveMoneyScript
+	
+MomPhoneGiftScript:
+	readvar VAR_SPECIALPHONECALL
+	ifequal SPECIALCALL_GIFT, .whichgift
+	end
+	
+.whichgift:
+	farwritetext MomPhoneGiftText
+	specialphonecall SPECIALCALL_NONE
+	end

@@ -9,15 +9,15 @@
 
 PowerPlant_MapScripts:
 	def_scene_scripts
-	scene_script PowerPlantNoop1Scene, SCENE_POWERPLANT_NOOP
-	scene_script PowerPlantNoop2Scene, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
+	scene_script .DummyScene0, SCENE_POWERPLANT_NOOP
+	scene_script .DummyScene1, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 
 	def_callbacks
 
-PowerPlantNoop1Scene:
+.DummyScene0:
 	end
 
-PowerPlantNoop2Scene:
+.DummyScene1:
 	end
 
 PowerPlantGuardPhoneScript:
@@ -174,6 +174,7 @@ PowerPlantManager:
 	verbosegiveitem TM_ZAP_CANNON
 	iffalse .NoRoom
 	setevent EVENT_GOT_TM07_ZAP_CANNON
+	clearevent EVENT_HOMEBRICKPIECE
 	writetext PowerPlantManagerTM07IsZapCannonText
 	waitbutton
 .NoRoom:

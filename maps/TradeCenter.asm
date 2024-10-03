@@ -4,20 +4,20 @@
 
 TradeCenter_MapScripts:
 	def_scene_scripts
-	scene_script TradeCenterInitializeScene, SCENE_TRADECENTER_INITIALIZE
-	scene_script TradeCenterNoopScene,       SCENE_TRADECENTER_NOOP
+	scene_script .InitializeTradeCenter, SCENE_TRADE_DEFAULT
+	scene_script .DummyScene, SCENE_TRADE_FINISHED
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, TradeCenterSetWhichChrisCallback
+	callback MAPCALLBACK_OBJECTS, .SetWhichChris
 
-TradeCenterInitializeScene:
-	sdefer TradeCenterInitializeAndPreparePokecenter2FScript
+.InitializeTradeCenter:
+	prioritysjump .InitializeAndPreparePokecenter2F
 	end
 
-TradeCenterNoopScene:
+.DummyScene:
 	end
 
-TradeCenterSetWhichChrisCallback:
+.SetWhichChris:
 	special CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear TRADECENTER_CHRIS2
@@ -29,8 +29,8 @@ TradeCenterSetWhichChrisCallback:
 	appear TRADECENTER_CHRIS2
 	endcallback
 
-TradeCenterInitializeAndPreparePokecenter2FScript:
-	setscene SCENE_TRADECENTER_NOOP
+.InitializeAndPreparePokecenter2F:
+	setscene SCENE_TRADE_FINISHED
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
 	end
 
@@ -38,18 +38,6 @@ TradeCenterConsoleScript:
 	special TradeCenter
 	newloadmap MAPSETUP_LINKRETURN
 	end
-
-TradeCenterFriendScript: ; unreferenced
-	opentext
-	writetext TradeCenterFriendReadyText
-	waitbutton
-	closetext
-	end
-
-TradeCenterFriendReadyText:
-	text "Your friend is"
-	line "ready."
-	done
 
 TradeCenter_MapEvents:
 	db 0, 0 ; filler

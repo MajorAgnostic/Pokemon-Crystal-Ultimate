@@ -7,7 +7,7 @@ TinTower6F_MapScripts:
 	def_callbacks
 
 TinTower6FMaxPotion:
-	itemball MAX_POTION
+	itemball MAX_ELIXER
 
 TinTower6F_MapEvents:
 	db 0, 0 ; filler

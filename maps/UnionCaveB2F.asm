@@ -10,9 +10,9 @@ UnionCaveB2F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, UnionCaveB2FLaprasCallback
+	callback MAPCALLBACK_OBJECTS, .Lapras
 
-UnionCaveB2FLaprasCallback:
+.Lapras:
 	checkflag ENGINE_UNION_CAVE_LAPRAS
 	iftrue .NoAppear
 	readvar VAR_WEEKDAY
@@ -28,7 +28,7 @@ UnionCaveB2FLaprasCallback:
 UnionCaveLapras:
 	faceplayer
 	cry LAPRAS
-	loadwildmon LAPRAS, 20
+	loadwildmon LAPRAS, 40
 	startbattle
 	disappear UNIONCAVEB2F_LAPRAS
 	setflag ENGINE_UNION_CAVE_LAPRAS
@@ -71,19 +71,22 @@ TrainerCooltrainerfEmma:
 UnionCaveB2FElixer:
 	itemball ELIXER
 
-UnionCaveB2FHyperPotion:
-	itemball HYPER_POTION
+UnionCaveB2FMaxRevive:
+	itemball MAX_REVIVE
 
 CooltrainermNickSeenText:
-	text "There are two"
-	line "kinds of people."
+	text "Hey, I got a super"
+	line "strong #MON"
 
-	para "Those who have"
-	line "style, and those"
-	cont "who don't."
+	para "when I won the"
+	line "Bug-Catching"
+	cont "Contest."
 
-	para "What kind of"
-	line "person are you?"
+	para "Were you there?"
+	line "Anyway, enough"
+	
+	para "chitchat. Let's"
+	line "rock!"
 	done
 
 CooltrainermNickBeatenText:
@@ -150,9 +153,9 @@ UnionCaveB2F_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event 15, 19, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermNick, -1
+	object_event 15, 19, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermNick, -1
 	object_event  5, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfGwen, -1
 	object_event  3, 30, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainerfEmma, -1
 	object_event 16,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, UnionCaveB2FElixer, EVENT_UNION_CAVE_B2F_ELIXER
-	object_event 12, 19, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, UnionCaveB2FHyperPotion, EVENT_UNION_CAVE_B2F_HYPER_POTION
-	object_event 11, 31, SPRITE_SURF, SPRITEMOVEDATA_SWIM_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, UnionCaveLapras, EVENT_UNION_CAVE_B2F_LAPRAS
+	object_event 12, 19, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, UnionCaveB2FMaxRevive, EVENT_UNION_CAVE_B2F_HYPER_POTION
+	object_event 11, 31, SPRITE_LAPRAS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, UnionCaveLapras, EVENT_UNION_CAVE_B2F_LAPRAS

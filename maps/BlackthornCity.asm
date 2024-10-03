@@ -13,21 +13,10 @@ BlackthornCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, BlackthornCityFlypointCallback
-	callback MAPCALLBACK_OBJECTS, BlackthornCitySantosCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-BlackthornCityFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_BLACKTHORN
-	endcallback
-
-BlackthornCitySantosCallback:
-	readvar VAR_WEEKDAY
-	ifequal SATURDAY, .SantosAppears
-	disappear BLACKTHORNCITY_SANTOS
-	endcallback
-
-.SantosAppears:
-	appear BLACKTHORNCITY_SANTOS
 	endcallback
 
 BlackthornSuperNerdScript:
@@ -90,14 +79,19 @@ SantosScript:
 	opentext
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue .Saturday
-	readvar VAR_WEEKDAY
-	ifnotequal SATURDAY, .NotSaturday
-	checkevent EVENT_MET_SANTOS_OF_SATURDAY
-	iftrue .MetSantos
 	writetext MeetSantosText
 	promptbutton
-	setevent EVENT_MET_SANTOS_OF_SATURDAY
-.MetSantos:
+	readvar VAR_WEEKDAY
+	ifequal SATURDAY, .GiveTag
+	writetext SantosSeenText
+	waitbutton
+	closetext
+	winlosstext SantosBeatenText, 0
+	loadtrainer POKEMANIAC, SANTOS
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveTag:
 	writetext SantosGivesGiftText
 	promptbutton
 	verbosegiveitem SPELL_TAG
@@ -109,8 +103,13 @@ SantosScript:
 	end
 
 .Saturday:
+	readvar VAR_WEEKDAY
+	ifnotequal SATURDAY, .NotSaturday
 	writetext SantosSaturdayText
 	waitbutton
+	closetext
+	end
+	
 .Done:
 	closetext
 	end
@@ -227,10 +226,24 @@ BlackthornYoungsterText:
 MeetSantosText:
 	text "SANTOS: …"
 
-	para "It's Saturday…"
-
 	para "I'm SANTOS of"
 	line "Saturday…"
+	done
+	
+SantosSeenText:
+	text "Do you want some-"
+	line "thing?"
+
+	para "It's not Saturday"
+	line "today."
+	
+	para "If you want SPELL"
+	line "TAG, then you'll"
+	cont "have to take it."
+	done
+	
+SantosBeatenText:
+	text "…terrifying."
 	done
 
 SantosGivesGiftText:
@@ -290,8 +303,8 @@ BlackthornGymSignText:
 	done
 
 MoveDeletersHouseSignText:
-	text "MOVE DELETER'S"
-	line "HOUSE"
+	text "MOVE DELETER &"
+	line "REMINDER'S HOUSE"
 	done
 
 DragonDensSignText:
@@ -330,7 +343,7 @@ BlackthornCity_MapEvents:
 	bg_event 17, 13, BGEVENT_READ, BlackthornGymSign
 	bg_event  7, 31, BGEVENT_READ, MoveDeletersHouseSign
 	bg_event 21,  3, BGEVENT_READ, DragonDensSign
-	bg_event  5, 25, BGEVENT_READ, BlackthornCityTrainerTips
+	bg_event  6, 26, BGEVENT_READ, BlackthornCityTrainerTips
 	bg_event 16, 29, BGEVENT_READ, BlackthornCityMartSign
 	bg_event 22, 29, BGEVENT_READ, BlackthornCityPokecenterSign
 
@@ -340,7 +353,7 @@ BlackthornCity_MapEvents:
 	object_event 20,  2, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornGramps1Script, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
 	object_event 21,  2, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornGramps2Script, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
 	object_event 24, 31, SPRITE_BLACK_BELT, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornBlackBeltScript, -1
-	object_event  9, 25, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornCooltrainerF1Script, -1
+	object_event 10, 25, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornCooltrainerF1Script, -1
 	object_event 13, 15, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornYoungsterScript, -1
 	object_event 22, 20, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
 	object_event 35, 19, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BlackthornCooltrainerF2Script, -1

@@ -1,23 +1,24 @@
 	object_const_def
 	const NEWBARKTOWN_TEACHER
 	const NEWBARKTOWN_FISHER
-	const NEWBARKTOWN_RIVAL
+	const NEWBARKTOWN_SILVER
+	const NEWBARKTOWN_MOM
 
 NewBarkTown_MapScripts:
 	def_scene_scripts
-	scene_script NewBarkTownNoop1Scene, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU
-	scene_script NewBarkTownNoop2Scene, SCENE_NEWBARKTOWN_NOOP
+	scene_script .DummyScene0, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU
+	scene_script .DummyScene1, SCENE_NEWBARKTOWN_FISHER
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, NewBarkTownFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-NewBarkTownNoop1Scene:
+.DummyScene0:
 	end
 
-NewBarkTownNoop2Scene:
+.DummyScene1:
 	end
 
-NewBarkTownFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	endcallback
@@ -30,13 +31,13 @@ NewBarkTown_TeacherStopsYouScene1:
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
-	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherRunsToYouMovement1
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou1_NBT
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
 	closetext
 	follow NEWBARKTOWN_TEACHER, PLAYER
-	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherBringsYouBackMovement1
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack1_NBT
 	stopfollow
 	opentext
 	writetext Text_ItsDangerousToGoAlone
@@ -53,20 +54,141 @@ NewBarkTown_TeacherStopsYouScene2:
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
-	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherRunsToYouMovement2
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou2_NBT
 	turnobject PLAYER, UP
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
 	closetext
 	follow NEWBARKTOWN_TEACHER, PLAYER
-	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherBringsYouBackMovement2
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack2_NBT
 	stopfollow
 	opentext
 	writetext Text_ItsDangerousToGoAlone
 	waitbutton
 	closetext
 	special RestartMapMusic
+	end
+	
+NewBarkTown_FisherStopsYouScene1:
+	checkevent EVENT_HOMEUPGRADE
+	iftrue .End
+	checkflag ENGINE_RISINGBADGE
+	iffalse .End
+	playmusic MUSIC_MOM
+	turnobject NEWBARKTOWN_FISHER, RIGHT
+	opentext
+	writetext Text_WaitPlayer
+	waitbutton
+	closetext
+	turnobject PLAYER, DOWN
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherRunsToYou1_NBT
+	opentext
+	writetext Text_EightBadges
+	waitbutton
+	closetext
+	follow NEWBARKTOWN_FISHER, PLAYER
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherBringsYouBack1_NBT
+	stopfollow
+	opentext
+	writetext Text_BeforeYouGo
+	waitbutton
+	closetext
+	special RestartMapMusic
+	end
+	
+.End:
+	end
+	
+NewBarkTown_FisherStopsYouScene2:
+	checkevent EVENT_HOMEUPGRADE
+	iftrue .End
+	checkflag ENGINE_RISINGBADGE
+	iffalse .End
+	playmusic MUSIC_MOM
+	turnobject NEWBARKTOWN_FISHER, RIGHT
+	opentext
+	writetext Text_WaitPlayer
+	waitbutton
+	closetext
+	turnobject PLAYER, LEFT
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherRunsToYou2_NBT
+	opentext
+	writetext Text_EightBadges
+	waitbutton
+	closetext
+	follow NEWBARKTOWN_FISHER, PLAYER
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherBringsYouBack2_NBT
+	stopfollow
+	opentext
+	writetext Text_BeforeYouGo
+	waitbutton
+	closetext
+	special RestartMapMusic
+	end
+	
+.End:
+	end
+	
+NewBarkTown_FisherStopsYouScene3:
+	checkevent EVENT_HOMEUPGRADE
+	iftrue .End
+	checkflag ENGINE_RISINGBADGE
+	iffalse .End
+	playmusic MUSIC_MOM
+	turnobject NEWBARKTOWN_FISHER, RIGHT
+	opentext
+	writetext Text_WaitPlayer
+	waitbutton
+	closetext
+	turnobject PLAYER, LEFT
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherRunsToYou3_NBT
+	turnobject PLAYER, DOWN
+	opentext
+	writetext Text_EightBadges
+	waitbutton
+	closetext
+	follow NEWBARKTOWN_FISHER, PLAYER
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherBringsYouBack3_NBT
+	stopfollow
+	opentext
+	writetext Text_BeforeYouGo
+	waitbutton
+	closetext
+	special RestartMapMusic
+	end
+	
+.End:
+	end
+	
+NewBarkTown_FisherStopsYouScene4:
+	checkevent EVENT_HOMEUPGRADE
+	iftrue .End
+	checkflag ENGINE_RISINGBADGE
+	iffalse .End
+	playmusic MUSIC_MOM
+	turnobject NEWBARKTOWN_FISHER, RIGHT
+	opentext
+	writetext Text_WaitPlayer
+	waitbutton
+	closetext
+	turnobject PLAYER, LEFT
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherRunsToYou4_NBT
+	opentext
+	writetext Text_EightBadges
+	waitbutton
+	closetext
+	follow NEWBARKTOWN_FISHER, PLAYER
+	applymovement NEWBARKTOWN_FISHER, Movement_FisherBringsYouBack4_NBT
+	stopfollow
+	opentext
+	writetext Text_BeforeYouGo
+	waitbutton
+	closetext
+	special RestartMapMusic
+	end
+	
+.End:
 	end
 
 NewBarkTownTeacherScript:
@@ -104,25 +226,25 @@ NewBarkTownTeacherScript:
 NewBarkTownFisherScript:
 	jumptextfaceplayer Text_ElmDiscoveredNewMon
 
-NewBarkTownRivalScript:
+NewBarkTownSilverScript:
 	opentext
 	writetext NewBarkTownRivalText1
 	waitbutton
 	closetext
-	turnobject NEWBARKTOWN_RIVAL, LEFT
+	turnobject NEWBARKTOWN_SILVER, LEFT
 	opentext
 	writetext NewBarkTownRivalText2
 	waitbutton
 	closetext
-	follow PLAYER, NEWBARKTOWN_RIVAL
-	applymovement PLAYER, NewBarkTown_RivalPushesYouAwayMovement
+	follow PLAYER, NEWBARKTOWN_SILVER
+	applymovement PLAYER, Movement_SilverPushesYouAway_NBT
 	stopfollow
 	pause 5
-	turnobject NEWBARKTOWN_RIVAL, DOWN
+	turnobject NEWBARKTOWN_SILVER, DOWN
 	pause 5
 	playsound SFX_TACKLE
-	applymovement PLAYER, NewBarkTown_RivalShovesYouOutMovement
-	applymovement NEWBARKTOWN_RIVAL, NewBarkTown_RivalReturnsToTheShadowsMovement
+	applymovement PLAYER, Movement_SilverShovesYouOut_NBT
+	applymovement NEWBARKTOWN_SILVER, Movement_SilverReturnsToTheShadows_NBT
 	end
 
 NewBarkTownSign:
@@ -137,14 +259,14 @@ NewBarkTownElmsLabSign:
 NewBarkTownElmsHouseSign:
 	jumptext NewBarkTownElmsHouseSignText
 
-NewBarkTown_TeacherRunsToYouMovement1:
+Movement_TeacherRunsToYou1_NBT:
 	step LEFT
 	step LEFT
 	step LEFT
 	step LEFT
 	step_end
 
-NewBarkTown_TeacherRunsToYouMovement2:
+Movement_TeacherRunsToYou2_NBT:
 	step LEFT
 	step LEFT
 	step LEFT
@@ -153,7 +275,7 @@ NewBarkTown_TeacherRunsToYouMovement2:
 	turn_head DOWN
 	step_end
 
-NewBarkTown_TeacherBringsYouBackMovement1:
+Movement_TeacherBringsYouBack1_NBT:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -161,7 +283,7 @@ NewBarkTown_TeacherBringsYouBackMovement1:
 	turn_head LEFT
 	step_end
 
-NewBarkTown_TeacherBringsYouBackMovement2:
+Movement_TeacherBringsYouBack2_NBT:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -169,20 +291,90 @@ NewBarkTown_TeacherBringsYouBackMovement2:
 	step RIGHT
 	turn_head LEFT
 	step_end
+	
+Movement_FisherRunsToYou1_NBT:
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
+	step UP
+	step UP
+	step_end
+	
+Movement_FisherBringsYouBack1_NBT:
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head DOWN
+	step DOWN
+	step DOWN
+	turn_head UP
+	step_end
+	
+Movement_FisherRunsToYou2_NBT:
+	step RIGHT
+	turn_head UP
+	step UP
+	step UP
+	turn_head RIGHT
+	step RIGHT
+	step RIGHT
+	step_end
+	
+Movement_FisherBringsYouBack2_NBT:
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head DOWN
+	step DOWN
+	step DOWN
+	turn_head UP
+	step_end
+	
+Movement_FisherRunsToYou3_NBT:
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
+	step_end
+	
+Movement_FisherBringsYouBack3_NBT:
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head RIGHT
+	step_end
+	
+Movement_FisherRunsToYou4_NBT:
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step_end
+	
+Movement_FisherBringsYouBack4_NBT:
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head RIGHT
+	step_end
 
-NewBarkTown_RivalPushesYouAwayMovement:
+Movement_SilverPushesYouAway_NBT:
 	turn_head UP
 	step DOWN
 	step_end
 
-NewBarkTown_RivalShovesYouOutMovement:
+Movement_SilverShovesYouOut_NBT:
 	turn_head UP
 	fix_facing
 	jump_step DOWN
 	remove_fixed_facing
 	step_end
 
-NewBarkTown_RivalReturnsToTheShadowsMovement:
+Movement_SilverReturnsToTheShadows_NBT:
 	step RIGHT
 	step_end
 
@@ -202,6 +394,18 @@ Text_WhatDoYouThinkYoureDoing:
 	text "What do you think"
 	line "you're doing?"
 	done
+	
+Text_EightBadges:
+	text "Before you leave"
+	line "to face the ELITE"
+	
+	para "FOUR, be sure to"
+	line "go home. Your MOM"
+
+	para "left a surprise"
+	line "for you in your"
+	cont "room!"
+	done
 
 Text_ItsDangerousToGoAlone:
 	text "It's dangerous to"
@@ -213,6 +417,15 @@ Text_ItsDangerousToGoAlone:
 
 	para "grass on the way"
 	line "to the next town."
+	done
+	
+Text_BeforeYouGo:
+	text "Oh, and congrats"
+	line "on obtaining all"
+	cont "GYM BADGES!"
+
+	para "That's quite an"
+	line "accomplishment!"
 	done
 
 Text_YourMonIsAdorable:
@@ -291,6 +504,10 @@ NewBarkTown_MapEvents:
 	def_coord_events
 	coord_event  1,  8, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU, NewBarkTown_TeacherStopsYouScene1
 	coord_event  1,  9, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU, NewBarkTown_TeacherStopsYouScene2
+	coord_event 16,  6, SCENE_NEWBARKTOWN_FISHER, NewBarkTown_FisherStopsYouScene1
+	coord_event 16,  7, SCENE_NEWBARKTOWN_FISHER, NewBarkTown_FisherStopsYouScene2
+	coord_event 16,  8, SCENE_NEWBARKTOWN_FISHER, NewBarkTown_FisherStopsYouScene3
+	coord_event 16,  9, SCENE_NEWBARKTOWN_FISHER, NewBarkTown_FisherStopsYouScene4
 
 	def_bg_events
 	bg_event  8,  8, BGEVENT_READ, NewBarkTownSign
@@ -300,5 +517,5 @@ NewBarkTown_MapEvents:
 
 	def_object_events
 	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
-	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
-	object_event  3,  2, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownRivalScript, EVENT_RIVAL_NEW_BARK_TOWN
+	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
+	object_event  3,  2, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN

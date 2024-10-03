@@ -3,11 +3,11 @@
 
 LavenderNameRater_MapScripts:
 	def_scene_scripts
-	scene_script LavenderNameRaterNoopScene ; unusable
+	scene_script .DummyScene
 
 	def_callbacks
 
-LavenderNameRaterNoopScene:
+.DummyScene:
 	end
 
 LavenderNameRater:
@@ -18,7 +18,8 @@ LavenderNameRater:
 	closetext
 	end
 
-LavenderNameRaterUnusedBookshelf: ; unreferenced
+LavenderNameRaterUnusedBookshelf:
+; unused
 	jumpstd DifficultBookshelfScript
 
 LavenderNameRater_MapEvents:

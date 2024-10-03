@@ -25,21 +25,34 @@ CeladonPokecenter1FPharmacistScript:
 CeladonEusine:
 	faceplayer
 	opentext
+	checkevent EVENT_SPOKE_EUSINE
+	iftrue .SecondMeeting
 	writetext CeladonEusineText1
-	promptbutton
-	setval SUICUNE
-	special MonCheck
-	iffalse .NoSuicune
+	setevent EVENT_SPOKE_EUSINE
+	sjump .NoSuicune
+.SecondMeeting
 	special BeastsCheck
+	iffalse .NoBeasts
+	checkevent EVENT_BEAT_MISTY
 	iftrue .HoOh
+	sjump .NoMisty
+.NoBeasts:
 	writetext NoBeastsText
-	waitbutton
 .NoSuicune:
+	waitbutton
+	closetext
+	end
+	
+.NoMisty:
+	writetext CeladonEusineText2
+	waitbutton
 	closetext
 	end
 
 .HoOh:
+	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	writetext EusineLeavesCeladonText
+	setevent EVENT_EUSINE_LEAVES
 	waitbutton
 	closetext
 	readvar VAR_FACING
@@ -52,7 +65,9 @@ CeladonEusine:
 .Continue:
 	disappear CELADONPOKECENTER1F_EUSINE
 	playsound SFX_EXIT_BUILDING
-	waitsfx
+	special FadeOutMusic
+	pause 20
+	playmusic MUSIC_POKEMON_CENTER
 	end
 
 .Movement2:
@@ -91,13 +106,70 @@ CeladonPokecenter1FPharmacistText:
 	done
 
 CeladonEusineText1:
-	text "EUSINE: Hi!"
+	text "EUSINE: Hello,"
+	line "<PLAYER>!"
 
 	para "I'm back visiting"
 	line "my hometown."
 
 	para "It's been quite a"
 	line "while."
+	
+	para "What? You saw the"
+	line "rainbow-colored"
+
+	para "#MON flying in"
+	line "this direction?"
+	
+	para "Incredible!"
+	
+	para "I hope to see it"
+	line "roost soon; that"
+	
+	para "way I can finally"
+	line "finish my research"
+	
+	para "on JOHTO's legen-"
+	line "dary #MON."
+	
+	para "Perhaps it is wai-"
+	line "ting for the three"
+	cont "beasts' reunion?"
+	
+	para "That reminds me, I"
+	line "heard of an elder"
+	
+	para "in PEWTER CITY who"
+	line "has a SILVER WING."
+
+	para "Maybe I am not as"
+	line "close to finishing"
+	
+	para "my research as I"
+	line "thought…"
+	done
+	
+CeladonEusineText2:
+	text "EUSINE: Hello,"
+	line "<PLAYER>!"
+
+	para "What? You caught"
+	line "all of the legend-"
+	cont "ary beasts?"
+
+	para "That's incredible!"
+	
+	para "Maybe HO-OH will"
+	line "roost soon to meet"
+	cont "you…"
+	
+	para "By the way, have"
+	line "you been collect-"
+	cont "ing KANTO badges?"
+	
+	para "I hear that MISTY"
+	line "is a fierce GYM"
+	cont "LEADER!"
 	done
 
 EusineLeavesCeladonText:
@@ -135,8 +207,8 @@ NoBeastsText:
 
 	para "Okay…"
 
-	para "If you catch even"
-	line "one, I hope that"
+	para "If you catch them"
+	line "both, I hope that"
 	cont "you'll inform me."
 
 	para "I'm counting on"
@@ -160,4 +232,4 @@ CeladonPokecenter1F_MapEvents:
 	object_event  1,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FGentlemanScript, -1
 	object_event  0,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FPharmacistScript, -1
 	object_event  8,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FCooltrainerFScript, -1
-	object_event  4,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonEusine, EVENT_SET_WHEN_FOUGHT_HO_OH
+	object_event  4,  3, SPRITE_EUSINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, CeladonEusine, EVENT_EUSINE_LEAVES

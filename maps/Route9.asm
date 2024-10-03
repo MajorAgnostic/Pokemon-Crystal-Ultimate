@@ -5,6 +5,9 @@
 	const ROUTE9_LASS2
 	const ROUTE9_POKEFAN_M1
 	const ROUTE9_POKEFAN_M2
+	const ROUTE9_YOUNGSTER3
+	const ROUTE9_LASS3
+	const ROUTE9_POKE_BALL
 
 Route9_MapScripts:
 	def_scene_scripts
@@ -76,6 +79,42 @@ TrainerHikerSidney:
 	waitbutton
 	closetext
 	end
+	
+TrainerConner:
+	trainer YOUNGSTER, CONNER, EVENT_BEAT_CONNER, ConnerSeenText, ConnerBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext ConnerAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerChris:
+	trainer CAMPER, DREW, EVENT_BEAT_DREW, ChrisSeenText, ChrisBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext ChrisAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerAlicia:
+	trainer PICNICKER, ALICIA, EVENT_BEAT_ALICIA, AliciaSeenText, AliciaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext AliciaAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+Route9FR:
+	itemball FULL_RESTORE
 
 Route9Sign:
 	jumptext Route9SignText
@@ -195,6 +234,55 @@ HikerSidneyAfterBattleText:
 	line "across a small"
 	cont "river."
 	done
+	
+ConnerSeenText:
+	text "Go, my super team!"
+	done
+
+ConnerBeatenText:
+	text "My team…"
+	done
+
+ConnerAfterBattleText:
+	text "Your team must be"
+	line "some sort of SUPER"
+	cont "super team!"
+	done
+	
+ChrisSeenText:
+	text "Who's that walking"
+	line "there with a team"
+	cont "of good-looking"
+	cont "#MON?"
+	done
+
+ChrisBeatenText:
+	text "Out like a light!"
+	done
+
+ChrisAfterBattleText:
+	text "Keep walking!"
+	done
+	
+AliciaSeenText:
+	text "You have #MON"
+	line "with you!"
+	
+	para "You're mine!"
+	done
+
+AliciaBeatenText:
+	text "You deceived me…"
+	done
+
+AliciaAfterBattleText:
+	text "The tunnel coming"
+	line "up is pitch-black"
+	cont "inside."
+	
+	para "You'll need FLASH"
+	line "to get through it."
+	done
 
 Route9SignText:
 	text "ROUTE 9"
@@ -218,7 +306,11 @@ Route9_MapEvents:
 	def_object_events
 	object_event 23, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperDean, -1
 	object_event 39,  8, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerHeidi, -1
-	object_event 11,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperSid, -1
-	object_event 12, 15, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
+	object_event 11,  2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerCamperSid, -1
+	object_event 12, 15, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerEdna, -1
 	object_event 28,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerTim, -1
 	object_event 36, 15, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1
+	object_event 27,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerConner, -1
+	object_event 22,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerChris, -1
+	object_event  9,  9, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerAlicia, -1
+	object_event 20,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route9FR, EVENT_ROUTE_9_FULL_RESTORE

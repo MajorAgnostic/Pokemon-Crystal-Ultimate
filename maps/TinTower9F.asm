@@ -7,13 +7,15 @@ TinTower9F_MapScripts:
 	def_callbacks
 
 TinTower9FHPUp:
-	itemball HP_UP
+	itemball SACRED_ASH
 
-TinTower9FUnusedHoOhText: ; unreferenced
+TinTower9FUnusedHoOhText:
+; unused
 	text "HO-OH: Shaoooh!"
 	done
 
-TinTower9FUnusedLugiaText: ; unreferenced
+TinTower9FUnusedLugiaText:
+; unused
 	text "LUGIA: Gyaaan!"
 	done
 

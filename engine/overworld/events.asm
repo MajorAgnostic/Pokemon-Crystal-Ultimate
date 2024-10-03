@@ -140,7 +140,7 @@ UnusedWait30Frames: ; unreferenced
 HandleMap:
 	call ResetOverworldDelay
 	call HandleMapTimeAndJoypad
-	farcall HandleCmdQueue ; no need to farcall
+	call HandleStoneTable
 	call MapEvents
 
 ; Not immediately entering a connected map will cause problems.
@@ -284,6 +284,13 @@ PlayerEvents:
 	xor a
 	ld [wLandmarkSignTimer], a
 
+	; Have player stand (resets running sprite to standing if event starts while running)
+	ld a, [wPlayerState]
+	cp PLAYER_RUN
+	jr nz, .ok2
+	ld a, PLAYER_NORMAL
+	ld [wPlayerState], a
+	farcall UpdatePlayerSprite
 .ok2
 	scf
 	ret

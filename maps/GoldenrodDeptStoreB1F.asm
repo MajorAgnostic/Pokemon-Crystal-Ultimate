@@ -6,17 +6,17 @@
 	const GOLDENRODDEPTSTOREB1F_BLACK_BELT1
 	const GOLDENRODDEPTSTOREB1F_BLACK_BELT2
 	const GOLDENRODDEPTSTOREB1F_BLACK_BELT3
-	const GOLDENRODDEPTSTOREB1F_MACHOP
+	const GOLDENRODDEPTSTOREB1F_MACHOKE
 
 GoldenrodDeptStoreB1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, GoldenRodDeptStoreB1FClearBoxesCallback
-	callback MAPCALLBACK_NEWMAP, GoldenRodDeptStoreUnblockCallback
+	callback MAPCALLBACK_TILES, .ClearBoxes
+	callback MAPCALLBACK_NEWMAP, .Unblock
 
-GoldenRodDeptStoreB1FClearBoxesCallback:
-	checkevent EVENT_RECEIVED_CARD_KEY
+.ClearBoxes:
+	checkevent EVENT_BEAT_ROCKET_GRUNTM_15
 	iftrue .GotCardKey
 	sjump .Continue
 
@@ -40,7 +40,7 @@ GoldenRodDeptStoreB1FClearBoxesCallback:
 	changeblock 10, 12, $0d ; floor
 	endcallback
 
-GoldenRodDeptStoreUnblockCallback:
+.Unblock:
 	clearevent EVENT_GOLDENROD_UNDERGROUND_WAREHOUSE_BLOCKED_OFF
 	endcallback
 
@@ -104,7 +104,7 @@ GoldenrodDeptStoreB1FBlackBelt3Text:
 	done
 
 GoldenrodDeptStoreB1FMachokeText:
-	text "MACHOKE: Maaacho!"
+	text "Maaacho!"
 	done
 
 GoldenrodDeptStoreB1F_MapEvents:
@@ -127,4 +127,4 @@ GoldenrodDeptStoreB1F_MapEvents:
 	object_event  9, 10, SPRITE_BLACK_BELT, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreB1FBlackBelt1Script, -1
 	object_event  4,  8, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreB1FBlackBelt2Script, -1
 	object_event  6, 13, SPRITE_BLACK_BELT, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreB1FBlackBelt3Script, -1
-	object_event  7,  7, SPRITE_MACHOP, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreB1FMachopScript, -1
+	object_event  7,  7, SPRITE_MACHOKE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreB1FMachopScript, -1

@@ -9,13 +9,13 @@ OlivineLighthouse3F_MapScripts:
 
 	def_callbacks
 
-TrainerBirdKeeperTheo:
-	trainer BIRD_KEEPER, THEO, EVENT_BEAT_BIRD_KEEPER_THEO, BirdKeeperTheoSeenText, BirdKeeperTheoBeatenText, 0, .Script
+TrainerBirdKeeperKirt:
+	trainer BIRD_KEEPER, KIRT, EVENT_BEAT_BIRD_KEEPER_KIRT, BirdKeeperKirtSeenText, BirdKeeperKirtBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext BirdKeeperTheoAfterBattleText
+	writetext BirdKeeperKirtAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -45,7 +45,7 @@ TrainerSailorTerrell:
 OlivineLighthouse3FEther:
 	itemball ETHER
 
-BirdKeeperTheoSeenText:
+BirdKeeperKirtSeenText:
 	text "Why are you here?"
 	line "Are you just going"
 
@@ -53,12 +53,12 @@ BirdKeeperTheoSeenText:
 	line "that you leave!"
 	done
 
-BirdKeeperTheoBeatenText:
-	text "You really are"
-	line "concerned…"
+BirdKeeperKirtBeatenText:
+	text "So you really are"
+	line "concerned."
 	done
 
-BirdKeeperTheoAfterBattleText:
+BirdKeeperKirtAfterBattleText:
 	text "How the heck do"
 	line "you go up?"
 
@@ -131,5 +131,5 @@ OlivineLighthouse3F_MapEvents:
 	def_object_events
 	object_event  9,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSailorTerrell, -1
 	object_event 13,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
-	object_event  3,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperTheo, -1
+	object_event  3,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperKirt, -1
 	object_event  8,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse3FEther, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER

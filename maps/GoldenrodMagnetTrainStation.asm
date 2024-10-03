@@ -4,24 +4,16 @@
 
 GoldenrodMagnetTrainStation_MapScripts:
 	def_scene_scripts
-	scene_script GoldenrodMagnetTrainStationNoopScene, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON
+	scene_script .DummyScene, SCENE_GMAGNET_DEFAULT
 
 	def_callbacks
 
-GoldenrodMagnetTrainStationNoopScene:
+.DummyScene:
 	end
 
 GoldenrodMagnetTrainStationOfficerScript:
 	faceplayer
 	opentext
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .MagnetTrainToSaffron
-	writetext GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText
-	waitbutton
-	closetext
-	end
-
-.MagnetTrainToSaffron:
 	writetext GoldenrodMagnetTrainStationOfficerAreYouComingAboardText
 	yesorno
 	iffalse .DecidedNotToRide
@@ -103,17 +95,6 @@ GoldenrodMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	turn_head UP
 	step_end
 
-GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText:
-	text "The train hasn't"
-	line "come in…"
-
-	para "I know! I'll carry"
-	line "the passengers on"
-	cont "my back!"
-
-	para "That won't work."
-	done
-
 GoldenrodMagnetTrainStationOfficerAreYouComingAboardText:
 	text "We'll soon depart"
 	line "for SAFFRON."
@@ -172,7 +153,7 @@ GoldenrodMagnetTrainStation_MapEvents:
 	warp_event 11,  5, SAFFRON_MAGNET_TRAIN_STATION, 3
 
 	def_coord_events
-	coord_event 11,  6, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON, Script_ArriveFromSaffron
+	coord_event 11,  6, SCENE_GMAGNET_DEFAULT, Script_ArriveFromSaffron
 
 	def_bg_events
 

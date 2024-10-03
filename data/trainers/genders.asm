@@ -39,11 +39,11 @@ BTTrainerClassGenders:
 	db FEMALE ; TEACHER
 	db FEMALE ; SABRINA
 	db MALE   ; BUG_CATCHER
+	db MALE   ; SUPER_NERD
 	db MALE   ; FISHER
 	db MALE   ; SWIMMERM
 	db FEMALE ; SWIMMERF
 	db MALE   ; SAILOR
-	db MALE   ; SUPER_NERD
 	db MALE   ; RIVAL2
 	db MALE   ; GUITARIST
 	db MALE   ; HIKER
@@ -69,4 +69,3 @@ BTTrainerClassGenders:
 	db MALE   ; BLUE
 	db MALE   ; OFFICER
 	db FEMALE ; GRUNTF
-	assert_table_length NUM_TRAINER_CLASSES - 1 ; exclude MYSTICALMAN

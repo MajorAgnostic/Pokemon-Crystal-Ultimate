@@ -5,41 +5,41 @@
 
 Route35NationalParkGate_MapScripts:
 	def_scene_scripts
-	scene_script Route35NationalParkGateNoop1Scene,             SCENE_ROUTE35NATIONALPARKGATE_NOOP
-	scene_script Route35NationalParkGateNoop2Scene,             SCENE_ROUTE35NATIONALPARKGATE_UNUSED
-	scene_script Route35NationalParkGateLeaveContestEarlyScene, SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
+	scene_script .DummyScene0, SCENE_ROUTE35NATIONALPARKGATE_NOTHING
+	scene_script .DummyScene1, SCENE_ROUTE35NATIONALPARKGATE_UNUSED
+	scene_script .LeaveContestEarly, SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, Route35NationalParkGateCheckIfContestRunningCallback
-	callback MAPCALLBACK_OBJECTS, Route35NationalParkGateCheckIfContestAvailableCallback
+	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
+	callback MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
-Route35NationalParkGateNoop1Scene:
+.DummyScene0:
 	end
 
-Route35NationalParkGateNoop2Scene:
+.DummyScene1:
 	end
 
-Route35NationalParkGateLeaveContestEarlyScene:
-	sdefer Route35NationalParkGateLeavingContestEarlyScript
+.LeaveContestEarly:
+	prioritysjump .LeavingContestEarly
 	end
 
-Route35NationalParkGateCheckIfContestRunningCallback:
+.CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue Route35NationalParkBugContestIsRunningScript
-	setscene SCENE_ROUTE35NATIONALPARKGATE_NOOP
+	iftrue .BugContestIsRunning
+	setscene SCENE_ROUTE35NATIONALPARKGATE_NOTHING
 	endcallback
 
-Route35NationalParkBugContestIsRunningScript:
+.BugContestIsRunning:
 	setscene SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 	endcallback
 
-Route35NationalParkGateCheckIfContestAvailableCallback:
+.CheckIfContestAvailable:
 	readvar VAR_WEEKDAY
 	ifequal TUESDAY, .SetContestOfficer
 	ifequal THURSDAY, .SetContestOfficer
 	ifequal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue Route35NationalParkBugContestIsRunningScript
+	iftrue .BugContestIsRunning
 	disappear ROUTE35NATIONALPARKGATE_OFFICER1
 	appear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	appear ROUTE35NATIONALPARKGATE_OFFICER2
@@ -51,7 +51,7 @@ Route35NationalParkGateCheckIfContestAvailableCallback:
 	disappear ROUTE35NATIONALPARKGATE_OFFICER2
 	endcallback
 
-Route35NationalParkGateLeavingContestEarlyScript:
+.LeavingContestEarly:
 	applymovement PLAYER, Route35NationalParkGatePlayerApproachOfficer1Movement
 	turnobject ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	opentext
@@ -72,7 +72,7 @@ Route35NationalParkGateLeavingContestEarlyScript:
 	closetext
 	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
 	end
@@ -109,7 +109,7 @@ Route35NationalParkGate_OkayToProceed:
 	special GiveParkBalls
 	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	special SelectRandomBugContestContestants
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
@@ -252,7 +252,7 @@ Route35NationalParkGateOfficer1GiveParkBallsText:
 
 Route35NationalParkGatePlayerReceivedParkBallsText:
 	text "<PLAYER> received"
-	line "{d:BUG_CONTEST_BALLS} PARK BALLS."
+	line "20 PARK BALLS."
 	done
 
 Route35NationalParkGateOfficer1ExplainsRulesText:
@@ -261,7 +261,7 @@ Route35NationalParkGateOfficer1ExplainsRulesText:
 	cont "est bug #MON"
 	cont "is the winner."
 
-	para "You have {d:BUG_CONTEST_MINUTES}"
+	para "You have 20"
 	line "minutes."
 
 	para "If you run out of"

@@ -111,7 +111,7 @@ AcademyBlackboard:
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dba .Text
-	dbw BANK(@), NULL
+	dbw BANK(AcademyBlackboard), 0
 
 .Text:
 	db "PSN@"
@@ -138,7 +138,8 @@ AcademyNotebook:
 	closetext
 	end
 
-AcademyStickerMachine: ; unreferenced
+AcademyStickerMachine:
+; unused
 	jumptext AcademyStickerMachineText
 
 AcademyBookshelf:
@@ -270,7 +271,8 @@ AcademyBlackboardText:
 	line "battle."
 	done
 
-AcademyBlackboardText2: ; unreferenced
+AcademyBlackboardText2:
+; unused
 	text "Read which topic?"
 	done
 

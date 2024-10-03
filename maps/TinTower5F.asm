@@ -13,7 +13,7 @@ TinTower5FHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE
 
 TinTower5FHiddenCarbos:
-	hiddenitem CARBOS, EVENT_TIN_TOWER_5F_HIDDEN_CARBOS
+	hiddenitem STAR_PIECE, EVENT_TIN_TOWER_5F_HIDDEN_CARBOS
 
 TinTower5F_MapEvents:
 	db 0, 0 ; filler

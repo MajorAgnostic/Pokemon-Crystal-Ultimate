@@ -11,15 +11,15 @@
 
 Route42_MapScripts:
 	def_scene_scripts
-	scene_script Route42Noop1Scene, SCENE_ROUTE42_NOOP
-	scene_script Route42Noop2Scene, SCENE_ROUTE42_SUICUNE
+	scene_script .DummyScene0, SCENE_ROUTE42_NOOP
+	scene_script .DummyScene1, SCENE_ROUTE42_SUICUNE
 
 	def_callbacks
 
-Route42Noop1Scene:
+.DummyScene0:
 	end
 
-Route42Noop2Scene:
+.DummyScene1:
 	end
 
 Route42SuicuneScript:
@@ -39,7 +39,6 @@ TrainerFisherTully:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_FISHER_TULLY
-	endifjustbattled
 	opentext
 	checkflag ENGINE_TULLY_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -68,25 +67,15 @@ TrainerFisherTully:
 .WantsBattle:
 	scall .Rematch
 	winlosstext FisherTullyBeatenText, 0
-	readmem wTullyFightCount
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3
-.Fight2:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
-.Fight1:
-	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer FISHER, TULLY1
 	startbattle
 	reloadmapafterbattle
-	loadmem wTullyFightCount, 1
 	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
@@ -94,7 +83,6 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY2
 	startbattle
 	reloadmapafterbattle
-	loadmem wTullyFightCount, 2
 	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
@@ -102,7 +90,6 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY3
 	startbattle
 	reloadmapafterbattle
-	loadmem wTullyFightCount, 3
 	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
@@ -198,7 +185,7 @@ Route42UltraBall:
 	itemball ULTRA_BALL
 
 Route42SuperPotion:
-	itemball SUPER_POTION
+	itemball HYPER_POTION
 
 Route42FruitTree1:
 	fruittree FRUITTREE_ROUTE_42_1
@@ -273,7 +260,7 @@ PokemaniacShaneSeenText:
 
 PokemaniacShaneBeatenText:
 	text "I should have used"
-	line "my MOON STONE…"
+	line "my pa's #MON…"
 	done
 
 PokemaniacShaneAfterBattleText:

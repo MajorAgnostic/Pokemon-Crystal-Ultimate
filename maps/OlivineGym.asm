@@ -137,15 +137,11 @@ Text_ReceivedMineralBadge:
 	done
 
 Jasmine_BadgeSpeech:
-	text "MINERALBADGE"
-	line "raises #MON's"
-	cont "DEFENSE."
-
-	para "…Um… Please take"
+	text "…Um… Please take"
 	line "this too…"
 	done
 
-Text_ReceivedTM09: ; unreferenced
+Text_ReceivedTM09:
 	text "<PLAYER> received"
 	line "TM09."
 	done
@@ -165,10 +161,17 @@ Jasmine_GoodLuck:
 OlivineGymGuideText:
 	text "JASMINE uses the"
 	line "newly discovered"
-	cont "steel-type."
+	cont "steel type."
 
 	para "I don't know very"
-	line "much about it."
+	line "much, but fire-"
+	cont "type moves can"
+	cont "melt steel."
+	
+	para "Oh, one more tip:"
+	para "she likes to use"
+	line "a #MON with"
+	cont "huge cannons."
 	done
 
 OlivineGymGuideWinText:
@@ -209,5 +212,5 @@ OlivineGym_MapEvents:
 	bg_event  6, 13, BGEVENT_READ, OlivineGymStatue
 
 	def_object_events
-	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymJasmineScript, EVENT_OLIVINE_GYM_JASMINE
+	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineGymJasmineScript, EVENT_OLIVINE_GYM_JASMINE
 	object_event  7, 13, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuideScript, -1

@@ -12,7 +12,7 @@ FuchsiaGym_MapScripts:
 	def_callbacks
 
 FuchsiaGymJanineScript:
-	checkflag ENGINE_SOULBADGE
+	checkflag ENGINE_MARSHBADGE
 	iftrue .FightDone
 	applymovement FUCHSIAGYM_JANINE, Movement_NinjaSpin
 	faceplayer
@@ -22,6 +22,7 @@ FuchsiaGymJanineScript:
 	closetext
 	winlosstext JanineText_ToughOne, 0
 	loadtrainer JANINE, JANINE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JANINE
@@ -29,7 +30,7 @@ FuchsiaGymJanineScript:
 	setevent EVENT_BEAT_LASS_LINDA
 	setevent EVENT_BEAT_PICNICKER_CINDY
 	setevent EVENT_BEAT_CAMPER_BARRY
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_BEAUTY
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
@@ -38,7 +39,7 @@ FuchsiaGymJanineScript:
 	writetext Text_ReceivedSoulBadge
 	playsound SFX_GET_BADGE
 	waitsfx
-	setflag ENGINE_SOULBADGE
+	setflag ENGINE_MARSHBADGE
 	sjump .AfterBattle
 .FightDone:
 	faceplayer
@@ -62,7 +63,7 @@ LassAliceScript:
 	iftrue .AliceUnmasked
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
 	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_BEAUTY
 	special LoadUsedSpritesGFX
 .AliceUnmasked:
 	faceplayer
@@ -73,7 +74,7 @@ LassAliceScript:
 	waitbutton
 	closetext
 	winlosstext LassAliceBeatenText, 0
-	loadtrainer LASS, ALICE
+	loadtrainer BEAUTY, ALICE
 	startbattle
 	iftrue .AliceBecomesJanine
 	reloadmapafterbattle
@@ -210,7 +211,7 @@ FuchsiaGymGuideScript:
 	end
 
 FuchsiaGymStatue:
-	checkflag ENGINE_SOULBADGE
+	checkflag ENGINE_MARSHBADGE
 	iftrue .Beaten
 	jumpstd GymStatue1Script
 .Beaten:
@@ -245,6 +246,30 @@ JanineText_DisappointYou:
 
 	para "JANINE of FUCHSIA"
 	line "GYM, that's me!"
+	
+	para "JANINE: …I'm sorry"
+	line "for my behaviour"
+	cont "at the DELIVERY"
+	cont "CENTER."
+
+	para "I was too focused"
+	line "on my loss when I"
+	
+	para "should've been"
+	line "thanking you."
+	
+	para "But now, I'm ready"
+	line "to take you on as"
+	
+	para "a revitalized GYM"
+	line "LEADER!"
+	
+	para "You better be as"
+	line "tough as I think"
+	cont "you are."
+	
+	para "Because I'm going"
+	line "all out!"
 	done
 
 JanineText_ToughOne:
@@ -252,13 +277,13 @@ JanineText_ToughOne:
 	line "tough one. You"
 	cont "definitely won…"
 
-	para "Here's SOULBADGE."
+	para "Here's MARSHBADGE."
 	line "Take it."
 	done
 
 Text_ReceivedSoulBadge:
 	text "<PLAYER> received"
-	line "SOULBADGE."
+	line "MARSHBADGE."
 	done
 
 JanineText_ToxicSpeech:
@@ -269,8 +294,8 @@ JanineText_ToxicSpeech:
 	para "It's TOXIC, a pow-"
 	line "erful poison that"
 
-	para "steadily saps the"
-	line "victim's HP."
+	para "increasingly saps"
+	line "the victim's HP."
 	done
 
 JanineText_ApplyMyself:
@@ -370,6 +395,14 @@ FuchsiaGymGuideText:
 
 	para "Which of them is"
 	line "the real JANINE?"
+	
+	para "Don't tardy, she"
+	line "sure won't!"
+	
+	para "JANINE will strike"
+	line "your psychic-type"
+	cont "#MON before you"
+	cont "can react!"
 	done
 
 FuchsiaGymGuideWinText:
@@ -392,9 +425,9 @@ FuchsiaGym_MapEvents:
 	bg_event  6, 15, BGEVENT_READ, FuchsiaGymStatue
 
 	def_object_events
-	object_event  1, 10, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
-	object_event  5,  7, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassAliceScript, -1
-	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
-	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
-	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
-	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuideScript, -1
+	object_event  1, 10, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
+	object_event  5,  7, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassAliceScript, -1
+	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
+	object_event  4,  2, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
+	object_event  9,  4, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
+	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuideScript, -1

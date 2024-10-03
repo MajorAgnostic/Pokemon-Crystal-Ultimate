@@ -3,14 +3,50 @@
 	const SAFFRONMAGNETTRAINSTATION_GYM_GUIDE
 	const SAFFRONMAGNETTRAINSTATION_TEACHER
 	const SAFFRONMAGNETTRAINSTATION_LASS
+	const SAFFRONMAGNETTRAINSTATION_ZAPDOS
+	const SAFFRONMAGNETTRAINSTATION_POKE_BALL
 
 SaffronMagnetTrainStation_MapScripts:
 	def_scene_scripts
-	scene_script SaffronMagnetTrainStationNoopScene, SCENE_SAFFRONMAGNETTRAINSTATION_ARRIVE_FROM_GOLDENROD
+	scene_script .DummyScene, SCENE_SAFFRONCITY_DEFAULT
 
 	def_callbacks
+	callback MAPCALLBACK_TILES, .PlatformUnlocked
+	callback MAPCALLBACK_OBJECTS, .Zapdos
 
-SaffronMagnetTrainStationNoopScene:
+.DummyScene:
+	end
+	
+.PlatformUnlocked:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iffalse .NoOpening
+	changeblock 5,  9, $5 ; space between seats
+.NoOpening:
+	endcallback
+	
+.Zapdos:
+	checkevent EVENT_ZAPDOS_STATION
+	iftrue .NoAppear
+	appear SAFFRONMAGNETTRAINSTATION_ZAPDOS
+	endcallback
+
+.NoAppear:
+	disappear SAFFRONMAGNETTRAINSTATION_ZAPDOS
+	endcallback
+
+Zapdos:
+	faceplayer
+	opentext
+	writetext ZapdosText
+	cry ZAPDOS
+	pause 15
+	closetext
+	setevent EVENT_ZAPDOS_STATION
+	loadvar VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
+	loadwildmon ZAPDOS, 85
+	startbattle
+	disappear SAFFRONMAGNETTRAINSTATION_ZAPDOS
+	reloadmapafterbattle
 	end
 
 SaffronMagnetTrainStationOfficerScript:
@@ -18,11 +54,8 @@ SaffronMagnetTrainStationOfficerScript:
 	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MagnetTrainToGoldenrod
-	writetext SaffronMagnetTrainStationOfficerTrainIsntOperatingText
+	writetext SaffronMagnetTrainStationOfficerZapdosText
 	waitbutton
-	closetext
-	end
-
 .MagnetTrainToGoldenrod:
 	writetext SaffronMagnetTrainStationOfficerAreYouComingOnBoardText
 	yesorno
@@ -107,10 +140,10 @@ SaffronMagnetTrainStationPlayerApproachAndEnterTrainMovement:
 	step UP
 	step UP
 	step UP
-	step LEFT
-	step LEFT
-	step LEFT
 	step UP
+	step LEFT
+	step LEFT
+	step LEFT
 	step UP
 	step_end
 
@@ -123,11 +156,30 @@ SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	step DOWN
 	turn_head UP
 	step_end
+	
+ThunderTM:
+	itemball TM_THUNDER
 
-SaffronMagnetTrainStationOfficerTrainIsntOperatingText:
-	text "I'm sorry, but the"
-	line "MAGNET TRAIN isn't"
-	cont "operating now."
+TrainStationMagnet:
+	hiddenitem MAGNET, EVENT_TRAIN_STATION_MAGNET
+	
+ZapdosText:
+	text "Gyaoo!"
+	done
+
+SaffronMagnetTrainStationOfficerZapdosText:
+	text "You won't believe"
+	line "it!"
+	
+	para "Since the incident"
+	line "at the POWER PLANT"
+	
+	para "on ROUTE 10, the"
+	line "legendary ZAPDOS"
+	cont "has been supply-"
+	
+	para "ing power for the"
+	line "MAGNET TRAIN!"
 	done
 
 SaffronMagnetTrainStationOfficerAreYouComingOnBoardText:
@@ -223,12 +275,15 @@ SaffronMagnetTrainStation_MapEvents:
 	warp_event 11,  5, GOLDENROD_MAGNET_TRAIN_STATION, 3
 
 	def_coord_events
-	coord_event 11,  6, SCENE_SAFFRONMAGNETTRAINSTATION_ARRIVE_FROM_GOLDENROD, Script_ArriveFromGoldenrod
+	coord_event 11,  6, SCENE_SAFFRONCITY_DEFAULT, Script_ArriveFromGoldenrod
 
 	def_bg_events
+	bg_event 19,  3, BGEVENT_ITEM, TrainStationMagnet
 
 	def_object_events
 	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationOfficerScript, -1
 	object_event 10, 14, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationGymGuideScript, -1
 	object_event  6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	object_event  6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event  9,  2, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Zapdos, EVENT_ZAPDOS_STATION
+	object_event 19,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ThunderTM, EVENT_THUNDER_TM

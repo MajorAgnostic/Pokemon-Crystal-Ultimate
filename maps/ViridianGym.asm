@@ -4,8 +4,22 @@
 
 ViridianGym_MapScripts:
 	def_scene_scripts
+	scene_script .DummyScene0, SCENE_VIRIDIANGYM_DEFAULT
+	scene_script .DummyScene1, SCENE_DYLAN
 
 	def_callbacks
+	callback MAPCALLBACK_TILES, .GymLocked
+	
+.DummyScene0:
+.DummyScene1:
+	end
+	
+.GymLocked:
+	checkevent EVENT_VIRIDIAN_GYM_BLUE
+	iffalse .KeepOpen
+	changeblock 4, 8, $d
+.KeepOpen:
+	endcallback
 
 ViridianGymBlueScript:
 	faceplayer
@@ -17,9 +31,11 @@ ViridianGymBlueScript:
 	closetext
 	winlosstext LeaderBlueWinText, 0
 	loadtrainer BLUE, BLUE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLUE
+	clearevent EVENT_HOMEBIGONIXDOLL
 	opentext
 	writetext Text_ReceivedEarthBadge
 	playsound SFX_GET_BADGE
@@ -31,7 +47,60 @@ ViridianGymBlueScript:
 	end
 
 .FightDone:
+	checkevent EVENT_OPENED_RIGHTBB
+	iffalse .FightDoneOak
 	writetext LeaderBlueEpilogueText
+	waitbutton
+	closetext
+	end
+
+.FightDoneOak:
+	writetext LeaderBlueEpilogueOakText
+	waitbutton
+	closetext
+	end
+	
+DylanScene1:
+	opentext
+	writetext DylanText1
+	turnobject PLAYER, DOWN
+	showemote EMOTE_SHOCK, PLAYER, 30
+	waitbutton
+	closetext
+	moveobject VIRIDIANGYM_GYM_GUIDE, 5, 11
+	appear VIRIDIANGYM_GYM_GUIDE
+	playmusic MUSIC_CLAIR
+	applymovement VIRIDIANGYM_GYM_GUIDE, DylanMovement1
+	turnobject PLAYER, RIGHT
+	sjump DylanBattleCommon
+	
+DylanScene2:
+	opentext
+	writetext DylanText1
+	turnobject PLAYER, DOWN
+	showemote EMOTE_SHOCK, PLAYER, 30
+	waitbutton
+	closetext
+	moveobject VIRIDIANGYM_GYM_GUIDE, 4, 11
+	appear VIRIDIANGYM_GYM_GUIDE
+	playmusic MUSIC_CLAIR
+	applymovement VIRIDIANGYM_GYM_GUIDE, DylanMovement2
+	turnobject PLAYER, LEFT
+DylanBattleCommon:
+	opentext
+	writetext DylanText2
+	waitbutton
+	closetext
+	setscene SCENE_FINISHED
+	setevent EVENT_BEAT_DYLAN
+	winlosstext DylanWinText, 0
+	setlasttalked VIRIDIANGYM_GYM_GUIDE
+	loadtrainer SUPER_NERD, DYLAN
+	startbattle
+	reloadmapafterbattle
+	faceplayer
+	opentext
+	writetext DylanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -41,6 +110,8 @@ ViridianGymGuideScript:
 	opentext
 	checkevent EVENT_BEAT_BLUE
 	iftrue .ViridianGymGuideWinScript
+	checkevent EVENT_BEAT_DYLAN
+	iftrue .PostBattle
 	writetext ViridianGymGuideText
 	waitbutton
 	closetext
@@ -48,6 +119,12 @@ ViridianGymGuideScript:
 
 .ViridianGymGuideWinScript:
 	writetext ViridianGymGuideWinText
+	waitbutton
+	closetext
+	end
+	
+.PostBattle:
+	writetext DylanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -60,6 +137,81 @@ ViridianGymStatue:
 .Beaten:
 	gettrainername STRING_BUFFER_4, BLUE, BLUE1
 	jumpstd GymStatue2Script
+	
+DylanMovement1:
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	turn_head LEFT
+	step_end
+	
+DylanMovement2:
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	turn_head RIGHT
+	step_end
+	
+DylanAfterBattleText:
+	text "Uber strong!"
+
+	para "Alright, here's a"
+	line "tip, CHAMP."
+	
+	para "BLUE's first #-"
+	line "MON was BLASTOISE."
+	
+	para "It's exceptionally"
+	line "well-trained and"
+	
+	para "far faster than an"
+	line "average BLASTOISE."
+	
+	para "Don't rely on one"
+	line "#MON to take it"
+	cont "down."
+	
+	para "I know you can do"
+	line "it if you count on"
+	cont "your team!"
+	done
+
+DylanWinText:
+	text "Ergh!"
+	done
+	
+DylanText1:
+	text "Yo, CHAMP!"
+	done
+	
+DylanText2:
+	text "You're truly some-"
+	line "thing else, aren't"
+	cont "you?"
+
+	para "Not only have you"
+	line "dominated all of"
+	cont "the GYMs in JOHTO,"
+	
+	para "but those in KANTO"
+	line "as well."
+	
+	para "Well, almost."
+
+	para "Before you take on"
+	line "the former CHAMP,"
+	
+	para "I thought I'd give"
+	line "you a little warm-"
+	cont "up."
+	
+	para "I'm no pushover"
+	line "myself!"
+	done
 
 LeaderBlueBeforeText:
 	text "BLUE: Yo! Finally"
@@ -75,9 +227,11 @@ LeaderBlueBeforeText:
 
 	para "You're telling me"
 	line "you conquered all"
-	cont "the GYMS in JOHTO?"
+	cont "the GYMS in JOHTO"
+	cont "as well, is that"
+	cont "right?"
 
-	para "Heh! JOHTO's GYMS"
+	para "Heh! JOHTO's GYMs"
 	line "must be pretty"
 	cont "pathetic then."
 
@@ -115,12 +269,37 @@ Text_ReceivedEarthBadge:
 LeaderBlueAfterText:
 	text "BLUE: …"
 
-	para "All right, I was"
+	para "Alright, I was"
 	line "wrong. You're the"
 
-	para "real deal. You are"
+	para "real deal. You're"
 	line "a good trainer."
+	
+	para "You know, you may"
+	line "even give my rival"
 
+	para "RED a run for his"
+	line "money!"
+	
+	para "You should go see"
+	line "my gramps, if you"
+	cont "are interested."
+	
+	para "Speaking of RED, I"
+	line "left something for"
+	cont "him in his room."
+	
+	para "I bet he never got"
+	line "around to opening"
+	cont "the gift!"
+	
+	para "Why don't you go"
+	line "ahead and grab it?"
+	
+	para "No point letting"
+	line "it sit there and"
+	cont "collect dust."
+	
 	para "But I'm going to"
 	line "beat you someday."
 
@@ -135,6 +314,18 @@ LeaderBlueEpilogueText:
 	line "lose until I beat"
 	cont "you. Got it?"
 	done
+	
+LeaderBlueEpilogueOakText:
+	text "BLUE: Listen, you."
+
+	para "You'd better not"
+	line "lose until I beat"
+	cont "you. Got it?"
+	
+	para "And don't forget"
+	line "to give my gramps"
+	cont "a visit!"
+	done
 
 ViridianGymGuideText:
 	text "Yo, CHAMP in"
@@ -143,9 +334,19 @@ ViridianGymGuideText:
 	para "How's it going?"
 	line "Looks like you're"
 	cont "on a roll."
+	
+	para "What? You were the"
+	line "the CHAMP before"
+	cont "arriving in KANTO?"
+	
+	para "Why didn't you say"
+	line "something?"
+	
+	para "I'm embarrassed, to"
+	line "say the least."
 
-	para "The GYM LEADER is"
-	line "a guy who battled"
+	para "Anyway, the LEADER"
+	line "of this GYM became"
 
 	para "the CHAMPION three"
 	line "years ago."
@@ -157,7 +358,7 @@ ViridianGymGuideText:
 	done
 
 ViridianGymGuideWinText:
-	text "Man, you are truly"
+	text "Wow, you are truly"
 	line "tough…"
 
 	para "That was a heck of"
@@ -175,6 +376,8 @@ ViridianGym_MapEvents:
 	warp_event  5, 17, VIRIDIAN_CITY, 1
 
 	def_coord_events
+	coord_event  4,  6, SCENE_VIRIDIANGYM_DEFAULT, DylanScene1
+	coord_event  5,  6, SCENE_VIRIDIANGYM_DEFAULT, DylanScene2
 
 	def_bg_events
 	bg_event  3, 13, BGEVENT_READ, ViridianGymStatue

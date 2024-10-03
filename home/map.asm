@@ -146,10 +146,9 @@ LoadMetatiles::
 	ld e, l
 	ld d, h
 	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
-; BUG: LoadMetatiles wraps around past 128 blocks (see docs/bugs_and_glitches.md)
-	add a
 	ld l, a
 	ld h, 0
+	add hl, hl
 	add hl, hl
 	add hl, hl
 	add hl, hl
@@ -1376,6 +1375,11 @@ LoadTilesetGFX::
 .skip_roof
 	xor a
 	ldh [hTileAnimFrame], a
+	ld [wCarpetTile], a
+	ld [wFloorTile], a
+
+	ld a, MAPCALLBACK_GRAPHICS
+	call RunMapCallback
 	ret
 
 BufferScreen::
@@ -1896,7 +1900,7 @@ FadeToMenu::
 	xor a
 	ldh [hBGMapMode], a
 	call LoadStandardMenuHeader
-	farcall FadeOutToWhite
+	farcall FadeOutPalettes
 	call ClearSprites
 	call DisableSpriteUpdates
 	ret
@@ -1920,7 +1924,7 @@ FinishExitMenu::
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
 	call WaitBGMap2
-	farcall FadeInFromWhite
+	farcall FadeInPalettes
 	call EnableSpriteUpdates
 	ret
 
@@ -2182,9 +2186,11 @@ GetMapMusic::
 	call GetMapField
 	ld a, c
 	cp MUSIC_MAHOGANY_MART
-	jr z, .mahoganymart
-	bit RADIO_TOWER_MUSIC_F, c
-	jr nz, .radiotower
+    jr z, .mahoganymart
+    cp MUSIC_RADIO_TOWER
+    jr z, .radiotower
+	cp MUSIC_ROCKET_HIDEOUT2
+    jr z, .silphdeliv
 	farcall Function8b342
 	ld e, c
 	ld d, 0
@@ -2201,11 +2207,7 @@ GetMapMusic::
 	jr .done
 
 .clearedradiotower
-	; the rest of the byte
-	ld a, c
-	and RADIO_TOWER_MUSIC - 1
-	ld e, a
-	ld d, 0
+	ld de, MUSIC_GOLDENROD_CITY
 	jr .done
 
 .mahoganymart
@@ -2217,6 +2219,17 @@ GetMapMusic::
 
 .clearedmahogany
 	ld de, MUSIC_CHERRYGROVE_CITY
+	jr .done
+	
+.silphdeliv
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FEDERATION_IN_FUCHSIA_F, a
+	jr z, .clearedsilph
+	ld de, MUSIC_ROCKET_HIDEOUT
+	jr .done
+	
+.clearedsilph
+	ld de, MUSIC_CELADON_CITY
 	jr .done
 
 GetMapTimeOfDay::

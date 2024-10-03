@@ -6,12 +6,11 @@
 
 Route34IlexForestGate_MapScripts:
 	def_scene_scripts
-	scene_const SCENE_ROUTE34ILEXFORESTGATE_TEACHER_BLOCKS_IF_FOREST_IS_RESTLESS
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route34IsForestRestlessCallback
+	callback MAPCALLBACK_OBJECTS, .IsForestRestless
 
-Route34IsForestRestlessCallback:
+.IsForestRestless:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse .Normal
 	disappear ROUTE34ILEXFORESTGATE_TEACHER1
@@ -30,14 +29,14 @@ Route34IlexForestGateCelebiEvent:
 	turnobject ROUTE34ILEXFORESTGATE_TEACHER2, LEFT
 	turnobject PLAYER, RIGHT
 	follow PLAYER, ROUTE34ILEXFORESTGATE_TEACHER2
-	applymovement PLAYER, Route34IlexForestGateTeacherBlocksPlayerMovement
+	applymovement PLAYER, MovementData_0x62d97
 	stopfollow
 	turnobject PLAYER, DOWN
 	opentext
 	writetext Route34IlexForestGateTeacher_ForestIsRestless
 	waitbutton
 	closetext
-	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, Route34IlexForestGateTeacherReturnsMovement
+	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, MovementData_0x62d9a
 .skip:
 	end
 
@@ -46,17 +45,22 @@ Route34IlexForestGateTeacherScript:
 	opentext
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .ForestIsRestless
-	checkevent EVENT_GOT_TM12_SWEET_SCENT
-	iftrue .GotSweetScent
-	writetext Route34IlexForestGateTeacherText
+	checkevent EVENT_ILEX_LUCKY_EGG
+	iftrue .GotEgg
+	writetext Route34IlexForestGateLassEggText
 	promptbutton
-	verbosegiveitem TM_SWEET_SCENT
+	verbosegiveitem LUCKY_EGG
 	iffalse .NoRoom
-	setevent EVENT_GOT_TM12_SWEET_SCENT
-.GotSweetScent:
-	writetext Route34IlexForestGateTeacher_GotSweetScent
+	setevent EVENT_ILEX_LUCKY_EGG
+	writetext Route34IlexForestGateLassGotEggText
 	waitbutton
 .NoRoom:
+	closetext
+	end
+	
+.GotEgg:
+	writetext Route34IlexForestGateTeacherText
+	waitbutton
 	closetext
 	end
 
@@ -75,18 +79,23 @@ Route34IlexForestGateButterfreeScript:
 	end
 
 Route34IlexForestGateLassScript:
-	jumptextfaceplayer Route34IlexForestGateLassText
+	faceplayer
+	opentext
+	writetext Route34IlexForestGateLassText
+	waitbutton
+	closetext
+	end
 
-Route34IlexForestGateTeacherBlocksPlayerMovement:
+MovementData_0x62d97:
 	step UP
 	step UP
 	step_end
 
-Route34IlexForestGateTeacherReturnsMovement:
+MovementData_0x62d9a:
 	step DOWN
 	step RIGHT
 	step_end
-
+	
 Route34IlexForestGateTeacherText:
 	text "Oh, honey. You're"
 	line "making a #DEX?"
@@ -95,17 +104,14 @@ Route34IlexForestGateTeacherText:
 	line "#MON won't"
 
 	para "appear. Try using"
-	line "this TM."
-	done
-
-Route34IlexForestGateTeacher_GotSweetScent:
-	text "It's SWEET SCENT."
-
-	para "Use it wherever"
-	line "#MON appear."
-
+	line "SWEET SCENT."
+	
 	para "#MON will be"
 	line "enticed by it."
+	
+	para "I think it's sold"
+	line "at the GOLDENROD"
+	cont "GAME CORNER."
 	done
 
 Route34IlexForestGateTeacher_ForestIsRestless:
@@ -133,6 +139,27 @@ Route34IlexForestGateLassText:
 	line "must be a grass-"
 	cont "type #MON."
 	done
+	
+Route34IlexForestGateLassEggText:
+	text "Knowing that the"
+	line "forest is protec-"
+	cont "ted makes me feel"
+	cont "lucky!"
+	
+	para "Here, take this!"
+	done
+	
+Route34IlexForestGateLassGotEggText:
+	text "Giving a #MON"
+	line "that to hold will"
+	cont "allow them to gain"
+
+	para "experience at an"
+	line "increased rate!"
+
+	para "Don't you feel"
+	line "lucky too?"
+	done
 
 Route34IlexForestGate_MapEvents:
 	db 0, 0 ; filler
@@ -144,12 +171,12 @@ Route34IlexForestGate_MapEvents:
 	warp_event  5,  7, ILEX_FOREST, 1
 
 	def_coord_events
-	coord_event  4,  7, SCENE_ROUTE34ILEXFORESTGATE_TEACHER_BLOCKS_IF_FOREST_IS_RESTLESS, Route34IlexForestGateCelebiEvent
+	coord_event  4,  7, SCENE_DEFAULT, Route34IlexForestGateCelebiEvent
 
 	def_bg_events
 
 	def_object_events
 	object_event  9,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateTeacherScript, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
-	object_event  9,  4, SPRITE_BUTTERFREE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateButterfreeScript, -1
+	object_event  9,  4, SPRITE_BUTTERFREE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_TEAL, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateButterfreeScript, -1
 	object_event  3,  4, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateLassScript, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	object_event  5,  7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateTeacherScript, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY

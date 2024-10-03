@@ -39,28 +39,9 @@ GoldenrodDeptStore2FDirectory:
 GoldenrodDeptStore2FElevatorButton:
 	jumpstd ElevatorButtonScript
 
-GoldenrodDeptStore2FUnusedText1: ; unreferenced
-	text "We intend to sell"
-	line "items for #MON"
-	cont "to hold."
-
-	para "This is a free"
-	line "gift. Have a #-"
-	cont "MON hold it."
-	done
-
-GoldenrodDeptStore2FUnusedText2: ; unreferenced
-	text "By giving #MON"
-	line "items to hold, I"
-
-	para "bet trainers will"
-	line "develop new battle"
-	cont "techniques."
-	done
-
 GoldenrodDeptStore2FYoungsterText:
 	text "#GEAR can store"
-	line "up to ten phone"
+	line "up to 25 phone"
 	cont "numbers."
 
 	para "It's hard to de-"
@@ -69,7 +50,7 @@ GoldenrodDeptStore2FYoungsterText:
 	done
 
 GoldenrodDeptStore2FCooltrainerFText:
-	text "I got my ABRA at"
+	text "I got my CUBONE at"
 	line "the GAME CORNER."
 
 	para "Now it's my best"

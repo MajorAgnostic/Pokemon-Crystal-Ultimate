@@ -531,7 +531,7 @@ Function17d2ce:
 	call Function17d45a
 	pop af
 	ldh [rSVBK], a
-	ld de, MUSIC_MOBILE_CENTER
+	ld de, MUSIC_CLAIR
 	ld a, e
 	ld [wMapMusic], a
 	ld [wMusicFadeID], a
@@ -2819,7 +2819,7 @@ MACRO inc_crash_check_pointer_farcall
 ENDM
 
 IncCrashCheckPointer_SaveGameData:
-	inc_crash_check_pointer_farcall _SaveGameData
+	inc_crash_check_pointer_farcall SaveGameData
 
 IncCrashCheckPointer_SaveAfterLinkTrade:
 	inc_crash_check_pointer_farcall SaveAfterLinkTrade

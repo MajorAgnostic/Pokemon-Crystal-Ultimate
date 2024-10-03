@@ -73,13 +73,16 @@ FlowerShopFloriaScript:
 	closetext
 	end
 
-FlowerShopShelf1: ; unreferenced
+FlowerShopShelf1:
+; unused
 	jumpstd PictureBookshelfScript
 
-FlowerShopShelf2: ; unreferenced
+FlowerShopShelf2:
+; unused
 	jumpstd MagazineBookshelfScript
 
-FlowerShopRadio: ; unreferenced
+FlowerShopRadio:
+; unused
 	jumpstd Radio2Script
 
 GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text:

@@ -3,6 +3,8 @@
 	const FASTSHIPCABINS_SW_SSW_NW_BUG_CATCHER
 	const FASTSHIPCABINS_SW_SSW_NW_BEAUTY
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
+	const FASTSHIPCABINS_SW_SSW_NW_SUPER_NERD
+	const FASTSHIPCABINS_SW_SSW_NW_POKE_BALL
 
 FastShipCabins_SW_SSW_NW_MapScripts:
 	def_scene_scripts
@@ -47,7 +49,7 @@ TrainerGuitaristClyde:
 
 .Script:
 	endifjustbattled
-	special CheckMobileAdapterStatusSpecial
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	opentext
 	writetext GuitaristClydeAfterBattleText
@@ -61,20 +63,31 @@ TrainerGuitaristClyde:
 	waitbutton
 	closetext
 	end
+	
+TrainerPsychicRodney:
+	trainer PSYCHIC_T, RODNEY, EVENT_BEAT_PSYCHIC_RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext PsychicRodneyAfterBattleText
+	waitbutton
+	closetext
+	end
 
 FastShipBed:
 	opentext
 	writetext FastShipBedText1
 	waitbutton
 	closetext
-	special FadeOutToBlack
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	special StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60
 	special RestartMapMusic
-	special FadeInFromBlack
+	special FadeInQuickly
 	opentext
 	writetext FastShipBedText2
 	waitbutton
@@ -107,6 +120,9 @@ FastShipBed:
 	closetext
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
+	
+FastShipMaxEther:
+	itemball MAX_ETHER
 
 FastShipCabinsNorthwestCabinTrashcan:
 	jumpstd TrashCanScript
@@ -194,8 +210,25 @@ GuitaristClydeAfterBattleText:
 	text "Speaking of the"
 	line "RADIO STATION,"
 
-	para "what's this week's"
-	line "lucky number?"
+	para "what's today's lucky"
+	line "number?"
+	done
+	
+PsychicRodneySeenText:
+	text "Ssh! My brain is"
+	line "picking up radio"
+	cont "signals!"
+	done
+
+PsychicRodneyBeatenText:
+	text "…I hear some-"
+	line "thing!"
+	done
+
+PsychicRodneyAfterBattleText:
+	text "I get it. You can"
+	line "hear JOHTO's radio"
+	cont "on the FAST SHIP."
 	done
 
 FastShipBedText1:
@@ -239,6 +272,8 @@ FastShipCabins_SW_SSW_NW_MapEvents:
 
 	def_object_events
 	object_event  1, 15, SPRITE_FISHER, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	object_event  6, 15, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	object_event  1, 26, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	object_event  6, 15, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherKen, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	object_event  1, 26, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event  3, 28, SPRITE_ROCKER, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	object_event  3, 28, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	object_event  2, 25, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, FastShipMaxEther, EVENT_FAST_SHIP_MAX_ETHER

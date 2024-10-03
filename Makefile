@@ -240,7 +240,6 @@ gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/logo.2bpp: rgbgfx += -x 4
 
-gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
 gfx/trade/game_boy.2bpp: tools/gfx += --remove-duplicates --preserve=0x23,0x27
 gfx/trade/game_boy_cable.2bpp: gfx/trade/game_boy.2bpp gfx/trade/link_cable.2bpp ; cat $^ > $@
 
@@ -265,11 +264,24 @@ gfx/battle_anims/lightning.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/battle_anims/noise.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
-gfx/battle_anims/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
 gfx/battle_anims/reflect.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/rocks.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/skyattack.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/status.2bpp: tools/gfx += --remove-whitespace
+
+gfx/battle_balls/background.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/poke_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/great_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/ultra_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/master_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/level_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/lure_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/moon_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/friend_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/fast_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/heavy_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/love_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_balls/park_ball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
 
 gfx/player/chris.2bpp: rgbgfx += -Z
 gfx/player/chris_back.2bpp: rgbgfx += -Z

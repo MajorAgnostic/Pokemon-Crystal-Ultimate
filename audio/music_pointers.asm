@@ -12,6 +12,7 @@ Music:
 	dba Music_KantoGymBattle
 	dba Music_KantoTrainerBattle
 	dba Music_KantoWildBattle
+	dba Music_KantoWildBattleNight
 	dba Music_PokemonCenter
 	dba Music_LookHiker
 	dba Music_LookLass
@@ -72,9 +73,10 @@ Music:
 	dba Music_SproutTower
 	dba Music_BurnedTower
 	dba Music_Lighthouse
-	dba Music_LakeOfRage
+	dba Music_Route42
 	dba Music_IndigoPlateau
 	dba Music_Route37
+	dba Music_RocketHideout
 	dba Music_RocketHideout
 	dba Music_DragonsDen
 	dba Music_JohtoWildBattleNight
@@ -85,8 +87,6 @@ Music:
 	dba Music_VictoryRoad
 	dba Music_PokemonLullaby
 	dba Music_PokemonMarch
-	dba Music_GoldSilverOpening
-	dba Music_GoldSilverOpening2
 	dba Music_MainMenu
 	dba Music_RuinsOfAlphInterior
 	dba Music_RocketTheme
@@ -98,13 +98,25 @@ Music:
 	dba Music_PostCredits
 ; new to Crystal
 	dba Music_Clair
-	dba Music_MobileAdapterMenu
-	dba Music_MobileAdapter
 	dba Music_BuenasPassword
 	dba Music_LookMysticalMan
 	dba Music_CrystalOpening
 	dba Music_BattleTowerTheme
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
-	dba Music_MobileCenter
+	dba Music_RBYIndigoPlateau
+	dba Music_LugiasSong2000
+	dba Music_FinalBattle
+	dba Music_HoennChampionBattle
+	dba Music_KantoLegend
+	dba Music_CeruleanCityGBS
+	dba Music_CinnabarIslandGBS
+	dba Music_Route25GBS
+	dba Music_ZinniaBattle
+	dba Music_BrendanEncounter
+	dba Music_Dungeon2 ; ViridianForest
+	dba Music_UnovaEliteFourBattle
+	dba Music_AlolaEliteFourBattle
+	dba Music_CipherPeonBattle
+	dba Music_GiovanniBattle
 	assert_table_length NUM_MUSIC_SONGS

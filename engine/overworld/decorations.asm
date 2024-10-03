@@ -1096,23 +1096,6 @@ ToggleMaptileDecorations:
 	ld a, [wDecoPoster]
 	call SetDecorationTile
 	call SetPosterVisibility
-	lb de, 0, 0 ; carpet top-left coordinates
-	call PadCoords_de
-	ld a, [wDecoCarpet]
-	and a
-	ret z
-	call _GetDecorationSprite
-	ld [hl], a
-	push af
-	lb de, 0, 2 ; carpet bottom-left coordinates
-	call PadCoords_de
-	pop af
-	inc a
-	ld [hli], a ; carpet bottom-left block
-	inc a
-	ld [hli], a ; carpet bottom-middle block
-	dec a
-	ld [hl], a ; carpet bottom-right block
 	ret
 
 SetPosterVisibility:
@@ -1187,3 +1170,100 @@ PadCoords_de:
 	ld e, a
 	call GetBlockLocation
 	ret
+	
+CoverTilesWithCarpet::
+; Check if a carpet decoration is being used
+	ld a, [wDecoCarpet]
+	and a
+	ret z
+
+; [wCarpetTile] = the carpet tile ID from DecorationAttributes
+	ld c, a
+	call GetDecorationSprite
+	ld a, c
+	ld [wCarpetTile], a
+
+; [wFloorTile] = $01
+; This tile will use the palette of [wCarpetTile] instead
+	ld a, $01
+	ld [wFloorTile], a
+
+; Cover each tile listed in CarpetCoveredTiles 
+	ld hl, CarpetCoveredTiles
+.loop
+; Stop when we reach -1
+	ld a, [hli]
+	cp -1
+	ret z
+; [wCoveredTile] = the tile ID to cover with carpet
+	ld [wCoveredTile], a
+; bc = the mask for which pixels to cover
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+; Copy the carpet pixels over the covered pixels
+	push hl
+	call CoverCarpetTile
+	pop hl
+	jr .loop
+
+CoverCarpetTile:
+; Copy pixels from tile #[wCarpetTile] to tile #[wCoveredTile]
+; based on the bitmask in bc.
+; Both tile IDs must be less than $80 (i.e. in bank 0).
+
+	push bc
+
+; de = covered tile in VRAM (destination)
+	ld a, [wCoveredTile]
+	ld hl, vTiles2
+	ld bc, 1 tiles
+	call AddNTimes
+	ld d, h
+	ld e, l
+
+; hl = carpet tile in VRAM (source)
+	ld a, [wCarpetTile]
+	ld hl, vTiles2
+	ld bc, 1 tiles
+	call AddNTimes
+
+	pop bc
+
+; bc = one byte before the pixel mask
+	dec bc
+
+; Cover all 8 rows of the tile
+rept TILE_WIDTH - 1
+	call .CoverRow
+endr
+.CoverRow:
+	inc bc ; advance to the next 1bpp mask byte
+	call .CoverHalfRow
+.CoverHalfRow:
+	push hl
+; h = carpet byte
+	ld a, [hl]
+	ld h, a
+; l = covered byte
+	ld a, [de]
+	ld l, a
+; h = carpet & mask
+	ld a, [bc]
+	and h
+	ld h, a
+; l = covered & ~mask
+	ld a, [bc]
+	cpl
+	and l
+	ld l, a
+; covered = (carpet & mask) | (covered & ~mask) = if mask then carpet else covered
+	or h
+	ld [de], a
+	pop hl
+	inc hl ; advance to the next 2bpp carpet byte
+	inc de ; advance to the next 2bpp covered byte
+	ret
+
+INCLUDE "data/decorations/carpet_covered_tiles.asm"

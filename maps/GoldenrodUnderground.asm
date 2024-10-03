@@ -16,11 +16,11 @@ GoldenrodUnderground_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, GoldenrodUndergroundResetSwitchesCallback
-	callback MAPCALLBACK_TILES, GoldenrodUndergroundCheckBasementKeyCallback
-	callback MAPCALLBACK_OBJECTS, GoldenrodUndergroundCheckDayOfWeekCallback
+	callback MAPCALLBACK_NEWMAP, .ResetSwitches
+	callback MAPCALLBACK_TILES, .CheckBasementKey
+	callback MAPCALLBACK_OBJECTS, .CheckDayOfWeek
 
-GoldenrodUndergroundResetSwitchesCallback:
+.ResetSwitches:
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
@@ -40,7 +40,7 @@ GoldenrodUndergroundResetSwitchesCallback:
 	writemem wUndergroundSwitchPositions
 	endcallback
 
-GoldenrodUndergroundCheckBasementKeyCallback:
+.CheckBasementKey:
 	checkevent EVENT_USED_BASEMENT_KEY
 	iffalse .LockBasementDoor
 	endcallback
@@ -49,7 +49,7 @@ GoldenrodUndergroundCheckBasementKeyCallback:
 	changeblock 18, 6, $3d ; locked door
 	endcallback
 
-GoldenrodUndergroundCheckDayOfWeekCallback:
+.CheckDayOfWeek:
 	readvar VAR_WEEKDAY
 	ifequal MONDAY, .Monday
 	ifequal TUESDAY, .Tuesday
@@ -58,7 +58,7 @@ GoldenrodUndergroundCheckDayOfWeekCallback:
 	ifequal FRIDAY, .Friday
 	ifequal SATURDAY, .Saturday
 
-; Sunday
+.Sunday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
@@ -233,10 +233,10 @@ OlderHaircutBrotherScript:
 	writetext GoldenrodUndergroundOlderHaircutBrotherWatchItBecomeBeautifulText
 	waitbutton
 	closetext
-	special FadeOutToWhite
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInFromWhite
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext GoldenrodUndergroundOlderHaircutBrotherAllDoneText
@@ -316,10 +316,10 @@ YoungerHaircutBrotherScript:
 	writetext GoldenrodUndergroundYoungerHaircutBrotherIllMakeItLookCoolText
 	waitbutton
 	closetext
-	special FadeOutToWhite
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInFromWhite
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext GoldenrodUndergroundYoungerHaircutBrotherAllDoneText
@@ -386,7 +386,7 @@ BasementDoorScript::
 	waitbutton
 	closetext
 	changeblock 18, 6, $2e ; unlocked door
-	refreshmap
+	reloadmappart
 	closetext
 	setevent EVENT_USED_BASEMENT_KEY
 	end
@@ -458,8 +458,9 @@ SupernerdTeruAfterBattleText:
 	text "I know my #MON"
 	line "type alignments."
 
-	para "But I only use one"
-	line "type of #MON."
+	para "But my #MON are"
+	line "mostly weak to the"
+	cont "same type…"
 	done
 
 PokemaniacIssacSeenText:

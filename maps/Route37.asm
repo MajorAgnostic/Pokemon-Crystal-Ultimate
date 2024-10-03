@@ -1,6 +1,6 @@
 	object_const_def
-	const ROUTE37_WEIRD_TREE1
-	const ROUTE37_WEIRD_TREE2
+	const ROUTE37_TWIN1
+	const ROUTE37_TWIN2
 	const ROUTE37_YOUNGSTER
 	const ROUTE37_FRUIT_TREE1
 	const ROUTE37_SUNNY
@@ -11,17 +11,6 @@ Route37_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route37SunnyCallback
-
-Route37SunnyCallback:
-	readvar VAR_WEEKDAY
-	ifequal SUNDAY, .SunnyAppears
-	disappear ROUTE37_SUNNY
-	endcallback
-
-.SunnyAppears:
-	appear ROUTE37_SUNNY
-	endcallback
 
 TrainerTwinsAnnandanne1:
 	trainer TWINS, ANNANDANNE1, EVENT_BEAT_TWINS_ANN_AND_ANNE, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, 0, .Script
@@ -35,7 +24,7 @@ TrainerTwinsAnnandanne1:
 	end
 
 TrainerTwinsAnnandanne2:
-	trainer TWINS, ANNANDANNE2, EVENT_BEAT_TWINS_ANN_AND_ANNE, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, 0, .Script
+	trainer TWINS, ANNANDANNE1, EVENT_BEAT_TWINS_ANN_AND_ANNE, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -61,23 +50,21 @@ SunnyScript:
 	opentext
 	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
 	iftrue SunnySundayScript
-	readvar VAR_WEEKDAY
-	ifnotequal SUNDAY, SunnyNotSundayScript
-	checkevent EVENT_MET_SUNNY_OF_SUNDAY
-	iftrue .MetSunny
 	writetext MeetSunnyText
 	promptbutton
-	setevent EVENT_MET_SUNNY_OF_SUNDAY
-.MetSunny:
-	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue .Kris
-	writetext SunnyGivesGiftText1
+	readvar VAR_WEEKDAY
+	ifequal SUNDAY, .GiveMagnet
+	writetext SunnySeenText
+	waitbutton
+	closetext
+	winlosstext SunnyBeatenText, 0
+	loadtrainer BUG_CATCHER, SUNNY
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveMagnet:
+	writetext SunnyGivesGiftText
 	promptbutton
-	sjump .next
-.Kris:
-	writetext SunnyGivesGiftText2
-	promptbutton
-.next
 	verbosegiveitem MAGNET
 	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
@@ -87,8 +74,13 @@ SunnyScript:
 	end
 
 SunnySundayScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, SunnyNotSundayScript
 	writetext SunnySundayText
 	waitbutton
+	closetext
+	end
+	
 SunnyDoneScript:
 	closetext
 	end
@@ -175,20 +167,25 @@ MeetSunnyText:
 	text "SUNNY: Hi!"
 
 	para "I'm SUNNY of Sun-"
-	line "day, meaning it's"
-	cont "Sunday today!"
+	line "day."
+	done
+	
+SunnySeenText:
+	text "I'm only supposed"
+	line "to give away gifts"
+
+	para "on Sunday, but if"
+	line "you play with me,"
+	cont "I'll give you one!"
+	done
+	
+SunnyBeatenText:
+	text "Hihi, that was so"
+	line "much fun!"
 	done
 
-SunnyGivesGiftText1:
-	text "I was told to give"
-	line "you this if I saw"
-	cont "you!"
-	done
-
-SunnyGivesGiftText2:
-	text "I was told to give"
-	line "you this if I saw"
-	cont "you!"
+SunnyGivesGiftText:
+	text "This is for you!"
 	done
 
 SunnyGaveGiftText:
@@ -210,8 +207,7 @@ SunnyGaveGiftText:
 	line "it."
 
 	para "My sis MONICA said"
-	line "it powers up"
-	cont "electric moves!"
+	line "it powers them up!"
 	done
 
 SunnySundayText:
@@ -247,8 +243,8 @@ Route37_MapEvents:
 	bg_event  4,  2, BGEVENT_ITEM, Route37HiddenEther
 
 	def_object_events
-	object_event  6, 12, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne1, -1
-	object_event  7, 12, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne2, -1
+	object_event  6, 12, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne1, -1
+	object_event  7, 12, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne2, -1
 	object_event  6,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicGreg, -1
 	object_event 13,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route37FruitTree1, -1
 	object_event 16,  8, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY

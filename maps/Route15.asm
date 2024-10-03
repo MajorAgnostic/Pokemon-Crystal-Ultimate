@@ -6,6 +6,8 @@
 	const ROUTE15_TEACHER1
 	const ROUTE15_TEACHER2
 	const ROUTE15_POKE_BALL
+	const ROUTE15_YOUNGSTER5
+	const ROUTE15_TEACHER3
 
 Route15_MapScripts:
 	def_scene_scripts
@@ -77,12 +79,73 @@ TrainerSchoolboyBilly:
 	waitbutton
 	closetext
 	end
+	
+TrainerConnor:
+	trainer SCHOOLBOY, CONNOR, EVENT_BEAT_CONNOR, ConnorSeenText, ConnorBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext ConnorAfterBattleText
+	waitbutton
+	closetext
+	end
+	
+TrainerClarice:
+	trainer TEACHER, CLARICE, EVENT_BEAT_CLARICE, ClariceSeenText, ClariceBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext ClariceAfterBattleText
+	waitbutton
+	closetext
+	end
 
 Route15Sign:
 	jumptext Route15SignText
 
 Route15PPUp:
 	itemball PP_UP
+
+ConnorSeenText:
+	text "I can't wait to"
+	line "get home and drop"
+	cont "off my PACK!"
+	done
+
+ConnorBeatenText:
+	text "I was in too much"
+	line "of a hurry."
+	done
+
+ConnorAfterBattleText:
+	text "Don't rush, take"
+	line "the road one step"
+	cont "at a time."
+
+	para "Great advice!"
+	done
+	
+ClariceSeenText:
+	text "Alright, let's get"
+	line "our #MON battle"
+	cont "started!"
+	done
+
+ClariceBeatenText:
+	text "Alright! That con-"
+	line "cludes our battle."
+	done
+
+ClariceAfterBattleText:
+	text "Don't relax just"
+	line "'cause you won."
+
+	para "Once you get home,"
+	line "you should do a"
+	cont "full review!"
+	done
 
 TeacherColetteSeenText:
 	text "Have you forgotten"
@@ -216,6 +279,8 @@ Route15_MapEvents:
 	object_event 15, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyTommy, -1
 	object_event 33, 10, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJohnny, -1
 	object_event 27, 10, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyBilly, -1
-	object_event 30, 12, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerTeacherColette, -1
-	object_event 20, 10, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerTeacherHillary, -1
+	object_event 30, 12, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerTeacherColette, -1
+	object_event 20, 10, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerTeacherHillary, -1
 	object_event 12,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route15PPUp, EVENT_ROUTE_15_PP_UP
+	object_event 27,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerConnor, -1
+	object_event 17,  5, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerClarice, -1

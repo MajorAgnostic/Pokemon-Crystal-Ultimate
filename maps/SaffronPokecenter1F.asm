@@ -13,7 +13,7 @@ SaffronPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
 SaffronPokecenter1FTeacherScript:
-	special CheckMobileAdapterStatusSpecial
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer SaffronPokecenter1FTeacherText
 

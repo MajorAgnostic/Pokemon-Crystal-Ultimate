@@ -6,9 +6,6 @@ GoldenrodBikeShop_MapScripts:
 
 	def_callbacks
 
-GoldenrodBikeShopNoopScene: ; unreferenced
-	end
-
 GoldenrodBikeShopClerkScript:
 	faceplayer
 	opentext
@@ -39,7 +36,8 @@ GoldenrodBikeShopClerkScript:
 	closetext
 	end
 
-GoldenrodBikeShopJustReleasedCompactBike: ; unreferenced
+GoldenrodBikeShopJustReleasedCompactBike:
+; unused
 	jumptext GoldenrodBikeShopJustReleasedCompactBikeText
 
 GoldenrodBikeShopBicycle:

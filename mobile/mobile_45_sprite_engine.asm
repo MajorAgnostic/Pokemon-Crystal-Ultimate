@@ -465,7 +465,7 @@ Function1161d5:
 	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld a, $8
 	ld [wMusicFade], a
-	ld de, MUSIC_MOBILE_ADAPTER
+	ld de, MUSIC_CLAIR
 	ld a, e
 	ld [wMusicFadeID], a
 	ld a, d

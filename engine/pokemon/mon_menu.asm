@@ -8,6 +8,9 @@ HasNoItems:
 	ld a, [wNumBalls]
 	and a
 	ret nz
+	ld a, [wNumMedicine]
+	and a
+	ret nz
 	ld hl, wTMsHMs
 	ld b, NUM_TMS + NUM_HMS
 .loop
@@ -506,6 +509,7 @@ StartMenuYesNo:
 
 ComposeMailMessage:
 	ld de, wTempMailMessage
+	ld b, NAME_MAIL
 	farcall _ComposeMailMessage
 	ld hl, wPlayerName
 	ld de, wTempMailAuthor
@@ -869,7 +873,7 @@ ChooseMoveToDelete:
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
-	call LoadFontsBattleExtra
+	farcall LoadPartyMenuGFX
 	call .ChooseMoveToDelete
 	pop bc
 	ld a, b
@@ -1294,7 +1298,7 @@ String_MoveType_Top:
 String_MoveType_Bottom:
 	db "│TYPE/└@"
 String_MoveAtk:
-	db "ATK/@"
+	db "POW/@"
 String_MoveNoPower:
 	db "---@"
 

@@ -14,35 +14,35 @@
 
 Route36NationalParkGate_MapScripts:
 	def_scene_scripts
-	scene_script Route36NationalParkGateNoop1Scene,             SCENE_ROUTE36NATIONALPARKGATE_NOOP
-	scene_script Route36NationalParkGateNoop2Scene,             SCENE_ROUTE36NATIONALPARKGATE_UNUSED
-	scene_script Route36NationalParkGateLeaveContestEarlyScene, SCENE_ROUTE36NATIONALPARKGATE_LEAVE_CONTEST_EARLY
+	scene_script .DummyScene0, SCENE_ROUTE36NATIONALPARKGATE_NOTHING
+	scene_script .DummyScene1, SCENE_ROUTE36NATIONALPARKGATE_UNUSED
+	scene_script .LeaveContestEarly, SCENE_ROUTE36NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, Route36NationalParkGateCheckIfContestRunningCallback
-	callback MAPCALLBACK_OBJECTS, Route36NationalParkGateCheckIfContestAvailableCallback
+	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
+	callback MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
-Route36NationalParkGateNoop1Scene:
+.DummyScene0:
 	end
 
-Route36NationalParkGateNoop2Scene:
+.DummyScene1:
 	end
 
-Route36NationalParkGateLeaveContestEarlyScene:
-	sdefer Route36NationalParkGateLeavingContestEarlyScript
+.LeaveContestEarly:
+	prioritysjump .LeavingContestEarly
 	end
 
-Route36NationalParkGateCheckIfContestRunningCallback:
+.CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
-	setscene SCENE_ROUTE36NATIONALPARKGATE_NOOP
+	setscene SCENE_ROUTE36NATIONALPARKGATE_NOTHING
 	endcallback
 
 .BugContestIsRunning:
 	setscene SCENE_ROUTE36NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 	endcallback
 
-Route36NationalParkGateCheckIfContestAvailableCallback:
+.CheckIfContestAvailable:
 	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	iftrue .Return
 	readvar VAR_WEEKDAY
@@ -61,7 +61,7 @@ Route36NationalParkGateCheckIfContestAvailableCallback:
 .Return:
 	endcallback
 
-Route36NationalParkGateLeavingContestEarlyScript:
+.LeavingContestEarly:
 	turnobject PLAYER, UP
 	opentext
 	readvar VAR_CONTESTMINUTES
@@ -73,14 +73,14 @@ Route36NationalParkGateLeavingContestEarlyScript:
 	writetext Route36NationalParkGateOfficer1WaitHereForAnnouncementText
 	waitbutton
 	closetext
-	special FadeOutToBlack
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	scall .CopyContestants
 	disappear ROUTE36NATIONALPARKGATE_OFFICER1
 	appear ROUTE36NATIONALPARKGATE_OFFICER2
 	applymovement PLAYER, Route36NationalParkGatePlayerWaitWithContestantsMovement
 	pause 15
-	special FadeInFromBlack
+	special FadeInQuickly
 	jumpstd BugContestResultsScript
 
 .GoBackToContest:
@@ -89,7 +89,7 @@ Route36NationalParkGateLeavingContestEarlyScript:
 	closetext
 	turnobject PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
 	end
@@ -172,7 +172,7 @@ Route36OfficerScriptContest:
 	special GiveParkBalls
 	turnobject PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	special SelectRandomBugContestContestants
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
@@ -463,10 +463,6 @@ BugCatchingContestant10BScript:
 	closetext
 	end
 
-UnusedBugCatchingContestExplanationSign: ; unreferenced
-; duplicate of BugCatchingContestExplanationSign in Route35NationalParkGate.asm
-	jumptext UnusedBugCatchingContestExplanationText
-
 Route36NationalParkGatePlayerWaitWithContestantsMovement:
 	big_step DOWN
 	big_step RIGHT
@@ -503,7 +499,7 @@ Route36NationalParkGateOfficer1GiveParkBallsText:
 
 Route36NationalParkGatePlayerReceivedParkBallsText:
 	text "<PLAYER> received"
-	line "{d:BUG_CONTEST_BALLS} PARK BALLS."
+	line "20 PARK BALLS."
 	done
 
 Route36NationalParkGateOfficer1ExplainsRulesText:
@@ -512,7 +508,7 @@ Route36NationalParkGateOfficer1ExplainsRulesText:
 	cont "est bug #MON"
 	cont "is the winner."
 
-	para "You have {d:BUG_CONTEST_MINUTES}"
+	para "You have 20"
 	line "minutes."
 
 	para "If you run out of"
@@ -793,39 +789,6 @@ BugCatchingContestant10BStillCompetingText:
 
 	para "not good enough to"
 	line "win."
-	done
-
-UnusedSilphScope2Text: ; unreferenced
-; This text is referring to Sudowoodo.
-; The SILPHSCOPE2 was later reworked into the SQUIRTBOTTLE.
-	text "I hear there's a"
-	line "#MON that looks"
-	cont "just like a tree."
-
-	para "You can reveal its"
-	line "identity using a"
-	cont "SILPHSCOPE 2."
-	done
-
-UnusedBugCatchingContestExplanationText:
-; duplicate of BugCatchingContestExplanationText in Route35NationalParkGate.asm
-	text "The Bug-Catching"
-	line "Contest is held on"
-
-	para "Tuesday, Thursday"
-	line "and Saturday."
-
-	para "Not only do you"
-	line "earn a prize just"
-
-	para "for participating,"
-	line "you also get to"
-
-	para "keep the bug"
-	line "#MON you may"
-
-	para "have at the end of"
-	line "the contest."
 	done
 
 Route36NationalParkGateOfficer1WellHoldPrizeText:

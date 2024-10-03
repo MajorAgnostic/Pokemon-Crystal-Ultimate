@@ -21,9 +21,12 @@ AzaleaGymBugsyScript:
 	waitbutton
 	closetext
 	winlosstext BugsyText_ResearchIncomplete, 0
+	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	iftrue .CyndaquilBugsy
 	loadtrainer BUGSY, BUGSY1
 	startbattle
 	reloadmapafterbattle
+	loadmem wLevelCap, 40
 	setevent EVENT_BEAT_BUGSY
 	opentext
 	writetext Text_ReceivedHiveBadge
@@ -39,6 +42,37 @@ AzaleaGymBugsyScript:
 	setevent EVENT_BEAT_BUG_CATCHER_BENNY
 	setevent EVENT_BEAT_BUG_CATCHER_AL
 	setevent EVENT_BEAT_BUG_CATCHER_JOSH
+	clearevent EVENT_ADAM_APPEARS
+	writetext BugsyText_HiveBadgeSpeech
+	promptbutton
+	verbosegiveitem TM_FURY_CUTTER
+	iffalse .NoRoomForFuryCutter
+	setevent EVENT_GOT_TM49_FURY_CUTTER
+	writetext BugsyText_FuryCutterSpeech
+	waitbutton
+	closetext
+	end
+	
+.CyndaquilBugsy:
+	loadtrainer BUGSY, BUGSY2
+	startbattle
+	reloadmapafterbattle
+	loadmem wLevelCap, 40
+	setevent EVENT_BEAT_BUGSY
+	opentext
+	writetext Text_ReceivedHiveBadge
+	playsound SFX_GET_BADGE
+	waitsfx
+	setflag ENGINE_HIVEBADGE
+	readvar VAR_BADGES
+	scall AzaleaGymActivateRockets
+	checkevent EVENT_GOT_TM49_FURY_CUTTER
+	iftrue .GotFuryCutter
+	setevent EVENT_BEAT_TWINS_AMY_AND_MAY
+	setevent EVENT_BEAT_BUG_CATCHER_BENNY
+	setevent EVENT_BEAT_BUG_CATCHER_AL
+	setevent EVENT_BEAT_BUG_CATCHER_JOSH
+	clearevent EVENT_ADAM_APPEARS
 	writetext BugsyText_HiveBadgeSpeech
 	promptbutton
 	verbosegiveitem TM_FURY_CUTTER
@@ -79,7 +113,7 @@ TrainerTwinsAmyandmay1:
 	end
 
 TrainerTwinsAmyandmay2:
-	trainer TWINS, AMYANDMAY2, EVENT_BEAT_TWINS_AMY_AND_MAY, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, 0, .AfterScript
+	trainer TWINS, AMYANDMAY1, EVENT_BEAT_TWINS_AMY_AND_MAY, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, 0, .AfterScript
 
 .AfterScript:
 	endifjustbattled
@@ -126,6 +160,8 @@ AzaleaGymGuideScript:
 	faceplayer
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .AzaleaGymGuideWinScript
+	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	iftrue .CyndaquilGymGuide
 	opentext
 	writetext AzaleaGymGuideText
 	waitbutton
@@ -135,6 +171,13 @@ AzaleaGymGuideScript:
 .AzaleaGymGuideWinScript:
 	opentext
 	writetext AzaleaGymGuideWinText
+	waitbutton
+	closetext
+	end
+	
+.CyndaquilGymGuide:
+	opentext
+	writetext AzaleaGymGuideText2
 	waitbutton
 	closetext
 	end
@@ -188,10 +231,11 @@ BugsyText_HiveBadgeSpeech:
 	cont "BADGE?"
 
 	para "If you have it,"
-	line "#MON up to L30"
+	line "#MON up to L40"
 
-	para "will obey you,"
-	line "even traded ones."
+	para "will gain experi-"
+	line "ence and obey you,"
+	cont "even traded ones."
 
 	para "#MON that know"
 	line "CUT will be able"
@@ -344,7 +388,39 @@ AzaleaGymGuideText:
 
 	para "Flying-type moves"
 	line "are super-effec-"
-	cont "tive too."
+	
+	para "tive too. But they"
+	line "won't work as well"
+	
+	para "on a certain #-"
+	line "MON of his."
+	done
+	
+AzaleaGymGuideText2:
+	text "Yo, challenger!"
+
+	para "BUGSY's young, but"
+	line "his knowledge of"
+
+	para "bug #MON is for"
+	line "real."
+
+	para "It's going to be"
+	line "tough without my"
+	cont "advice."
+
+	para "Let's see… Bug"
+	line "#MON don't like"
+	cont "fire."
+
+	para "Flying-type moves"
+	line "are super-effec-"
+	
+	para "tive too, but your"
+	line "best bet to take"
+	
+	para "down his ace is a"
+	line "rock-type move!"
 	done
 
 AzaleaGymGuideWinText:

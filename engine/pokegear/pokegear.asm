@@ -2790,7 +2790,7 @@ INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX:
 INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 
-EntireFlyMap: ; unreferenced
+EntireFlyMap: ; unreferenced originally, used and modified for Ultimate
 ; Similar to _FlyMap, but scrolls through the entire
 ; Flypoints data of both regions. A debug function?
 	xor a
@@ -2873,10 +2873,10 @@ EntireFlyMap: ; unreferenced
 .HandleDPad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_DOWN | D_RIGHT
+	and D_UP | D_RIGHT
 	jr nz, .ScrollNext
 	ld a, [hl]
-	and D_UP | D_LEFT
+	and D_DOWN | D_LEFT
 	jr nz, .ScrollPrev
 	ret
 
@@ -2903,12 +2903,16 @@ EntireFlyMap: ; unreferenced
 	cp KANTO_FLYPOINT
 	jr c, .InJohto
 	call FillKantoMap
+	call ClearSprites
+	call TownMapMon
 	xor a
 	ld b, HIGH(vBGMap1)
 	jr .Finally
 
 .InJohto:
 	call FillJohtoMap
+	call ClearSprites
+	call TownMapMon
 	ld a, SCREEN_HEIGHT_PX
 	ld b, HIGH(vBGMap0)
 .Finally:

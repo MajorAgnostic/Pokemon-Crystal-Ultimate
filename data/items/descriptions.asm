@@ -1,11 +1,19 @@
 ItemDescriptions:
 ; entries correspond to item ids (see constants/item_constants.asm)
 	table_width 2, ItemDescriptions
-	dw MasterBallDesc
-	dw UltraBallDesc
-	dw BrightpowderDesc
-	dw GreatBallDesc
 	dw PokeBallDesc
+	dw GreatBallDesc
+	dw UltraBallDesc
+	dw MasterBallDesc
+	dw HeavyBallDesc
+	dw LevelBallDesc
+	dw LureBallDesc
+	dw FastBallDesc
+	dw FriendBallDesc
+	dw MoonBallDesc
+	dw LoveBallDesc
+	dw ParkBallDesc
+	dw BrightpowderDesc
 	dw TeruSama1Desc
 	dw BicycleDesc
 	dw MoonStoneDesc
@@ -21,11 +29,11 @@ ItemDescriptions:
 	dw PotionDesc
 	dw EscapeRopeDesc
 	dw RepelDesc
-	dw MaxElixerDesc
+	dw ElixerDesc
 	dw FireStoneDesc
 	dw ThunderStoneDesc
 	dw WaterStoneDesc
-	dw TeruSama2Desc
+	dw PocketPCDesc
 	dw HPUpDesc
 	dw ProteinDesc
 	dw IronDesc
@@ -40,17 +48,17 @@ ItemDescriptions:
 	dw PokeDollDesc
 	dw FullHealDesc
 	dw ReviveDesc
-	dw MaxReviveDesc
+	dw MaxEtherDesc
 	dw GuardSpecDesc
 	dw SuperRepelDesc
 	dw MaxRepelDesc
 	dw DireHitDesc
-	dw TeruSama3Desc
+	dw PikachuBedDesc
 	dw FreshWaterDesc
 	dw SodaPopDesc
 	dw LemonadeDesc
 	dw XAttackDesc
-	dw TeruSama4Desc
+	dw GreenCarpetDesc
 	dw XDefendDesc
 	dw XSpeedDesc
 	dw XSpecialDesc
@@ -64,9 +72,9 @@ ItemDescriptions:
 	dw SuperRodDesc
 	dw PPUpDesc
 	dw EtherDesc
-	dw MaxEtherDesc
-	dw ElixerDesc
-	dw RedScaleDesc
+	dw MaxReviveDesc
+	dw MaxElixerDesc
+	dw DarkScaleDesc
 	dw SecretPotionDesc
 	dw SSTicketDesc
 	dw MysteryEggDesc
@@ -90,7 +98,7 @@ ItemDescriptions:
 	dw BigMushroomDesc
 	dw SilverPowderDesc
 	dw BluApricornDesc
-	dw TeruSama6Desc
+	dw YellowCarpetDesc
 	dw AmuletCoinDesc
 	dw YlwApricornDesc
 	dw GrnApricornDesc
@@ -100,7 +108,7 @@ ItemDescriptions:
 	dw WhtApricornDesc
 	dw BlackbeltDesc
 	dw BlkApricornDesc
-	dw TeruSama7Desc
+	dw PikaPosterDesc
 	dw PnkApricornDesc
 	dw BlackGlassesDesc
 	dw SlowpokeTailDesc
@@ -120,7 +128,7 @@ ItemDescriptions:
 	dw MiracleSeedDesc
 	dw ThickClubDesc
 	dw FocusBandDesc
-	dw TeruSama8Desc
+	dw SNESDesc
 	dw EnergyPowderDesc
 	dw EnergyRootDesc
 	dw HealPowderDesc
@@ -135,51 +143,46 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw PassDesc
-	dw TeruSama9Desc
-	dw TeruSama10Desc
-	dw TeruSama11Desc
+	dw UnownDollDesc
+	dw JigglypuffDollDesc
+	dw JigglypuffPosterDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
-	dw TeruSama12Desc
-	dw TeruSama13Desc
+	dw ClefairyDollDesc
+	dw ClefairyPosterDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
-	dw TeruSama14Desc
+	dw PinkBedDesc
 	dw LeftoversDesc
-	dw TeruSama15Desc
-	dw TeruSama16Desc
-	dw TeruSama17Desc
+	dw MagnaPlantDesc
+	dw TropicPlantDesc
+	dw JumboPlantDesc
 	dw MysteryBerryDesc
-	dw DragonScaleDesc
+	dw BigLaprasDesc
 	dw BerserkGeneDesc
-	dw TeruSama18Desc
-	dw TeruSama19Desc
-	dw TeruSama20Desc
+	dw PolkadotBedDesc
+	dw BlueCarpetDesc
+	dw RedCarpetDesc
 	dw SacredAshDesc
-	dw HeavyBallDesc
 	dw FlowerMailDesc
-	dw LevelBallDesc
-	dw LureBallDesc
-	dw FastBallDesc
-	dw TeruSama21Desc
+	dw NESDesc
 	dw LightBallDesc
-	dw FriendBallDesc
-	dw MoonBallDesc
-	dw LoveBallDesc
 	dw NormalBoxDesc
 	dw GorgeousBoxDesc
 	dw SunStoneDesc
 	dw PolkadotBowDesc
-	dw TeruSama22Desc
-	dw UpGradeDesc
+	dw N64Desc
+	dw BigOnixDesc
 	dw BerryDesc
 	dw GoldBerryDesc
 	dw SquirtBottleDesc
-	dw TeruSama23Desc
-	dw ParkBallDesc
+	dw VBoyDesc
 	dw RainbowWingDesc
-	dw TeruSama24Desc
+	dw VoltorbDollDesc
+	dw DragonScaleDesc
+	dw UpGradeDesc
+	dw GoldBJuiceDesc
 	dw BrickPieceDesc
 	dw SurfMailDesc
 	dw LiteBlueMailDesc
@@ -190,9 +193,6 @@ ItemDescriptions:
 	dw BlueSkyMailDesc
 	dw MusicMailDesc
 	dw MirageMailDesc
-	dw TeruSama25Desc
-	assert_table_length NUM_ITEMS
-	dw TeruSama26Desc
 	dw TeruSama26Desc
 	dw TeruSama26Desc
 	dw TeruSama26Desc
@@ -257,7 +257,6 @@ ItemDescriptions:
 	dw TeruSama31Desc
 	dw TeruSama32Desc
 	dw TeruSama33Desc
-	assert_table_length $ff
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -338,9 +337,9 @@ RepelDesc:
 	db   "Repels weak #-"
 	next "MON for 100 steps.@"
 
-MaxElixerDesc:
-	db   "Fully restores the"
-	next "PP of one #MON.@"
+ElixerDesc:
+	db   "Restores PP of all"
+	next "moves by 10.@"
 
 FireStoneDesc:
 	db   "Evolves certain"
@@ -354,8 +353,9 @@ WaterStoneDesc:
 	db   "Evolves certain"
 	next "kinds of #MON.@"
 
-TeruSama2Desc:
-	db   "?@"
+PocketPCDesc:
+	db   "Access the PC any-"
+	next "where!@"
 
 HPUpDesc:
 	db   "Raises the HP of"
@@ -374,8 +374,8 @@ CarbosDesc:
 	next "one #MON.@"
 
 LuckyPunchDesc:
-	db   "Ups critical hit"
-	next "ratio of CHANSEY.@"
+	db   "Ups BLISSEY's cr-"
+	next "itical hit ratio.@"
 
 CalciumDesc:
 	db   "Ups SPECIAL stats"
@@ -394,12 +394,12 @@ LeafStoneDesc:
 	next "kinds of #MON.@"
 
 MetalPowderDesc:
-	db   "Raises DEFENSE of"
-	next "DITTO. (HOLD)@"
+	db   "An offering for"
+	next "the departed.@"
 
 NuggetDesc:
 	db   "Made of pure gold."
-	next "Sell high.@"
+	next "Sells high.@"
 
 PokeDollDesc:
 	db   "Use to escape from"
@@ -413,9 +413,9 @@ ReviveDesc:
 	db   "Restores a fainted"
 	next "#MON to 1/2 HP.@"
 
-MaxReviveDesc:
-	db   "Fully restores a"
-	next "fainted #MON.@"
+MaxEtherDesc:
+	db   "Fully restores PP"
+	next "of one move.@"
 
 GuardSpecDesc:
 	db   "Prevents stats"
@@ -433,8 +433,9 @@ DireHitDesc:
 	db   "Ups critical hit"
 	next "ratio. (1 BTL)@"
 
-TeruSama3Desc:
-	db   "?@"
+PikachuBedDesc:
+	db   "New bedding for"
+	next "your room!@"
 
 FreshWaterDesc:
 	db   "Restores #MON"
@@ -452,8 +453,9 @@ XAttackDesc:
 	db   "Raises ATTACK."
 	next "(1 BTL)@"
 
-TeruSama4Desc:
-	db   "?@"
+GreenCarpetDesc:
+	db   "New carpeting for"
+	next "your room!@"
 
 XDefendDesc:
 	db   "Raises DEFENSE."
@@ -491,8 +493,8 @@ GoodRodDesc:
 	next "catching #MON.@"
 
 SilverLeafDesc:
-	db   "A strange, silver-"
-	next "colored leaf.@"
+	db   "A strange, wispy"
+	next "leaf of silver.@"
 
 SuperRodDesc:
 	db   "The best ROD for"
@@ -506,17 +508,17 @@ EtherDesc:
 	db   "Restores PP of one"
 	next "move by 10.@"
 
-MaxEtherDesc:
-	db   "Fully restores PP"
-	next "of one move.@"
+MaxReviveDesc:
+	db   "Fully restores a"
+	next "fainted #MON.@"
 
-ElixerDesc:
-	db   "Restores PP of all"
-	next "moves by 10.@"
+MaxElixerDesc:
+	db   "Fully restores the"
+	next "PP of one #MON.@"
 
-RedScaleDesc:
+DarkScaleDesc:
 	db   "A scale from the"
-	next "red GYARADOS.@"
+	next "dark GYARADOS.@"
 
 SecretPotionDesc:
 	db   "Fully heals any"
@@ -535,7 +537,7 @@ ClearBellDesc:
 	next "ringing.@"
 
 SilverWingDesc:
-	db   "A strange, silver-"
+	db   "A mystical silver-"
 	next "colored feather.@"
 
 MoomooMilkDesc:
@@ -551,8 +553,8 @@ PsnCureBerryDesc:
 	next "poison. (HOLD)@"
 
 GoldLeafDesc:
-	db   "A strange, gold-"
-	next "colored leaf.@"
+	db   "A strange, ashen"
+	next "leaf of gold.@"
 
 SoftSandDesc:
 	db   "Powers up ground-"
@@ -595,11 +597,11 @@ RedApricornDesc:
 
 TinyMushroomDesc:
 	db   "An ordinary mush-"
-	next "room. Sell low.@"
+	next "room. Sells low.@"
 
 BigMushroomDesc:
 	db   "A rare mushroom."
-	next "Sell high.@"
+	next "Sells high.@"
 
 SilverPowderDesc:
 	db   "Powers up bug-type"
@@ -608,8 +610,9 @@ SilverPowderDesc:
 BluApricornDesc:
 	db   "A blue APRICORN.@"
 
-TeruSama6Desc:
-	db   "?@"
+YellowCarpetDesc:
+	db   "New carpeting for"
+	next "your room!@"
 
 AmuletCoinDesc:
 	db   "Doubles monetary"
@@ -644,8 +647,9 @@ BlkApricornDesc:
 	db   "A black APRICORN."
 	next "@"
 
-TeruSama7Desc:
-	db   "?@"
+PikaPosterDesc:
+	db   "Cute #MON pos-"
+	next "ter for your room!@"
 
 PnkApricornDesc:
 	db   "A pink APRICORN."
@@ -656,7 +660,7 @@ BlackGlassesDesc:
 	next "type moves. (HOLD)@"
 
 SlowpokeTailDesc:
-	db   "Very tasty. Sell"
+	db   "Very tasty. Sells"
 	next "high.@"
 
 PinkBowDesc:
@@ -664,8 +668,8 @@ PinkBowDesc:
 	next "type moves. (HOLD)@"
 
 StickDesc:
-	db   "An ordinary stick."
-	next "Sell low.@"
+	db   "Ups crit ratio of"
+	next "FARFETCH'D. (HOLD)@"
 
 SmokeBallDesc:
 	db   "Escape from wild"
@@ -685,11 +689,11 @@ MiracleBerryDesc:
 
 PearlDesc:
 	db   "A beautiful pearl."
-	next "Sell low.@"
+	next "Sells low.@"
 
 BigPearlDesc:
 	db   "A big, beautiful"
-	next "pearl. Sell high.@"
+	next "pearl. Sells high.@"
 
 EverStoneDesc:
 	db   "Stops evolution."
@@ -700,8 +704,8 @@ SpellTagDesc:
 	next "type moves. (HOLD)@"
 
 RageCandyBarDesc:
-	db   "Restores #MON"
-	next "HP by 20.@"
+	db   "Self-restore item."
+	next "(30 HP, HOLD)@"
 
 GSBallDesc:
 	db   "The mysterious"
@@ -716,15 +720,16 @@ MiracleSeedDesc:
 	next "type moves. (HOLD)@"
 
 ThickClubDesc:
-	db   "A bone of some"
-	next "sort. Sell low.@"
+	db   "An odd bone of"
+	next "some sort.@"
 
 FocusBandDesc:
 	db   "May prevent faint-"
 	next "ing. (HOLD)@"
 
-TeruSama8Desc:
-	db   "?@"
+SNESDesc:
+	db   "A classic console"
+	next "for your room!@"
 
 EnergyPowderDesc:
 	db   "Restores #MON"
@@ -768,11 +773,11 @@ LostItemDesc:
 
 StardustDesc:
 	db   "Pretty, red sand."
-	next "Sell high.@"
+	next "Sells low.@"
 
 StarPieceDesc:
 	db   "A hunk of red gem."
-	next "Sell very high.@"
+	next "Sells high.@"
 
 BasementKeyDesc:
 	db   "Opens doors.@"
@@ -781,32 +786,37 @@ PassDesc:
 	db   "A ticket for the"
 	next "MAGNET TRAIN.@"
 
-TeruSama9Desc:
-	db   "?@"
+UnownDollDesc:
+	db   "Cute #MON doll"
+	next "for your room!@"
 
-TeruSama10Desc:
-	db   "?@"
+JigglypuffDollDesc:
+	db   "Cute #MON doll"
+	next "for your room!@"
 
-TeruSama11Desc:
-	db   "?@"
+JigglypuffPosterDesc:
+	db   "Cute #MON pos-"
+	next "ter for your room!@"
 
 CharcoalDesc:
 	db   "Powers up fire-"
 	next "type moves. (HOLD)@"
 
 BerryJuiceDesc:
-	db   "Restores #MON"
-	next "HP by 20.@"
+	db   "Self-restore item."
+	next "(40 HP, HOLD)@"
 
 ScopeLensDesc:
 	db   "Raises critical"
 	next "hit ratio. (HOLD)@"
 
-TeruSama12Desc:
-	db   "?@"
+ClefairyDollDesc:
+	db   "Cute #MON doll"
+	next "for your room!@"
 
-TeruSama13Desc:
-	db   "?@"
+ClefairyPosterDesc:
+	db   "Cute #MON pos-"
+	next "ter for your room!@"
 
 MetalCoatDesc:
 	db   "Powers up steel-"
@@ -816,42 +826,49 @@ DragonFangDesc:
 	db   "Powers up dragon-"
 	next "type moves. (HOLD)@"
 
-TeruSama14Desc:
-	db   "?@"
+PinkBedDesc:
+	db   "New bedding for"
+	next "your room!@"
 
 LeftoversDesc:
 	db   "Restores HP during"
 	next "battle. (HOLD)@"
 
-TeruSama15Desc:
-	db   "?@"
+MagnaPlantDesc:
+	db   "A new plant for"
+	next "your room!@"
 
-TeruSama16Desc:
-	db   "?@"
+TropicPlantDesc:
+	db   "A new plant for"
+	next "your room!@"
 
-TeruSama17Desc:
-	db   "?@"
+JumboPlantDesc:
+	db   "A new plant for"
+	next "your room!@"
 
 MysteryBerryDesc:
 	db   "A self-restore"
 	next "for PP. (HOLD)@"
 
-DragonScaleDesc:
-	db   "A rare dragon-type"
-	next "item.@"
+BigLaprasDesc:
+	db   "A massive #MON"
+	next "doll!@"
 
 BerserkGeneDesc:
 	db   "Boosts ATTACK but"
 	next "causes confusion.@"
 
-TeruSama18Desc:
-	db   "?@"
+PolkadotBedDesc:
+	db   "New bedding for"
+	next "your room!@"
 
-TeruSama19Desc:
-	db   "?@"
+BlueCarpetDesc:
+	db   "New carpeting for"
+	next "your room!@"
 
-TeruSama20Desc:
-	db   "?@"
+RedCarpetDesc:
+	db   "New carpeting for"
+	next "your room!@"
 
 SacredAshDesc:
 	db   "Fully revives all"
@@ -874,11 +891,12 @@ LureBallDesc:
 	next "hooked by a ROD.@"
 
 FastBallDesc:
-	db   "A BALL for catch-"
-	next "ing fast #MON.@"
+	db   "A BALL for #MON"
+	next "that flee easily.@"
 
-TeruSama21Desc:
-	db   "?@"
+NESDesc:
+	db   "A classic console"
+	next "for your room!@"
 
 LightBallDesc:
 	db   "An odd, electrical"
@@ -912,27 +930,29 @@ PolkadotBowDesc:
 	db   "Powers up normal-"
 	next "type moves. (HOLD)@"
 
-TeruSama22Desc:
-	db   "?@"
+N64Desc:
+	db   "A classic console"
+	next "for your room!@"
 
-UpGradeDesc:
-	db   "A mysterious box"
-	next "made by SILPH CO.@"
+BigOnixDesc:
+	db   "A massive #MON"
+	next "doll!@"
 
 BerryDesc:
-	db   "A self-restore"
-	next "item. (10HP, HOLD)@"
+	db   "Self-restore item."
+	next "(10 HP, HOLD)@"
 
 GoldBerryDesc:
-	db   "A self-restore"
-	next "item. (30HP, HOLD)@"
+	db   "Self-restore item."
+	next "(20 HP, HOLD)@"
 
 SquirtBottleDesc:
 	db   "A bottle used for"
 	next "watering plants.@"
 
-TeruSama23Desc:
-	db   "?@"
+VBoyDesc:
+	db   "A 'classic' conso-"
+	next "le for your room!@"
 
 ParkBallDesc:
 	db   "The Bug-Catching"
@@ -942,8 +962,21 @@ RainbowWingDesc:
 	db   "A mystical feather"
 	next "of rainbow colors.@"
 
-TeruSama24Desc:
-	db   "?@"
+VoltorbDollDesc:
+	db   "Cute #MON doll"
+	next "for your room!@"
+	
+DragonScaleDesc:
+	db   "A rare dragon-type"
+	next "item.@"
+
+UpGradeDesc:
+	db   "A mysterious box"
+	next "made by SILPH CO.@"
+	
+GoldBJuiceDesc:
+	db   "Self-restore item."
+	next "(140 HP, HOLD)@"
 
 BrickPieceDesc:
 	db   "A rare chunk of"
@@ -984,9 +1017,6 @@ MusicMailDesc:
 MirageMailDesc:
 	db   "MEW-print MAIL."
 	next "(HOLD)@"
-
-TeruSama25Desc:
-	db   "?@"
 
 TeruSama26Desc:
 	db   "?@"

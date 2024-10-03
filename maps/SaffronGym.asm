@@ -4,6 +4,7 @@
 	const SAFFRONGYM_YOUNGSTER1
 	const SAFFRONGYM_GRANNY2
 	const SAFFRONGYM_YOUNGSTER2
+	const SAFFRONGYM_YOUNGSTER3
 	const SAFFRONGYM_GYM_GUIDE
 
 SaffronGym_MapScripts:
@@ -14,13 +15,14 @@ SaffronGym_MapScripts:
 SaffronGymSabrinaScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_MARSHBADGE
+	checkflag ENGINE_SOULBADGE
 	iftrue .FightDone
 	writetext SabrinaIntroText
 	waitbutton
 	closetext
 	winlosstext SabrinaWinLossText, 0
 	loadtrainer SABRINA, SABRINA1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_SABRINA
@@ -32,13 +34,21 @@ SaffronGymSabrinaScript:
 	writetext ReceivedMarshBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
-	setflag ENGINE_MARSHBADGE
+	setflag ENGINE_SOULBADGE
 	writetext SabrinaMarshBadgeText
-	waitbutton
+	promptbutton
 	closetext
-	end
-
+	pause 20
+	opentext
 .FightDone:
+	checkevent EVENT_GOT_TM09_PSYCH_UP
+	iftrue .AfterTM
+	writetext SabrinaPsychUpText
+	promptbutton
+	verbosegiveitem TM_PSYCH_UP
+	iffalse .AfterTM
+	setevent EVENT_GOT_TM09_PSYCH_UP
+.AfterTM:
 	writetext SabrinaFightDoneText
 	waitbutton
 	closetext
@@ -87,6 +97,17 @@ TrainerPsychicJared:
 	waitbutton
 	closetext
 	end
+	
+TrainerIdain:
+	trainer PSYCHIC_T, IDAIN, EVENT_BEAT_IDAIN, IdainSeenText, IdainBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext IdainAfterBattleText
+	waitbutton
+	closetext
+	end
 
 SaffronGymGuideScript:
 	faceplayer
@@ -105,7 +126,7 @@ SaffronGymGuideScript:
 	end
 
 SaffronGymStatue:
-	checkflag ENGINE_MARSHBADGE
+	checkflag ENGINE_SOULBADGE
 	iftrue .Beaten
 	jumpstd GymStatue1Script
 .Beaten:
@@ -130,8 +151,8 @@ SabrinaIntroText:
 	line "to confer BADGES"
 
 	para "on anyone who has"
-	line "proven him- or"
-	cont "herself worthy."
+	line "proven themselves"
+	cont "worthy."
 
 	para "Since you wish it,"
 	line "I will show you my"
@@ -153,16 +174,16 @@ SabrinaWinLossText:
 
 	para "OK, you win. You"
 	line "earned yourself"
-	cont "MARSHBADGE."
+	cont "SOULBADGE."
 	done
 
 ReceivedMarshBadgeText:
 	text "<PLAYER> received"
-	line "MARSHBADGE."
+	line "SOULBADGE."
 	done
 
 SabrinaMarshBadgeText:
-	text "SABRINA: MARSH-"
+	text "SABRINA: SOUL-"
 	line "BADGE draws out"
 
 	para "your subliminal"
@@ -170,13 +191,26 @@ SabrinaMarshBadgeText:
 
 	para "Although I failed"
 	line "to accurately pre-"
-	cont "dict your power,"
-	cont "this much I know"
-	cont "to be true."
+	cont "dict your current"
+	cont "power, this much I"
+	cont "know to be true:"
 
-	para "You will become a"
-	line "celebrated and"
-	cont "beloved CHAMPION!"
+	para "You will surpass"
+	line "all trainers that"
+	cont "have come before"
+	cont "you."
+	done
+	
+SabrinaPsychUpText:
+	text "SABRINA: Oh, you"
+	line "should also take"
+	cont "this TM."
+
+	para "It contains PSYCH"
+	line "UP, which boosts"
+
+	para "your #MON's"
+	line "SPECIAL stats."
 	done
 
 SabrinaFightDoneText:
@@ -263,6 +297,29 @@ PsychicJaredAfterBattleText:
 	line "just destroyed by"
 	cont "SABRINA."
 	done
+	
+IdainSeenText:
+	text "I predicted your"
+	line "arrival through"
+	cont "that warp panel."
+	
+	para "But I can't tell"
+	line "if you're ready"
+	cont "for SABRINA yet."
+	done
+
+IdainBeatenText:
+	text "Now I am certain."
+	done
+
+IdainAfterBattleText:
+	text "Hmm… the odds are"
+	line "in your favour."
+
+	para "But here's a tip:"
+	line "don't let SABRINA"
+	cont "set up."
+	done
 
 SaffronGymGuideText:
 	text "Yo, CHAMP in"
@@ -336,4 +393,5 @@ SaffronGym_MapEvents:
 	object_event  3, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
 	object_event  3,  4, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
 	object_event 17,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicJared, -1
+	object_event 11,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerIdain, -1
 	object_event  9, 14, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuideScript, -1

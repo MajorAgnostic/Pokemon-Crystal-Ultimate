@@ -1,8 +1,7 @@
 	object_const_def
 	const MAHOGANYGYM_PRYCE
-	const MAHOGANYGYM_BEAUTY1
+	const MAHOGANYGYM_BEAUTY
 	const MAHOGANYGYM_ROCKER1
-	const MAHOGANYGYM_BEAUTY2
 	const MAHOGANYGYM_ROCKER2
 	const MAHOGANYGYM_ROCKER3
 	const MAHOGANYGYM_GYM_GUIDE
@@ -36,7 +35,6 @@ MahoganyGymPryceScript:
 	checkevent EVENT_GOT_TM16_ICY_WIND
 	iftrue PryceScript_Defeat
 	setevent EVENT_BEAT_SKIER_ROXANNE
-	setevent EVENT_BEAT_SKIER_CLARISSA
 	setevent EVENT_BEAT_BOARDER_RONALD
 	setevent EVENT_BEAT_BOARDER_BRAD
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
@@ -75,17 +73,6 @@ TrainerSkierRoxanne:
 	endifjustbattled
 	opentext
 	writetext SkierRoxanneAfterBattleText
-	waitbutton
-	closetext
-	end
-
-TrainerSkierClarissa:
-	trainer SKIER, CLARISSA, EVENT_BEAT_SKIER_CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
-	opentext
-	writetext SkierClarissaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -198,14 +185,12 @@ Text_ReceivedGlacierBadge:
 	done
 
 PryceText_GlacierBadgeSpeech:
-	text "That BADGE will"
-	line "raise the SPECIAL"
-	cont "stats of #MON."
-
-	para "It also lets your"
-	line "#MON use WHIRL-"
-	cont "POOL to get across"
-	cont "real whirlpools."
+	text "That BADGE lets"
+	line "your #MON use"
+	
+	para "WHIRLPOOL to get"
+	line "across real whirl-"
+	cont "pools."
 
 	para "And this… This is"
 	line "a gift from me!"
@@ -322,22 +307,6 @@ SkierRoxanneAfterBattleText:
 	line "in this GYM."
 	done
 
-SkierClarissaSeenText:
-	text "Check out my"
-	line "parallel turn!"
-	done
-
-SkierClarissaBeatenText:
-	text "No! You made me"
-	line "wipe out!"
-	done
-
-SkierClarissaAfterBattleText:
-	text "I shouldn't have"
-	line "been bragging"
-	cont "about my skiing…"
-	done
-
 MahoganyGymGuideText:
 	text "PRYCE is a veteran"
 	line "who has trained"
@@ -356,6 +325,13 @@ MahoganyGymGuideText:
 
 	para "with your burning"
 	line "ambition!"
+	
+	para "However, be wary"
+	line "of his DELIBIRD."
+
+	para "It has a tenden-"
+	line "cy to take rather"
+	cont "than give!"
 	done
 
 MahoganyGymGuideWinText:
@@ -384,10 +360,9 @@ MahoganyGym_MapEvents:
 	bg_event  6, 15, BGEVENT_READ, MahoganyGymStatue
 
 	def_object_events
-	object_event  5,  3, SPRITE_PRYCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MahoganyGymPryceScript, -1
+	object_event  5,  3, SPRITE_PRYCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, MahoganyGymPryceScript, -1
 	object_event  4,  6, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerSkierRoxanne, -1
 	object_event  0, 17, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderRonald, -1
-	object_event  9, 17, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerSkierClarissa, -1
 	object_event  5,  9, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderBrad, -1
 	object_event  2,  4, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderDouglas, -1
 	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MahoganyGymGuideScript, -1

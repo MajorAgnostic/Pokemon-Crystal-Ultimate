@@ -23,6 +23,10 @@ DoPlayerMovement::
 	ld c, a
 	and D_PAD
 	ret nz
+	
+	ld a, c
+	and A_BUTTON | B_BUTTON
+	ret nz
 
 	ld a, c
 	or D_DOWN
@@ -276,7 +280,7 @@ DoPlayerMovement::
 
 ; Downhill riding is slower when not moving down.
 	call .BikeCheck
-	jr nz, .walk
+	jr nz, .HandleWalkAndRun
 
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_DOWNHILL_F, [hl]
@@ -309,13 +313,28 @@ DoPlayerMovement::
 	scf
 	ret
 
-.unused ; unreferenced
-	xor a
-	ret
-
 .bump
 	xor a
 	ret
+	
+.HandleWalkAndRun
+	ld a, [wWalkingDirection]
+	cp STANDING
+	jr z, .ensurewalk
+	ldh a, [hJoypadDown]
+	and B_BUTTON
+	cp B_BUTTON
+	jr nz, .ensurewalk
+	ld a, [wPlayerState]
+	cp PLAYER_RUN
+	call nz, .StartRunning
+	jr .fast
+
+.ensurewalk
+	ld a, [wPlayerState]
+	cp PLAYER_NORMAL
+	call nz, .StartWalking
+	jr .walk
 
 .TrySurf:
 	call .CheckSurfPerms
@@ -367,6 +386,32 @@ DoPlayerMovement::
 	ld a, [wFacingDirection]
 	and [hl]
 	jr z, .DontJump
+	
+	; d = x coordinate of tile across the ledge
+	ld a, [wPlayerMapX]
+	ld d, a
+	ld a, [wWalkingX]
+	add a
+	add d
+	ld d, a
+; e = y coordinate of tile across the ledge
+	ld a, [wPlayerMapY]
+	ld e, a
+	ld a, [wWalkingY]
+	add a
+	add e
+	ld e, a
+; make sure the tile across the ledge is walkable
+	push de
+	call GetCoordTileCollision
+	call .CheckWalkable
+	pop de
+	jr c, .DontJump
+; make sure there's no NPC across the ledge
+	xor a
+	ldh [hMapObjectIndex], a
+	farcall IsNPCAtCoord
+	jr c, .DontJump
 
 	ld de, SFX_JUMP_OVER_LEDGE
 	call PlaySFX
@@ -777,9 +822,44 @@ ENDM
 
 .GetOutOfWater:
 	push bc
+	ld a, [wPlayerState]
+	cp PLAYER_SURF_PIKA
+	jr z, .PikachuPaletteCheck
+;.NormalPaletteCheck:
+	ld a, [wPlayerGender]
+	and a
+	jr nz, .Finish
+	ld a, (PAL_NPC_RED << 4)
+	ld d, a
+	farcall _SetPlayerPalette
+	jr .Finish
+.PikachuPaletteCheck:
+	ld a, [wPlayerGender]
+	and a
+	jr z, .Finish
+	ld a, (PAL_NPC_BLUE << 4)
+	ld d, a
+	farcall _SetPlayerPalette
+.Finish:
 	ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
 	call UpdatePlayerSprite ; UpdateSprites
+	pop bc
+	ret
+	
+.StartRunning:
+	push bc
+	ld a, PLAYER_RUN
+	ld [wPlayerState], a
+	call UpdatePlayerSprite
+	pop bc
+	ret
+
+.StartWalking:
+	push bc
+	ld a, PLAYER_NORMAL
+	ld [wPlayerState], a
+	call UpdatePlayerSprite
 	pop bc
 	ret
 

@@ -5,6 +5,7 @@ LoadWildMonData:
 	xor a
 	ld [hli], a
 	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	jr .done_copy
 
@@ -14,6 +15,8 @@ LoadWildMonData:
 	ld de, wMornEncounterRate
 	ld bc, 3
 	call CopyBytes
+	ld a, [wNiteEncounterRate]
+	ld [wEveEncounterRate], a
 .done_copy
 	call _WaterWildmonLookup
 	ld a, 0
@@ -23,6 +26,13 @@ LoadWildMonData:
 	ld a, [hl]
 .no_copy
 	ld [wWaterEncounterRate], a
+	ret
+	
+GetTimeOfDayNotEve:
+	ld a, [wTimeOfDay]
+	cp EVE_F
+	ret nz
+	ld a, NITE_F ; ld a, DAY_F to make evening use day encounters
 	ret
 
 FindNest:
@@ -263,7 +273,7 @@ ChooseWildEncounter:
 	jr z, .watermon
 	inc hl
 	inc hl
-	ld a, [wTimeOfDay]
+	call GetTimeOfDayNotEve
 	ld bc, NUM_GRASSMON * 2
 	call AddNTimes
 	ld de, GrassMonProbTable
@@ -784,7 +794,7 @@ RandomUnseenWildMon:
 	push hl
 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
-	ld a, [wTimeOfDay]
+	call GetTimeOfDayNotEve
 	ld bc, NUM_GRASSMON * 2
 	call AddNTimes
 .randloop1
@@ -853,7 +863,7 @@ RandomPhoneWildMon:
 .ok
 	ld bc, 5 + 0 * 2
 	add hl, bc
-	ld a, [wTimeOfDay]
+	call GetTimeOfDayNotEve
 	inc a
 	ld bc, NUM_GRASSMON * 2
 .loop
@@ -888,6 +898,11 @@ RandomPhoneMon:
 	ld b, 0
 	add hl, bc
 	add hl, bc
+	add hl, bc
+	ld a, BANK(TrainerGroups)
+	call GetFarByte
+	ld [wTrainerGroupBank], a
+	inc hl
 	ld a, BANK(TrainerGroups)
 	call GetFarWord
 
@@ -895,7 +910,7 @@ RandomPhoneMon:
 	dec e
 	jr z, .skipped
 .skip
-	ld a, BANK(Trainers)
+	ld a, [wTrainerGroupBank]
 	call GetFarByte
 	inc hl
 	cp -1
@@ -904,34 +919,55 @@ RandomPhoneMon:
 .skipped
 
 .skip_name
-	ld a, BANK(Trainers)
+	ld a, [wTrainerGroupBank]
 	call GetFarByte
 	inc hl
 	cp "@"
 	jr nz, .skip_name
 
-	ld a, BANK(Trainers)
+	ld a, [wTrainerGroupBank]
 	call GetFarByte
 	inc hl
-	ld bc, 2 ; level, species
-	cp TRAINERTYPE_NORMAL
-	jr z, .got_mon_length
-	ld bc, 2 + NUM_MOVES ; level, species, moves
-	cp TRAINERTYPE_MOVES
-	jr z, .got_mon_length
-	ld bc, 2 + 1 ; level, species, item
-	cp TRAINERTYPE_ITEM
-	jr z, .got_mon_length
-	; TRAINERTYPE_ITEM_MOVES
-	ld bc, 2 + 1 + NUM_MOVES ; level, species, item, moves
-.got_mon_length
+	; b = trainer type
+	ld b, a
+; c = mon length
+; All trainers use 2 bytes for level and species
+	ld c, 2
+; TRAINERTYPE_DVS uses 2 more bytes
+	bit TRAINERTYPE_DVS_F, b
+	jr z, .no_dvs
+	inc c
+	inc c
+.no_dvs
+; TRAINERTYPE_STAT_EXP uses NUM_EXP_STATS * 2 (10) more bytes
+	bit TRAINERTYPE_STAT_EXP_F, b
+	jr z, .no_stat_exp
+	ld a, NUM_EXP_STATS * 2
+	add c
+	ld c, a
+.no_stat_exp
+; TRAINERTYPE_ITEM uses 1 more byte
+	bit TRAINERTYPE_ITEM_F, b
+	jr z, .no_item
+	inc c
+.no_item
+; TRAINERTYPE_MOVES uses NUM_MOVES (4) more bytes
+	bit TRAINERTYPE_MOVES_F, b
+	jr z, .no_moves
+	ld a, NUM_MOVES
+	add c
+	ld c, a
+.no_moves
+; bc = mon length
+	xor a
+	ld b, a
 
 	ld e, 0
 	push hl
 .count_mon
 	inc e
 	add hl, bc
-	ld a, BANK(Trainers)
+	ld a, [wTrainerGroupBank]
 	call GetFarByte
 	cp -1
 	jr nz, .count_mon
@@ -952,7 +988,7 @@ RandomPhoneMon:
 .got_mon
 
 	inc hl ; species
-	ld a, BANK(Trainers)
+	ld a, [wTrainerGroupBank]
 	call GetFarByte
 	ld [wNamedObjectIndex], a
 	call GetPokemonName

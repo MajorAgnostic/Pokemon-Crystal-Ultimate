@@ -2,6 +2,14 @@ Route10North_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	
+.FlyPoint:
+	setflag ENGINE_FLYPOINT_ROCK_TUNNEL
+	endcallback
+	
+Route10Thunderstone:
+	itemball THUNDERSTONE
 
 PowerPlantSign:
 	jumptext PowerPlantSignText
@@ -27,3 +35,4 @@ Route10North_MapEvents:
 	bg_event 12,  1, BGEVENT_READ, Route10PokecenterSign
 
 	def_object_events
+	object_event 11, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route10Thunderstone, EVENT_ROUTE_10_THUNDERSTONE

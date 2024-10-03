@@ -35,7 +35,8 @@ GoodRodGuru:
 	closetext
 	end
 
-GoodRodHouseBookshelf: ; unreferenced
+GoodRodHouseBookshelf:
+; unused
 	jumpstd PictureBookshelfScript
 
 OfferGoodRodText:

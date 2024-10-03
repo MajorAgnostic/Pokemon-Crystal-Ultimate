@@ -21,14 +21,11 @@ IsInJohto::
 
 .CheckRegion:
 	cp KANTO_LANDMARK
-	jr nc, .Kanto
+	ld a, KANTO_REGION 
+	ret nc
 
 .Johto:
 	xor a ; JOHTO_REGION
-	ret
-
-.Kanto:
-	ld a, KANTO_REGION
 	ret
 
 SetXYCompareFlags:: ; dummied out

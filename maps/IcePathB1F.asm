@@ -9,14 +9,11 @@ IcePathB1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_CMDQUEUE, IcePathB1FSetUpStoneTableCallback
+	callback MAPCALLBACK_STONETABLE, .SetUpStoneTable
 
-IcePathB1FSetUpStoneTableCallback:
-	writecmdqueue .CommandQueue
+.SetUpStoneTable:
+	usestonetable .StoneTable
 	endcallback
-
-.CommandQueue:
-	cmdqueue CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
 
 .StoneTable:
 	stonetable 3, ICEPATHB1F_BOULDER1, .Boulder1
@@ -63,7 +60,7 @@ IcePathB1FBoulder:
 	jumpstd StrengthBoulderScript
 
 IcePathB1FIron:
-	itemball IRON
+	itemball REVIVE
 
 IcePathB1FHiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION

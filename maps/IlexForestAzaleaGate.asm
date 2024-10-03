@@ -17,6 +17,18 @@ IlexForestAzaleaGateOfficerText:
 	text "ILEX FOREST is"
 	line "big. Be careful!"
 	cont "Don't get lost."
+	
+	para "Also, trainers"
+	line "have been talk-"
+	
+	para "ing about some"
+	line "odd trainer who"
+	
+	para "stares at trees"
+	line "all day. Appa-"
+	
+	para "rently he has"
+	line "strong #MON!"
 	done
 
 IlexForestAzaleaGateGrannyText:

@@ -9,13 +9,13 @@ OaksLab_MapScripts:
 
 	def_callbacks
 
-OaksLabNoopScene: ; unreferenced
+.DummyScene:
 	end
 
 Oak:
 	faceplayer
 	opentext
-	checkevent EVENT_OPENED_MT_SILVER
+	checkevent EVENT_OPENED_RIGHTBB
 	iftrue .CheckPokedex
 	checkevent EVENT_TALKED_TO_OAK_IN_KANTO
 	iftrue .CheckBadges
@@ -40,7 +40,9 @@ Oak:
 .OpenMtSilver:
 	writetext OakOpenMtSilverText
 	promptbutton
-	setevent EVENT_OPENED_MT_SILVER
+	setevent EVENT_OPENED_RIGHTBB
+	setevent EVENT_NO_E4_REMATCH
+	clearevent EVENT_E4_MART
 	sjump .CheckPokedex
 
 .Complain:
@@ -92,8 +94,8 @@ OakWelcomeKantoText:
 	done
 
 OakLabDexCheckText:
-	text "How is your #-"
-	line "DEX coming?"
+	text "So, how is your"
+	line "#DEX coming?"
 
 	para "Let's see…"
 	done
@@ -109,17 +111,16 @@ OakOpenMtSilverText:
 	line "excellent!"
 
 	para "You collected the"
-	line "BADGES of GYMS in"
-	cont "KANTO. Well done!"
+	line "BADGES from all of"
+	cont "the gyms in KANTO."
+	cont "Well done!"
 
 	para "I was right in my"
 	line "assessment of you."
 
-	para "Tell you what,"
-	line "<PLAY_G>. I'll make"
-
-	para "arrangements so"
-	line "that you can go to"
+	para "Hmm… maybe I will"
+	line "ask that you be"
+	cont "granted access to"
 	cont "MT.SILVER."
 
 	para "MT.SILVER is a big"
@@ -138,11 +139,24 @@ OakOpenMtSilverText:
 	line "exception in your"
 	cont "case, <PLAY_G>."
 
-	para "Go up to INDIGO"
-	line "PLATEAU. You can"
+	para "Head up to INDIGO"
+	line "PLATEAU."
 
-	para "reach MT.SILVER"
-	line "from there."
+	para "The ELITE FOUR ha-"
+	line "ve returned from"
+	
+	para "their training and"
+	line "will welcome a new"
+	cont "challenge!"
+	
+	para "I'm sure they will"
+	line "open the entrance"
+	cont "to MT.SILVER for"
+	cont "you."
+	
+	para "I'll make sure to"
+	line "put in a good word"
+	cont "for you as well."
 	done
 
 OakNoKantoBadgesText:
@@ -175,9 +189,6 @@ OakYesKantoBadgesText:
 	para "Come see me when"
 	line "you get them all."
 
-	para "I'll have a gift"
-	line "for you."
-
 	para "Keep trying hard,"
 	line "<PLAY_G>!"
 	done
@@ -199,7 +210,7 @@ OaksAssistant2Text:
 	cont "DEX, the PROF's"
 
 	para "research is coming"
-	line "along great."
+	line "along great!"
 	done
 
 OaksAssistant3Text:

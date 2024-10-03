@@ -21,13 +21,13 @@ TrainerYoungsterOwen:
 	closetext
 	end
 
-TrainerYoungsterJason:
-	trainer YOUNGSTER, JASON, EVENT_BEAT_YOUNGSTER_JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, 0, .Script
+TrainerYoungsterTaylor:
+	trainer YOUNGSTER, TAYLOR, EVENT_BEAT_YOUNGSTER_TAYLOR, YoungsterTaylorSeenText, YoungsterTaylorBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext YoungsterJasonAfterBattleText
+	writetext YoungsterTaylorAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -61,7 +61,7 @@ Route11FruitTree:
 	fruittree FRUITTREE_ROUTE_11
 
 Route11HiddenRevive:
-	hiddenitem REVIVE, EVENT_ROUTE_11_HIDDEN_REVIVE
+	hiddenitem MAX_REVIVE, EVENT_ROUTE_11_HIDDEN_REVIVE
 
 YoungsterOwenSeenText:
 	text "There's no cheat-"
@@ -84,7 +84,7 @@ YoungsterOwenAfterBattleText:
 	line "this at all."
 	done
 
-YoungsterJasonSeenText:
+YoungsterTaylorSeenText:
 	text "It itches and"
 	line "tickles a bit when"
 
@@ -92,12 +92,12 @@ YoungsterJasonSeenText:
 	line "the grass."
 	done
 
-YoungsterJasonBeatenText:
+YoungsterTaylorBeatenText:
 	text "Aiyaaah!"
 	line "I got stomped!"
 	done
 
-YoungsterJasonAfterBattleText:
+YoungsterTaylorAfterBattleText:
 	text "I'm going to catch"
 	line "more #MON in"
 	cont "the grass."
@@ -156,7 +156,7 @@ Route11_MapEvents:
 
 	def_object_events
 	object_event 22, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterOwen, -1
-	object_event 20,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterJason, -1
+	object_event 20,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterTaylor, -1
 	object_event 28,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicHerman, -1
 	object_event  8,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFidel, -1
 	object_event 32,  2, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route11FruitTree, -1

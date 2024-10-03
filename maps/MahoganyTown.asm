@@ -1,4 +1,4 @@
-DEF MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
+DEF MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 400
 
 	object_const_def
 	const MAHOGANYTOWN_POKEFAN_M
@@ -8,31 +8,31 @@ DEF MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 
 MahoganyTown_MapScripts:
 	def_scene_scripts
-	scene_script MahoganyTownNoop1Scene, SCENE_MAHOGANYTOWN_TRY_RAGECANDYBAR
-	scene_script MahoganyTownNoop2Scene, SCENE_MAHOGANYTOWN_NOOP
+	scene_script .DummyScene0, SCENE_MAHOGANYTOWN_TRY_RAGECANDYBAR
+	scene_script .DummyScene1, SCENE_MAHOGANYTOWN_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, MahoganyTownFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-MahoganyTownNoop1Scene:
+.DummyScene0:
 	end
 
-MahoganyTownNoop2Scene:
+.DummyScene1:
 	end
 
-MahoganyTownFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_MAHOGANY
 	endcallback
 
 MahoganyTownTryARageCandyBarScript:
 	showemote EMOTE_SHOCK, MAHOGANYTOWN_POKEFAN_M, 15
-	applymovement MAHOGANYTOWN_POKEFAN_M, MahoganyTownRageCandyBarMerchantBlocksYouMovement
+	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900a9
 	follow PLAYER, MAHOGANYTOWN_POKEFAN_M
-	applymovement PLAYER, MahoganyTownPlayerStepLeftMovement
+	applymovement PLAYER, MovementData_0x1900a7
 	stopfollow
 	turnobject PLAYER, RIGHT
 	scall RageCandyBarMerchantScript
-	applymovement MAHOGANYTOWN_POKEFAN_M, MahoganyTownRageCandyBarMerchantReturnsMovement
+	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900ad
 	end
 
 MahoganyTownPokefanMScript:
@@ -121,21 +121,17 @@ MahoganyGymSign:
 MahoganyTownPokecenterSign:
 	jumpstd PokecenterSignScript
 
-MahoganyTownCollideDownFaceLeftMovement: ; unreferenced
-	step DOWN
-	big_step UP
-	turn_head DOWN
-MahoganyTownPlayerStepLeftMovement:
+MovementData_0x1900a7:
 	step LEFT
 	step_end
 
-MahoganyTownRageCandyBarMerchantBlocksYouMovement:
+MovementData_0x1900a9:
 	step RIGHT
 	step DOWN
 	turn_head LEFT
 	step_end
 
-MahoganyTownRageCandyBarMerchantReturnsMovement:
+MovementData_0x1900ad:
 	step UP
 	turn_head DOWN
 	step_end
@@ -154,7 +150,7 @@ RageCandyBarMerchantTryOneText:
 
 	para "Right now, it can"
 	line "be yours for just"
-	cont "¥300! Want one?"
+	cont "¥400! Want one?"
 	done
 
 RageCandyBarMerchantSavorItText:

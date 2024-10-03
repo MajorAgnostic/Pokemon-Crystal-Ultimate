@@ -8,15 +8,15 @@
 
 TeamRocketBaseB1F_MapScripts:
 	def_scene_scripts
-	scene_script TeamRocketBaseB1FNoopScene, SCENE_TEAMROCKETBASEB1F_TRAPS
+	scene_script .DummyScene, SCENE_BASE1_DEFAULT
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, TeamRocketBaseB1FHideSecurityGruntCallback
+	callback MAPCALLBACK_OBJECTS, .HideSecurityGrunt
 
-TeamRocketBaseB1FNoopScene:
+.DummyScene:
 	end
 
-TeamRocketBaseB1FHideSecurityGruntCallback:
+.HideSecurityGrunt:
 	disappear TEAMROCKETBASEB1F_ROCKET1
 	endcallback
 
@@ -446,32 +446,32 @@ ExplodingTrap22:
 	end
 
 VoltorbExplodingTrap:
-	special FadeOutToWhite
-	cry VOLTORB
-	special FadeInFromWhite
+	special FadeOutPalettes
+	cry ELECTRODE
+	special FadeInPalettes
 	setlasttalked -1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadwildmon VOLTORB, 23
+	loadwildmon ELECTRODE, 45
 	startbattle
 	end
 
 GeodudeExplodingTrap:
-	special FadeOutToWhite
-	cry GEODUDE
-	special FadeInFromWhite
+	special FadeOutPalettes
+	cry GRAVELER
+	special FadeInPalettes
 	setlasttalked -1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadwildmon GEODUDE, 21
+	loadwildmon GRAVELER, 45
 	startbattle
 	end
 
 KoffingExplodingTrap:
-	special FadeOutToWhite
-	cry KOFFING
-	special FadeInFromWhite
+	special FadeOutPalettes
+	cry WEEZING
+	special FadeInPalettes
 	setlasttalked -1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadwildmon KOFFING, 21
+	loadwildmon WEEZING, 45
 	startbattle
 	end
 
@@ -736,38 +736,38 @@ TeamRocketBaseB1F_MapEvents:
 	def_coord_events
 	; There are five security cameras in the base.
 	; Walking in front of one triggers two Rocket Grunts.
-	coord_event 24,  2, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera1a
-	coord_event 24,  3, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera1b
-	coord_event  6,  2, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera2a
-	coord_event  6,  3, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera2b
-	coord_event 24,  6, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera3a
-	coord_event 24,  7, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera3b
-	coord_event 22, 16, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera4
-	coord_event  8, 16, SCENE_TEAMROCKETBASEB1F_TRAPS, SecurityCamera5
+	coord_event 24,  2, SCENE_BASE1_DEFAULT, SecurityCamera1a
+	coord_event 24,  3, SCENE_BASE1_DEFAULT, SecurityCamera1b
+	coord_event  6,  2, SCENE_BASE1_DEFAULT, SecurityCamera2a
+	coord_event  6,  3, SCENE_BASE1_DEFAULT, SecurityCamera2b
+	coord_event 24,  6, SCENE_BASE1_DEFAULT, SecurityCamera3a
+	coord_event 24,  7, SCENE_BASE1_DEFAULT, SecurityCamera3b
+	coord_event 22, 16, SCENE_BASE1_DEFAULT, SecurityCamera4
+	coord_event  8, 16, SCENE_BASE1_DEFAULT, SecurityCamera5
 	; There are spots on the floor that trigger a Pokémon battle.
 	; Each Pokémon (Voltorb, Koffing, Geodude) knows Selfdestruct.
-	coord_event  2,  7, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap1
-	coord_event  3,  7, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap2
-	coord_event  4,  7, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap3
-	coord_event  1,  8, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap4
-	coord_event  3,  8, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap5
-	coord_event  5,  8, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap6
-	coord_event  3,  9, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap7
-	coord_event  4,  9, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap8
-	coord_event  1, 10, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap9
-	coord_event  2, 10, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap10
-	coord_event  3, 10, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap11
-	coord_event  5, 10, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap12
-	coord_event  2, 11, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap13
-	coord_event  4, 11, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap14
-	coord_event  1, 12, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap15
-	coord_event  2, 12, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap16
-	coord_event  4, 12, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap17
-	coord_event  5, 12, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap18
-	coord_event  1, 13, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap19
-	coord_event  3, 13, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap20
-	coord_event  4, 13, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap21
-	coord_event  5, 13, SCENE_TEAMROCKETBASEB1F_TRAPS, ExplodingTrap22
+	coord_event  2,  7, SCENE_BASE1_DEFAULT, ExplodingTrap1
+	coord_event  3,  7, SCENE_BASE1_DEFAULT, ExplodingTrap2
+	coord_event  4,  7, SCENE_BASE1_DEFAULT, ExplodingTrap3
+	coord_event  1,  8, SCENE_BASE1_DEFAULT, ExplodingTrap4
+	coord_event  3,  8, SCENE_BASE1_DEFAULT, ExplodingTrap5
+	coord_event  5,  8, SCENE_BASE1_DEFAULT, ExplodingTrap6
+	coord_event  3,  9, SCENE_BASE1_DEFAULT, ExplodingTrap7
+	coord_event  4,  9, SCENE_BASE1_DEFAULT, ExplodingTrap8
+	coord_event  1, 10, SCENE_BASE1_DEFAULT, ExplodingTrap9
+	coord_event  2, 10, SCENE_BASE1_DEFAULT, ExplodingTrap10
+	coord_event  3, 10, SCENE_BASE1_DEFAULT, ExplodingTrap11
+	coord_event  5, 10, SCENE_BASE1_DEFAULT, ExplodingTrap12
+	coord_event  2, 11, SCENE_BASE1_DEFAULT, ExplodingTrap13
+	coord_event  4, 11, SCENE_BASE1_DEFAULT, ExplodingTrap14
+	coord_event  1, 12, SCENE_BASE1_DEFAULT, ExplodingTrap15
+	coord_event  2, 12, SCENE_BASE1_DEFAULT, ExplodingTrap16
+	coord_event  4, 12, SCENE_BASE1_DEFAULT, ExplodingTrap17
+	coord_event  5, 12, SCENE_BASE1_DEFAULT, ExplodingTrap18
+	coord_event  1, 13, SCENE_BASE1_DEFAULT, ExplodingTrap19
+	coord_event  3, 13, SCENE_BASE1_DEFAULT, ExplodingTrap20
+	coord_event  4, 13, SCENE_BASE1_DEFAULT, ExplodingTrap21
+	coord_event  5, 13, SCENE_BASE1_DEFAULT, ExplodingTrap22
 
 	def_bg_events
 	bg_event 19, 11, BGEVENT_READ, TeamRocketBaseB1FSecretSwitch

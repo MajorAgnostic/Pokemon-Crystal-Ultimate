@@ -304,18 +304,19 @@ BattleAnim_SweetScent2:
 BattleAnim_ThrowPokeBall:
 	anim_if_param_equal NO_ITEM, .TheTrainerBlockedTheBall
 	anim_if_param_equal MASTER_BALL, .MasterBall
-	anim_if_param_equal ULTRA_BALL, .UltraBall
-	anim_if_param_equal GREAT_BALL, .GreatBall
 	; any other ball
-	anim_2gfx BATTLE_ANIM_GFX_POKE_BALL, BATTLE_ANIM_GFX_SMOKE
+	anim_4gfx BATTLE_ANIM_GFX_POKE_BALL, BATTLE_ANIM_GFX_POKE_BALL_BG, BATTLE_ANIM_GFX_SMOKE, BATTLE_ANIM_GFX_SPEED
 	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 68, 92, $40
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 64, 82, $20
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL_BG, 64, 82, $20
 	anim_wait 36
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 136, 65, $0
-	anim_setobj $2, $7
-	anim_wait 16
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 136, 55, $0
+	anim_setobj $3, $7
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL_BG, 136, 55, $0
+	anim_setobj $4, $7
+	anim_wait 2
 	anim_sound 0, 1, SFX_BALL_POOF
-	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 64, $10
+	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 54, $10
 	anim_wait 16
 	anim_jump .Shake
 
@@ -328,60 +329,39 @@ BattleAnim_ThrowPokeBall:
 	anim_wait 32
 	anim_ret
 
-.UltraBall:
-	anim_2gfx BATTLE_ANIM_GFX_POKE_BALL, BATTLE_ANIM_GFX_SMOKE
-	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 68, 92, $40
-	anim_wait 36
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 136, 65, $0
-	anim_setobj $2, $7
-	anim_wait 16
-	anim_sound 0, 1, SFX_BALL_POOF
-	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 64, $10
-	anim_wait 16
-	anim_jump .Shake
-
-.GreatBall:
-	anim_2gfx BATTLE_ANIM_GFX_POKE_BALL, BATTLE_ANIM_GFX_SMOKE
-	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 68, 92, $40
-	anim_wait 36
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 136, 65, $0
-	anim_setobj $2, $7
-	anim_wait 16
-	anim_sound 0, 1, SFX_BALL_POOF
-	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 64, $10
-	anim_wait 16
-	anim_jump .Shake
-
 .MasterBall:
-	anim_3gfx BATTLE_ANIM_GFX_POKE_BALL, BATTLE_ANIM_GFX_SMOKE, BATTLE_ANIM_GFX_SPEED
+	anim_5gfx BATTLE_ANIM_GFX_POKE_BALL, BATTLE_ANIM_GFX_POKE_BALL_BG, BATTLE_ANIM_GFX_SMOKE, BATTLE_ANIM_GFX_SPEED, BATTLE_ANIM_GFX_SPEED
 	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 64, 92, $20
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 64, 82, $20
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL_BG, 64, 82, $20
 	anim_wait 36
-	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 136, 65, $0
-	anim_setobj $2, $7
-	anim_wait 16
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL, 136, 55, $0
+	anim_setobj $3, $7
+	anim_obj BATTLE_ANIM_OBJ_POKE_BALL_BG, 136, 55, $0
+	anim_setobj $4, $7
+	anim_wait 2
 	anim_sound 0, 1, SFX_BALL_POOF
-	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 64, $10
+	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 54, $10
 	anim_wait 24
 	anim_sound 0, 1, SFX_MASTER_BALL
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $30
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $31
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $32
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $33
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $34
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $35
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $36
-	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $37
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $30
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $31
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $32
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $33
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $34
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $35
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $36
+	anim_obj BATTLE_ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 48, $37
 	anim_wait 64
 .Shake:
 	anim_bgeffect BATTLE_BG_EFFECT_RETURN_MON, $0, BG_EFFECT_TARGET, $0
 	anim_wait 8
-	anim_incobj 2
+	anim_incobj 3
+	anim_incobj 4
 	anim_wait 16
 	anim_sound 0, 1, SFX_CHANGE_DEX_MODE
 	anim_incobj 1
+	anim_incobj 2
 	anim_wait 32
 	anim_sound 0, 1, SFX_BALL_BOUNCE
 	anim_wait 32
@@ -390,22 +370,31 @@ BattleAnim_ThrowPokeBall:
 	anim_wait 8
 	anim_setvar $0
 .Loop:
-	anim_wait 48
+	anim_wait 38
 	anim_checkpokeball
 	anim_if_var_equal $1, .Click
 	anim_if_var_equal $2, .BreakFree
+	anim_wait 12
 	anim_incobj 1
+	anim_incobj 2
 	anim_sound 0, 1, SFX_BALL_WOBBLE
+	anim_wait 12
 	anim_jump .Loop
 
 .Click:
+	anim_wait 20
+	anim_obj BATTLE_ANIM_OBJ_SHINY2, 119, 60, $34
+	anim_obj BATTLE_ANIM_OBJ_SHINY2, 148, 60, $34
+	anim_sound 0, 0, SFX_SHINE
+	anim_wait 8
 	anim_keepsprites
 	anim_ret
 
 .BreakFree:
 	anim_setobj $1, $b
+	anim_setobj $2, $b
 	anim_sound 0, 1, SFX_BALL_POOF
-	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 64, $10
+	anim_obj BATTLE_ANIM_OBJ_BALL_POOF, 136, 54, $10
 	anim_wait 2
 	anim_bgeffect BATTLE_BG_EFFECT_ENTER_MON, $0, BG_EFFECT_TARGET, $0
 	anim_wait 32
@@ -1313,30 +1302,6 @@ BattleAnim_RazorWind:
 	anim_wait 4
 	anim_loop 3, .loop
 	anim_wait 24
-	anim_ret
-
-BattleAnim_Sonicboom_JP: ; unreferenced
-	anim_2gfx BATTLE_ANIM_GFX_WHIP, BATTLE_ANIM_GFX_HIT
-.loop
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj BATTLE_ANIM_OBJ_SONICBOOM_JP, 64, 80, $3
-	anim_wait 8
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj BATTLE_ANIM_OBJ_SONICBOOM_JP, 64, 88, $2
-	anim_wait 8
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj BATTLE_ANIM_OBJ_SONICBOOM_JP, 64, 96, $4
-	anim_wait 8
-	anim_loop 2, .loop
-	anim_wait 32
-	anim_incobj 1
-	anim_incobj 2
-	anim_incobj 3
-	anim_incobj 4
-	anim_incobj 5
-	anim_incobj 6
-	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 136, 56, $0
-	anim_wait 16
 	anim_ret
 
 BattleAnim_Gust:
@@ -4449,18 +4414,16 @@ BattleAnim_MirrorCoat:
 	anim_ret
 
 BattleAnim_PsychUp:
-	anim_1gfx BATTLE_ANIM_GFX_STATUS
-	anim_call BattleAnim_TargetObj_1Row
-	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_MON_LIGHT_DARK_REPEATING, $0, BG_EFFECT_USER, $20
-	anim_sound 0, 0, SFX_PSYBEAM
-	anim_obj BATTLE_ANIM_OBJ_PSYCH_UP, 44, 88, $0
-	anim_obj BATTLE_ANIM_OBJ_PSYCH_UP, 44, 88, $10
-	anim_obj BATTLE_ANIM_OBJ_PSYCH_UP, 44, 88, $20
-	anim_obj BATTLE_ANIM_OBJ_PSYCH_UP, 44, 88, $30
-	anim_wait 64
-	anim_incbgeffect BATTLE_BG_EFFECT_CYCLE_MON_LIGHT_DARK_REPEATING
-	anim_call BattleAnim_ShowMon_0
+	anim_1gfx BATTLE_ANIM_GFX_MISC
+	anim_sound 6, 1, SFX_FLASH
+.loop
+	anim_obj BATTLE_ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $3
+	anim_obj BATTLE_ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $12
+	anim_obj BATTLE_ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $20
+	anim_obj BATTLE_ANIM_OBJ_MIND_READER, 6, 0,   11, 0, $31
 	anim_wait 16
+	anim_loop 2, .loop
+	anim_wait 32
 	anim_ret
 
 BattleAnim_Extremespeed:

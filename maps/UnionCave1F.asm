@@ -70,18 +70,19 @@ TrainerFirebreatherRay:
 	end
 
 UnionCave1FGreatBall:
-	itemball GREAT_BALL
+	itemball STARDUST
 
 UnionCave1FXAttack:
 	itemball X_ATTACK
 
 UnionCave1FPotion:
-	itemball POTION
+	itemball GREAT_BALL
 
 UnionCave1FAwakening:
 	itemball AWAKENING
 
-UnionCave1FUnusedSign: ; unreferenced
+UnionCave1FUnusedSign:
+; unused
 	jumptext UnionCave1FUnusedSignText
 
 HikerRussellSeenText:
@@ -211,7 +212,7 @@ UnionCave1F_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event  3,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerDaniel, -1
+	object_event  3,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerDaniel, -1
 	object_event  4, 21, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacLarry, -1
 	object_event 11,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerHikerRussell, -1
 	object_event 15, 27, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerFirebreatherRay, -1

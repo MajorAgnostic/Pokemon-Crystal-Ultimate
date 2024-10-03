@@ -2,9 +2,10 @@ Route16_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, Route16AlwaysOnBikeCallback
+	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
+	callback MAPCALLBACK_TILES, .RoadClosed
 
-Route16AlwaysOnBikeCallback:
+.AlwaysOnBike:
 	readvar VAR_YCOORD
 	ifless 5, .CanWalk
 	readvar VAR_XCOORD
@@ -14,6 +15,13 @@ Route16AlwaysOnBikeCallback:
 
 .CanWalk:
 	clearflag ENGINE_ALWAYS_ON_BIKE
+	endcallback
+	
+.RoadClosed:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue .RoadUnblocked
+	changeblock 15, 7, $1b ; road closed
+.RoadUnblocked:
 	endcallback
 
 CyclingRoadSign:

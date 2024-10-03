@@ -3,20 +3,20 @@
 
 BrunosRoom_MapScripts:
 	def_scene_scripts
-	scene_script BrunosRoomLockDoorScene, SCENE_BRUNOSROOM_LOCK_DOOR
-	scene_script BrunosRoomNoopScene,     SCENE_BRUNOSROOM_NOOP
+	scene_script .LockDoor, SCENE_BRUNOSROOM_LOCK_DOOR
+	scene_script .DummyScene, SCENE_BRUNOSROOM_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, BrunosRoomDoorsCallback
+	callback MAPCALLBACK_TILES, .BrunosRoomDoors
 
-BrunosRoomLockDoorScene:
-	sdefer BrunosRoomDoorLocksBehindYouScript
+.LockDoor:
+	prioritysjump .BrunosDoorLocksBehindYou
 	end
 
-BrunosRoomNoopScene:
+.DummyScene:
 	end
 
-BrunosRoomDoorsCallback:
+.BrunosRoomDoors:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
 	changeblock 4, 14, $2a ; wall
@@ -27,13 +27,13 @@ BrunosRoomDoorsCallback:
 .KeepExitClosed:
 	endcallback
 
-BrunosRoomDoorLocksBehindYouScript:
+.BrunosDoorLocksBehindYou:
 	applymovement PLAYER, BrunosRoom_EnterMovement
-	reanchormap $86
+	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 14, $2a ; wall
-	refreshmap
+	reloadmappart
 	closetext
 	setscene SCENE_BRUNOSROOM_NOOP
 	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
@@ -41,6 +41,8 @@ BrunosRoomDoorLocksBehindYouScript:
 	end
 
 BrunoScript_Battle:
+	readvar VAR_BADGES
+	ifequal 16, .REMATCH
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
@@ -59,7 +61,33 @@ BrunoScript_Battle:
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
-	refreshmap
+	reloadmappart
+	closetext
+	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+.REMATCH:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_ELITE_4_BRUNO
+	iftrue BrunoScript_AfterBattle2
+	writetext BrunoScript_BrunoRematchText
+	waitbutton
+	closetext
+	winlosstext BrunoScript_BrunoBeatenText, 0
+	loadtrainer BRUNO, BRUNO2
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_BRUNO
+	opentext
+	writetext BrunoScript_BrunoDefeatText2
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
 	closetext
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitsfx
@@ -67,6 +95,12 @@ BrunoScript_Battle:
 
 BrunoScript_AfterBattle:
 	writetext BrunoScript_BrunoDefeatText
+	waitbutton
+	closetext
+	end
+
+BrunoScript_AfterBattle2:
+	writetext BrunoScript_BrunoDefeatText2
 	waitbutton
 	closetext
 	end
@@ -108,6 +142,26 @@ BrunoScript_BrunoBeforeText:
 	para "Hoo hah!"
 	done
 
+BrunoScript_BrunoRematchText:
+	text "Greetings, once"
+	line "again, champion."
+
+	para "Long have we trai-"
+	line "ined since your"
+	cont "initial challenge."
+
+	para "It would disturb"
+	line "me were you to"
+	cont "underestimate my"
+	cont "fighting #MON."
+	
+	para "Either way, I will"
+	line "teach you the mea-"
+	cont "ning of pain!"
+
+	para "Hoo hah, TSU-OHH!"
+	done
+
 BrunoScript_BrunoBeatenText:
 	text "Why? How could we"
 	line "lose?"
@@ -120,6 +174,24 @@ BrunoScript_BrunoDefeatText:
 
 	para "Go face your next"
 	line "challenge!"
+	done
+
+BrunoScript_BrunoDefeatText2:
+	text "Truly amazing. I"
+	line "always enjoy a"
+	cont "good thrashing."
+	
+	para "That's how I got"
+	line "to be so strong!"
+	
+	para "It won't get any"
+	line "easier, however."
+	
+	para "Steel yourself"
+	line "for the trials"
+	cont "to come."
+
+	para "Press on!"
 	done
 
 BrunosRoom_MapEvents:

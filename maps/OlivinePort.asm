@@ -9,22 +9,22 @@
 
 OlivinePort_MapScripts:
 	def_scene_scripts
-	scene_script OlivinePortNoopScene,      SCENE_OLIVINEPORT_ASK_ENTER_SHIP
-	scene_script OlivinePortLeaveShipScene, SCENE_OLIVINEPORT_LEAVE_SHIP
+	scene_script .DummyScene0, SCENE_OPORT_DEFAULT
+	scene_script .LeaveFastShip, SCENE_OLIVINEPORT_LEAVE_SHIP
 
 	def_callbacks
 
-OlivinePortNoopScene:
+.DummyScene0:
 	end
 
-OlivinePortLeaveShipScene:
-	sdefer OlivinePortLeaveShipScript
+.LeaveFastShip:
+	prioritysjump .LeaveFastShipScript
 	end
 
-OlivinePortLeaveShipScript:
-	applymovement PLAYER, OlivinePortLeaveFastShipMovement
+.LeaveFastShipScript:
+	applymovement PLAYER, MovementData_0x74a32
 	appear OLIVINEPORT_SAILOR1
-	setscene SCENE_OLIVINEPORT_ASK_ENTER_SHIP
+	setscene SCENE_OPORT_DEFAULT
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	blackoutmod OLIVINE_CITY
 	end
@@ -42,23 +42,21 @@ OlivinePortSailorAtGangwayScript:
 	playsound SFX_EXIT_BUILDING
 	disappear OLIVINEPORT_SAILOR1
 	waitsfx
-	applymovement PLAYER, OlivinePortEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
-	special FadeOutToWhite
+	special FadeOutPalettes
 	waitsfx
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse .FirstTime
 	clearevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	setevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	clearevent EVENT_BEAT_COOLTRAINERM_SEAN
 	clearevent EVENT_BEAT_COOLTRAINERF_CAROL
 	clearevent EVENT_BEAT_GENTLEMAN_EDWARD
-	clearevent EVENT_BEAT_BEAUTY_CASSIE
-	clearevent EVENT_BEAT_PSYCHIC_RODNEY
-	clearevent EVENT_BEAT_SUPER_NERD_SHAWN
 	clearevent EVENT_BEAT_SAILOR_GARRETT
 	clearevent EVENT_BEAT_FISHER_JONAH
 	clearevent EVENT_BEAT_BLACKBELT_WAI
+	clearevent EVENT_BEAT_POKEFANM_JEREMY
+	clearevent EVENT_BEAT_BUG_CATCHER_KEN
 .FirstTime:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear OLIVINEPORT_SAILOR1
@@ -100,28 +98,28 @@ OlivinePortWalkUpToShipScript:
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	applymovement PLAYER, OlivinePortApproachFastShipFirstTimeMovement
+	applymovement PLAYER, MovementData_0x74a37
 	sjump OlivinePortSailorAtGangwayScript
 
 .NoTicket:
 	writetext OlivinePortNoTicketText
 	waitbutton
 	closetext
-	applymovement PLAYER, OlivinePortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 .NextShipMonday:
 	writetext OlivinePortMondayShipText
 	waitbutton
 	closetext
-	applymovement PLAYER, OlivinePortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 .NextShipFriday:
 	writetext OlivinePortFridayShipText
 	waitbutton
 	closetext
-	applymovement PLAYER, OlivinePortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 .skip:
@@ -137,7 +135,7 @@ OlivinePortNotRidingMoveAwayScript:
 	writetext OlivinePortComeAgainText
 	waitbutton
 	closetext
-	applymovement PLAYER, OlivinePortCannotEnterFastShipMovement
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 OlivinePortSailorAfterHOFScript:
@@ -167,11 +165,11 @@ OlivinePortSailorAfterHOFScript:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	readvar VAR_FACING
 	ifequal RIGHT, .Right
-	applymovement PLAYER, OlivinePortApproachFastShipAfterHOFMovement
+	applymovement PLAYER, MovementData_0x74a3f
 	sjump OlivinePortSailorAtGangwayScript
 
 .Right:
-	applymovement PLAYER, OlivinePortApproachFastShipAfterHOFRightMovement
+	applymovement PLAYER, MovementData_0x74a49
 	sjump OlivinePortSailorAtGangwayScript
 
 .NoTicket:
@@ -234,20 +232,20 @@ OlivinePortCooltrainerFScript:
 OlivinePortHiddenProtein:
 	hiddenitem PROTEIN, EVENT_OLIVINE_PORT_HIDDEN_PROTEIN
 
-OlivinePortEnterFastShipMovement:
+MovementData_0x74a30:
 	step DOWN
 	step_end
 
-OlivinePortLeaveFastShipMovement:
+MovementData_0x74a32:
 	step UP
 	step_end
 
-OlivinePortCannotEnterFastShipMovement:
+MovementData_0x74a34:
 	step RIGHT
 	turn_head LEFT
 	step_end
 
-OlivinePortApproachFastShipFirstTimeMovement:
+MovementData_0x74a37:
 	step DOWN
 	step DOWN
 	step DOWN
@@ -257,7 +255,7 @@ OlivinePortApproachFastShipFirstTimeMovement:
 	step DOWN
 	step_end
 
-OlivinePortApproachFastShipAfterHOFMovement:
+MovementData_0x74a3f:
 	step RIGHT
 	step DOWN
 	step DOWN
@@ -269,7 +267,7 @@ OlivinePortApproachFastShipAfterHOFMovement:
 	step DOWN
 	step_end
 
-OlivinePortApproachFastShipAfterHOFRightMovement:
+MovementData_0x74a49:
 	step UP
 	step RIGHT
 	step RIGHT
@@ -390,7 +388,7 @@ OlivinePort_MapEvents:
 	warp_event  7, 23, FAST_SHIP_1F, 1
 
 	def_coord_events
-	coord_event  7, 15, SCENE_OLIVINEPORT_ASK_ENTER_SHIP, OlivinePortWalkUpToShipScript
+	coord_event  7, 15, SCENE_OPORT_DEFAULT, OlivinePortWalkUpToShipScript
 
 	def_bg_events
 	bg_event  1, 22, BGEVENT_ITEM, OlivinePortHiddenProtein

@@ -659,10 +659,26 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	jr .nextscene
 
 .cgb
+	ld hl, .rocketpals
+	ld a, [wOtherTrainerClass]
+	cp GRUNTM
+	jr z, .load_rocket_pals
+	cp GRUNTF
+	jr z, .load_rocket_pals
+	cp EXECUTIVEM
+	jr z, .load_rocket_pals
+	cp ARIANA
+	jr z, .load_rocket_pals
+	cp PETREL
+	jr z, .load_rocket_pals
+	cp PROTON
+	jr z, .load_rocket_pals
+	cp ARCHER
+	jr z, .load_rocket_pals
 	ld hl, .pals
-	ld a, [wTimeOfDayPal]
-	maskbits NUM_DAYTIMES
-	cp DARKNESS_F
+.load_rocket_pals
+	ld a, [wTimeOfDayPalset]
+	cp DARKNESS_PALSET
 	jr nz, .not_dark
 	ld hl, .darkpals
 .not_dark
@@ -699,9 +715,9 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	call .copy
 	ld de, wOBPals2 palette PAL_OW_TREE
 	call .copy
-	ld de, wOBPals1 palette PAL_OW_ROCK
+	ld de, wOBPals1 palette PAL_OW_BROWN
 	call .copy
-	ld de, wOBPals2 palette PAL_OW_ROCK
+	ld de, wOBPals2 palette PAL_OW_BROWN
 
 .copy
 	push hl
@@ -716,8 +732,26 @@ INCLUDE "gfx/overworld/trainer_battle.pal"
 .darkpals:
 INCLUDE "gfx/overworld/trainer_battle_dark.pal"
 
+.rocketpals:
+INCLUDE "gfx/overworld/rocket_battle.pal"
+
 .loadpokeballgfx:
+	ld de, TeamRocketTransition
 	ld a, [wOtherTrainerClass]
+	cp GRUNTM
+	ret z
+	cp GRUNTF
+	ret z
+	cp EXECUTIVEM
+	ret z
+	cp ARIANA
+	ret z
+	cp PETREL
+	ret z
+	cp PROTON
+	ret z
+	cp ARCHER
+	ret z
 	ld de, PokeBallTransition
 	ret
 
@@ -741,6 +775,28 @@ opt b.X ; . = 0, X = 1
 	bigdw %..XXXX....XXXX..
 	bigdw %....XXXXXXXX....
 	bigdw %......XXXX......
+popo
+
+
+TeamRocketTransition:
+pusho
+opt b.X ; . = 0, X = 1
+	bigdw %XXXXXXXXXXXX....
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXX...
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX.....XXXXX.
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX......XXXXX
 popo
 
 WipeLYOverrides:

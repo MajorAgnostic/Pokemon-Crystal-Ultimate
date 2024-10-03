@@ -1,13 +1,12 @@
 	object_const_def
 	const GOLDENRODPOKECENTER1F_NURSE
-	const GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST
+	const GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	const GOLDENRODPOKECENTER1F_GAMEBOY_KID
 	const GOLDENRODPOKECENTER1F_LASS
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
 
 GoldenrodPokecenter1F_MapScripts:
 	def_scene_scripts
-	scene_const SCENE_GOLDENRODPOKECENTER1F_GS_BALL
 
 	def_callbacks
 
@@ -15,65 +14,63 @@ GoldenrodPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
-	setval BATTLETOWERACTION_GSBALL
-	special BattleTowerAction
-	ifequal GS_BALL_AVAILABLE, .gsball
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .gsball
 	end
 
 .gsball
-	checkevent EVENT_GOT_GS_BALL_FROM_GOLDENROD_POKEMON_CENTER
+	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveobject GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST, 0, 7
-	disappear GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST
-	appear GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 0, 7
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtLeftDoorwayTileMovement
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtLeftDoorwayTileMovement
 	turnobject PLAYER, UP
 	opentext
 	writetext GoldenrodPokeCenter1FLinkReceptionistPleaseAcceptGSBallText
 	waitbutton
 	verbosegiveitem GS_BALL
-	setevent EVENT_GOT_GS_BALL_FROM_GOLDENROD_POKEMON_CENTER
+	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText
 	waitbutton
 	closetext
-	applymovement GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromLeftDoorwayTileMovement
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromLeftDoorwayTileMovement
 	special RestartMapMusic
-	disappear GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
 .cancel
 	end
 
 GoldenrodPokecenter1F_GSBallSceneRight:
-	setval BATTLETOWERACTION_GSBALL
-	special BattleTowerAction
-	ifequal GS_BALL_AVAILABLE, .gsball
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .gsball
 	end
 
 .gsball
-	checkevent EVENT_GOT_GS_BALL_FROM_GOLDENROD_POKEMON_CENTER
+	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveobject GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST, 0, 7
-	disappear GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST
-	appear GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 0, 7
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtRightDoorwayTileMovement
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtRightDoorwayTileMovement
 	turnobject PLAYER, UP
 	opentext
 	writetext GoldenrodPokeCenter1FLinkReceptionistPleaseAcceptGSBallText
 	waitbutton
 	verbosegiveitem GS_BALL
-	setevent EVENT_GOT_GS_BALL_FROM_GOLDENROD_POKEMON_CENTER
+	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText
 	waitbutton
 	closetext
-	applymovement GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement
 	special RestartMapMusic
-	disappear GOLDENRODPOKECENTER1F_PCC_TRADE_CORNER_RECEPTIONIST
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
 .cancel
 	end
@@ -150,7 +147,8 @@ GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement:
 	step DOWN
 	step_end
 
-GoldenrodPokecomCenterWelcomeToTradeCornerText: ; unreferenced
+; unused
+UnknownText_0x61072:
 	text "Hello! Welcome to"
 	line "#COM CENTER"
 	cont "TRADE CORNER."
@@ -160,7 +158,7 @@ GoldenrodPokecomCenterWelcomeToTradeCornerText: ; unreferenced
 	cont "people far away."
 	done
 
-GoldenrodPokecomCenterWeMustHoldYourMonText: ; unreferenced
+UnknownText_0x610ce:
 	text "To make a trade,"
 	line "we must hold your"
 	cont "#MON."
@@ -169,13 +167,13 @@ GoldenrodPokecomCenterWeMustHoldYourMonText: ; unreferenced
 	line "trade?"
 	done
 
-GoldenrodPokecomCenterWhatMonDoYouWantText: ; unreferenced
+UnknownText_0x61111:
 	text "What kind of"
 	line "#MON do you"
 	cont "want in return?"
 	done
 
-GoldenrodPokecomCenterWeWillTradeYourMonForMonText: ; unreferenced
+UnknownText_0x6113b:
 	text "Fine. We will try"
 	line "to trade your"
 
@@ -195,7 +193,7 @@ GoldenrodPokecomCenterWeWillTradeYourMonForMonText: ; unreferenced
 	cont "room for it."
 	done
 
-GoldenrodPokecomCenterWeWillTradeYourMonForNewText: ; unreferenced
+UnknownText_0x611c9:
 	text "Fine. We will try"
 	line "to trade your"
 
@@ -214,7 +212,7 @@ GoldenrodPokecomCenterWeWillTradeYourMonForNewText: ; unreferenced
 	cont "room for it."
 	done
 
-GoldenrodPokecomCenterYourMonHasBeenReceivedText: ; unreferenced
+UnknownText_0x61271:
 	text "Your trade #MON"
 	line "has been received."
 
@@ -225,7 +223,7 @@ GoldenrodPokecomCenterYourMonHasBeenReceivedText: ; unreferenced
 	line "come back later."
 	done
 
-GoldenrodPokecomCenterYouHaveOnlyOneMonText: ; unreferenced
+UnknownText_0x612d8:
 	text "Oh? You have only"
 	line "one #MON in"
 	cont "your party. "
@@ -236,28 +234,28 @@ GoldenrodPokecomCenterYouHaveOnlyOneMonText: ; unreferenced
 	cont "of your party."
 	done
 
-GoldenrodPokecomCenterWeHopeToSeeYouAgainText: ; unreferenced
+UnknownText_0x61344:
 	text "We hope to see you"
 	line "again."
 	done
 
-GoldenrodPokecomCenterCommunicationErrorText: ; unreferenced
+UnknownText_0x6135f:
 	text "Communication"
 	line "error…"
 	done
 
-GoldenrodPokecomCenterCantAcceptLastMonText: ; unreferenced
+UnknownText_0x61375:
 	text "If we accept that"
 	line "#MON, what will"
 	cont "you battle with?"
 	done
 
-GoldenrodPokecomCenterCantAcceptEggText: ; unreferenced
+UnknownText_0x613a9:
 	text "Sorry. We can't"
 	line "accept an EGG."
 	done
 
-GoldenrodPokecomCenterCantAcceptAbnormalMonText: ; unreferenced
+UnknownText_0x613c8:
 	text "Sorry, but your"
 	line "#MON appears to"
 
@@ -265,20 +263,20 @@ GoldenrodPokecomCenterCantAcceptAbnormalMonText: ; unreferenced
 	line "can't accept it."
 	done
 
-GoldenrodPokecomCenterAlreadyHoldingMonText: ; unreferenced
+UnknownText_0x61409:
 	text "Oh? Aren't we"
 	line "already holding a"
 	cont "#MON of yours?"
 	done
 
-GoldenrodPokecomCenterCheckingTheRoomsText: ; unreferenced
+UnknownText_0x61438:
 	text "We'll check the"
 	line "rooms."
 
 	para "Please wait."
 	done
 
-GoldenrodPokecomCenterTradePartnerHasBeenFoundText: ; unreferenced
+UnknownText_0x6145c:
 	text "Thank you for your"
 	line "patience."
 
@@ -286,7 +284,7 @@ GoldenrodPokecomCenterTradePartnerHasBeenFoundText: ; unreferenced
 	line "has been found."
 	done
 
-GoldenrodPokecomCenterItsYourNewPartnerText: ; unreferenced
+UnknownText_0x6149a:
 	text "It's your new"
 	line "partner."
 
@@ -297,7 +295,7 @@ GoldenrodPokecomCenterItsYourNewPartnerText: ; unreferenced
 	line "again."
 	done
 
-GoldenrodPokecomCenterYourPartyIsFullText: ; unreferenced
+UnknownText_0x614ed:
 	text "Uh-oh. Your party"
 	line "is already full."
 
@@ -306,7 +304,7 @@ GoldenrodPokecomCenterYourPartyIsFullText: ; unreferenced
 	cont "in your party."
 	done
 
-GoldenrodPokecomCenterNoTradePartnerFoundText: ; unreferenced
+UnknownText_0x61544:
 	text "It's unfortunate,"
 	line "but no one has"
 
@@ -317,12 +315,12 @@ GoldenrodPokecomCenterNoTradePartnerFoundText: ; unreferenced
 	line "your #MON back?"
 	done
 
-GoldenrodPokecomCenterReturnedYourMonText: ; unreferenced
+UnknownText_0x615a5:
 	text "We have returned"
 	line "your #MON."
 	done
 
-GoldenrodPokecomCenterYourMonIsLonelyText: ; unreferenced
+UnknownText_0x615c2:
 	text "It's unfortunate,"
 	line "but no one has"
 
@@ -339,18 +337,18 @@ GoldenrodPokecomCenterYourMonIsLonelyText: ; unreferenced
 	line "return it to you."
 	done
 
-GoldenrodPokecenter1FWeHopeToSeeYouAgainText_2: ; unreferenced
+UnknownText_0x6166e:
 	text "We hope to see you"
 	line "again."
 	done
 
-GoldenrodPokecomCenterContinueToHoldYourMonText: ; unreferenced
+UnknownText_0x61689:
 	text "Fine. We will"
 	line "continue to hold"
 	cont "your #MON."
 	done
 
-GoldenrodPokecomCenterRecentlyLeftYourMonText: ; unreferenced
+UnknownText_0x616b4:
 	text "Oh? You left your"
 	line "#MON with us"
 	cont "only recently."
@@ -359,23 +357,23 @@ GoldenrodPokecomCenterRecentlyLeftYourMonText: ; unreferenced
 	line "later."
 	done
 
-GoldenrodPokecomCenterSaveBeforeTradeCornerText: ; unreferenced
+UnknownText_0x616fb:
 	text "We'll SAVE before"
 	line "connecting to the"
 	cont "CENTER."
 	done
 
-GoldenrodPokecomCenterWhichMonToTradeText: ; unreferenced
+UnknownText_0x61727:
 	text "Which #MON do"
 	line "you want to trade?"
 	done
 
-GoldenrodPokecomCenterTradeCanceledText: ; unreferenced
+UnknownText_0x61749:
 	text "Sorry, but we must"
 	line "cancel the trade."
 	done
 
-GoldenrodPokecomCenterEggTicketText: ; unreferenced
+UnknownText_0x6176f:
 	text "Oh!"
 
 	para "I see you have an"
@@ -388,7 +386,7 @@ GoldenrodPokecomCenterEggTicketText: ; unreferenced
 	line "special #MON!"
 	done
 
-GoldenrodPokecomCenterOddEggBriefingText: ; unreferenced
+UnknownText_0x617d2:
 	text "Let me give you a"
 	line "quick briefing."
 
@@ -421,12 +419,12 @@ GoldenrodPokecomCenterOddEggBriefingText: ; unreferenced
 	line "chosen room."
 	done
 
-GoldenrodPokecomCenterPleaseWaitAMomentText: ; unreferenced
+UnknownText_0x6191f:
 	text "Please wait a"
 	line "moment."
 	done
 
-GoldenrodPokecomCenterHereIsYourOddEggText: ; unreferenced
+UnknownText_0x61936:
 	text "Thank you for"
 	line "waiting."
 
@@ -439,7 +437,7 @@ GoldenrodPokecomCenterHereIsYourOddEggText: ; unreferenced
 	line "with loving care."
 	done
 
-GoldenrodPokecomCenterNoEggTicketServiceText: ; unreferenced
+UnknownText_0x61996:
 	text "I'm awfully sorry."
 
 	para "The EGG TICKET"
@@ -447,17 +445,17 @@ GoldenrodPokecomCenterNoEggTicketServiceText: ; unreferenced
 	cont "isn't running now."
 	done
 
-GoldenrodPokecomCenterNewsMachineText: ; unreferenced
+UnknownText_0x619db:
 	text "It's a #MON"
 	line "NEWS MACHINE."
 	done
 
-GoldenrodPokecomCenterWhatToDoText: ; unreferenced
+UnknownText_0x619f5:
 	text "What would you"
 	line "like to do?"
 	done
 
-GoldenrodPokecomCenterNewsMachineExplanationText: ; unreferenced
+UnknownText_0x61a11:
 	text "#MON NEWS is"
 	line "news compiled from"
 
@@ -492,22 +490,22 @@ GoldenrodPokecomCenterNewsMachineExplanationText: ; unreferenced
 	line "in the NEWS!"
 	done
 
-GoldenrodPokecomCenterWouldYouLikeTheNewsText: ; unreferenced
+UnknownText_0x61b7c:
 	text "Would you like to"
 	line "get the NEWS?"
 	done
 
-GoldenrodPokecomCenterReadingTheLatestNewsText: ; unreferenced
+UnknownText_0x61b9d:
 	text "Reading the latest"
 	line "NEWS… Please wait."
 	done
 
-GoldenrodPokecomCenterNoOldNewsText: ; unreferenced
+UnknownText_0x61bc4:
 	text "There is no old"
 	line "NEWS…"
 	done
 
-GoldenrodPokecomCenterCorruptedNewsDataText: ; unreferenced
+UnknownText_0x61bdb:
 	text "The NEWS data is"
 	line "corrupted."
 
@@ -515,7 +513,7 @@ GoldenrodPokecomCenterCorruptedNewsDataText: ; unreferenced
 	line "the NEWS again."
 	done
 
-GoldenrodPokecomCenterMakingPreparationsText: ; unreferenced
+UnknownText_0x61c18:
 	text "We're making"
 	line "preparations."
 
@@ -523,7 +521,7 @@ GoldenrodPokecomCenterMakingPreparationsText: ; unreferenced
 	line "later."
 	done
 
-GoldenrodPokecomCenterSaveBeforeNewsMachineText: ; unreferenced
+UnknownText_0x61c4b:
 	text "We will SAVE your"
 	line "progress before"
 
@@ -531,7 +529,7 @@ GoldenrodPokecomCenterSaveBeforeNewsMachineText: ; unreferenced
 	line "MACHINE."
 	done
 
-GoldenrodPokecomCenterPerson1Text: ; unreferenced
+UnknownText_0x61c89:
 	text "Whoa, this #MON"
 	line "CENTER is huge."
 
@@ -542,7 +540,7 @@ GoldenrodPokecomCenterPerson1Text: ; unreferenced
 	line "new machines too."
 	done
 
-GoldenrodPokecomCenterPerson2Text: ; unreferenced
+UnknownText_0x61cef:
 	text "I thought up a fun"
 	line "new thing for the"
 	cont "TRADE CORNER!"
@@ -570,7 +568,7 @@ GoldenrodPokecomCenterPerson2Text: ; unreferenced
 	line "friends!"
 	done
 
-GoldenrodPokecomCenterPerson3Text: ; unreferenced
+UnknownText_0x61dfd:
 	text "They said you can"
 	line "trade #MON with"
 
@@ -581,7 +579,7 @@ GoldenrodPokecomCenterPerson3Text: ; unreferenced
 	line "adjusting things."
 	done
 
-GoldenrodPokecomCenterPerson4Text: ; unreferenced
+UnknownText_0x61e5c:
 	text "Some girl I don't"
 	line "know sent me her"
 
@@ -592,7 +590,7 @@ GoldenrodPokecomCenterPerson4Text: ; unreferenced
 	line "you want."
 	done
 
-GoldenrodPokecomCenterPerson5Text: ; unreferenced
+UnknownText_0x61eb2:
 	text "I received a"
 	line "female HOPPIP, but"
 	cont "its named STANLEY!"
@@ -601,7 +599,7 @@ GoldenrodPokecomCenterPerson5Text: ; unreferenced
 	line "name!"
 	done
 
-GoldenrodPokecomCenterPerson6Text: ; unreferenced
+UnknownText_0x61efa:
 	text "What is the NEWS"
 	line "MACHINE?"
 
@@ -610,7 +608,7 @@ GoldenrodPokecomCenterPerson6Text: ; unreferenced
 	cont "than the radio?"
 	done
 
-GoldenrodPokecomCenterPerson7Text: ; unreferenced
+UnknownText_0x61f48:
 	text "The #COM CENTER"
 	line "will link with all"
 
@@ -624,7 +622,7 @@ GoldenrodPokecomCenterPerson7Text: ; unreferenced
 	line "sorts of people."
 	done
 
-GoldenrodPokecomCenterPerson8Text: ; unreferenced
+UnknownText_0x61fc9:
 	text "The machines here"
 	line "can't be used yet."
 
@@ -635,7 +633,7 @@ GoldenrodPokecomCenterPerson8Text: ; unreferenced
 	line "people."
 	done
 
-GoldenrodPokecomCenterPerson9Text: ; unreferenced
+UnknownText_0x6202c:
 	text "My friend was in"
 	line "the NEWS a while"
 
@@ -643,13 +641,13 @@ GoldenrodPokecomCenterPerson9Text: ; unreferenced
 	line "surprised!"
 	done
 
-GoldenrodPokecomCenterPerson10Text: ; unreferenced
+UnknownText_0x6206d:
 	text "I get anxious if I"
 	line "don't check out"
 	cont "the latest NEWS!"
 	done
 
-GoldenrodPokecomCenterPerson11Text: ; unreferenced
+UnknownText_0x620a1:
 	text "If I get in the"
 	line "NEWS and become"
 
@@ -673,7 +671,7 @@ GoldenrodPokecenter1FGameboyKidText:
 	line "afford to lose."
 	done
 
-GoldenrodPokecomCenterPerson12Text: ; unreferenced
+UnknownText_0x62173:
 	text "I came over here"
 	line "when I got word"
 
@@ -691,7 +689,7 @@ GoldenrodPokecomCenterPerson12Text: ; unreferenced
 	line "preparations…"
 	done
 
-GoldenrodPokecomCenterPerson13Text: ; unreferenced
+UnknownText_0x62222:
 	text "Just seeing all"
 	line "these new things"
 
@@ -732,7 +730,7 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 	line "again!"
 	done
 
-GoldenrodPokecomCenterSignText: ; unreferenced
+UnknownText_0x62370:
 	text "#COM CENTER"
 	line "1F INFORMATION"
 
@@ -746,7 +744,7 @@ GoldenrodPokecomCenterSignText: ; unreferenced
 	line "#MON NEWS"
 	done
 
-GoldenrodPokecomCenterNewsMachineNotYetText: ; unreferenced
+UnknownText_0x623c7:
 	text "It's a #MON"
 	line "NEWS MACHINE!"
 
@@ -812,8 +810,8 @@ GoldenrodPokecenter1F_MapEvents:
 	warp_event  0,  7, POKECENTER_2F, 1
 
 	def_coord_events
-	coord_event  3,  7, SCENE_GOLDENRODPOKECENTER1F_GS_BALL, GoldenrodPokecenter1F_GSBallSceneLeft
-	coord_event  4,  7, SCENE_GOLDENRODPOKECENTER1F_GS_BALL, GoldenrodPokecenter1F_GSBallSceneRight
+	coord_event  3,  7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneLeft
+	coord_event  4,  7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneRight
 
 	def_bg_events
 

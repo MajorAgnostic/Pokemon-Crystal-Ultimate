@@ -2,17 +2,17 @@
 	const COPYCATSHOUSE2F_COPYCAT1 ; if player is male
 	const COPYCATSHOUSE2F_DODRIO
 	const COPYCATSHOUSE2F_FAIRYDOLL ; lost item
-	const COPYCATSHOUSE2F_MONSTERDOLL
-	const COPYCATSHOUSE2F_BIRDDOLL
+	const COPYCATSHOUSE2F_GENGAR
+	const COPYCATSHOUSE2F_SURFING_PIKACHUDOLL
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
 
 CopycatsHouse2F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, CopycatsHouse2FWhichGenderCallback
+	callback MAPCALLBACK_OBJECTS, .Callback
 
-CopycatsHouse2FWhichGenderCallback:
+.Callback:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Female
 	disappear COPYCATSHOUSE2F_COPYCAT2
@@ -45,8 +45,7 @@ Copycat:
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Default_Merge_1:
 	special LoadUsedSpritesGFX
-	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .TalkAboutLostItem
+	sjump .TalkAboutLostItem
 	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Default_Female_2a
@@ -372,8 +371,8 @@ CopycatsHouse2F_MapEvents:
 
 	def_object_events
 	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_1
-	object_event  6,  4, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrio, -1
+	object_event  6,  4, SPRITE_DODRIO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrio, -1
 	object_event  6,  1, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
-	object_event  2,  1, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
-	object_event  7,  1, SPRITE_BIRD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
+	object_event  2,  1, SPRITE_GENGAR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
+	object_event  7,  1, SPRITE_SURFING_PIKACHU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
 	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_2

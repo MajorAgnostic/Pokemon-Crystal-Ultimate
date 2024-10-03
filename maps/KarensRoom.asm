@@ -3,20 +3,20 @@
 
 KarensRoom_MapScripts:
 	def_scene_scripts
-	scene_script KarensRoomLockDoorScene, SCENE_KARENSROOM_LOCK_DOOR
-	scene_script KarensRoomNoopScene,     SCENE_KARENSROOM_NOOP
+	scene_script .LockDoor, SCENE_KARENSROOM_LOCK_DOOR
+	scene_script .DummyScene, SCENE_KARENSROOM_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, KarensRoomDoorsCallback
+	callback MAPCALLBACK_TILES, .KarensRoomDoors
 
-KarensRoomLockDoorScene:
-	sdefer KarensRoomDoorLocksBehindYouScript
+.LockDoor:
+	prioritysjump .KarensDoorLocksBehindYou
 	end
 
-KarensRoomNoopScene:
+.DummyScene:
 	end
 
-KarensRoomDoorsCallback:
+.KarensRoomDoors:
 	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
 	changeblock 4, 14, $2a ; wall
@@ -27,13 +27,13 @@ KarensRoomDoorsCallback:
 .KeepExitClosed:
 	endcallback
 
-KarensRoomDoorLocksBehindYouScript:
+.KarensDoorLocksBehindYou:
 	applymovement PLAYER, KarensRoom_EnterMovement
-	reanchormap $86
+	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 14, $2a ; wall
-	refreshmap
+	reloadmappart
 	closetext
 	setscene SCENE_KARENSROOM_NOOP
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
@@ -41,6 +41,8 @@ KarensRoomDoorLocksBehindYouScript:
 	end
 
 KarenScript_Battle:
+	readvar VAR_BADGES
+	ifequal 16, .REMATCH
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KAREN
@@ -59,7 +61,33 @@ KarenScript_Battle:
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
-	refreshmap
+	reloadmappart
+	closetext
+	setevent EVENT_KARENS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+.REMATCH:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_ELITE_4_KAREN
+	iftrue KarenScript_AfterBattle2
+	writetext KarenScript_KarenRematchText
+	waitbutton
+	closetext
+	winlosstext KarenScript_KarenBeatenText, 0
+	loadtrainer KAREN, KAREN2
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SET
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_KAREN
+	opentext
+	writetext KarenScript_KarenDefeatText2
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
 	closetext
 	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	waitsfx
@@ -67,6 +95,12 @@ KarenScript_Battle:
 
 KarenScript_AfterBattle:
 	writetext KarenScript_KarenDefeatText
+	waitbutton
+	closetext
+	end
+
+KarenScript_AfterBattle2:
+	writetext KarenScript_KarenDefeatText2
 	waitbutton
 	closetext
 	end
@@ -101,6 +135,22 @@ KarenScript_KarenBeforeText:
 	para "Let's go."
 	done
 
+KarenScript_KarenRematchText:
+	text "Ah, you! Come to"
+	line "entertain me once"
+	cont "again, have you?"
+
+	para "You've assembled"
+	line "quite the team;"
+	cont "it's clear to see."
+
+	para "Now dance with me"
+	line "in the dark em-"
+	cont "brace of night."
+	
+	para "On your toes!"
+	done
+
 KarenScript_KarenBeatenText:
 	text "Well, aren't you"
 	line "good. I like that"
@@ -130,6 +180,33 @@ KarenScript_KarenDefeatText:
 	line "PION is waiting."
 	done
 
+KarenScript_KarenDefeatText2:
+	text "So cute, yet so"
+	line "strong. Always a"
+	cont "pleasure."
+	
+	para "Although now I'll"
+	line "have to dedicate"
+	
+	para "myself once again"
+	line "to training. Ugh,"
+	cont "what a chore."
+	
+	para "But I think you"
+	line "have taught me"
+	
+	para "something impor-"
+	line "tant today."
+	
+	para "Anyway, the new"
+	line "CHAMPION must be"
+	cont "itching to fight"
+	cont "you now."
+	
+	para "Don't keep her"
+	line "waiting."
+	done
+
 KarensRoom_MapEvents:
 	db 0, 0 ; filler
 
@@ -144,4 +221,4 @@ KarensRoom_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  7, SPRITE_KAREN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KarenScript_Battle, -1
+	object_event  5,  7, SPRITE_KAREN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, KarenScript_Battle, -1

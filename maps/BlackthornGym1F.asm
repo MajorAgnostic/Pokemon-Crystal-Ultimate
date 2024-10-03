@@ -9,9 +9,9 @@ BlackthornGym1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, BlackthornGym1FBouldersCallback
+	callback MAPCALLBACK_TILES, .Boulders
 
-BlackthornGym1FBouldersCallback:
+.Boulders:
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_1
 	iffalse .skip1
 	changeblock 8, 2, $3b ; fallen boulder 2
@@ -41,6 +41,7 @@ BlackthornGymClairScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR
+	clearevent EVENT_HOMEUPGRADE
 	opentext
 	writetext ClairText_GoToDragonsDen
 	waitbutton
@@ -362,7 +363,10 @@ BlackthornGymGuideText:
 	cont "#MON."
 
 	para "You can't damage"
-	line "them very easily."
+	line "them very easily"
+	
+	para "and they utilize"
+	line "various moves!"
 
 	para "But you know,"
 	line "they're supposed"
@@ -403,7 +407,7 @@ BlackthornGym1F_MapEvents:
 	bg_event  6, 15, BGEVENT_READ, BlackthornGymStatue
 
 	def_object_events
-	object_event  5,  3, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
+	object_event  5,  3, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornGymClairScript, EVENT_BEAT_ELITE_FOUR
 	object_event  6,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
 	object_event  1, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
 	object_event  9,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1

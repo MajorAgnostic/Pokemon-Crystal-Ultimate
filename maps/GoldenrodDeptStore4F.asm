@@ -52,8 +52,8 @@ GoldenrodDeptStore4FBugCatcherText:
 	done
 
 GoldenrodDeptStore4FGameboyKidText:
-	text "Some #MON"
-	line "evolve only by"
+	text "Some #MON used"
+	line "to evolve only by"
 
 	para "being traded via a"
 	line "Game Link cable."
@@ -66,13 +66,18 @@ GoldenrodDeptStore4FGameboyKidText:
 
 	para "I heard there are"
 	line "others too."
+	
+	para "But they can now"
+	line "evolve via items"
+	cont "such as STONES!"
 	done
 
 GoldenrodDeptStore4FDirectoryText:
 	text "Let Us Pump Up"
 	line "Your #MON!"
 
-	para "4F MEDICINE BOX"
+	para "4F NUTRIENTS"
+	line "   & STONES"
 	done
 
 GoldenrodDeptStore4F_MapEvents:

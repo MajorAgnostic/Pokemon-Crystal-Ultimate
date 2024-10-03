@@ -4,7 +4,7 @@ BattleTowerTrainers:
 ; See BattleTowerText in engine/events/battle_tower/trainer_text.asm.
 	table_width (NAME_LENGTH - 1) + 1, BattleTowerTrainers
 	; name, class
-	db "HANSON@@@@", FISHER
+	db "HANSON@@@@", SUPER_NERD
 	db "SAWYER@@@@", POKEMANIAC
 	db "MASUDA@@@@", GUITARIST
 	db "NICKEL@@@@", SCIENTIST
@@ -21,15 +21,15 @@ BattleTowerTrainers:
 	db "FAIRFIELD@", JUGGLER
 	db "HUNTER@@@@", POKEFANF
 	db "HILL@@@@@@", FIREBREATHER
-	db "JAVIER@@@@", SWIMMERF
-	db "KAUFMAN@@@", SWIMMERM
+	db "JAVIER@@@@", SAILOR
+	db "KAUFMAN@@@", JUGGLER
 	db "LANCASTER@", SKIER
 	db "McMAHILL@@", CAMPER
 	assert_table_length BATTLETOWER_NUM_UNIQUE_MON
 ; The following can only be sampled in Crystal 1.1.
 	db "OBRIEN@@@@", GENTLEMAN
 	db "FROST@@@@@", BEAUTY
-	db "MORSE@@@@@", SUPER_NERD
+	db "MORSE@@@@@", FISHER
 	db "YUFUNE@@@@", BLACKBELT_T
 	db "RAJAN@@@@@", COOLTRAINERF
 	db "RODRIGUEZ@", OFFICER
@@ -44,7 +44,7 @@ BattleTowerTrainers:
 	db "MORI@@@@@@", SCIENTIST
 	db "BUCKMAN@@@", SAGE
 	db "COBB@@@@@@", SCHOOLBOY
-	db "HUGHES@@@@", FISHER
+	db "HUGHES@@@@", JUGGLER
 	db "ARITA@@@@@", KIMONO_GIRL
 	db "EASTON@@@@", PSYCHIC_T
 	db "FREEMAN@@@", CAMPER
@@ -54,26 +54,26 @@ BattleTowerTrainers:
 	db "KAHN@@@@@@", POKEMANIAC
 	db "LEONG@@@@@", YOUNGSTER
 	db "MARINO@@@@", TEACHER
-	db "NEWMAN@@@@", SAILOR
+	db "NEWMAN@@@@", SUPER_NERD
 	db "NGUYEN@@@@", BLACKBELT_T
-	db "OGDEN@@@@@", SUPER_NERD
+	db "OGDEN@@@@@", FISHER
 	db "PARK@@@@@@", COOLTRAINERF
-	db "RAINE@@@@@", SWIMMERM
+	db "RAINE@@@@@", SWIMMERF
 	db "SELLS@@@@@", BIRD_KEEPER
 	db "ROCKWELL@@", BOARDER
 	db "THORNTON@@", LASS
 	db "TURNER@@@@", OFFICER
 	db "VAN DYKE@@", SKIER
 	db "WALKER@@@@", SCHOOLBOY
-	db "MEYER@@@@@", SWIMMERF
+	db "MEYER@@@@@", SUPER_NERD
 	db "JOHNSON@@@", YOUNGSTER
 	db "ADAMS@@@@@", GUITARIST
 	db "SMITH@@@@@", BUG_CATCHER
 	db "TAJIRI@@@@", BUG_CATCHER
 	db "BAKER@@@@@", POKEMANIAC
 	db "COLLINS@@@", SCIENTIST
-	db "SMART@@@@@", SUPER_NERD
-	db "DYKSTRA@@@", SWIMMERF
+	db "SMART@@@@@", FISHER
+	db "DYKSTRA@@@", SAILOR
 	db "EATON@@@@@", BIKER
 	db "WONG@@@@@@", FIREBREATHER
 	assert_table_length BATTLETOWER_NUM_UNIQUE_TRAINERS

@@ -52,6 +52,7 @@ ENDM
 	command transform               ; 2d
 	command screen                  ; 2e
 	command poison                  ; 2f
+	command burn                    ; Ultimate
 	command paralyze                ; 30
 	command substitute              ; 31
 	command rechargenextturn        ; 32
@@ -64,7 +65,6 @@ ENDM
 	command charge                  ; 39
 	command checkcharge             ; 3a
 	command traptarget              ; 3b
-	command effect0x3c              ; 3c
 	command rampage                 ; 3d
 	command checkrampage            ; 3e
 	command constantdamage          ; 3f
@@ -97,7 +97,6 @@ ENDM
 	command endure                  ; 5a
 	command checkcurl               ; 5b
 	command rolloutpower            ; 5c
-	command effect0x5d              ; 5d
 	command furycutter              ; 5e
 	command attract                 ; 5f
 	command happinesspower          ; 60
@@ -154,7 +153,6 @@ ENDM
 	command switchturn              ; 93
 	command fakeout                 ; 94
 	command bellydrum               ; 95
-	command psychup                 ; 96
 	command rage                    ; 97
 	command doubleflyingdamage      ; 98
 	command doubleundergrounddamage ; 99
@@ -165,14 +163,12 @@ ENDM
 	command skipsuncharge           ; 9e
 	command thunderaccuracy         ; 9f
 	command teleport                ; a0
-	command beatup                  ; a1
 	command ragedamage              ; a2
 	command resettypematchup        ; a3
 	command allstatsup              ; a4
 	command bidefailtext            ; a5
 	command raisesubnoanim          ; a6
 	command lowersubnoanim          ; a7
-	command beatupfailtext          ; a8
 	command clearmissdamage         ; a9
 	command movedelay               ; aa
 	command moveanim                ; ab
@@ -180,6 +176,7 @@ ENDM
 	command supereffectivelooptext  ; ad
 	command startloop               ; ae
 	command curl                    ; af
+	command checkgrasstype          ; Ultimate
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1

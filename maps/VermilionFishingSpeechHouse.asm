@@ -12,7 +12,8 @@ FishingDude:
 FishingDudesHousePhoto:
 	jumptext FishingDudesHousePhotoText
 
-FishingDudesHouseBookshelf: ; unreferenced
+FishingDudesHouseBookshelf:
+; unused
 	jumpstd PictureBookshelfScript
 
 FishingDudeText:

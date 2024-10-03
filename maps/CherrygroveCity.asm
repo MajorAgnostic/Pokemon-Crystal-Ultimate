@@ -1,37 +1,40 @@
 	object_const_def
 	const CHERRYGROVECITY_GRAMPS
-	const CHERRYGROVECITY_RIVAL
+	const CHERRYGROVECITY_SILVER
 	const CHERRYGROVECITY_TEACHER
 	const CHERRYGROVECITY_YOUNGSTER
 	const CHERRYGROVECITY_FISHER
 
 CherrygroveCity_MapScripts:
 	def_scene_scripts
-	scene_script CherrygroveCityNoop1Scene, SCENE_CHERRYGROVECITY_NOOP
-	scene_script CherrygroveCityNoop2Scene, SCENE_CHERRYGROVECITY_MEET_RIVAL
+	scene_script .DummyScene0, SCENE_CHERRYGROVECITY_NOOP
+	scene_script .DummyScene1, SCENE_CHERRYGROVECITY_MEET_RIVAL
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, CherrygroveCityFlypointCallback
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
-CherrygroveCityNoop1Scene:
+.DummyScene0:
 	end
 
-CherrygroveCityNoop2Scene:
+.DummyScene1:
 	end
 
-CherrygroveCityFlypointCallback:
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
 	endcallback
-
+	
+MapGuide:
+	checkevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	iffalse .End
+	applymovement PLAYER, Movement_ToGuide
+	sjump CherrygroveCityGuideGent
+.End:
+	end
+	
 CherrygroveCityGuideGent:
 	faceplayer
 	opentext
 	writetext GuideGentIntroText
-	yesorno
-	iffalse .No
-	sjump .Yes
-.Yes:
-	writetext GuideGentTourText1
 	waitbutton
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -97,16 +100,21 @@ CherrygroveCityGuideGent:
 	waitbutton
 	closetext
 	end
+	
+Movement_ToGuide:
+	step LEFT
+	turn_head UP
+	step_end
 
-CherrygroveRivalSceneSouth:
-	moveobject CHERRYGROVECITY_RIVAL, 39, 7
-CherrygroveRivalSceneNorth:
+CherrygroveSilverSceneSouth:
+	moveobject CHERRYGROVECITY_SILVER, 39, 7
+CherrygroveSilverSceneNorth:
 	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
-	appear CHERRYGROVECITY_RIVAL
-	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalWalksToYou
+	appear CHERRYGROVECITY_SILVER
+	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalWalksToYou
 	turnobject PLAYER, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
@@ -117,9 +125,9 @@ CherrygroveRivalSceneNorth:
 	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
-	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
-	setlasttalked CHERRYGROVECITY_RIVAL
-	loadtrainer RIVAL1, RIVAL1_1_TOTODILE
+	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
+	setlasttalked CHERRYGROVECITY_SILVER
+	loadtrainer RIVAL0, RIVAL1_1_TOTODILE
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -128,9 +136,9 @@ CherrygroveRivalSceneNorth:
 	sjump .AfterYourDefeat
 
 .Totodile:
-	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
-	setlasttalked CHERRYGROVECITY_RIVAL
-	loadtrainer RIVAL1, RIVAL1_1_CHIKORITA
+	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
+	setlasttalked CHERRYGROVECITY_SILVER
+	loadtrainer RIVAL0, RIVAL1_1_CHIKORITA
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -139,9 +147,9 @@ CherrygroveRivalSceneNorth:
 	sjump .AfterYourDefeat
 
 .Chikorita:
-	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
-	setlasttalked CHERRYGROVECITY_RIVAL
-	loadtrainer RIVAL1, RIVAL1_1_CYNDAQUIL
+	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
+	setlasttalked CHERRYGROVECITY_SILVER
+	loadtrainer RIVAL0, RIVAL1_1_CYNDAQUIL
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -167,9 +175,10 @@ CherrygroveRivalSceneNorth:
 	playsound SFX_TACKLE
 	applymovement PLAYER, CherrygroveCity_RivalPushesYouOutOfTheWay
 	turnobject PLAYER, LEFT
-	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalExitsStageLeft
-	disappear CHERRYGROVECITY_RIVAL
+	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
+	disappear CHERRYGROVECITY_SILVER
 	setscene SCENE_CHERRYGROVECITY_NOOP
+	clearevent EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
 	special HealParty
 	playmapmusic
 	end
@@ -317,7 +326,7 @@ CherrygroveCity_RivalPushesYouOutOfTheWay:
 	turn_head UP
 	step_end
 
-CherrygroveCity_UnusedMovementData: ; unreferenced
+CherrygroveCity_UnusedMovementData:
 	step LEFT
 	turn_head DOWN
 	step_end
@@ -340,15 +349,9 @@ GuideGentIntroText:
 
 	para "That's OK! Every-"
 	line "one is a rookie"
-	cont "at some point!"
+	cont "at some point."
 
-	para "If you'd like, I"
-	line "can teach you a"
-	cont "few things."
-	done
-
-GuideGentTourText1:
-	text "OK, then!"
+	para "OK, then!"
 	line "Follow me!"
 	done
 
@@ -451,7 +454,7 @@ CherrygroveRivalText_Seen:
 	line "what I mean!"
 	done
 
-RivalCherrygroveWinText:
+SilverCherrygroveWinText:
 	text "Humph. Are you"
 	line "happy you won?"
 	done
@@ -467,7 +470,7 @@ CherrygroveRivalText_YouLost:
 	cont "trainer."
 	done
 
-RivalCherrygroveLossText:
+SilverCherrygroveLossText:
 	text "Humph. That was a"
 	line "waste of time."
 	done
@@ -555,8 +558,9 @@ CherrygroveCity_MapEvents:
 	warp_event 31, 11, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, 1
 
 	def_coord_events
-	coord_event 33,  6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneNorth
-	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneSouth
+	coord_event 33,  7, SCENE_CHERRYGROVECITY_NOOP, MapGuide
+	coord_event 33,  6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveSilverSceneNorth
+	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveSilverSceneSouth
 
 	def_bg_events
 	bg_event 30,  8, BGEVENT_READ, CherrygroveCitySign
@@ -566,7 +570,7 @@ CherrygroveCity_MapEvents:
 
 	def_object_events
 	object_event 32,  6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
-	object_event 39,  6, SPRITE_RIVAL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
+	object_event 39,  6, SPRITE_SILVER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
 	object_event 27, 12, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
 	object_event 23,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1
 	object_event  7, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MysticWaterGuy, -1

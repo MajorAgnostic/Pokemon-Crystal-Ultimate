@@ -7,4 +7,5 @@ ConstantDamageEffects:
 	db EFFECT_STATIC_DAMAGE
 	db EFFECT_LEVEL_DAMAGE
 	db EFFECT_PSYWAVE
+	db EFFECT_REVERSAL
 	db -1 ; end
