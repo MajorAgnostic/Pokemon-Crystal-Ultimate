@@ -2943,7 +2943,7 @@ InitSprites:
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	add [hl]
-	add 16
+	add 12
 	ld e, a
 	ld a, [wPlayerBGMapOffsetY]
 	add e

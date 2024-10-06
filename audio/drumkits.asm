@@ -5,6 +5,10 @@ Drumkits:
 	dw Drumkit3
 	dw Drumkit4
 	dw Drumkit5
+	dw Drumkit0S ;6
+	dw Drumkit1S ;7
+	dw DrumkitSP ;8 - here to fill in the gap
+	dw Drumkit3S ;9
 
 Drumkit0:
 	dw Drum00
@@ -48,20 +52,20 @@ Drumkit2:
 	dw Snare6
 	dw Snare7
 	dw HiHat2
-Drumkit3:
-	dw Drum21
-	dw Snare12
-	dw Snare13
-	dw Snare14
-	dw Kick1
-	dw Triangle5
-	dw Drum20
-	dw Drum27
-	dw Drum28
-	dw Drum29
-	dw Drum21
-	dw Kick2
-	dw Crash2
+Drumkit3: ; e8eac
+	dw Drum00
+	dw Snare12 ;C_
+	dw Snare13 ;C#
+	dw Snare14 ;D_
+	dw Kick1 ;D#
+	dw Triangle5 ;E_
+	dw Drum20 ;F_
+	dw Drum27 ;F#
+	dw Drum28 ;G_
+	dw Drum29 ;G#
+	dw Drum00 ;A_ 
+	dw Kick2 ;A#
+	dw Crash2 ;B_
 Drumkit4:
 	dw Drum21
 	dw Drum20
@@ -90,6 +94,62 @@ Drumkit5:
 	dw Snare14
 	dw Snare13
 	dw Kick2
+DrumkitSP: ; 10
+	dw Drum00
+	dw Snare8 ;C_ 
+	dw Kick1 ;C# 
+	dw Crash1 ;D_
+	dw Snare6 ;D# 
+	dw HiHat2 ;E_
+	dw HiHat3 ;F_
+	dw Snare14 ;F# 
+	dw Drum27 ;G_ 
+	dw Snare10 ;G#
+	dw Drum00 ; A_
+	dw Snare13 ; A#
+	dw Snare11 ;B_
+Drumkit0S: ;6
+	dw Drum00   
+	dw Snare2
+	dw Snare3   
+	dw Snare4 
+	dw Snare4_Soft 
+	dw Drum05  
+	dw Triangle1_Soft
+	dw Triangle2_Soft
+	dw HiHat1_Soft
+	dw Snare5_Soft
+	dw Snare6_Soft
+	dw Snare7_Soft
+	dw HiHat1
+Drumkit1S: ;7
+	dw Drum00
+	dw HiHat1_Soft
+	dw Snare5_Soft
+	dw Snare6_Soft
+	dw Snare7_Soft
+	dw HiHat2_Soft
+	dw HiHat3_Soft
+	dw Snare8_Soft
+	dw Triangle3_Soft
+	dw Triangle4_Soft
+	dw Snare9_Soft
+	dw Snare10_Soft
+	dw Snare11_Soft
+Drumkit3S: ; 8
+	dw Drum00
+	dw Snare12_Soft
+	dw Snare13_Soft
+	dw Snare14_Soft
+	dw Kick1_Soft
+	dw Triangle5_Soft
+	dw Snare5_Soft
+	dw Drum27_Soft
+	dw Drum28_Soft
+	dw Drum29_Soft
+	dw Snare9_Soft
+	dw Kick2_Soft
+	dw Crash2_Soft
 
 Drum00:
 	noise_note 32, 1, 1, 0
@@ -258,3 +318,113 @@ Kick2:
 	noise_note 32, 10, 8, 107
 	noise_note 32, 7, 1, 0
 	sound_ret
+
+;Softer Drumkits
+
+Snare12_Soft:
+	noise C#,  1, $81, $33
+	endchannel
+
+Snare13_Soft:
+	noise C#,  1, $41, $32
+	endchannel
+
+Snare14_Soft:
+	noise C#,  1, $71, $31
+	endchannel
+
+Kick1_Soft:
+	noise C#,  1, $78, $6b
+	noise C#,  1, $61, $00
+	endchannel
+
+Triangle5_Soft:
+	noise D_,  1, $81, $18
+	endchannel
+
+Drum27_Soft:
+	noise C#,  8, $82, $10
+	endchannel
+
+Drum28_Soft:
+	noise D_,  4, $81, $00
+	noise D_,  4, $11, $00
+	endchannel
+
+Drum29_Soft:
+	noise D_,  4, $81, $11
+	noise D_,  4, $11, $00
+	endchannel
+
+Snare4_Soft:
+	noise C#,  1, $71, $33
+	endchannel
+
+Snare5_Soft:
+	noise C#,  1, $72, $23
+	endchannel
+
+Snare6_Soft:
+	noise C#,  1, $72, $25
+	endchannel
+
+Snare7_Soft:
+	noise C#,  1, $72, $26
+	endchannel
+
+Snare8_Soft:
+	noise C#,  1, $92, $50
+	endchannel
+
+Snare9_Soft:
+	noise C#,  1, $81, $22
+	endchannel
+
+Snare10_Soft:
+	noise C#,  1, $61, $22
+	endchannel
+
+Snare11_Soft:
+	noise C#,  1, $51, $22
+	endchannel
+
+Kick2_Soft:
+	noise C#,  1, $98, $6b
+	noise C#,  1, $61, $00
+	endchannel
+
+Crash2_Soft:
+	noise C#,  1, $74, $12
+	endchannel
+
+Triangle1_Soft:
+	noise C#,  1, $61, $2a
+	endchannel
+
+Triangle2_Soft:
+	noise C#,  2, $31, $2b
+	noise C#,  1, $51, $2a
+	endchannel
+
+Triangle3_Soft:
+	noise C#,  1, $91, $18
+	noise C#,  1, $21, $33
+	endchannel
+
+Triangle4_Soft:
+	noise C#,  3, $81, $28
+	noise C#,  1, $61, $18
+	endchannel
+
+HiHat1_Soft:
+	noise C#,  1, $71, $10
+	endchannel
+
+HiHat2_Soft:
+	noise C#,  1, $91, $10
+	endchannel
+
+HiHat3_Soft:
+	noise C#,  1, $92, $11
+	endchannel
+	

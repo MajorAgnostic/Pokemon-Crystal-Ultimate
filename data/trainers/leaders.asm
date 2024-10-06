@@ -19,6 +19,9 @@ GymLeaders:
 	db KOGA
 	db CHAMPION
 	db RED
+	db CLAIR2
+	db ANDREA
+	db CHAMPION2
 ; fallthrough
 KantoGymLeaders:
 	db BROCK

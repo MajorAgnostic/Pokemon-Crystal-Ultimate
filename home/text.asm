@@ -384,6 +384,8 @@ PlaceEnemysName::
 	jr z, .rival
 	cp RIVAL2
 	jr z, .rival
+	cp RIVAL0
+	jr z, .rival
 
 	ld de, wOTClassName
 	call PlaceString

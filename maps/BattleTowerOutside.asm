@@ -8,8 +8,13 @@ BattleTowerOutside_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 	callback MAPCALLBACK_TILES, .Callback1
 	callback MAPCALLBACK_OBJECTS, .Callback2
+
+.FlyPoint:
+	setflag ENGINE_FLYPOINT_BATTLE_TOWER
+	endcallback
 
 .Callback1:
 	endcallback
