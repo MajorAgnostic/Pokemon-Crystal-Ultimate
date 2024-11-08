@@ -306,6 +306,7 @@ AI_Smart:
 	jr .checkmove
 
 AI_Smart_EffectHandlers:
+	dbw EFFECT_POWDER_SLEEP,     AI_Smart_Sleep
 	dbw EFFECT_SLEEP,            AI_Smart_Sleep
 	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
 	dbw EFFECT_SELFDESTRUCT,     AI_Smart_Selfdestruct
@@ -328,6 +329,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect
 	dbw EFFECT_PARALYZE,         AI_Smart_Paralyze
+	dbw EFFECT_POWDER_PARALYZE,  AI_Smart_Paralyze
 	dbw EFFECT_SPEED_DOWN_HIT,   AI_Smart_SpeedDownHit
 	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute
 	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam
@@ -373,6 +375,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance
 	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay
 	dbw EFFECT_BELLY_DRUM,       AI_Smart_BellyDrum
+	dbw EFFECT_PSYCH_UP,         AI_Smart_SpDefenseUp2
 	dbw EFFECT_MIRROR_COAT,      AI_Smart_MirrorCoat
 	dbw EFFECT_SKULL_BASH,       AI_Smart_SkullBash
 	dbw EFFECT_TWISTER,          AI_Smart_Twister
@@ -630,13 +633,13 @@ AI_Smart_EvasionUp:
 	call AICheckEnemyHalfHP
 	jr nc, .asm_3890a
 
-; If enemy's HP is above 50% but not full, 20% chance to greatly encourage this move.
+; If enemy's HP is above 50% but not full, 50% chance to greatly encourage this move.
 	call AI_50_50
 	jr c, .encourage
 	jr .asm_38911
 
 .asm_3890a
-; ...50% chance to greatly discourage this move.
+; ...20% chance to greatly discourage this move.
 	call AI_80_20
 	jr c, .asm_38911
 
