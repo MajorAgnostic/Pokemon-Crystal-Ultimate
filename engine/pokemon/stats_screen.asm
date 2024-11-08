@@ -744,7 +744,7 @@ LoadGreenPage:
 	db "---@"
 
 .Move:
-	db "MOVE@"
+	db "MOVES@"
 
 LoadBluePage:
 	call .PlaceOTInfo

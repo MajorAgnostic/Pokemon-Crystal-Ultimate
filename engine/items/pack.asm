@@ -340,6 +340,28 @@ Pack:
 
 MenuHeader_UsableKeyItem:
 	db MENU_BACKUP_TILES ; flags
+	menu_coords 13, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
+	db 5 ; items
+	db "USE@"
+	db "GIVE@"
+	db "TOSS@"
+	db "SEL@"
+	db "QUIT@"
+
+Jumptable_UseGiveTossRegisterQuit:
+	dw UseItem
+	dw GiveItem
+	dw TossMenu
+	dw RegisterItem
+	dw QuitItemSubmenu
+
+MenuHeader_UsableItem:
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
@@ -348,31 +370,13 @@ MenuHeader_UsableKeyItem:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
 	db "USE@"
-	db "TOSS@"
-	db "SEL@"
-	db "QUIT@"
-
-Jumptable_UseGiveTossRegisterQuit:
-	dw UseItem
-	dw TossMenu
-	dw RegisterItem
-	dw QuitItemSubmenu
-
-MenuHeader_UsableItem:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
-	db 3 ; items
-	db "USE@"
+	db "GIVE@"
 	db "TOSS@"
 	db "QUIT@"
 
 Jumptable_UseGiveTossQuit:
 	dw UseItem
+	dw GiveItem
 	dw TossMenu
 	dw QuitItemSubmenu
 

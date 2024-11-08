@@ -330,7 +330,7 @@ String1dc550:
 	db "OT/@"
 
 String1dc554:
-	db "MOVE@"
+	db "MOVES@"
 
 String1dc559:
 	db "<ID>№.@"
