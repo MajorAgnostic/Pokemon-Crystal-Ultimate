@@ -250,5 +250,3 @@ BitmasksPointers:
 	dw LugiaBitmasks
 	dw HoOhBitmasks
 	dw CelebiBitmasks
-	dw MetagrossBitmasks
-	dw GhostBitmasks
