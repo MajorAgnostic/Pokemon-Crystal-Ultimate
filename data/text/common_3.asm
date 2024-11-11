@@ -1352,62 +1352,6 @@ _MomLostGearBookletText::
 	line "a while."
 	prompt
 	
-_MoveReminderIntro::
-	text "Hi, I'm the MOVE"
-	line "REMINDER!"
-
-	para "I can teach your"
-	line "#MON a move it"
-	cont "has learned pre-"
-	cont "viously. It will"
-	cont "only cost a tad!"
-	done
-
-_MoveReminderPrompt::
-	text "Interested?"
-	done
-
-_MoveReminderWhichMon::
-	text "Which #MON do"
-	next "you want to have"
-	cont "remember a move?"
-	done
-
-_MoveReminderWhichMove::
-	text "Which move would"
-	next "you like to have"
-	cont "remembered?"
-	done
-
-_MoveReminderCancel::
-	text "Come back anytime."
-	done
-
-_MoveReminderEgg::
-	text "Hey! What am I"
-	line "supposed to teach"
-	cont "an EGG?"
-	done
-
-_MoveReminderNoPay::
-	text "Hm. Come back with"
-	line "more money and I"
-	cont "can teach a move"
-	cont "to your #MON."
-	done
-
-_MoveReminderNoMon::
-	text "You don't have a"
-	line "#MON that can"
-	cont "remember a move."
-	done
-
-_MoveReminderNoMoves::
-	text "There are no moves"
-	line "for this #MON"
-	cont "to learn."
-	done
-	
 _HiddenPowerGuyQuestion::
 	text "Shall I divine"
 	line "the HIDDEN POWER"

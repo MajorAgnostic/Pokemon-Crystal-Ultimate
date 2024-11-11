@@ -799,7 +799,7 @@ ChooseMoveToDelete:
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
-	call LoadFontsBattleExtra
+	farcall LoadPartyMenuGFX
 	call .ChooseMoveToDelete
 	pop bc
 	ld a, b
@@ -1179,6 +1179,8 @@ PrepareToPlaceMoveData:
 PlaceMoveData:
 	xor a
 	ldh [hBGMapMode], a
+	
+; Print UI elements
 	hlcoord 0, 10
 	ld de, String_MoveType_Top
 	call PlaceString
@@ -1188,10 +1190,31 @@ PlaceMoveData:
 	hlcoord 12, 12
 	ld de, String_MoveAtk
 	call PlaceString
+	hlcoord 12, 13
+	ld de, String_MoveAcc
+	call PlaceString
+	
+; Print move accuracy
+	ld a, [wCurSpecies]
+	ld bc, MOVE_LENGTH
+	ld hl, (Moves + MOVE_ACC) - MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	call ConvertPercentages
+	ld [wBuffer1], a
+	ld de, wBuffer1
+	lb bc, 1, 3
+	hlcoord 16, 13
+	call PrintNum
+	
+; Print move type
 	ld a, [wCurSpecies]
 	ld b, a
 	hlcoord 2, 12
 	predef PrintMoveType
+	
+; Print move power
 	ld a, [wCurSpecies]
 	dec a
 	ld hl, Moves + MOVE_POWER
@@ -1212,19 +1235,39 @@ PlaceMoveData:
 	ld de, String_MoveNoPower
 	call PlaceString
 
+; Print move description
 .description
 	hlcoord 1, 14
 	predef PrintMoveDescription
 	ld a, $1
 	ldh [hBGMapMode], a
 	ret
+	
+; This converts values out of 256 into a value
+; out of 100.
+ConvertPercentages:
+	ldh [hMultiplicand + 2], a
+	xor a
+	ldh [hMultiplicand + 1], a
+	ldh [hMultiplicand], a
+	ld a, 100
+	ldh [hMultiplier], a ; 1 byte only
+	call Multiply
+	ldh a, [hProduct + 2]
+    and a ; check if our result is zero
+    ret z ; if zero, done
+    inc a ; else, add one
+    ret
 
+; UI elements
 String_MoveType_Top:
 	db "┌─────┐@"
 String_MoveType_Bottom:
 	db "│TYPE/└@"
 String_MoveAtk:
 	db "POW/@"
+String_MoveAcc:
+	db "ACC/@"
 String_MoveNoPower:
 	db "---@"
 
