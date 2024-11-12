@@ -74,8 +74,8 @@ STAT_MIN_HP EQU 10
 MAX_STAT_VALUE EQU 999
 
 ; shiny dvs
-ATKDEFDV_SHINY EQU $EE
-SPDSPCDV_SHINY EQU $EE
+ATKDEFDV_SHINY EQU $dd
+SPDSPCDV_SHINY EQU $dd
 
 ; battle classes (wBattleMode values)
 	const_def 1

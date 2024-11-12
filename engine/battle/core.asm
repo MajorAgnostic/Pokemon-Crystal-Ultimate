@@ -6248,12 +6248,54 @@ LoadEnemyMon:
 	cp BATTLETYPE_SHINY
 	jr nz, .GenerateDVs
 
-	ld b, ATKDEFDV_SHINY ; $ea
-	ld c, SPDSPCDV_SHINY ; $aa
+	ld b, ATKDEFDV_SHINY ; $dd
+	ld c, SPDSPCDV_SHINY ; $dd
 	jr .UpdateDVs
 
 .GenerateDVs:
 ; Generate new random DVs
+	; The Shiny Charm increases the chance a Pokémon will be shiny.
+; This implementation (based off mauvesea's code) adds 7 DV rolls, which
+; means the shiny chance is increased from 1/809 (to do) to ~1%.
+	ld a, POCKET_PC
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .NoShinyCharm
+	push de
+	push hl
+	ld a, 8
+	ld d, a
+.loopAtkDef
+	ld a, d
+	dec a
+	ld d, a
+	jr z, .DoneAtkDef
+	call BattleRandom
+	ld e, a
+	cp ATKDEFDV_SHINY ; checks if ATK is 13 and DEF is 13
+	jr c, .loopAtkDef
+.DoneAtkDef
+	ld a, e
+	ld b, a
+	ld a, 8
+	ld d, a
+.loopSpdSpc
+	ld a, d
+	dec a
+	ld d, a
+	jr z, .DoneSpdSpc
+	call BattleRandom
+	ld e, a
+	cp SPDSPCDV_SHINY ; checks if SPD is 13 and SPC is 13
+	jr c, .loopSpdSpc
+.DoneSpdSpc
+	ld a, e
+	ld c, a
+	pop hl
+	pop de
+	jr .UpdateDVs
+.NoShinyCharm
 	call BattleRandom
 	ld b, a
 	call BattleRandom
@@ -6284,7 +6326,7 @@ LoadEnemyMon:
 ; Can't use any letters that haven't been unlocked
 ; If combined with forced shiny battletype, causes an infinite loop
 	call CheckUnownLetter
-	jr c, .GenerateDVs ; try again
+	jp c, .GenerateDVs ; try again
 
 .Magikarp:
 ; These filters are untranslated.
@@ -6316,7 +6358,7 @@ LoadEnemyMon:
 ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 4 inches)
 	ld a, [wMagikarpLength + 1]
 	cp 4
-	jr nc, .GenerateDVs
+	jp nc, .GenerateDVs
 
 ; 20% chance of skipping this check
 	call Random
@@ -6325,7 +6367,7 @@ LoadEnemyMon:
 ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 3 inches)
 	ld a, [wMagikarpLength + 1]
 	cp 3
-	jr nc, .GenerateDVs
+	jp nc, .GenerateDVs
 
 .CheckMagikarpArea:
 	ld a, [wMapGroup]
@@ -6341,7 +6383,7 @@ LoadEnemyMon:
 ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
 	cp HIGH(1024) ; should be "cp 3", since 1024 mm = 3'4", but HIGH(1024) = 4
-	jr c, .GenerateDVs ; try again
+	jp c, .GenerateDVs ; try again
 
 ; Finally done with DVs
 
