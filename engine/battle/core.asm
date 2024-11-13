@@ -6273,7 +6273,7 @@ LoadEnemyMon:
 	jr z, .DoneAtkDef
 	call BattleRandom
 	ld e, a
-	cp ATKDEFDV_SHINY ; checks if ATK is 13 and DEF is 13
+	cp ATKDEFDV_SHINY ; checks if ATK is 13+ and DEF is 13+
 	jr c, .loopAtkDef
 .DoneAtkDef
 	ld a, e
@@ -6287,7 +6287,7 @@ LoadEnemyMon:
 	jr z, .DoneSpdSpc
 	call BattleRandom
 	ld e, a
-	cp SPDSPCDV_SHINY ; checks if SPD is 13 and SPC is 13
+	cp SPDSPCDV_SHINY ; checks if SPD is 13+ and SPC is 13+
 	jr c, .loopSpdSpc
 .DoneSpdSpc
 	ld a, e

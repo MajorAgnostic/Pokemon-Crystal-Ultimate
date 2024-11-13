@@ -2862,6 +2862,8 @@ EntireFlyMap: ; unreferenced originally, used and modified for Ultimate
 	ld [hl], -1
 .okay_dr
 	inc [hl]
+	call CheckIfVisitedFlypoint
+	jr z, .down_right
 	jr .continue
 
 .up_left
@@ -2872,6 +2874,8 @@ EntireFlyMap: ; unreferenced originally, used and modified for Ultimate
 	ld [hl], NUM_FLYPOINTS
 .okay_ul
 	dec [hl]
+	call CheckIfVisitedFlypoint
+	jr z, .up_left
 .continue
 	ld a, [wTownMapPlayerIconLandmark]
 	cp KANTO_FLYPOINT
