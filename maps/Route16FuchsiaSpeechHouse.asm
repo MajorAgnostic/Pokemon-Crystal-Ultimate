@@ -11,11 +11,19 @@ Route16FuchsiaSpeechHouseSuperNerdScript:
 	opentext
 	checkevent EVENT_ENTIREFLYMAP
 	iftrue .Finished
-	checkflag ENGINE_FLYPOINT_SILVER_CAVE
+	checkflag ENGINE_FLYPOINT_PEWTER
 	iffalse .Intro
-	checkflag ENGINE_FLYPOINT_MT_MOON
+	checkflag ENGINE_FLYPOINT_LAVENDER
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_FUCHSIA
 	iffalse .Intro
 	checkflag ENGINE_FLYPOINT_PALLET
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_VIRIDIAN
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_CINNABAR
+	iffalse .Intro
+	checkflag ENGINE_FLYPOINT_CELADON
 	iffalse .Intro
 	writetext UnlockEntireFlyMapText
 	promptbutton
