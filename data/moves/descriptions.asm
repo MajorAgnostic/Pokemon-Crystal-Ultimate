@@ -313,12 +313,12 @@ GuillotineDescription:
 	next "pincer attack.@"
 
 RazorWindDescription:
-	db   "Powerful move,"
-	next "can hit flyers.@"
+	db   "Attack that often"
+	next "hits critically.@"
 
 SwordsDanceDescription:
-	db   "A dance that in-"
-	next "creases ATTACK.@"
+	db   "Sharply increases"
+	next "the ATTACK stat.@"
 
 CutDescription:
 	db   "Cuts & may flinch"
@@ -534,7 +534,7 @@ LowKickDescription:
 
 CounterDescription:
 	db   "Returns a physical"
-	next "blow double.@"
+	next "blow twofold.@"
 
 SeismicTossDescription:
 	db   "The user's level"
@@ -833,8 +833,8 @@ LovelyKissDescription:
 	next "to fall asleep.@"
 
 SkyAttackDescription:
-	db   "1st turn: Prepare"
-	next "2nd turn: Attack@"
+	db   "Two-turn attack,"
+	next "often critical.@"
 
 TransformDescription:
 	db   "The user assumes"

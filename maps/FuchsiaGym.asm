@@ -398,11 +398,6 @@ FuchsiaGymGuideText:
 	
 	para "Don't tardy, she"
 	line "sure won't!"
-	
-	para "JANINE will strike"
-	line "your psychic-type"
-	cont "#MON before you"
-	cont "can react!"
 	done
 
 FuchsiaGymGuideWinText:
