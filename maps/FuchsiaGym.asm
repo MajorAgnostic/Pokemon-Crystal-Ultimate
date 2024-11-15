@@ -383,8 +383,7 @@ CamperBarryAfterText:
 	done
 
 FuchsiaGymGuideText:
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Yo, CHAMP!"
 
 	para "Whoops! Take a"
 	line "good look around"
@@ -396,7 +395,7 @@ FuchsiaGymGuideText:
 	para "Which of them is"
 	line "the real JANINE?"
 	
-	para "Don't tardy, she"
+	para "Don't tardy; she"
 	line "sure won't!"
 	done
 

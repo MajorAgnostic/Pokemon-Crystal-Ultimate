@@ -179,30 +179,25 @@ CamperJerryAfterBattleText:
 	done
 
 PewterGymGuideText:
-	text "Yo! CHAMP in"
-	line "making! You're"
+	text "Yo, CHAMP! You're"
+	line "really rocking!"
 
-	para "really rocking."
-	line "Are you battling"
-
-	para "the GYM LEADERS of"
-	line "KANTO?"
-
-	para "They're strong and"
-	line "dedicated people,"
+	para "The GYM LEADERS of"
+	line "KANTO are strong,"
+	cont "dedicated people,"
 
 	para "just like JOHTO's"
 	line "GYM LEADERS."
 	
 	para "Brock is a veteran"
-	line "GYM LEADER."
-
-	para "You should be wary"
-	line "of his #MON,"
+	line "GYM LEADER, so you"
+	cont "should be wary of"
+	cont "his #MON."
 	
-	para "especially a fast"
-	line "rock-type holding"
-	cont "a KING'S ROCK!"
+	para "In addition to the"
+	line "rock type, BROCK"
+	cont "favours #MON"
+	cont "found in caves."
 	done
 
 PewterGymGuideWinText:

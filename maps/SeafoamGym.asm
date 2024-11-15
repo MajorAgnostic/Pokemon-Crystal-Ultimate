@@ -740,8 +740,6 @@ BlaineIntroText:
 	para "homeless because"
 	line "of the volcano."
 
-	para "Waaah!"
-
 	para "But I'm back in"
 	line "business as a GYM"
 
@@ -753,7 +751,7 @@ BlaineIntroText:
 	cont "a BADGE."
 
 	para "Ha! You'd better"
-	line "have BURN HEAL!"
+	line "have a BURN HEAL!"
 	done
 
 BlaineWinLossText:

@@ -342,8 +342,7 @@ SwimmermParkerAfterBattleText:
 	done
 
 CeruleanGymGuideText:
-	text "Yo! CHAMP in"
-	line "making!"
+	text "Yo, CHAMP!"
 
 	para "Since MISTY was"
 	line "away, I went out"

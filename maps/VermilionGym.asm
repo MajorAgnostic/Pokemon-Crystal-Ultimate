@@ -261,8 +261,11 @@ JugglerHortonAfterBattleText:
 	done
 
 VermilionGymGuideText:
-	text "Yo! CHAMP in"
-	line "making!"
+	text "Yo, CHAMP! Nice"
+	line "to see you!"
+	
+	para "Welcome to the"
+	line "KANTO region."
 
 	para "You lucked out"
 	line "this time."
@@ -276,6 +279,11 @@ VermilionGymGuideText:
 	para "But--he-heh--the"
 	line "traps aren't"
 	cont "active right now."
+	
+	para "I think there's"
+	line "something wrong"
+	cont "with the POWER"
+	cont "PLANT."
 
 	para "You'll have no"
 	line "problem getting to"

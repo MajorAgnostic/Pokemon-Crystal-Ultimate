@@ -318,12 +318,11 @@ IdainAfterBattleText:
 
 	para "But here's a tip:"
 	line "don't let SABRINA"
-	cont "set up."
+	cont "set things up!"
 	done
 
 SaffronGymGuideText:
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Yo, CHAMP!"
 
 	para "A trainer as"
 	line "skilled as you"

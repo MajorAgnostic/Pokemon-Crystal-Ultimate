@@ -165,6 +165,12 @@ DylanAfterBattleText:
 	para "BLUE's first #-"
 	line "MON was BLASTOISE."
 	
+	para "Together, they won"
+	line "against the ELITE"
+	cont "FOUR even before"
+	cont "you got your first"
+	cont "#MON!"
+	
 	para "It's exceptionally"
 	line "well-trained and"
 	
@@ -238,11 +244,10 @@ LeaderBlueBeforeText:
 	para "Hey, don't worry"
 	line "about it."
 
-	para "I'll know if you"
-	line "are good or not by"
-
-	para "battling you right"
-	line "now."
+	para "I'll know how good"
+	line "you are by taking"
+	cont "you on right here,"
+	cont "right now."
 
 	para "Ready, JOHTO"
 	line "CHAMP?"
