@@ -65,7 +65,7 @@ IntroText:
 	para "Tell you what, if"
 	line "you visit every"
 	
-	para "single location in"
+	para "city and town in"
 	line "the world, I will"
 	
 	para "show you how to"
@@ -86,11 +86,13 @@ UnlockEntireFlyMapText:
 	para "Tell you what, if"
 	line "you visit every"
 	
-	para "single location in"
+	para "city and town in"
 	line "the world, I will"
 	
 	para "show you how to"
 	line "FLY anywhere."
+	
+	para "…"
 	
 	para "What's that? You"
 	line "already traveled"

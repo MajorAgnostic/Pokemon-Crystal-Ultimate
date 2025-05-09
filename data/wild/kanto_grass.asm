@@ -116,16 +116,16 @@ KantoGrassWildMons:
 	db 54, STEELIX
 	db 53, RHYHORN
 	db 54, FORRETRESS
-	db 26, LARVITAR
 	db 55, CHANSEY
+	db 26, LARVITAR
 	db 56, RHYDON
 	db 57, RHYDON
 	; day
 	db 54, STEELIX
 	db 53, RHYHORN
 	db 54, FORRETRESS
-	db 26, LARVITAR
 	db 55, CHANSEY
+	db 26, LARVITAR
 	db 56, RHYDON
 	db 57, RHYDON
 	; nite
