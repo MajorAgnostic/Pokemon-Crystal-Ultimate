@@ -6746,7 +6746,7 @@ GetOpponentItem:
 	ld b, [hl]
 	jp GetItemHeldEffect
 
-GetItemHeldEffect:
+GetItemHeldEffect::
 ; Return the effect of item b in bc.
 	ld a, b
 	and a

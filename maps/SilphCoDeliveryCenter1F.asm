@@ -75,14 +75,14 @@ TrainerBikerDwayne:
 	writetext BikerDwayneSeenText
 	waitbutton
 	closetext
-	disappear SILPH1F_JANINE1
-	disappear SILPH1F_VENOMOTH
-	disappear SILPH1F_RATTATA
-	disappear SILPH1F_FORRETRESS
 	winlosstext BikerDwayneBeatenText, 0
 	loadtrainer BIKER, DWAYNE
 	startbattle
 	reloadmapafterbattle
+	disappear SILPH1F_JANINE1
+	disappear SILPH1F_VENOMOTH
+	disappear SILPH1F_RATTATA
+	disappear SILPH1F_FORRETRESS
 	setevent EVENT_BEAT_BIKER_DWAYNE
 	clearevent EVENT_NO_JANINE
 	setevent EVENT_NO_JANINE2

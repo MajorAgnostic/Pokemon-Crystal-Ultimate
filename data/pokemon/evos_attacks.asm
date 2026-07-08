@@ -2701,10 +2701,10 @@ WooperEvosAttacks:
 	db 1, TAIL_WHIP
 	db 1, WATER_GUN
 	db 11, SLAM
-	db 21, HAZE
-	db 31, RAIN_DANCE
-	db 41, EARTHQUAKE
-	db 51, HYDRO_PUMP
+	db 19, HAZE
+	db 27, RAIN_DANCE
+	db 35, EARTHQUAKE
+	db 43, HYDRO_PUMP
 	db 51, AMNESIA
 	db 0 ; no more level-up moves
 
@@ -2713,12 +2713,12 @@ QuagsireEvosAttacks:
 	db 1, TAIL_WHIP
 	db 1, WATER_GUN
 	db 11, SLAM
-	db 21, HAZE
-	db 33, RAIN_DANCE
-	db 44, EARTHQUAKE
-	db 55, HYDRO_PUMP
-	db 55, AMNESIA
-	db 66, BELLY_DRUM
+	db 19, HAZE
+	db 29, RAIN_DANCE
+	db 37, EARTHQUAKE
+	db 45, HYDRO_PUMP
+	db 53, AMNESIA
+	db 63, BELLY_DRUM
 	db 0 ; no more level-up moves
 
 EspeonEvosAttacks:
@@ -2935,6 +2935,7 @@ QwilfishEvosAttacks:
 	db 32, PIN_MISSILE
 	db 40, TAKE_DOWN
 	db 47, HYDRO_PUMP
+	db 56, EXPLOSION
 	db 0 ; no more level-up moves
 
 ScizorEvosAttacks:

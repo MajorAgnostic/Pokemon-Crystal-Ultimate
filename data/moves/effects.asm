@@ -717,11 +717,11 @@ DefenseUpHit:
 	applydamage
 	criticaltext
 	supereffectivetext
+	defenseup
+	statupmessage
 	checkfaint
 	buildopponentrage
 	kingsrock
-	defenseup
-	statupmessage
 	endmove
 
 AttackUpHit:
@@ -740,11 +740,11 @@ AttackUpHit:
 	applydamage
 	criticaltext
 	supereffectivetext
+	attackup
+	statupmessage
 	checkfaint
 	buildopponentrage
 	kingsrock
-	attackup
-	statupmessage
 	endmove
 
 AllUpHit:
@@ -763,10 +763,10 @@ AllUpHit:
 	applydamage
 	criticaltext
 	supereffectivetext
+	allstatsup
 	checkfaint
 	buildopponentrage
 	kingsrock
-	allstatsup
 	endmove
 
 PayDay:
