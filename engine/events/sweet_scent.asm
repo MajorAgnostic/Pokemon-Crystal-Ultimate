@@ -8,9 +8,6 @@ SweetScentFromMenu:
 .SweetScent:
 	reloadmappart
 	special UpdateTimePals
-	callasm GetPartyNick
-	writetext UseSweetScentText
-	waitbutton
 	callasm SweetScentEncounter
 	iffalse SweetScentNothing
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -56,10 +53,6 @@ SweetScentEncounter:
 	ld [wScriptVar], a
 	ld [wBattleType], a
 	ret
-
-UseSweetScentText:
-	text_far _UseSweetScentText
-	text_end
 
 SweetScentNothingText:
 	text_far _SweetScentNothingText
