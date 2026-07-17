@@ -25,9 +25,8 @@ JoeyPhoneCallerScript:
 	iftrue .Generic
 	checkflag ENGINE_JOEY_MONDAY_AFTERNOON
 	iftrue .Generic
-	farscall PhoneScript_Random3
+	farscall PhoneScript_Random2
 	ifequal 0, JoeyWantsBattle
-	ifequal 1, JoeyWantsBattle
 
 .Generic:
 	farsjump Phone_GenericCall_Male

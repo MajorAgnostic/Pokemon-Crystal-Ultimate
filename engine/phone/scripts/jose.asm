@@ -34,7 +34,7 @@ JosePhoneCallerScript:
 	iftrue .Generic
 	farscall PhoneScript_Random3
 	ifequal 0, JoseWantsBattle
-	farscall PhoneScript_Random3
+	farscall PhoneScript_Random2
 	ifequal 0, JoseHasStarPiece
 
 .Generic:

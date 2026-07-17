@@ -30,11 +30,11 @@ ArniePhoneCallerScript:
 	iftrue .Swarm
 	checkflag ENGINE_ARNIE_TUESDAY_MORNING
 	iftrue .Swarm
-	farscall PhoneScript_Random2
+	farscall PhoneScript_Random3
 	ifequal 0, ArnieWantsBattle
 
 .Swarm:
-	farscall PhoneScript_Random5
+	farscall PhoneScript_Random3
 	ifequal 0, ArnieYanmaSwarm
 	farscall PhoneScript_Random3
 	ifequal 0, ArnieFoundRare

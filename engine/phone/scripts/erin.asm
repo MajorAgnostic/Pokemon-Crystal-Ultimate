@@ -24,9 +24,8 @@ ErinPhoneCallerScript:
 	iftrue .GenericCall
 	checkflag ENGINE_ERIN_SATURDAY_NIGHT
 	iftrue .GenericCall
-	farscall PhoneScript_Random3
+	farscall PhoneScript_Random2
 	ifequal 0, ErinWantsBattle
-	ifequal 1, ErinWantsBattle
 
 .GenericCall:
 	farsjump Phone_GenericCall_Female

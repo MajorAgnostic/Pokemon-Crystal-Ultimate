@@ -32,7 +32,7 @@ AlanPhoneCallerScript:
 	iftrue .Generic
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
 	iftrue .Generic
-	farscall PhoneScript_Random3
+	farscall PhoneScript_Random2
 	ifequal 0, AlanWantsBattle
 	checkevent EVENT_ALAN_GAVE_FIRE_STONE
 	iftrue .FireStone

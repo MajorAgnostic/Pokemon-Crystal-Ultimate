@@ -14,7 +14,7 @@ BeverlyPhoneCallerScript:
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue .HasNugget
-	farscall PhoneScript_Random4
+	farscall PhoneScript_Random3
 	ifequal 0, .FoundNugget
 
 .HasNugget:

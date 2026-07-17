@@ -26,7 +26,6 @@ ParryPhoneCallerScript:
 	iftrue .GenericCall
 	farscall PhoneScript_Random2
 	ifequal 0, ParryWantsBattle
-	ifequal 1, ParryWantsBattle
 
 .GenericCall:
 	farsjump Phone_GenericCall_Male

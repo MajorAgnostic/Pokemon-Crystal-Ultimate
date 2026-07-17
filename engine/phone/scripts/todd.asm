@@ -31,7 +31,7 @@ ToddPhoneCallerScript:
 	iftrue .TryForSale
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse .NoGoldenrod
-	farscall PhoneScript_Random2
+	farscall PhoneScript_Random3
 	ifequal 0, ToddWantsBattle
 
 .TryForSale:

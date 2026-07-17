@@ -29,7 +29,7 @@ LizPhoneCallerScript:
 	iftrue .next
 
 .next:
-	farscall PhoneScript_Random2
+	farscall PhoneScript_Random4
 	ifequal 0, LizGossip
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse .Generic

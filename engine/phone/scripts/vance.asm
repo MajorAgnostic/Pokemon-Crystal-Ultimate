@@ -26,7 +26,6 @@ VancePhoneCallerScript:
 	iftrue .WantsBattle
 	farscall PhoneScript_Random3
 	ifequal 0, VanceWantsRematch
-	ifequal 1, VanceWantsRematch
 
 .WantsBattle:
 	farsjump Phone_GenericCall_Male

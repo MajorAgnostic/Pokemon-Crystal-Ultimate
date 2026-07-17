@@ -36,7 +36,7 @@ AnthonyPhoneCallerScript:
 	ifequal 0, AnthonyWantsBattle
 
 .TriesSwarm:
-	farscall PhoneScript_Random5
+	farscall PhoneScript_Random3
 	ifequal 0, AnthonyTriesDunsparceSwarm
 	farsjump Phone_GenericCall_Male
 

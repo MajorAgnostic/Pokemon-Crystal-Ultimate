@@ -27,7 +27,6 @@ HueyPhoneCallerScript:
 	iftrue .Flavor
 	farscall PhoneScript_Random3
 	ifequal 0, HueyWantsBattle
-	ifequal 1, HueyWantsBattle
 
 .Flavor:
 	farsjump PhoneScript_MonFlavorText

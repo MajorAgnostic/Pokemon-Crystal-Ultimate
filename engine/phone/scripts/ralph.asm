@@ -31,10 +31,10 @@ RalphPhoneCallerScript:
 	iftrue .CheckSwarm
 	checkflag ENGINE_RALPH_WEDNESDAY_MORNING
 	iftrue .CheckSwarm
-	farscall PhoneScript_Random2
+	farscall PhoneScript_Random3
 	ifequal 0, Ralph_FightMe
 .CheckSwarm:
-	farscall PhoneScript_Random5
+	farscall PhoneScript_Random3
 	ifequal 0, Ralph_SetUpSwarm
 	farsjump Phone_GenericCall_Male
 

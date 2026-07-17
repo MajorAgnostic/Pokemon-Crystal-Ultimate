@@ -35,7 +35,7 @@ DerekPhoneCallerScript:
 	ifequal SATURDAY, .ContestToday
 
 .NoContest:
-	farscall PhoneScript_Random4
+	farscall PhoneScript_Random3
 	ifequal 0, .Nugget
 	farsjump Phone_GenericCall_Male
 
