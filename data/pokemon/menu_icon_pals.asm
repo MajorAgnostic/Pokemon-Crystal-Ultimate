@@ -98,7 +98,7 @@ MonMenuIconPals:
 	iconpal PURPLE, BLUE ; CLOYSTER
 	iconpal PURPLE, BLUE ; GASTLY
 	iconpal RED, BLUE ; HAUNTER
-	iconpal RED, PURPLE ; GENGAR
+	iconpal RED, TEAL ; GENGAR
 	iconpal GRAY, BLUE ; ONIX
 	iconpal BROWN, RED ; DROWZEE
 	iconpal BROWN, PURPLE ; HYPNO
