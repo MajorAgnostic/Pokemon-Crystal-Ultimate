@@ -946,7 +946,7 @@ MindReaderDescription:
 
 NightmareDescription:
 	db   "A sleeper loses"
-	next "1/4 HP every turn.@"
+	next "1/3 HP every turn.@"
 
 FlameWheelDescription:
 	db   "An attack that may"

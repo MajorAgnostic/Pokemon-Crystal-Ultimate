@@ -1125,7 +1125,7 @@ ResidualDamage:
 	ld [wNumHits], a
 	ld de, ANIM_IN_NIGHTMARE
 	call Call_PlayBattleAnim_OnlyIfVisible
-	call GetQuarterMaxHP
+	call GetThirdMaxHP
 	call SubtractHPFromUser
 	ld hl, HasANightmareText
 	call StdBattleTextbox
