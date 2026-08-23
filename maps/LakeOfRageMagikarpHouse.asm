@@ -52,7 +52,7 @@ MagikarpLengthRaterScript:
 .GetReward:
 	writetext MagikarpLengthRaterText_Memento
 	promptbutton
-	verbosegiveitem ELIXER
+	verbosegiveitem PP_UP
 	iffalse .NoRoom
 	writetext MagikarpLengthRaterText_Bonus
 	waitbutton
@@ -83,10 +83,6 @@ MagikarpLengthRaterScript:
 	closetext
 	end
 
-LakeOfRageMagikarpHouseUnusedRecordSign:
-; unused
-	jumptext LakeOfRageMagikarpHouseUnusedRecordText
-
 MagikarpHouseBookshelf:
 	jumpstd DifficultBookshelfScript
 
@@ -106,14 +102,14 @@ MagikarpLengthRaterText_LakeOfRageHistory:
 	para "That's the story"
 	line "passed on from my"
 
-	para "Grandpa's great-"
+	para "grandpa's great-"
 	line "great-grandpa."
 
 	para "It used to be that"
 	line "you could catch"
 
 	para "lively MAGIKARP"
-	line "there, but…"
+	line "here, but…"
 
 	para "I don't understand"
 	line "what's happening."
@@ -132,7 +128,7 @@ MagikarpLengthRaterText_WorldsLargestMagikarp:
 	line "back to normal."
 
 	para "The MAGIKARP have"
-	line "returned."
+	line "returned!"
 
 	para "I may yet realize"
 	line "my dream of see-"
@@ -194,18 +190,6 @@ MagikarpLengthRaterText_Refused:
 	para "enough to show me?"
 	line "Maybe next time."
 	done
-
-LakeOfRageMagikarpHouseUnusedRecordText:
-	text "CURRENT RECORD"
-
-	para "@"
-	text_ram wStringBuffer3
-	text " caught by"
-	line "@"
-	text_ram wStringBuffer4
-	text_end
-
-	text_end ; unused
 
 LakeOfRageMagikarpHouse_MapEvents:
 	db 0, 0 ; filler

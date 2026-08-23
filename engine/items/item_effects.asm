@@ -102,7 +102,7 @@ ItemEffects:
 	dw StatusHealingEffect ; BURNT_BERRY
 	dw StatusHealingEffect ; ICE_BERRY
 	dw NoEffect            ; POISON_BARB
-	dw NoEffect            ; KINGS_ROCK
+	dw EvoStoneEffect      ; KINGS_ROCK
 	dw BitterBerryEffect   ; BITTER_BERRY
 	dw StatusHealingEffect ; MINT_BERRY
 	dw NoEffect            ; RED_APRICORN
@@ -118,7 +118,7 @@ ItemEffects:
 	dw NoEffect            ; MYSTIC_WATER
 	dw NoEffect            ; TWISTEDSPOON
 	dw NoEffect            ; WHT_APRICORN
-	dw NoEffect            ; BLACKBELT_I
+	dw EvoStoneEffect      ; BLACKBELT_I
 	dw NoEffect            ; BLK_APRICORN
 	dw PikaPosterEffect    ; PIKAPOSTER
 	dw NoEffect            ; PNK_APRICORN
@@ -163,7 +163,7 @@ ItemEffects:
 	dw NoEffect            ; SCOPE_LENS
 	dw ClefairyDollEffect  ; CLEFAIRY_DOLL
 	dw ClefairyPosterEffect; CLEFAIRY_POSTER
-	dw NoEffect            ; METAL_COAT
+	dw EvoStoneEffect      ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
 	dw PinkBedEffect       ; PINKBED
 	dw NoEffect            ; LEFTOVERS

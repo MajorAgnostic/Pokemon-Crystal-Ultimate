@@ -748,7 +748,7 @@ BrunoGroup:
 	db 90, STEELIX
 			db PERFECT_DV, $bf ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
-			db LEFTOVERS
+			db METAL_COAT
 			db BIND, EARTHQUAKE, IRON_TAIL, CURSE
 	db 92, MACHAMP
 			db $de, PERFECT_DV ; atk|def, spd|spc

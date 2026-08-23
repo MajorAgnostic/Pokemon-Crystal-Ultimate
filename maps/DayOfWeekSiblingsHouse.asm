@@ -67,7 +67,7 @@ DayOfWeekSiblingsHousePokedexScript:
 	end
 	
 DayOfWeekSiblingsHouseLeftovers:
-	itemball LEFTOVERS
+	itemball PALETTE
 
 DayOfWeekSiblingsHousePokedexText1:
 	text "There's something"
