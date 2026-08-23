@@ -672,6 +672,7 @@ GoldenrodBikeShop_Blocks:
 	INCBIN "maps/GoldenrodBikeShop.blk"
 
 DanceTheatre_Blocks:
+BlackthornBurned_Blocks:
 	INCBIN "maps/DanceTheatre.blk"
 
 EcruteakTinTowerEntrance_Blocks:

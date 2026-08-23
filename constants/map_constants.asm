@@ -176,6 +176,7 @@ ENDM
 	map_const ROUTE_45,                                    10, 45 ;  8
 	map_const ROUTE_46,                                    10, 18 ;  9
 	map_const BLACKTHORN_CITY,                             20, 18 ; 10
+	map_const BLACKTHORN_BURNED,                            6,  7 ; 11
 
 	newgroup                                                      ;  6
 
