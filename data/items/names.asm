@@ -41,7 +41,7 @@ ItemNames::
 	db "RARE CANDY@"
 	db "X ACCURACY@"
 	db "LEAF STONE@"
-	db "METAL POWDER@"
+	db "PALETTE@"
 	db "NUGGET@"
 	db "# DOLL@"
 	db "FULL HEAL@"

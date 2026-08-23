@@ -42,7 +42,7 @@ ItemDescriptions:
 	dw RareCandyDesc
 	dw XAccuracyDesc
 	dw LeafStoneDesc
-	dw MetalPowderDesc
+	dw PaletteDesc
 	dw NuggetDesc
 	dw PokeDollDesc
 	dw FullHealDesc
@@ -392,9 +392,9 @@ LeafStoneDesc:
 	db   "Evolves certain"
 	next "kinds of #MON.@"
 
-MetalPowderDesc:
-	db   "An offering for"
-	next "the departed.@"
+PaletteDesc:
+	db   "SMEARGLE's prized"
+	next "possession. (HOLD)@"
 
 NuggetDesc:
 	db   "Made of pure gold."

@@ -2799,7 +2799,7 @@ UnownEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, HIDDEN_POWER
 	db 1, PSYWAVE
-	db 15, SKETCH
+	db 20, SKETCH
 	db 30, SKETCH
 	db 0 ; no more level-up moves
 

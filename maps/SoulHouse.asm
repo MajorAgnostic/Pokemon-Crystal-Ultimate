@@ -19,10 +19,14 @@ SoulHouseLassScript:
 	jumptextfaceplayer SoulHouseLassText
 
 SoulHouseGrannyScript:
+	checkevent BEAT_GHOST
+	iftrue .BeatGhost
 	checkevent OFFERED_METAL_POWDER
 	iftrue .GaveMetalPowder
 	setevent SPOKE_TO_GRANNY
 	jumptextfaceplayer SoulHouseGrannyText
+.BeatGhost:
+	jumptextfaceplayer SoulHouseGrannyText3
 .GaveMetalPowder:
 	jumptextfaceplayer SoulHouseGrannyText2
 	
@@ -37,8 +41,8 @@ Grave:
 	writetext GiveAwayPowderText
 	yesorno
 	iffalse .End
-	takeitem METAL_POWDER
-	iffalse .End
+	takeitem THICK_CLUB
+	iffalse .End3
 	setevent OFFERED_METAL_POWDER
 	writetext GaveAwayPowderText
 	cry MAROWAK
@@ -64,8 +68,8 @@ Grave:
 	closetext
 	clearevent GHOST_ACTIVATED
 	setevent BEAT_GHOST
-	loadwildmon GHOST_P, 85
-	loadvar VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
+	loadwildmon MAROWAK, 85
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	reloadmapafterbattle
 	end
@@ -75,6 +79,12 @@ Grave:
 	end
 	
 .End2:
+	end
+	
+.End3:
+	writetext SoulTooBadText
+	waitbutton
+	closetext
 	end
 	
 .Offered:
@@ -94,13 +104,13 @@ UseSquirtbottleText2:
 	done
 	
 GiveAwayPowderText:
-	text "Offer METAL"
-	line "POWDER?"
+	text "Offer THICK"
+	line "CLUB?"
 	done
 	
 GaveAwayPowderText:
 	text "<PLAYER> offered"
-	line "the METAL POWDER."
+	line "the THICK CLUB."
 	
 	para "<……>"
 	line "<……>"
@@ -110,7 +120,7 @@ GaveAwayPowderText:
 	done
 	
 OfferedPowderText:
-	text "A METAL POWDER has"
+	text "A THICK CLUB has"
 	line "been offered."
 	done
 
@@ -165,19 +175,43 @@ SoulHouseGrannyText:
 	para "Child, would you"
 	line "care to make an"
 	
-	para "offering of METAL"
-	line "POWDER?"
+	para "offering of THICK"
+	line "CLUB?"
 	
 	para "I think they would"
 	line "be grateful if you"
 	
-	para "placed some on the"
+	para "placed one on the"
 	line "grave next to you."
 	done
 	
 SoulHouseGrannyText2:
+	text "…What was that?"
+	line "You heard a ghost?"
+	
+	para "You may want to"
+	line "pay a visit to our"
+	cont "RADIO TOWER then."
+	
+	para "It is the former"
+	line "home of the souls"
+	cont "of #MON."
+	
+	para "Perhaps you will"
+	line "find a clue to"
+	cont "help appease the"
+	cont "soul of that poor"
+	cont "#MON."
+	done
+	
+SoulHouseGrannyText3:
 	text "Thank you for your"
 	line "kindness."
+	done
+	
+SoulTooBadText:
+	text "<PLAYER> has no"
+	line "THICK CLUB…"
 	done
 
 SoulHouse_MapEvents:

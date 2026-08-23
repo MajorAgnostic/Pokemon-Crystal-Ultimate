@@ -136,7 +136,7 @@ MortyGroup:
 	db 34, SMEARGLE
 			db $bb, $bb ; atk|def, spd|spc
 			dw $0020, $0020, $0020, $0020, $0020
-			db QUICK_CLAW
+			db PALETTE
 			db SPORE, BATON_PASS, SWORDS_DANCE, RECOVER
 	db 36, GENGAR
 			db $bb, $bb ; atk|def, spd|spc
@@ -7501,7 +7501,7 @@ Morty2Group:
 	db 80, SMEARGLE
 			db $bf, PERFECT_DV ; atk|def, spd|spc
 			dw $C8AF, $C8AF, $C8AF, $C8AF, $C8AF
-			db FOCUS_BAND
+			db PALETTE
 			db SPORE, BATON_PASS, BELLY_DRUM, MOONLIGHT
 	db 81, CLOYSTER
 			db PERFECT_DV, $fb ; atk|def, spd|spc

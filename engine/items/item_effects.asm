@@ -55,7 +55,7 @@ ItemEffects:
 	dw RareCandyEffect     ; RARE_CANDY
 	dw XItemEffect         ; X_ACCURACY
 	dw EvoStoneEffect      ; LEAF_STONE
-	dw NoEffect            ; METAL_POWDER
+	dw NoEffect            ; PALETTE
 	dw NoEffect            ; NUGGET
 	dw PokeDollEffect      ; POKE_DOLL
 	dw StatusHealingEffect ; FULL_HEAL

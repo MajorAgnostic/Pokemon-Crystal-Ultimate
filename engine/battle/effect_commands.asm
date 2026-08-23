@@ -2178,8 +2178,30 @@ BattleCommand_ApplyDamage:
 	ld a, b
 	cp HELD_FOCUS_BAND
 	ld b, 0
+	jr z, .focus_band_effect
+	cp HELD_PALETTE
 	jr nz, .damage
+	
+	ld a, MON_SPECIES
+	call BattlePartyAttr
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [hl]
+	jr nz, .Smeargle
+	ld a, [wTempEnemyMonSpecies]
 
+.Smeargle
+	cp SMEARGLE
+	jr nz, .damage
+	call CheckOpponentFullHP
+	jr nz, .damage
+	callfar BattleCommand_FalseSwipe
+	ld b, 0
+	jr nc, .damage
+	ld b, 2
+	jr .damage
+
+.focus_band_effect
 	call BattleRandom
 	cp c
 	jr nc, .damage
@@ -2249,6 +2271,37 @@ BattleCommand_ApplyDamage:
 	ld [de], a
 	inc de
 	ld [de], a
+	ret
+	
+CheckOpponentFullHP:
+; check if the opponent has full HP
+; z: yes, nz: no
+	ld hl, wEnemyMonHP
+	ld a, [hBattleTurn]
+	and a
+	jr z, DoCheckFullHP
+	ld hl, wBattleMonHP
+	jr DoCheckFullHP
+	
+CheckFullHP:
+; check if the user has full HP
+; z: yes, nz: no
+	ld hl, wBattleMonHP
+	ld a, [hBattleTurn]
+	and a
+	jr z, DoCheckFullHP
+	ld hl, wEnemyMonHP
+	; fallthrough
+DoCheckFullHP:
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	cp b
+	ret nz
+	ld a, [hl]
+	cp c
 	ret
 
 GetFailureResultText:
@@ -2553,53 +2606,6 @@ EndMoveEffect:
 	ld [hl], a
 	ret
 
-DittoMetalPowder:
-	ld a, MON_SPECIES
-	call BattlePartyAttr
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr nz, .Ditto
-	ld a, [wTempEnemyMonSpecies]
-
-.Ditto:
-	cp DITTO
-	ret nz
-
-	push bc
-	call GetOpponentItem
-	ld a, [hl]
-	cp METAL_POWDER
-	pop bc
-	ret nz
-
-	ld a, c
-	srl a
-	add c
-	ld c, a
-	ret nc
-
-	srl b
-	ld a, b
-	and a
-	jr nz, .done
-	inc b
-.done
-	scf
-	rr c
-	
-	ld a, HIGH(MAX_STAT_VALUE)
-	cp b
-	jr c, .cap
-	ret nz
-	ld a, LOW(MAX_STAT_VALUE)
-	cp c
-	ret nc
-
-.cap
-	ld bc, MAX_STAT_VALUE
-	ret
-
 BattleCommand_DamageStats:
 ; damagestats
 
@@ -2692,7 +2698,7 @@ PlayerAttackDamage:
 
 	ld a, [wBattleMonLevel]
 	ld e, a
-	call DittoMetalPowder
+	
 
 	ld a, 1
 	and a
@@ -2945,7 +2951,6 @@ EnemyAttackDamage:
 
 	ld a, [wEnemyMonLevel]
 	ld e, a
-	call DittoMetalPowder
 
 	ld a, 1
 	and a
