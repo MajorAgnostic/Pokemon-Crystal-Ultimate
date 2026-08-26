@@ -60,3 +60,4 @@ SpriteMons:
 	db WEEZING
 	db VENOMOTH
 	db FORRETRESS
+	db CELEBI

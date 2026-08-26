@@ -139,6 +139,7 @@ INCLUDE "audio/music/unovae4.asm"
 INCLUDE "audio/music/alolae4.asm"
 INCLUDE "audio/music/cipherpeonbattle.asm"
 INCLUDE "audio/music/giovannibattle.asm"
+INCLUDE "audio/music/celestialtower.asm"
 
 
 SECTION "Sound Effects", ROMX

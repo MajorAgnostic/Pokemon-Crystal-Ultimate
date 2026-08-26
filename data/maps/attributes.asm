@@ -659,6 +659,8 @@ ENDM
 	map_attributes TrainerHouseB1F, TRAINER_HOUSE_B1F, $00, 0
 	map_attributes ViridianMart, VIRIDIAN_MART, $00, 0
 	map_attributes ViridianPokecenter1F, VIRIDIAN_POKECENTER_1F, $00, 0
+	map_attributes Route22Past, ROUTE_22_PAST, $00, 0
+	map_attributes GiovanniHouse, GIOVANNI_HOUSE, $00, 0
 	map_attributes Route2NuggetHouse, ROUTE_2_NUGGET_HOUSE, $00, 0
 	map_attributes Route2Gate, ROUTE_2_GATE, $00, 0
 	map_attributes Route2NorthGate, ROUTE_2_NORTHGATE, $00, 0

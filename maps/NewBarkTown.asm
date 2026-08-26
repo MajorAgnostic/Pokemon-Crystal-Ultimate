@@ -3,11 +3,14 @@
 	const NEWBARKTOWN_FISHER
 	const NEWBARKTOWN_SILVER
 	const NEWBARKTOWN_MOM
+	const NEWBARKTOWN_CELEBI
 
 NewBarkTown_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_NEWBARKTOWN_FISHER
+	scene_script .DummyScene2 ; SCENE_NEWBARKTOWN_CELEBI
+	scene_script .DummyScene3 ; SCENE_NEWBARKTOWN_NOTHING
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -16,6 +19,12 @@ NewBarkTown_MapScripts:
 	end
 
 .DummyScene1:
+	end
+	
+.DummyScene2:
+	end
+	
+.DummyScene3:
 	end
 
 .FlyPoint:
@@ -189,6 +198,32 @@ NewBarkTown_FisherStopsYouScene4:
 	end
 	
 .End:
+	end
+	
+NewBarkTown_CelebiScene:
+	checkitem S_S_TICKET
+	iffalse .End2
+	special FadeOutMusic
+	pause 10
+	showemote EMOTE_SHOCK, PLAYER, 20
+	pause 10
+	playmusic MUSIC_CELESTIAL_TOWER
+	pause 20
+	special CelebiShrineEvent
+	turnobject PLAYER, LEFT
+	pause 10
+	opentext
+	writetext CelebiNBCryText
+	cry CELEBI
+	waitbutton
+	closetext
+	playsound SFX_GAME_FREAK_LOGO_GS
+	special FadeOutPalettes
+	waitsfx
+	warp ROUTE_22_PAST, 31, 9
+	end
+	
+.End2:
 	end
 
 NewBarkTownTeacherScript:
@@ -487,6 +522,10 @@ NewBarkTownPlayersHouseSignText:
 NewBarkTownElmsLabSignText:
 	text "ELM #MON LAB"
 	done
+	
+CelebiNBCryText:
+	text "Celebiiiii!"
+	done
 
 NewBarkTownElmsHouseSignText:
 	text "ELM'S HOUSE"
@@ -508,6 +547,8 @@ NewBarkTown_MapEvents:
 	coord_event 16,  7, SCENE_NEWBARKTOWN_FISHER, NewBarkTown_FisherStopsYouScene2
 	coord_event 16,  8, SCENE_NEWBARKTOWN_FISHER, NewBarkTown_FisherStopsYouScene3
 	coord_event 16,  9, SCENE_NEWBARKTOWN_FISHER, NewBarkTown_FisherStopsYouScene4
+	coord_event  6,  4, SCENE_NEWBARKTOWN_CELEBI, NewBarkTown_CelebiScene
+	coord_event 11,  2, SCENE_NEWBARKTOWN_NOTHING, NewBarkTown_CelebiScene
 
 	def_bg_events
 	bg_event  8,  8, BGEVENT_READ, NewBarkTownSign

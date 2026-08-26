@@ -142,6 +142,7 @@
 	const MUSIC_ALOLA_E4
 	const MUSIC_PEON_BATTLE
 	const MUSIC_GIOVANNI
+	const MUSIC_CELESTIAL_TOWER
 
 ; GetMapMusic picks music for these value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $fc

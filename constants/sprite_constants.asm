@@ -193,6 +193,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_WEEZING
 	const SPRITE_VENOMOTH
 	const SPRITE_FORRETRESS
+	const SPRITE_CELEBI
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_next $e0

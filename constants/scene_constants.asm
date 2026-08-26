@@ -169,6 +169,8 @@ SCENE_FINISHED EQU 1
 ; wNewBarkTownSceneID
 	const_def 1
 	const SCENE_NEWBARKTOWN_FISHER ; 1
+	const SCENE_NEWBARKTOWN_CELEBI ; 2
+	const SCENE_NEWBARKTOWN_NOTHING
 	
 ; wSaffronCitySceneID
 	const_def 1
@@ -189,3 +191,11 @@ SCENE_FINISHED EQU 1
 ; wSeafoamGymSceneID
 	const_def 1
 	const SCENE_DYLAN
+	
+; wRoute22PastSceneID
+	const_def 1
+	const SCENE_GIOVANNISILVER
+	
+; wRoute22PastSceneID
+	const_def 1
+	const SCENE_GIOVANNIHOUSE

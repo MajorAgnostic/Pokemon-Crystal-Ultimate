@@ -141,4 +141,5 @@ Music:
 	dba Music_AlolaEliteFourBattle
 	dba Music_CipherPeonBattle
 	dba Music_GiovanniBattle
+	dba Music_CelestialTower
 	

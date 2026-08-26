@@ -2777,8 +2777,10 @@ wSaffronCitySceneID::                             db
 wTinTowerRoofSceneID::                            db
 wSeafoamGymSceneID::                              db
 wViridianGymSceneID::                             db
+wRoute22PastSceneID::                             db
+wGiovanniHouseSceneID::                           db
 
-	ds 23
+	ds 21
 
 ; fight counts
 wLevelCap::          db ; Level cap

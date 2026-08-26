@@ -444,6 +444,8 @@ ENDM
 	map_const VIRIDIAN_FOREST,                             17, 26 ; 14
 	map_const ROUTE_2_NORTHGATE,                            5,  4 ; 15
 	map_const ROUTE_2_SOUTHGATE,                            4,  4 ; 16
+	map_const ROUTE_22_PAST,                               20,  9 ; 17
+	map_const GIOVANNI_HOUSE,                               4,  4 ; 18
 
 	newgroup                                                      ; 24
 

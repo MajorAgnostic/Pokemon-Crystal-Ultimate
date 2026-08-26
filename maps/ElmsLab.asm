@@ -412,6 +412,7 @@ ElmGiveTicketScript:
 	promptbutton
 	verbosegiveitem S_S_TICKET
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
+	setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_CELEBI
 	writetext ElmGiveTicketText2
 	waitbutton
 	closetext

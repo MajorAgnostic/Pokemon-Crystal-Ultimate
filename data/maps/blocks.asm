@@ -248,6 +248,7 @@ Route9_Blocks:
 	INCBIN "maps/Route9.blk"
 
 Route22_Blocks:
+Route22Past_Blocks:
 	INCBIN "maps/Route22.blk"
 
 
@@ -357,6 +358,7 @@ EcruteakLugiaSpeechHouse_Blocks:
 EcruteakItemfinderHouse_Blocks:
 VioletNicknameSpeechHouse_Blocks:
 VioletKylesHouse_Blocks:
+GiovanniHouse_Blocks:
 	INCBIN "maps/House2.blk"
 
 UnionCaveB1F_Blocks:
