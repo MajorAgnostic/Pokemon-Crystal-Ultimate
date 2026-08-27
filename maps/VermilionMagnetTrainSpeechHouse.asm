@@ -29,6 +29,14 @@ VermilionMagnetTrainSpeechHouseYoungsterText:
 	text "I want to go to"
 	line "SAFFRON to see"
 	cont "the MAGNET TRAIN."
+	
+	para "I heard that there"
+	line "was trouble at the"
+	cont "POWER PLANT, but"
+	
+	para "the MAGNET TRAIN"
+	line "is still running"
+	cont "somehow!"
 	done
 
 VermilionMagnetTrainSpeechHouse_MapEvents:

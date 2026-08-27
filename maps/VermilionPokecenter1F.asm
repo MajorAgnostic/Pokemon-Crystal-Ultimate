@@ -55,6 +55,9 @@ VermilionPokecenter1FFishingGuruText_FoughtSnorlax:
 
 	para "But it seems to"
 	line "have disappeared."
+	
+	para "Did you manage to"
+	line "wake it up?"
 	done
 
 VermilionPokecenter1FSailorText:
@@ -71,7 +74,7 @@ VermilionPokecenter1FBugCatcherText:
 	cont "seen before."
 
 	para "Oh, I get it. You"
-	line "got them in JOHTO."
+	line "got them in JOHTO!"
 	done
 
 VermilionPokecenter1F_MapEvents:
