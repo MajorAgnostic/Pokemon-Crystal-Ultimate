@@ -8,6 +8,7 @@
 	const SAFFRONCITY_YOUNGSTER2
 	const SAFFRONCITY_LASS2
 	const SAFFRONCITY_POKEFAN_M2
+	const SAFFRONCITY_MISTY
 
 SaffronCity_MapScripts:
 	def_scene_scripts
@@ -28,7 +29,10 @@ SaffronCity_MapScripts:
 Saffron_HoohScene:
 	special FadeOutMusic
 	showemote EMOTE_SHOCK, PLAYER, 20
+	showemote EMOTE_SHOCK, SAFFRONCITY_POKEFAN_M1, 20
+	showemote EMOTE_SHOCK, SAFFRONCITY_MISTY, 20
 	turnobject PLAYER, DOWN
+	turnobject SAFFRONCITY_POKEFAN_M1, DOWN
 	cry HO_OH
 	opentext
 	writetext SaffronHoOhText
@@ -36,6 +40,9 @@ Saffron_HoohScene:
 	waitbutton
 	cry HO_OH
 	turnobject PLAYER, LEFT
+	pause 10
+	turnobject SAFFRONCITY_MISTY, LEFT
+	turnobject SAFFRONCITY_POKEFAN_M1, LEFT
 	pause 20
 	closetext
 	reloadmapafterbattle
@@ -50,21 +57,29 @@ Saffron_HoohScene:
 	writetext SaffronHoOh2Text
 	waitbutton
 	closetext
+	pause 20
+	turnobject SAFFRONCITY_MISTY, UP
+	pause 20
+	showemote EMOTE_SHOCK, SAFFRONCITY_MISTY, 20
+	pause 30
+	applymovement SAFFRONCITY_MISTY, MistyMovement1
+	opentext
+	writetext MistyText
+	waitbutton
+	closetext
+	turnobject SAFFRONCITY_MISTY, LEFT
+	pause 20
+	showemote EMOTE_HEART, SAFFRONCITY_MISTY, 25
+	applymovement SAFFRONCITY_MISTY, MistyMovement2
+	setevent EVENT_SAFFRONCITY_MISTY
 	setscene SCENE_FINISHED
+	disappear SAFFRONCITY_MISTY
 	end
 
 SaffronCityLass1Script:
 	faceplayer
 	opentext
-	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .ReturnedMachinePart
 	writetext SaffronCityLass1Text
-	waitbutton
-	closetext
-	end
-
-.ReturnedMachinePart:
-	writetext SaffronCityLass1Text_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
@@ -73,14 +88,14 @@ SaffronCityPokefanMScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .ReturnedMachinePart
+	iffalse .SawHooh
 	writetext SaffronCityPokefanMText
 	waitbutton
 	closetext
 	end
 
-.ReturnedMachinePart:
-	writetext SaffronCityPokefanMText_ReturnedMachinePart
+.SawHooh:
+	writetext SaffronCityPokefanMText_SawHooh
 	waitbutton
 	closetext
 	end
@@ -146,6 +161,18 @@ SaffronCityGymBlockerScript:
 SaffronMoveDeleterSign:
 	jumptext SaffronMoveDeleterSignText
 	
+MistyMovement1:
+	step RIGHT
+	step_end
+	
+MistyMovement2:
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step_end
+	
 SaffronCityBlockerText:
 	text "The GYM is closed"
 	line "until the problem"
@@ -169,6 +196,39 @@ SaffronHoOh2Text:
 	line "the direction of"
 	cont "CELADON CITY!"
 	done
+	
+MistyText:
+	text "Wow, wasn't that"
+	line "incredible?"
+
+	para "That must've been"
+	line "HO-OH!"
+
+	para "It seems to have"
+	line "dropped this GOLD"
+	cont "WING…"
+
+	para "I think I'll hand"
+	line "it to my friend"
+	cont "BROCK."
+	
+	para "He runs a GYM in"
+	line "PEWTER CITY and"
+	cont "loves these sorts"
+	cont "of things!"
+	
+	para "Or maybe I should"
+	line "donate it to the"
+	cont "museum, tee hee."
+	
+	para "…"
+	
+	para "Oh sorry, I have"
+	line "to go!"
+	
+	para "I have a cute date"
+	line "later. Bye!"
+	done
 
 SaffronCityLass1Text:
 	text "A little girl who"
@@ -184,31 +244,22 @@ SaffronCityLass1Text:
 	line "It's confusing."
 	done
 
-SaffronCityLass1Text_ReturnedMachinePart:
-	text "The COPYCAT girl"
-	line "looked unhappy."
-
-	para "She said she lost"
-	line "her favorite #"
-	cont "DOLL--CLEFAIRY."
-	done
-
 SaffronCityPokefanMText:
-	text "You came out from"
-	line "JOHTO?"
-
-	para "You can zip back"
-	line "home if the MAGNET"
-	cont "TRAIN's running."
-	done
-
-SaffronCityPokefanMText_ReturnedMachinePart:
 	text "You came out from"
 	line "JOHTO?"
 
 	para "You can zip back"
 	line "home by hopping on"
 	cont "the MAGNET TRAIN."
+	done
+	
+SaffronCityPokefanMText_SawHooh:
+	text "D- did you just"
+	line "see that?"
+
+	para "The shadow of that"
+	line "#MON blotted"
+	cont "out the sun!"
 	done
 
 SaffronCityCooltrainerMText:
@@ -308,12 +359,12 @@ SaffronGymSignText:
 	done
 
 FightingDojoSignText:
-	text "Everyone Welcome!"
+	text "Everyone welcome!"
 	line "FIGHTING DOJO"
 	done
 
 SilphCoSignText:
-	text "SILPH CO."
+	text "SILPH CO. HEAD"
 	line "OFFICE BUILDING"
 	done
 
@@ -379,3 +430,4 @@ SaffronCity_MapEvents:
 	object_event 35, 22, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityYoungster2Script, -1
 	object_event 19,  8, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityLass2Script, -1
 	object_event 34,  4, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SaffronCityGymBlockerScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	object_event 14, 31, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAFFRONCITY_MISTY

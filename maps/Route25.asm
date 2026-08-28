@@ -236,11 +236,9 @@ MovementData_0x19f000:
 	step_end
 
 Route25MistyDateText:
-	text "MISTY: Aww! Why"
-	line "did you have to"
-
-	para "show up and bug us"
-	line "now?"
+	text "Aww! Why did you"
+	line "have to show up"
+	cont "and bug us now?"
 
 	para "Do you know what"
 	line "they call people"
@@ -250,13 +248,16 @@ Route25MistyDateText:
 	line "me right, pest!"
 
 	para "…"
+	
+	para "…Oh? Didn't we"
+	line "meet in SAFFRON?"
 
-	para "…Oh? Those BADGES"
+	para "And those BADGES"
 	line "you have… Are they"
 	cont "JOHTO GYM BADGES?"
 
 	para "If you have eight,"
-	line "you must be good."
+	line "you must be good!"
 	
 	para "I'm MISTY, the GYM"
 	line "LEADER of CERULEAN"
