@@ -182,7 +182,7 @@ ENDM
 
 	map_const CINNABAR_POKECENTER_1F,                       5,  4 ;  1
 	map_const ROUTE_19_FUCHSIA_GATE,                        5,  4 ;  3
-	map_const SEAFOAM_GYM,                                 17, 12 ;  4
+	map_const SEAFOAM_GYM,                                 18, 14 ;  4
 	map_const ROUTE_19,                                    10, 18 ;  5
 	map_const ROUTE_20,                                    30,  9 ;  6
 	map_const ROUTE_21,                                    10, 18 ;  7
