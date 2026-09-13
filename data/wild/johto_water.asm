@@ -217,5 +217,11 @@ JohtoWaterWildMons:
 	db 86, POLIWHIRL
 	db 87, POLITOED
 	db 89, LAPRAS
+	
+	map_id SILVER_CAVE_EXTERIOR
+	db 6 percent ; encounter rate
+	db 86, POLIWHIRL
+	db 87, POLIWHIRL
+	db 89, CORSOLA
 
 	db -1 ; end

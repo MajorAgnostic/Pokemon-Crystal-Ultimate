@@ -1594,5 +1594,32 @@ JohtoGrassWildMons:
 	db 89, DONPHAN
 	db 90, SUDOWOODO
 	db 70, IGGLYBUFF
+	
+	map_id SILVER_CAVE_EXTERIOR
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	db 87, DELIBIRD
+	db 88, SNEASEL
+	db 89, PILOSWINE
+	db 88, STANTLER
+	db 89, DONPHAN
+	db 90, SKARMORY
+	db 92, TYRANITAR
+	; day
+	db 87, DELIBIRD
+	db 88, SNEASEL
+	db 89, PILOSWINE
+	db 88, STANTLER
+	db 89, DONPHAN
+	db 90, SKARMORY
+	db 92, TYRANITAR
+	; nite
+	db 87, DELIBIRD
+	db 88, SNEASEL
+	db 89, PILOSWINE
+	db 88, STANTLER
+	db 89, DONPHAN
+	db 90, SKARMORY
+	db 92, TYRANITAR
 
 	db -1 ; end

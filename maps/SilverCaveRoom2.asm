@@ -96,6 +96,12 @@ SilverCaveRoom2PPUp:
 SilverCaveRoom2HiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION
 	
+SilverCaveRoom2HiddenGBJuice:
+	hiddenitem GOLD_B_JUICE, EVENT_SILVER_HIDDENGBJUICE
+	
+SilverCaveRoom2HiddenMaxE:
+	hiddenitem MAX_ELIXER, EVENT_SILVER_HIDDENMAXELIXIR
+	
 NicholasSeenText:
 	text "Oh! I'm quite sur-"
 	line "prised to see a"
@@ -238,19 +244,32 @@ SilverCaveRoom2_MapEvents:
 
 	def_warp_events
 	warp_event 17, 37, SILVER_CAVE_ROOM_1, 2
-	warp_event 11, 11, SILVER_CAVE_ROOM_3, 1
-	warp_event 13, 27, SILVER_CAVE_ITEM_ROOMS, 1
-	warp_event 23,  9, SILVER_CAVE_ITEM_ROOMS, 2
+	warp_event 11, 11, SILVER_CAVE_ITEM_ROOMS, 4
+	warp_event 13, 27, SILVER_CAVE_EXTERIOR, 2
+	warp_event 23,  9, SILVER_CAVE_ITEM_ROOMS, 1
 	warp_event  5,  1, SILVER_CAVE_ITEM_ROOMS, 3
+	warp_event 15,  7, SILVER_CAVE_EXTERIOR, 1
+	warp_event 17,  7, SILVER_CAVE_ROOM_2, 8
+	warp_event 27, 29, SILVER_CAVE_ROOM_2, 7
+	warp_event 27, 15, SILVER_CAVE_ITEM_ROOMS, 2
+	warp_event  5, 27, SILVER_CAVE_ITEM_ROOMS, 6
+	warp_event 15,  3, SILVER_CAVE_ITEM_ROOMS, 8
+	warp_event  6, 15, SILVER_CAVE_ITEM_ROOMS, 7
+	warp_event 27,  5, SILVER_CAVE_ITEM_ROOMS, 9
+	warp_event 23,  3, SILVER_CAVE_EXTERIOR, 4
+	warp_event 11,  3, SILVER_CAVE_ROOM_2, 16
+	warp_event 25, 23, SILVER_CAVE_ROOM_2, 15
 
 	def_coord_events
-	coord_event 11, 12, SCENE_SILVERCAVEROOM2_NOTHING, NicholasScene
+	coord_event 23, 10, SCENE_SILVERCAVEROOM2_NOTHING, NicholasScene
 
 	def_bg_events
-	bg_event 14, 37, BGEVENT_ITEM, SilverCaveRoom2HiddenMaxPotion
+	bg_event 18,  3, BGEVENT_ITEM, SilverCaveRoom2HiddenMaxPotion
+	bg_event  6, 14, BGEVENT_ITEM, SilverCaveRoom2HiddenGBJuice
+	bg_event  9,  3, BGEVENT_ITEM, SilverCaveRoom2HiddenMaxE
 
 	def_object_events
-	object_event 10, 12, SPRITE_STEVEN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, TrainerNicholas, -1
+	object_event 22, 10, SPRITE_STEVEN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, TrainerNicholas, -1
 	object_event 24, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilverCaveRoom2Calcium, EVENT_SILVER_CAVE_ROOM_2_CALCIUM
 	object_event 22, 30, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilverCaveRoom2UltraBall, EVENT_SILVER_CAVE_ROOM_2_ULTRA_BALL
 	object_event  5, 24, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilverCaveRoom2PPUp, EVENT_SILVER_CAVE_ROOM_2_PP_UP

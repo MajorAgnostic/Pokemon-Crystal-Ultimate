@@ -773,6 +773,9 @@ LavRadioTower1F_Blocks:
 
 SilverCaveItemRooms_Blocks:
 	INCBIN "maps/SilverCaveItemRooms.blk"
+	
+SilverCaveExterior_Blocks:
+	INCBIN "maps/SilverCaveExterior.blk"
 
 DayCare_Blocks:
 	INCBIN "maps/DayCare.blk"
@@ -782,6 +785,11 @@ SoulHouse_Blocks:
 
 PewterGym_Blocks:
 	INCBIN "maps/PewterGym.blk"
+	
+PewterMuseum1F_Blocks:
+	INCBIN "maps/PewterMuseum1F.blk"
+	
+
 
 CeladonGym_Blocks:
 	INCBIN "maps/CeladonGym.blk"

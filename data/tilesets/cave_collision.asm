@@ -62,4 +62,20 @@
 	tilecoll WATER, WATER, WATER, WATER ; 3d
 	tilecoll WATER, WATER, WATER, WATER ; 3e
 	tilecoll FLOOR, FLOOR, PIT, FLOOR ; 3f
-	tilecoll WALL, WALL, WALL, WALL  ; 40
+	tilecoll WALL, WALL, WALL, WALL ; 40
+	tilecoll FLOOR, FLOOR, FLOOR, WARP_CARPET_DOWN ; 41
+	tilecoll WALL, FLOOR, WALL, FLOOR ; 42
+	tilecoll FLOOR, WALL, FLOOR, WALL ; 43
+	tilecoll FLOOR, FLOOR, WALL, FLOOR ; 44
+	tilecoll FLOOR, FLOOR, FLOOR, WALL ; 45
+	tilecoll WALL, FLOOR, WALL, WALL ; 46
+	tilecoll FLOOR, WALL, WALL, WALL ; 47
+	tilecoll FLOOR, FLOOR, WALL, FLOOR ; 48
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 49
+	tilecoll WALL, UP_WALL, WALL, FLOOR ; 4a
+	tilecoll UP_WALL, WALL, FLOOR, WALL ; 4b
+	tilecoll UP_WALL, WALL, FLOOR, FLOOR ; 4c
+	tilecoll UP_WALL, UP_WALL, FLOOR, FLOOR ; 4d
+	tilecoll TALL_GRASS, TALL_GRASS, TALL_GRASS, TALL_GRASS ; 4e
+	tilecoll TALL_GRASS, TALL_GRASS, WALL, WALL ; 4f
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 50

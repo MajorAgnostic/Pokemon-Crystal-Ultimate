@@ -131,8 +131,9 @@ ENDM
 	map_const WHIRL_ISLAND_LUGIA_CHAMBER,                  14, 18 ; 73
 	map_const SILVER_CAVE_ROOM_1,                          10, 18 ; 74
 	map_const SILVER_CAVE_ROOM_2,                          15, 26 ; 75
-	map_const SILVER_CAVE_ROOM_3,                          10, 18 ; 76
+	map_const SILVER_CAVE_ROOM_3,                          10, 19 ; 76
 	map_const SILVER_CAVE_ITEM_ROOMS,                      20, 12 ; 77
+	map_const SILVER_CAVE_EXTERIOR,                        21, 13 ; - Mountain side
 	map_const DARK_CAVE_VIOLET_ENTRANCE,                   20, 18 ; 78
 	map_const DARK_CAVE_BLACKTHORN_ENTRANCE,               15, 18 ; 79
 	map_const DRAGONS_DEN_1F,                               5,  9 ; 80
@@ -305,6 +306,7 @@ ENDM
 	map_const PEWTER_MART,                                  6,  4 ;  5
 	map_const PEWTER_POKECENTER_1F,                         5,  4 ;  6
 	map_const PEWTER_SNOOZE_SPEECH_HOUSE,                   4,  4 ;  8
+	map_const PEWTER_MUSEUM_1F,                            10,  4 ;  
 
 	newgroup                                                      ; 15
 
