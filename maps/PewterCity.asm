@@ -2,6 +2,7 @@
 	const PEWTERCITY_COOLTRAINER_F
 	const PEWTERCITY_BUG_CATCHER
 	const PEWTERCITY_GRAMPS
+	const PEWTERCITY_FISHER
 	const PEWTERCITY_FRUIT_TREE1
 	const PEWTERCITY_FRUIT_TREE2
 
@@ -38,6 +39,9 @@ PewterCityGrampsScript:
 	waitbutton
 	closetext
 	end
+	
+PewterCityFisherScript:
+	jumptextfaceplayer PewterCityFisherText
 	
 PewterHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_PEWTER_HIDDEN_FR
@@ -106,6 +110,15 @@ PewterCityGrampsText:
 	para "Here. I want you"
 	line "to have this item"
 	cont "I found in JOHTO."
+	done
+	
+PewterCityFisherText:
+	text "You should visit"
+	line "the PEWTER MUSEUM."
+
+	para "It was recently"
+	line "renovated and has"
+	cont "a big new section!"
 	done
 
 PewterCityGrampsText_GotSilverWing:
@@ -176,5 +189,6 @@ PewterCity_MapEvents:
 	object_event 19, 11, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterCityCooltrainerFScript, -1
 	object_event 14, 29, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityBugCatcherScript, -1
 	object_event 29, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
+	object_event 21, 21, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, PewterCityFisherScript, -1
 	object_event 32,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree1, -1
 	object_event 30,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree2, -1

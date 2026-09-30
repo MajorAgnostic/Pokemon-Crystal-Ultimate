@@ -129,9 +129,10 @@
  	const SPRITE_PROTON
 	const SPRITE_MRFUJI
 	const SPRITE_KING
+	const SPRITE_WING
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
-	const_next $80
+	const_next $81
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
 	const SPRITE_GEODUDE ; 81

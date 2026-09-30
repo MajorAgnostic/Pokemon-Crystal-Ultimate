@@ -789,7 +789,8 @@ PewterGym_Blocks:
 PewterMuseum1F_Blocks:
 	INCBIN "maps/PewterMuseum1F.blk"
 	
-
+PewterMuseum2F_Blocks:
+	INCBIN "maps/PewterMuseum2F.blk"
 
 CeladonGym_Blocks:
 	INCBIN "maps/CeladonGym.blk"

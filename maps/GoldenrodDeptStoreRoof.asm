@@ -171,7 +171,7 @@ Binoculars1Text:
 	line "see my own house."
 
 	para "Is it the one with"
-	line "the green roof?"
+	line "the brown roof?"
 	done
 
 Binoculars2Text:
