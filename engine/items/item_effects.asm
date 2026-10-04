@@ -190,7 +190,7 @@ ItemEffects:
 	dw RestoreHPEffect     ; GOLD_BERRY
 	dw SquirtbottleEffect  ; SQUIRTBOTTLE
 	dw VBoyEffect          ; VIRTUALBOY
-	dw NoEffect            ; RAINBOW_WING
+	dw NoEffect            ; GOLD_WING
 	dw VoltorbDollEffect   ; VOLTORB_DOLL
 	dw EvoStoneEffect      ; DRAGON_SCALE
 	dw EvoStoneEffect      ; UP_GRADE

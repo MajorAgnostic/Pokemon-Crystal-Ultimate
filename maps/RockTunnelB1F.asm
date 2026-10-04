@@ -27,7 +27,6 @@ RockTunnelB1FHiddenMaxPotion:
 	
 Andrea:
 	faceplayer
-	setevent EVENT_SPOKE_TO_ANDREA
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iffalse .BattleLater
 	waitsfx

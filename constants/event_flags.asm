@@ -461,10 +461,7 @@
 	const EVENT_NO_JANINE
 	const EVENT_NO_JANINE2
 	const EVENT_JANINE_CHUCKED
-	const EVENT_BEAT_GIOVANNI
 	const EVENT_SPOKE_ONCE
-	const EVENT_GIOVANNI_READY
-	const EVENT_SPOKE_TO_ANDREA
 
 	const_next 600
 ; Kurt Apricorn events

@@ -210,7 +210,7 @@ TinTower1FSage5Script:
 	iftrue .GotRainbowWing
 	writetext TinTower1FSage5Text1
 	promptbutton
-	verbosegiveitem RAINBOW_WING
+	verbosegiveitem GOLD_WING
 	closetext
 	refreshscreen
 	earthquake 72
@@ -403,10 +403,11 @@ TinTower1FSage2Text:
 	para "In other words…"
 
 	para "HO-OH descended"
-	line "from the sky and"
-
-	para "gave new life to"
-	line "the three #MON."
+	line "from the sky and,"
+	cont "in a festival of"
+	cont "golden light,"
+	cont "gave new life to"
+	cont "the three #MON."
 
 	para "They are…"
 
@@ -438,13 +439,16 @@ TinTower1FSage4Text1:
 	text "HO-OH appears to"
 	line "have descended"
 
-	para "upon this, the TIN"
+	para "upon the TIN"
 	line "TOWER!"
 	done
 
 TinTower1FSage5Text1:
 	text "This will protect"
 	line "you. Take it."
+	
+	para "It fell from HO-"
+	line "OH's golden tail."
 	done
 
 TinTower1FSage5Text2:
@@ -456,7 +460,7 @@ TinTower1FSage6Text1:
 	line "being tested."
 
 	para "Free your mind"
-	line "from uncertainty,"
+	line "from uncertainty"
 	cont "and advance."
 	done
 
@@ -505,10 +509,10 @@ TinTowerMortyText:
 	line "legendary #MON"
 	
 	para "form the history"
-	line "of ECRUTEAK CITY"
+	line "of ECRUTEAK CITY,"
 	
 	para "as well as my own"
-	line "dream."
+	line "dreams."
 	
 	para "The time will come"
 	line "when we must face"

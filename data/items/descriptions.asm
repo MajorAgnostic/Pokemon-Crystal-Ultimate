@@ -177,7 +177,7 @@ ItemDescriptions:
 	dw GoldBerryDesc
 	dw SquirtBottleDesc
 	dw VBoyDesc
-	dw RainbowWingDesc
+	dw GoldWingDesc
 	dw VoltorbDollDesc
 	dw DragonScaleDesc
 	dw UpGradeDesc
@@ -957,9 +957,9 @@ ParkBallDesc:
 	db   "The Bug-Catching"
 	next "Contest BALL.@"
 
-RainbowWingDesc:
-	db   "A mystical feather"
-	next "of rainbow colors.@"
+GoldWingDesc:
+	db   "A mystical gold-"
+	next "colored feather.@"
 
 VoltorbDollDesc:
 	db   "Cute #MON doll"

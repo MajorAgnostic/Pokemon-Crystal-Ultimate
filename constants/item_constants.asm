@@ -184,7 +184,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const GOLD_BERRY   ; ae
 	const SQUIRTBOTTLE ; af
 	const VIRTUALBOY   ; b0
-	const RAINBOW_WING ; b2
+	const GOLD_WING ; b2
 	const VOLTORB_DOLL ; be
 	const DRAGON_SCALE ; bf
 	const UP_GRADE     ; c0

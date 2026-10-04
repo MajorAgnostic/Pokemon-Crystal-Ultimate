@@ -176,7 +176,7 @@ ItemNames::
 	db "GOLD BERRY@"
 	db "SQUIRTBOTTLE@"
 	db "VIRTUAL BOY@"
-	db "RAINBOW WING@"
+	db "GOLD WING@"
 	db "VOLTORB DOLL@"
 	db "DRAGON SCALE@"
 	db "UP-GRADE@"

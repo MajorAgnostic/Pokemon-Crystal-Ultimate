@@ -17,7 +17,7 @@ TinTowerRoof_MapScripts:
 .HoOh:
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue .NoAppear
-	checkitem RAINBOW_WING
+	checkitem GOLD_WING
 	iftrue .Appear
 	sjump .NoAppear
 
