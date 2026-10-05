@@ -33,9 +33,9 @@ CeladonEusine:
 .SecondMeeting
 	special BeastsCheck
 	iffalse .NoBeasts
-	checkevent EVENT_BEAT_MISTY
+	checkevent EVENT_BEAT_BLUE
 	iftrue .HoOh
-	sjump .NoMisty
+	sjump .NoBlue
 .NoBeasts:
 	writetext NoBeastsText
 .NoSuicune:
@@ -43,7 +43,7 @@ CeladonEusine:
 	closetext
 	end
 	
-.NoMisty:
+.NoBlue:
 	writetext CeladonEusineText2
 	waitbutton
 	closetext
@@ -134,19 +134,8 @@ CeladonEusineText1:
 	
 	para "Perhaps it is wai-"
 	line "ting for the three"
-	cont "beasts' reunion?"
-	
-	para "That reminds me, I"
-	line "heard of an elder"
-	
-	para "in PEWTER CITY who"
-	line "has a SILVER WING."
-
-	para "Maybe I am not as"
-	line "close to finishing"
-	
-	para "my research as I"
-	line "thought…"
+	cont "legendary beasts'"
+	cont "reunion?"
 	done
 	
 CeladonEusineText2:
@@ -167,9 +156,9 @@ CeladonEusineText2:
 	line "you been collect-"
 	cont "ing KANTO badges?"
 	
-	para "I hear that MISTY"
-	line "is a fierce GYM"
-	cont "LEADER!"
+	para "I hear that BLUE"
+	line "is the toughest"
+	cont "GYM LEADER around!"
 	done
 
 EusineLeavesCeladonText:

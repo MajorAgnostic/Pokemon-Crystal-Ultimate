@@ -69,6 +69,9 @@ EcruteakCitySign:
 
 TinTowerSign:
 	jumptext TinTowerSignText
+	
+TinTowerPathSign:
+	jumptext TinTowerPathSignText
 
 EcruteakGymSign:
 	jumptext EcruteakGymSignText
@@ -210,6 +213,14 @@ TinTowerSignText:
 	line "MON is said to"
 	cont "roost here."
 	done
+	
+TinTowerPathSignText:
+	text "BARRIER STATION"
+	line "to TIN TOWER"
+	
+	para "No trespassing by"
+	line "the unworthy."
+	done
 
 EcruteakGymSignText:
 	text "ECRUTEAK CITY"
@@ -242,7 +253,7 @@ EcruteakCity_MapEvents:
 	def_warp_events
 	warp_event 35, 26, ROUTE_42_ECRUTEAK_GATE, 1
 	warp_event 35, 27, ROUTE_42_ECRUTEAK_GATE, 2
-	warp_event 18, 11, ECRUTEAK_TIN_TOWER_ENTRANCE, 1
+	warp_event 19, 11, ECRUTEAK_TIN_TOWER_ENTRANCE, 1
 	warp_event 20,  2, WISE_TRIOS_ROOM, 1
 	warp_event 20,  3, WISE_TRIOS_ROOM, 2
 	warp_event 23, 27, ECRUTEAK_POKECENTER_1F, 1
@@ -264,9 +275,10 @@ EcruteakCity_MapEvents:
 	bg_event  8, 28, BGEVENT_READ, EcruteakGymSign
 	bg_event 21, 21, BGEVENT_READ, EcruteakDanceTheaterSign
 	bg_event  2, 10, BGEVENT_READ, BurnedTowerSign
+	bg_event 17, 11, BGEVENT_READ, TinTowerPathSign
 	bg_event 24, 27, BGEVENT_READ, EcruteakCityPokecenterSign
 	bg_event 30, 21, BGEVENT_READ, EcruteakCityMartSign
-	bg_event 23, 14, BGEVENT_ITEM, EcruteakCityHiddenHyperPotion
+	bg_event 32, 12, BGEVENT_ITEM, EcruteakCityHiddenHyperPotion
 
 	def_object_events
 	object_event 18, 15, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1

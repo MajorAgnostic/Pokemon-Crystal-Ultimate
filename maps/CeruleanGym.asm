@@ -59,8 +59,7 @@ CeruleanGym_MapScripts:
 CeruleanGymMistyScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_CASCADEBADGE
-	iftrue .FightDone
+	
 	writetext MistyIntroText
 	waitbutton
 	closetext
@@ -249,10 +248,12 @@ MistyIntroText:
 
 	para "BADGES, but you'd"
 	line "better not take me"
-	cont "too lightly."
+	cont "lightly."
 
 	para "My water-type"
-	line "#MON are tough!"
+	line "#MON are tough."
+	
+	para "Now, bring it on!"
 	done
 
 MistyWinLossText:
@@ -280,7 +281,7 @@ MistyFightDoneText:
 	para "I'm going to"
 	line "travel one day so"
 
-	para "I can battle some"
+	para "I can battle more"
 	line "skilled trainers."
 	done
 

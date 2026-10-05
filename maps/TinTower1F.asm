@@ -446,13 +446,13 @@ TinTower1FSage4Text1:
 TinTower1FSage5Text1:
 	text "This will protect"
 	line "you. Take it."
-	
-	para "It fell from HO-"
-	line "OH's golden tail."
 	done
 
 TinTower1FSage5Text2:
-	text "Now, go."
+	text "It fell from HO-"
+	line "OH's golden tail."
+	
+	para "Now, go."
 	done
 
 TinTower1FSage6Text1:

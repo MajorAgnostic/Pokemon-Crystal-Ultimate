@@ -82,7 +82,7 @@ PewterMuseum2FLassText:
 Museum2FGoldWingText:
 	text "It's a rare plume"
 	line "from the legendary"
-	cont "HO-OH."
+	cont "#MON HO-OH."
 
 	para "It must be the one"
 	line "that MISTY found!"

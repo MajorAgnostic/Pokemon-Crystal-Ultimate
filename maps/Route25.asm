@@ -251,6 +251,18 @@ Route25MistyDateText:
 	
 	para "…Oh? Didn't we"
 	line "meet in SAFFRON?"
+	
+	para "Yes, when we saw"
+	line "the legendary"
+	cont "rainbow #MON!"
+	
+	para "I donated that"
+	line "GOLD WING to the"
+	cont "PEWTER MUSEUM."
+	
+	para "You should visit"
+	line "sometime and say"
+	cont "hello to BROCK!"
 
 	para "And those BADGES"
 	line "you have… Are they"
@@ -270,7 +282,7 @@ Route25MistyDateText:
 	line "set up again."
 	
 	para "OK, then. Come to"
-	line "CERULEAN GYM soon."
+	line "CERULEAN GYM soon!"
 	done
 
 SchoolboyDudleySeenText:
