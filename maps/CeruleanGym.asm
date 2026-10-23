@@ -59,7 +59,8 @@ CeruleanGym_MapScripts:
 CeruleanGymMistyScript:
 	faceplayer
 	opentext
-	
+	checkflag ENGINE_CASCADEBADGE
+	iftrue .FightDone
 	writetext MistyIntroText
 	waitbutton
 	closetext

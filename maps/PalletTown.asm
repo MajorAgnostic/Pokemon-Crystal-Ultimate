@@ -7,16 +7,38 @@ PalletTown_MapScripts:
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_TILES, PalletClearRocksCallback
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_PALLET
+	endcallback
+	
+PalletClearRocksCallback:
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	iftrue .Done
+	changeblock  4, 16, $7a ; rock
+	changeblock  6, 16, $7a ; rock
+.Done:
 	endcallback
 
 PalletTownTeacherScript:
 	jumptextfaceplayer PalletTownTeacherText
 
 PalletTownFisherScript:
-	jumptextfaceplayer PalletTownFisherText
+	faceplayer
+	opentext
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	iftrue .RocksCleared
+	writetext PalletTownFisherText
+	waitbutton
+	closetext
+	end
+
+.RocksCleared:
+	writetext PalletTownFisherText_RocksCleared
+	waitbutton
+	closetext
+	end
 
 PalletTownSign:
 	jumptext PalletTownSignText
@@ -37,8 +59,18 @@ PalletTownTeacherText:
 	para "They serve as my"
 	line "private guards."
 	done
-
+	
 PalletTownFisherText:
+	text "The sea is cut off"
+	line "by those boulders."
+
+	para "But that pocket of"
+	line "water has warmed"
+	cont "into the perfect"
+	cont "wading pool!"
+	done
+
+PalletTownFisherText_RocksCleared:
 	text "Technology is"
 	line "incredible!"
 
