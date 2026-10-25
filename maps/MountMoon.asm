@@ -124,27 +124,8 @@ MountMoonSilverTextWin:
 MountMoonSilverTextAfter:
 	text "<……> <……> <……>"
 
-	para "…You won, fair"
-	line "and square."
-
-	para "I admit it. But"
-	line "this isn't the"
-	cont "end."
-
-	para "I'm going to be"
-	line "the greatest #-"
-	cont "MON trainer ever."
-
-	para "Because these guys"
-	line "are behind me."
-
-	para "…Listen, <PLAYER>."
-
-	para "One of these days"
-	line "I'm going to prove"
-
-	para "how good I am by"
-	line "beating you."
+	para "REPLACE"
+	line "REPLACE"
 	done
 
 MountMoonSilverTextLoss:

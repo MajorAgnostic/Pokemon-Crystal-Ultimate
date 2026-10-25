@@ -196,6 +196,11 @@ SCENE_FINISHED EQU 1
 	const_def 1
 	const SCENE_GIOVANNISILVER
 	
-; wRoute22PastSceneID
+; wGiovanniHouseSceneID
 	const_def 1
 	const SCENE_GIOVANNIHOUSE
+	
+; wRoute9SceneID
+	const_def
+	const SCENE_ROUTE9_RIVAL_BATTLE
+	const SCENE_ROUTE9_NOTHING

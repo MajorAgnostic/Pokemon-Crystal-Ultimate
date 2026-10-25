@@ -92,4 +92,5 @@ MapScenes::
 	scene_var VIRIDIAN_GYM,                                wViridianGymSceneID
 	scene_var ROUTE_22_PAST,                               wRoute22PastSceneID
 	scene_var GIOVANNI_HOUSE,                              wGiovanniHouseSceneID
+	scene_var ROUTE_9,                                     wRoute9SceneID
 	db -1 ; end

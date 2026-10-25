@@ -410,7 +410,7 @@ MaleCaptiveText2:
 	para "You remind me of"
 	line "a kid who helped"
 	
-	para "free us in SILPH"
+	para "free us at SILPH"
 	line "CO. HQ, three"
 	cont "years ago."
 	done

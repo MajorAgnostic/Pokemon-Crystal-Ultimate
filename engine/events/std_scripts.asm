@@ -658,6 +658,7 @@ InitializeEventsScript:
 	setevent EVENT_BOULDER_IN_SEAFOAM_13
 	setevent EVENT_BOULDER_IN_SEAFOAM_14
 	setevent EVENT_ADAM_APPEARS
+	setevent EVENT_RIVAL_ROUTE_9
 	setevent EVENT_INITIALIZED_EVENTS
 	endcallback
 

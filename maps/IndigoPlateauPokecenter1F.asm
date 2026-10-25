@@ -267,15 +267,29 @@ PlateauRivalWinText:
 	done
 
 PlateauRivalText2:
-	text "…Darn… I still"
-	line "can't win…"
+	text "<……> <……> <……>"
 
-	para "I… I have to think"
-	line "more about my"
-	cont "#MON…"
+	para "…You won, fair"
+	line "and square."
 
-	para "Humph! Try not to"
-	line "lose!"
+	para "I admit it. But"
+	line "this isn't the"
+	cont "end."
+
+	para "I'm going to be"
+	line "the greatest #-"
+	cont "MON trainer ever."
+
+	para "Because these guys"
+	line "are behind me."
+
+	para "…Listen, <PLAYER>."
+
+	para "One of these days"
+	line "I'm going to prove"
+
+	para "how good I am by"
+	line "beating you."
 	done
 
 PlateauRivalLoseText:

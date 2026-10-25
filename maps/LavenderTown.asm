@@ -92,7 +92,7 @@ LavenderTownSignText:
 
 KantoRadioStationSignText:
 	text "KANTO RADIO"
-	line "STATION"
+	line "TOWER"
 
 	para "Your Favorite"
 	line "Programs On-Air"

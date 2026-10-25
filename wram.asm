@@ -2779,8 +2779,9 @@ wSeafoamGymSceneID::                              db
 wViridianGymSceneID::                             db
 wRoute22PastSceneID::                             db
 wGiovanniHouseSceneID::                           db
+wRoute9SceneID::                                  db
 
-	ds 21
+	ds 20
 
 ; fight counts
 wLevelCap::          db ; Level cap

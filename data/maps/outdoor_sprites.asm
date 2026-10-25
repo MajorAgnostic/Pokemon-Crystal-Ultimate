@@ -60,7 +60,7 @@ CeruleanGroupSprites:
 ; Route4, Route9, Route10North, Route24, Route25, CeruleanCity
 SaffronGroupSprites:
 ; Route5, SaffronCity
-	db SPRITE_COOLTRAINER_M
+	db SPRITE_SILVER
 	db SPRITE_SUPER_NERD
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_FISHER

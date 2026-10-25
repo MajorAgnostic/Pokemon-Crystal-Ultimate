@@ -4652,102 +4652,102 @@ Rival2Group:
 			db HYDRO_PUMP, CRUNCH, ICE_BEAM, EARTHQUAKE
 	db -1 ; end
 
-	; RIVAL2 (4) - Mt Moon
+	; RIVAL2 (4) - Previously Mt Moon, now Route 9
 	db "?@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM | TRAINERTYPE_MOVES
-	db 84, ALAKAZAM
+	db 77, ALAKAZAM
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db BERRY_JUICE
 			db PSYCHIC_M, FIRE_PUNCH, RECOVER, KINESIS
-	db 85, GENGAR
+	db 78, GENGAR
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db FOCUS_BAND
 			db DREAM_EATER, ICE_PUNCH, HYPNOSIS, NIGHT_SHADE
-	db 86, CROBAT
+	db 79, CROBAT
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db POISON_BARB
 			db SLUDGE_BOMB, LEECH_LIFE, TOXIC, FLY
-	db 85, MAGNETON
+	db 78, MAGNETON
 			db $ed, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db LEFTOVERS
 			db THUNDERBOLT, THUNDER_WAVE, SUBSTITUTE, HIDDEN_POWER
-	db 86, SNEASEL
+	db 78, SNEASEL
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db NEVERMELTICE
 			db BEAT_UP, ICE_BEAM, MOONLIGHT, REFLECT
-	db 87, MEGANIUM
+	db 80, MEGANIUM
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db SCOPE_LENS
 			db BODY_SLAM, EARTHQUAKE, SWORDS_DANCE, SYNTHESIS
 	db -1 ; end
 
-	; RIVAL2 (5) - Mt Moon
+	; RIVAL2 (5) - Previously Mt Moon, now Route 9
 	db "?@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM | TRAINERTYPE_MOVES
-	db 84, ALAKAZAM
+	db 77, ALAKAZAM
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db BERRY_JUICE
 			db PSYCHIC_M, FIRE_PUNCH, RECOVER, KINESIS
-	db 85, GENGAR
+	db 78, GENGAR
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db FOCUS_BAND
 			db DREAM_EATER, ICE_PUNCH, HYPNOSIS, NIGHT_SHADE
-	db 86, CROBAT
+	db 79, CROBAT
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db POISON_BARB
 			db SLUDGE_BOMB, LEECH_LIFE, TOXIC, FLY
-	db 85, MAGNETON
+	db 78, MAGNETON
 			db $ed, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db LEFTOVERS
 			db THUNDERBOLT, THUNDER_WAVE, SUBSTITUTE, HIDDEN_POWER
-	db 86, SNEASEL
+	db 78, SNEASEL
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db NEVERMELTICE
 			db BEAT_UP, ICE_BEAM, MOONLIGHT, REFLECT
-	db 87, TYPHLOSION
+	db 80, TYPHLOSION
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db CHARCOAL
 			db FIRE_BLAST, THUNDERPUNCH, DYNAMICPUNCH, EARTHQUAKE
 	db -1 ; end
 
-	; RIVAL2 (6) - Mt Moon
+	; RIVAL2 (6) - Previously Mt Moon, now Route 9
 	db "?@", TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM | TRAINERTYPE_MOVES
-	db 84, ALAKAZAM
+	db 77, ALAKAZAM
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db BERRY_JUICE
 			db PSYCHIC_M, FIRE_PUNCH, RECOVER, KINESIS
-	db 85, GENGAR
+	db 78, GENGAR
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db FOCUS_BAND
 			db DREAM_EATER, ICE_PUNCH, HYPNOSIS, NIGHT_SHADE
-	db 86, CROBAT
+	db 79, CROBAT
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db POISON_BARB
 			db SLUDGE_BOMB, LEECH_LIFE, TOXIC, FLY
-	db 85, MAGNETON
+	db 78, MAGNETON
 			db $ed, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db LEFTOVERS
 			db THUNDERBOLT, THUNDER_WAVE, SUBSTITUTE, HIDDEN_POWER
-	db 86, SNEASEL
+	db 78, SNEASEL
 			db $bb, $bb ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db NEVERMELTICE
 			db BEAT_UP, ICE_BEAM, MOONLIGHT, REFLECT
-	db 87, FERALIGATR
+	db 80, FERALIGATR
 			db PERFECT_DV, PERFECT_DV ; atk|def, spd|spc
 			dw $50C3, $50C3, $50C3, $50C3, $50C3
 			db MYSTIC_WATER
